@@ -1926,8 +1926,8 @@ CAmount GetBlockSubsidy(int nHeight, const Consensus::Params& consensusParams)
     if (halvings >= 64)
         return 0;
 
-    CAmount nSubsidy = 50 * COIN;
-    // Subsidy is cut in half every 210,000 blocks which will occur approximately every 4 years.
+    CAmount nSubsidy = 5000 * COIN;
+    // Subsidy is cut in half every 2,100,000 blocks which will occur approximately every 4 years.
     nSubsidy >>= halvings;
     return nSubsidy;
 }
@@ -2400,7 +2400,12 @@ bool Chainstate::ConnectBlock(const CBlock& block, BlockValidationState& state, 
     // is enforced in ContextualCheckBlockHeader(); we wouldn't want to
     // re-enforce that rule here (at least until we make it impossible for
     // the clock to go backward).
-    if (!CheckBlock(block, state, params.GetConsensus(), !fJustCheck, !fJustCheck)) {
+
+    // Meowcoin: skip PoW re-check for the genesis block.
+    // Multi-algo PoW (X16R/X16RV2) genesis blocks were mined offline;
+    // the genesis hash is already asserted in chainparams.
+    const bool fGenesisBlock = (pindex->nHeight == 0);
+    if (!CheckBlock(block, state, params.GetConsensus(), !fJustCheck && !fGenesisBlock, !fJustCheck)) {
         if (state.GetResult() == BlockValidationResult::BLOCK_MUTATED) {
             // We don't write down blocks to disk if they may have been
             // corrupted, so this should be impossible unless we're having hardware
@@ -3923,9 +3928,57 @@ void ChainstateManager::ReceivedBlockTransactions(const CBlock& block, CBlockInd
 
 static bool CheckBlockHeader(const CBlockHeader& block, BlockValidationState& state, const Consensus::Params& consensusParams, bool fCheckPOW = true)
 {
-    // Check proof of work matches claimed amount
-    if (fCheckPOW && !CheckProofOfWork(block.GetHash(), block.nBits, consensusParams))
-        return state.Invalid(BlockValidationResult::BLOCK_INVALID_HEADER, "high-hash", "proof of work failed");
+    if (!fCheckPOW)
+        return true;
+
+    // ---- Chain ID check (for blocks after legacy era) ----
+    if (!block.nVersion.IsLegacy()) {
+        if (consensusParams.fStrictChainId &&
+            block.nVersion.GetChainId() != consensusParams.nAuxpowChainId)
+            return state.Invalid(BlockValidationResult::BLOCK_INVALID_HEADER,
+                                 "bad-chain-id", "incorrect chain ID in block header");
+    }
+
+    // ---- AuxPoW path ----
+    if (block.nVersion.IsAuxpow()) {
+        if (!block.auxpow)
+            return state.Invalid(BlockValidationResult::BLOCK_INVALID_HEADER,
+                                 "bad-auxpow-missing", "auxpow flag set but no auxpow data");
+
+        if (!block.auxpow->check(block.GetHash(),
+                                 block.nVersion.GetChainId(), consensusParams))
+            return state.Invalid(BlockValidationResult::BLOCK_INVALID_HEADER,
+                                 "bad-auxpow", "auxpow validation failed");
+
+        if (!CheckProofOfWork(block.auxpow->getParentBlockHash(),
+                              block.nBits, PowAlgo::SCRYPT, consensusParams))
+            return state.Invalid(BlockValidationResult::BLOCK_INVALID_HEADER,
+                                 "high-hash", "proof of work failed (auxpow)");
+
+        return true;
+    }
+
+    // ---- KAWPOW / MEOWPOW path (post-activation) ----
+    if (block.nTime >= nKAWPOWActivationTime) {
+        uint256 mix;
+        uint256 hash = block.GetHashFull(mix);
+
+        // Verify that the claimed mix_hash matches the computed one.
+        if (mix != block.mix_hash)
+            return state.Invalid(BlockValidationResult::BLOCK_INVALID_HEADER,
+                                 "bad-mix-hash", "mix_hash mismatch");
+
+        if (!CheckProofOfWork(hash, block.nBits, block.nVersion.GetAlgo(), consensusParams))
+            return state.Invalid(BlockValidationResult::BLOCK_INVALID_HEADER,
+                                 "high-hash", "proof of work failed (progpow)");
+
+        return true;
+    }
+
+    // ---- Pre-KAWPOW path (X16R / X16RV2) ----
+    if (!CheckProofOfWork(block.GetHash(), block.nBits, PowAlgo::MEOWPOW, consensusParams))
+        return state.Invalid(BlockValidationResult::BLOCK_INVALID_HEADER,
+                             "high-hash", "proof of work failed");
 
     return true;
 }
@@ -4039,8 +4092,8 @@ bool CheckBlock(const CBlock& block, BlockValidationState& state, const Consensu
     // Note that witness malleability is checked in ContextualCheckBlock, so no
     // checks that use witness data may be performed here.
 
-    // Size limits
-    if (block.vtx.empty() || block.vtx.size() * WITNESS_SCALE_FACTOR > MAX_BLOCK_WEIGHT || ::GetSerializeSize(TX_NO_WITNESS(block)) * WITNESS_SCALE_FACTOR > MAX_BLOCK_WEIGHT)
+    // Size limits (use Meowcoin HIP2 dynamic limits)
+    if (block.vtx.empty() || block.vtx.size() * WITNESS_SCALE_FACTOR > GetMaxBlockWeight() || ::GetSerializeSize(TX_NO_WITNESS(block)) * WITNESS_SCALE_FACTOR > GetMaxBlockWeight())
         return state.Invalid(BlockValidationResult::BLOCK_CONSENSUS, "bad-blk-length", "size limits failed");
 
     // First transaction must be coinbase, the rest must not be
@@ -4183,29 +4236,35 @@ static bool ContextualCheckBlockHeader(const CBlockHeader& block, BlockValidatio
     assert(pindexPrev != nullptr);
     const int nHeight = pindexPrev->nHeight + 1;
 
-    // Check proof of work
     const Consensus::Params& consensusParams = chainman.GetConsensus();
-    if (block.nBits != GetNextWorkRequired(pindexPrev, &block, consensusParams))
+
+    // Check proof of work
+    const bool fIsAuxPowBlock = block.nVersion.IsAuxpow();
+    if (block.nBits != GetNextWorkRequired(pindexPrev, &block, consensusParams, fIsAuxPowBlock))
         return state.Invalid(BlockValidationResult::BLOCK_INVALID_HEADER, "bad-diffbits", "incorrect proof of work");
+
+    // Reject legacy blocks after auxpow era starts
+    if (consensusParams.IsAuxpowActive(nHeight) && block.nVersion.IsLegacy())
+        return state.Invalid(BlockValidationResult::BLOCK_INVALID_HEADER, "bad-version-legacy",
+                             "legacy block version not allowed after auxpow activation");
 
     // Check timestamp against prev
     if (block.GetBlockTime() <= pindexPrev->GetMedianTimePast())
         return state.Invalid(BlockValidationResult::BLOCK_INVALID_HEADER, "time-too-old", "block's timestamp is too early");
 
-    // Testnet4 and regtest only: Check timestamp against prev for difficulty-adjustment
-    // blocks to prevent timewarp attacks (see https://github.com/bitcoin/bitcoin/pull/15482).
-    if (consensusParams.enforce_BIP94) {
-        // Check timestamp for the first block of each difficulty adjustment
-        // interval, except the genesis block.
-        if (nHeight % consensusParams.DifficultyAdjustmentInterval() == 0) {
-            if (block.GetBlockTime() < pindexPrev->GetBlockTime() - MAX_TIMEWARP) {
-                return state.Invalid(BlockValidationResult::BLOCK_INVALID_HEADER, "time-timewarp-attack", "block's timestamp is too early on diff adjustment block");
-            }
-        }
+    // Check timestamp — use tighter future limit for LWMA/DGW eras.
+    // LWMA (auxpow era): N*T/20 ≈ 3 minutes; DGW era: 2 minutes; otherwise 2 hours.
+    static constexpr int64_t MAX_FUTURE_BLOCK_TIME_LWMA = 3 * 60;
+    static constexpr int64_t MAX_FUTURE_BLOCK_TIME_DGW  = 2 * 60;
+
+    int64_t futureLimit = MAX_FUTURE_BLOCK_TIME;
+    if (consensusParams.IsAuxpowActive(nHeight)) {
+        futureLimit = MAX_FUTURE_BLOCK_TIME_LWMA;
+    } else if (IsDGWActive(nHeight)) {
+        futureLimit = MAX_FUTURE_BLOCK_TIME_DGW;
     }
 
-    // Check timestamp
-    if (block.Time() > NodeClock::now() + std::chrono::seconds{MAX_FUTURE_BLOCK_TIME}) {
+    if (block.Time() > NodeClock::now() + std::chrono::seconds{futureLimit}) {
         return state.Invalid(BlockValidationResult::BLOCK_TIME_FUTURE, "time-too-new", "block timestamp too far in the future");
     }
 
@@ -4213,8 +4272,8 @@ static bool ContextualCheckBlockHeader(const CBlockHeader& block, BlockValidatio
     if ((block.nVersion < 2 && DeploymentActiveAfter(pindexPrev, chainman, Consensus::DEPLOYMENT_HEIGHTINCB)) ||
         (block.nVersion < 3 && DeploymentActiveAfter(pindexPrev, chainman, Consensus::DEPLOYMENT_DERSIG)) ||
         (block.nVersion < 4 && DeploymentActiveAfter(pindexPrev, chainman, Consensus::DEPLOYMENT_CLTV))) {
-            return state.Invalid(BlockValidationResult::BLOCK_INVALID_HEADER, strprintf("bad-version(0x%08x)", block.nVersion),
-                                 strprintf("rejected nVersion=0x%08x block", block.nVersion));
+            return state.Invalid(BlockValidationResult::BLOCK_INVALID_HEADER, strprintf("bad-version(0x%08x)", static_cast<int32_t>(block.nVersion)),
+                                 strprintf("rejected nVersion=0x%08x block", static_cast<int32_t>(block.nVersion)));
     }
 
     return true;
@@ -4276,7 +4335,7 @@ static bool ContextualCheckBlock(const CBlock& block, BlockValidationState& stat
     // large by filling up the coinbase witness, which doesn't change
     // the block hash, so we couldn't mark the block as permanently
     // failed).
-    if (GetBlockWeight(block) > MAX_BLOCK_WEIGHT) {
+    if (GetBlockWeight(block) > GetMaxBlockWeight()) {
         return state.Invalid(BlockValidationResult::BLOCK_CONSENSUS, "bad-blk-weight", strprintf("%s : weight limit failed", __func__));
     }
 

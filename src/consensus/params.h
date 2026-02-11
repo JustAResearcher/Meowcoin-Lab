@@ -6,6 +6,7 @@
 #ifndef BITCOIN_CONSENSUS_PARAMS_H
 #define BITCOIN_CONSENSUS_PARAMS_H
 
+#include <primitives/algos.h>
 #include <uint256.h>
 
 #include <array>
@@ -33,6 +34,11 @@ constexpr bool ValidDeployment(BuriedDeployment dep) { return dep <= DEPLOYMENT_
 enum DeploymentPos : uint16_t {
     DEPLOYMENT_TESTDUMMY,
     DEPLOYMENT_TAPROOT, // Deployment of Schnorr/Taproot (BIPs 340-342)
+    DEPLOYMENT_ASSETS, // Deployment of HIP2 (asset layer)
+    DEPLOYMENT_MSG_REST_ASSETS, // Deployment of RIP5 and restricted assets
+    DEPLOYMENT_TRANSFER_SCRIPT_SIZE,
+    DEPLOYMENT_ENFORCE_VALUE,
+    DEPLOYMENT_COINBASE_ASSETS,
     // NOTE: Also add new deployments to VersionBitsDeploymentInfo in deploymentinfo.cpp
     MAX_VERSION_BITS_DEPLOYMENTS
 };
@@ -61,6 +67,11 @@ struct BIP9Deployment {
      * Examples: 1916 for 95%, 1512 for testchains.
      */
     uint32_t threshold{1916};
+
+    /** Meowcoin: per-deployment override for miner confirmation window (0 = use global). */
+    uint32_t nOverrideMinerConfirmationWindow{0};
+    /** Meowcoin: per-deployment override for activation threshold (0 = use global). */
+    uint32_t nOverrideRuleChangeActivationThreshold{0};
 
     /** Constant for nTimeout very far in the future. */
     static constexpr int64_t NO_TIMEOUT = std::numeric_limits<int64_t>::max();
@@ -106,9 +117,18 @@ struct Params {
     /** Don't warn about unknown BIP 9 activations below this height.
      * This prevents us from warning about the CSV and segwit activations. */
     int MinBIP9WarningHeight;
+
+    /** Meowcoin: global rule-change activation threshold (used when per-deployment override is 0). */
+    uint32_t nRuleChangeActivationThreshold{1916};
+    /** Meowcoin: global miner confirmation window (used when per-deployment override is 0). */
+    uint32_t nMinerConfirmationWindow{2016};
+
     std::array<BIP9Deployment,MAX_VERSION_BITS_DEPLOYMENTS> vDeployments;
-    /** Proof of work parameters */
+
+    /** Proof of work parameters — per-algorithm limits for multi-algo mining. */
     uint256 powLimit;
+    uint256 powLimitPerAlgo[static_cast<uint8_t>(PowAlgo::NUM_ALGOS)];
+
     bool fPowAllowMinDifficultyBlocks;
     /**
       * Enforce BIP94 timewarp attack mitigation. On testnet4 this also enforces
@@ -118,6 +138,10 @@ struct Params {
     bool fPowNoRetargeting;
     int64_t nPowTargetSpacing;
     int64_t nPowTargetTimespan;
+
+    /** Meowcoin: LWMA averaging window (typically 45). */
+    int64_t nLwmaAveragingWindow{45};
+
     std::chrono::seconds PowTargetSpacing() const
     {
         return std::chrono::seconds{nPowTargetSpacing};
@@ -134,6 +158,31 @@ struct Params {
      */
     bool signet_blocks{false};
     std::vector<uint8_t> signet_challenge;
+
+    /** Meowcoin: boolean toggles for BIP enforcement (replaces buried-height checks for Meowcoin). */
+    bool nBIP34Enabled{true};
+    bool nBIP65Enabled{true};
+    bool nBIP66Enabled{true};
+    bool nSegwitEnabled{true};
+    bool nCSVEnabled{true};
+
+    /** Meowcoin: AuxPoW parameters */
+    int32_t nAuxpowChainId{9};
+    int nAuxpowStartHeight{0};
+    bool fStrictChainId{true};
+    int nLegacyBlocksBefore{-1}; //!< -1 = always allow legacy
+
+    bool IsAuxpowActive(int nHeight) const
+    {
+        return nHeight >= nAuxpowStartHeight;
+    }
+
+    bool AllowLegacyBlocks(unsigned nHeight) const
+    {
+        if (nLegacyBlocksBefore < 0)
+            return true;
+        return static_cast<int>(nHeight) < nLegacyBlocksBefore;
+    }
 
     int DeploymentHeight(BuriedDeployment dep) const
     {

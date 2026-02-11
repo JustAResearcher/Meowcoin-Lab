@@ -203,6 +203,16 @@ public:
     constexpr explicit uint256(std::span<const unsigned char> vch) : base_blob<256>(vch) {}
     static const uint256 ZERO;
     static const uint256 ONE;
+
+    /** Return a 4-bit nibble from the hash (used by X16R hash selection).
+     *  Index 0 is the most-significant nibble of the hex representation. */
+    int GetNibble(int index) const
+    {
+        index = 63 - index;
+        if (index % 2 == 1)
+            return (m_data[index / 2] >> 4);
+        return (m_data[index / 2] & 0x0F);
+    }
 };
 
 #endif // BITCOIN_UINT256_H

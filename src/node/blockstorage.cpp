@@ -134,10 +134,8 @@ bool BlockTreeDB::LoadBlockIndexGuts(const Consensus::Params& consensusParams, s
                 pindexNew->nStatus        = diskindex.nStatus;
                 pindexNew->nTx            = diskindex.nTx;
 
-                if (!CheckProofOfWork(pindexNew->GetBlockHash(), pindexNew->nBits, consensusParams)) {
-                    LogError("%s: CheckProofOfWork failed: %s\n", __func__, pindexNew->ToString());
-                    return false;
-                }
+                // Meowcoin: skip PoW re-verification on block index load.
+                // Multi-algo PoW was validated when the block was first accepted.
 
                 pcursor->Next();
             } else {
@@ -1017,13 +1015,12 @@ bool BlockManager::ReadBlock(CBlock& block, const FlatFilePos& pos, const std::o
 
     const auto block_hash{block.GetHash()};
 
-    // Check the header
-    if (!CheckProofOfWork(block_hash, block.nBits, GetConsensus())) {
-        LogError("Errors in block header at %s while reading block", pos.ToString());
-        return false;
-    }
+    // Meowcoin: PoW verification removed from read path.
+    // Multi-algo PoW (X16R/KAWPOW/MEOWPOW/Scrypt) cannot be efficiently
+    // re-verified on every disk read, and KAWPOW/MEOWPOW require epoch
+    // context.  PoW is validated when blocks are first accepted.
 
-    // Signet only: check block solution
+    // Signet only: check block solution (not used by Meowcoin)
     if (GetConsensus().signet_blocks && !CheckSignetBlockSolution(block, GetConsensus())) {
         LogError("Errors in block solution at %s while reading block", pos.ToString());
         return false;

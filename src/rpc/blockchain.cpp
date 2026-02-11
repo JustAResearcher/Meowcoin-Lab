@@ -159,8 +159,8 @@ UniValue blockheaderToJSON(const CBlockIndex& tip, const CBlockIndex& blockindex
     int confirmations = ComputeNextBlockAndDepth(tip, blockindex, pnext);
     result.pushKV("confirmations", confirmations);
     result.pushKV("height", blockindex.nHeight);
-    result.pushKV("version", blockindex.nVersion);
-    result.pushKV("versionHex", strprintf("%08x", blockindex.nVersion));
+    result.pushKV("version", static_cast<int32_t>(blockindex.nVersion));
+    result.pushKV("versionHex", strprintf("%08x", static_cast<int32_t>(blockindex.nVersion)));
     result.pushKV("merkleroot", blockindex.hashMerkleRoot.GetHex());
     result.pushKV("time", blockindex.nTime);
     result.pushKV("mediantime", blockindex.GetMedianTimePast());

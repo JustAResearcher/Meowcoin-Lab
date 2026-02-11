@@ -264,6 +264,18 @@ inline constexpr const char* WTXIDRELAY{"wtxidrelay"};
  * txreconciliation, as described by BIP 330.
  */
 inline constexpr const char* SENDTXRCNCL{"sendtxrcncl"};
+/**
+ * Meowcoin: request asset data by name.
+ */
+inline constexpr const char* GETASSETDATA{"getassetdata"};
+/**
+ * Meowcoin: response with serialized asset data.
+ */
+inline constexpr const char* ASSETDATA{"assetdata"};
+/**
+ * Meowcoin: asset not found response.
+ */
+inline constexpr const char* ASSETNOTFOUND{"asstnotfound"};
 }; // namespace NetMsgType
 
 /** All known message types (see above). Keep this in the same order as the list of messages above. */
@@ -303,6 +315,9 @@ inline const std::array ALL_NET_MESSAGE_TYPES{std::to_array<std::string>({
     NetMsgType::CFCHECKPT,
     NetMsgType::WTXIDRELAY,
     NetMsgType::SENDTXRCNCL,
+    NetMsgType::GETASSETDATA,
+    NetMsgType::ASSETDATA,
+    NetMsgType::ASSETNOTFOUND,
 })};
 
 /** nServices flags */
@@ -527,5 +542,22 @@ public:
 
 /** Convert a TX/WITNESS_TX/WTX CInv to a GenTxid. */
 GenTxid ToGenTxid(const CInv& inv);
+
+/** Meowcoin: asset inventory — identified by string name rather than hash. */
+class CInvAsset
+{
+public:
+    CInvAsset() = default;
+    explicit CInvAsset(const std::string& nameIn) : name(nameIn) {}
+
+    SERIALIZE_METHODS(CInvAsset, obj) { READWRITE(obj.name); }
+
+    friend bool operator<(const CInvAsset& a, const CInvAsset& b) { return a.name < b.name; }
+    friend bool operator==(const CInvAsset& a, const CInvAsset& b) { return a.name == b.name; }
+
+    std::string ToString() const { return "asset(" + name + ")"; }
+
+    std::string name;
+};
 
 #endif // BITCOIN_PROTOCOL_H

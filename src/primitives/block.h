@@ -1,15 +1,24 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2022 The Bitcoin Core developers
+// Copyright (c) 2017-2021 The Meowcoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #ifndef BITCOIN_PRIMITIVES_BLOCK_H
 #define BITCOIN_PRIMITIVES_BLOCK_H
 
+#include <auxpow.h>
+#include <primitives/pureheader.h>
 #include <primitives/transaction.h>
 #include <serialize.h>
 #include <uint256.h>
 #include <util/time.h>
+
+#include <memory>
+
+/** Global activation timestamps set from chainparams at init time. */
+extern uint32_t nKAWPOWActivationTime;
+extern uint32_t nMEOWPOWActivationTime;
 
 /** Nodes collect new transactions into a block, hash them into a hash tree,
  * and scan through nonce values to make the block's hash satisfy proof-of-work
@@ -18,32 +27,51 @@
  * in the block is a special one that creates a new coin owned by the creator
  * of the block.
  */
-class CBlockHeader
+class CBlockHeader : public CPureBlockHeader
 {
 public:
-    // header
-    int32_t nVersion;
-    uint256 hashPrevBlock;
-    uint256 hashMerkleRoot;
-    uint32_t nTime;
-    uint32_t nBits;
-    uint32_t nNonce;
+    // KAWPOW / MEOWPOW fields
+    uint32_t nHeight;
+    uint64_t nNonce64;
+    uint256 mix_hash;
+
+    // auxpow (if this is a merge-mined block)
+    std::shared_ptr<CAuxPow> auxpow;
 
     CBlockHeader()
     {
         SetNull();
     }
 
-    SERIALIZE_METHODS(CBlockHeader, obj) { READWRITE(obj.nVersion, obj.hashPrevBlock, obj.hashMerkleRoot, obj.nTime, obj.nBits, obj.nNonce); }
+    SERIALIZE_METHODS(CBlockHeader, obj)
+    {
+        // Always serialize the pure header fields.
+        READWRITE(obj.nVersion, obj.hashPrevBlock, obj.hashMerkleRoot, obj.nTime, obj.nBits);
+
+        // Pre-KAWPOW or AuxPoW blocks use nNonce + optional auxpow.
+        // KAWPOW/MEOWPOW blocks use nHeight/nNonce64/mix_hash.
+        if (obj.nTime < nKAWPOWActivationTime || obj.nVersion.IsAuxpow()) {
+            READWRITE(obj.nNonce);
+            if (obj.nVersion.IsAuxpow()) {
+                SER_READ(obj, obj.auxpow = std::make_shared<CAuxPow>());
+                if (obj.auxpow) {
+                    READWRITE(*obj.auxpow);
+                }
+            } else {
+                SER_READ(obj, obj.auxpow.reset());
+            }
+        } else {
+            READWRITE(obj.nHeight, obj.nNonce64, obj.mix_hash);
+        }
+    }
 
     void SetNull()
     {
-        nVersion = 0;
-        hashPrevBlock.SetNull();
-        hashMerkleRoot.SetNull();
-        nTime = 0;
-        nBits = 0;
-        nNonce = 0;
+        CPureBlockHeader::SetNull();
+        nHeight = 0;
+        nNonce64 = 0;
+        mix_hash.SetNull();
+        auxpow.reset();
     }
 
     bool IsNull() const
@@ -52,6 +80,12 @@ public:
     }
 
     uint256 GetHash() const;
+    uint256 GetX16RHash() const;
+    uint256 GetX16RV2Hash() const;
+
+    uint256 GetHashFull(uint256& mix_hash) const;
+    uint256 GetKAWPOWHeaderHash() const;
+    uint256 GetMEOWPOWHeaderHash() const;
 
     NodeSeconds Time() const
     {
@@ -62,6 +96,15 @@ public:
     {
         return (int64_t)nTime;
     }
+
+    std::string ToString() const;
+
+    /**
+     * Set the block's auxpow (or unset it).  This takes care of updating
+     * the version accordingly.
+     * @param apow Pointer to the auxpow to use or nullptr.
+     */
+    void SetAuxpow(std::shared_ptr<CAuxPow> apow);
 };
 
 
@@ -110,10 +153,52 @@ public:
         block.nTime          = nTime;
         block.nBits          = nBits;
         block.nNonce         = nNonce;
+        block.auxpow         = auxpow;
+        block.nHeight        = nHeight;
+        block.nNonce64       = nNonce64;
+        block.mix_hash       = mix_hash;
         return block;
     }
 
     std::string ToString() const;
+};
+
+/**
+ * Custom serializer for CBlockHeader that omits the nNonce64 and mixHash,
+ * for use as input to KAWPOW ProgPow.
+ */
+class CKAWPOWInput : private CBlockHeader
+{
+public:
+    CKAWPOWInput(const CBlockHeader& header)
+    {
+        CBlockHeader::SetNull();
+        *(static_cast<CBlockHeader*>(this)) = header;
+    }
+
+    SERIALIZE_METHODS(CKAWPOWInput, obj)
+    {
+        READWRITE(obj.nVersion, obj.hashPrevBlock, obj.hashMerkleRoot, obj.nTime, obj.nBits, obj.nHeight);
+    }
+};
+
+/**
+ * Custom serializer for CBlockHeader that omits the nNonce64 and mixHash,
+ * for use as input to MEOWPOW ProgPow.
+ */
+class CMEOWPOWInput : private CBlockHeader
+{
+public:
+    CMEOWPOWInput(const CBlockHeader& header)
+    {
+        CBlockHeader::SetNull();
+        *(static_cast<CBlockHeader*>(this)) = header;
+    }
+
+    SERIALIZE_METHODS(CMEOWPOWInput, obj)
+    {
+        READWRITE(obj.nVersion, obj.hashPrevBlock, obj.hashMerkleRoot, obj.nTime, obj.nBits, obj.nHeight);
+    }
 };
 
 /** Describes a place in the block chain to another node such that if the

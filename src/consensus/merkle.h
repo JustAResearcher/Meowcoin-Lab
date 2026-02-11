@@ -34,4 +34,13 @@ uint256 BlockWitnessMerkleRoot(const CBlock& block, bool* mutated = nullptr);
  */
 std::vector<uint256> TransactionMerklePath(const CBlock& block, uint32_t position);
 
+/**
+ * Compute the merkle branch for a transaction at the given position.
+ * Alias for TransactionMerklePath, used by auxpow code.
+ */
+inline std::vector<uint256> BlockMerkleBranch(const CBlock& block, uint32_t position)
+{
+    return TransactionMerklePath(block, position);
+}
+
 #endif // BITCOIN_CONSENSUS_MERKLE_H

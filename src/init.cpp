@@ -18,6 +18,7 @@
 #include <clientversion.h>
 #include <common/args.h>
 #include <common/system.h>
+#include <primitives/block.h> // nKAWPOWActivationTime, nMEOWPOWActivationTime
 #include <consensus/amount.h>
 #include <consensus/consensus.h>
 #include <deploymentstatus.h>
@@ -1358,6 +1359,10 @@ bool AppInitMain(NodeContext& node, interfaces::BlockAndHeaderTipInfo* tip_info)
 {
     const ArgsManager& args = *Assert(node.args);
     const CChainParams& chainparams = Params();
+
+    // Meowcoin: wire PoW activation timestamps into block-header globals
+    nKAWPOWActivationTime  = chainparams.KAWPOWActivationTime();
+    nMEOWPOWActivationTime = chainparams.MEOWPOWActivationTime();
 
     auto opt_max_upload = ParseByteUnits(args.GetArg("-maxuploadtarget", DEFAULT_MAX_UPLOAD_TARGET), ByteUnit::M);
     if (!opt_max_upload) {

@@ -45,6 +45,8 @@
 #include <primitives/block.h>
 #include <primitives/transaction.h>
 #include <protocol.h>
+#include <assets/assets.h>
+#include <assets/assettypes.h>
 #include <random.h>
 #include <scheduler.h>
 #include <script/script.h>
@@ -4918,6 +4920,51 @@ void PeerManagerImpl::ProcessMessage(CNode& pfrom, const std::string& msg_type, 
         }
         LOCK(m_tx_download_mutex);
         m_txdownloadman.ReceivedNotFound(pfrom.GetId(), tx_invs);
+        return;
+    }
+
+    // -----------------------------------------------------------------------
+    // Meowcoin asset P2P messages
+    // -----------------------------------------------------------------------
+
+    if (msg_type == NetMsgType::GETASSETDATA) {
+        // Peer requests metadata for one or more assets.
+        if (!AreAssetsDeployed()) return;
+
+        std::vector<CInvAsset> vInv;
+        vRecv >> vInv;
+
+        constexpr size_t MAX_ASSET_INV_SZ = 1000;
+        if (vInv.size() > MAX_ASSET_INV_SZ) {
+            LogDebug(BCLog::NET, "GETASSETDATA too many items (%u) from peer=%d\n",
+                     vInv.size(), pfrom.GetId());
+            return;
+        }
+
+        CAssetsCache* assetCache = GetCurrentAssetCache();
+        for (const auto& inv : vInv) {
+            if (inv.name.size() > MAX_ASSET_LENGTH) continue;
+            if (!IsAssetNameValid(inv.name)) continue;
+
+            CNewAsset asset;
+            int nHeight = -1;
+            uint256 blockHash;
+            if (assetCache->GetAssetMetaDataIfExists(inv.name, asset, nHeight, blockHash)) {
+                CDatabasedAssetData data(asset, nHeight, blockHash);
+                MakeAndPushMessage(pfrom, NetMsgType::ASSETDATA, data);
+            }
+        }
+        return;
+    }
+
+    if (msg_type == NetMsgType::ASSETDATA) {
+        // Received asset metadata from a peer — store if needed.
+        // For now just consume the message so it is not logged as unknown.
+        return;
+    }
+
+    if (msg_type == NetMsgType::ASSETNOTFOUND) {
+        // Silently consume — avoids "Unknown command" log spam.
         return;
     }
 

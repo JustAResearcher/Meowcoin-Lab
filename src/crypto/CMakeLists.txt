@@ -58,3 +58,26 @@ if(HAVE_ARM_SHANI)
     COMPILE_OPTIONS ${ARM_SHANI_CXXFLAGS}
   )
 endif()
+
+# ---------------------------------------------------------------------------
+# Ethash / ProgPow / MeowPow library
+# ---------------------------------------------------------------------------
+add_library(ethash STATIC EXCLUDE_FROM_ALL
+  ethash/lib/ethash/ethash.cpp
+  ethash/lib/ethash/managed.cpp
+  ethash/lib/ethash/primes.c
+  ethash/lib/ethash/progpow.cpp
+  ethash/lib/ethash/meowpow.cpp
+  ethash/lib/keccak/keccak.c
+  ethash/lib/keccak/keccakf800.c
+  ethash/lib/keccak/keccakf1600.c
+)
+target_include_directories(ethash
+  PUBLIC
+    ${CMAKE_CURRENT_SOURCE_DIR}/ethash/include
+    ${CMAKE_CURRENT_SOURCE_DIR}/ethash/lib/ethash
+    ${CMAKE_CURRENT_SOURCE_DIR}/ethash/lib/support
+    ${CMAKE_CURRENT_SOURCE_DIR}/ethash/lib/keccak
+    ${CMAKE_CURRENT_SOURCE_DIR}/ethash
+)
+target_link_libraries(ethash PRIVATE core_interface)

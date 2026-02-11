@@ -137,6 +137,8 @@ std::unique_ptr<CBlockTemplate> BlockAssembler::CreateNewBlock()
     nHeight = pindexPrev->nHeight + 1;
 
     pblock->nVersion = m_chainstate.m_chainman.m_versionbitscache.ComputeBlockVersion(pindexPrev, chainparams.GetConsensus());
+    // Set the Meowcoin chain ID in the version.
+    pblock->nVersion.SetChainId(chainparams.GetConsensus().nAuxpowChainId);
     // -regtest only: allow overriding block.nVersion with
     // -blockversion=N to test forking scenarios
     if (chainparams.MineBlocksOnDemand()) {

@@ -6,6 +6,7 @@
 #ifndef BITCOIN_KERNEL_CHAINPARAMS_H
 #define BITCOIN_KERNEL_CHAINPARAMS_H
 
+#include <consensus/amount.h>
 #include <consensus/params.h>
 #include <kernel/messagestartchars.h>
 #include <primitives/block.h>
@@ -118,6 +119,64 @@ public:
 
     const ChainTxData& TxData() const { return chainTxData; }
 
+    /** Meowcoin: Check if AuxPoW is active at the given height. */
+    bool IsAuxpowActive(int height) const {
+        return consensus.IsAuxpowActive(height);
+    }
+
+    /** Meowcoin: asset burn amounts */
+    const CAmount& IssueAssetBurnAmount() const { return nIssueAssetBurnAmount; }
+    const CAmount& ReissueAssetBurnAmount() const { return nReissueAssetBurnAmount; }
+    const CAmount& IssueSubAssetBurnAmount() const { return nIssueSubAssetBurnAmount; }
+    const CAmount& IssueUniqueAssetBurnAmount() const { return nIssueUniqueAssetBurnAmount; }
+    const CAmount& IssueMsgChannelAssetBurnAmount() const { return nIssueMsgChannelAssetBurnAmount; }
+    const CAmount& IssueQualifierAssetBurnAmount() const { return nIssueQualifierAssetBurnAmount; }
+    const CAmount& IssueSubQualifierAssetBurnAmount() const { return nIssueSubQualifierAssetBurnAmount; }
+    const CAmount& IssueRestrictedAssetBurnAmount() const { return nIssueRestrictedAssetBurnAmount; }
+    const CAmount& AddNullQualifierTagBurnAmount() const { return nAddNullQualifierTagBurnAmount; }
+
+    /** Meowcoin: community autonomous (donation) */
+    const CAmount& CommunityAutonomousAmount() const { return nCommunityAutonomousAmount; }
+
+    /** Meowcoin: asset burn addresses */
+    const std::string& IssueAssetBurnAddress() const { return strIssueAssetBurnAddress; }
+    const std::string& ReissueAssetBurnAddress() const { return strReissueAssetBurnAddress; }
+    const std::string& IssueSubAssetBurnAddress() const { return strIssueSubAssetBurnAddress; }
+    const std::string& IssueUniqueAssetBurnAddress() const { return strIssueUniqueAssetBurnAddress; }
+    const std::string& IssueMsgChannelAssetBurnAddress() const { return strIssueMsgChannelAssetBurnAddress; }
+    const std::string& IssueQualifierAssetBurnAddress() const { return strIssueQualifierAssetBurnAddress; }
+    const std::string& IssueSubQualifierAssetBurnAddress() const { return strIssueSubQualifierAssetBurnAddress; }
+    const std::string& IssueRestrictedAssetBurnAddress() const { return strIssueRestrictedAssetBurnAddress; }
+    const std::string& AddNullQualifierTagBurnAddress() const { return strAddNullQualifierTagBurnAddress; }
+    const std::string& GlobalBurnAddress() const { return strGlobalBurnAddress; }
+    const std::string& CommunityAutonomousAddress() const { return strCommunityAutonomousAddress; }
+
+    bool IsBurnAddress(const std::string& p_address) const {
+        return p_address == strIssueAssetBurnAddress
+            || p_address == strReissueAssetBurnAddress
+            || p_address == strIssueSubAssetBurnAddress
+            || p_address == strIssueUniqueAssetBurnAddress
+            || p_address == strIssueMsgChannelAssetBurnAddress
+            || p_address == strIssueQualifierAssetBurnAddress
+            || p_address == strIssueSubQualifierAssetBurnAddress
+            || p_address == strIssueRestrictedAssetBurnAddress
+            || p_address == strAddNullQualifierTagBurnAddress
+            || p_address == strGlobalBurnAddress
+            || p_address == strCommunityAutonomousAddress;
+    }
+
+    /** Meowcoin: activation helpers */
+    unsigned int DGWActivationBlock() const { return nDGWActivationBlock; }
+    unsigned int MessagingActivationBlock() const { return nMessagingActivationBlock; }
+    unsigned int RestrictedActivationBlock() const { return nRestrictedActivationBlock; }
+    int MaxReorganizationDepth() const { return nMaxReorganizationDepth; }
+    int MinReorganizationPeers() const { return nMinReorganizationPeers; }
+    int MinReorganizationAge() const { return nMinReorganizationAge; }
+    int GetAssetActivationHeight() const { return nAssetActivationHeight; }
+    int ExtCoinType() const { return nExtCoinType; }
+    uint32_t KAWPOWActivationTime() const { return nKAWPOWActivationTime; }
+    uint32_t MEOWPOWActivationTime() const { return nMEOWPOWActivationTime; }
+
     /**
      * SigNetOptions holds configurations for creating a signet CChainParams.
      */
@@ -170,6 +229,47 @@ protected:
     bool m_is_mockable_chain;
     std::vector<AssumeutxoData> m_assumeutxo_data;
     ChainTxData chainTxData;
+
+    /** Meowcoin: BIP44 coin type */
+    int nExtCoinType{0};
+
+    /** Meowcoin: asset burn amounts */
+    CAmount nIssueAssetBurnAmount{0};
+    CAmount nReissueAssetBurnAmount{0};
+    CAmount nIssueSubAssetBurnAmount{0};
+    CAmount nIssueUniqueAssetBurnAmount{0};
+    CAmount nIssueMsgChannelAssetBurnAmount{0};
+    CAmount nIssueQualifierAssetBurnAmount{0};
+    CAmount nIssueSubQualifierAssetBurnAmount{0};
+    CAmount nIssueRestrictedAssetBurnAmount{0};
+    CAmount nAddNullQualifierTagBurnAmount{0};
+    CAmount nCommunityAutonomousAmount{0};
+
+    /** Meowcoin: burn addresses */
+    std::string strIssueAssetBurnAddress;
+    std::string strReissueAssetBurnAddress;
+    std::string strIssueSubAssetBurnAddress;
+    std::string strIssueUniqueAssetBurnAddress;
+    std::string strIssueMsgChannelAssetBurnAddress;
+    std::string strIssueQualifierAssetBurnAddress;
+    std::string strIssueSubQualifierAssetBurnAddress;
+    std::string strIssueRestrictedAssetBurnAddress;
+    std::string strAddNullQualifierTagBurnAddress;
+    std::string strGlobalBurnAddress;
+    std::string strCommunityAutonomousAddress;
+
+    /** Meowcoin: activation blocks / heights */
+    unsigned int nDGWActivationBlock{1};
+    unsigned int nMessagingActivationBlock{1};
+    unsigned int nRestrictedActivationBlock{1};
+    int nMaxReorganizationDepth{60};
+    int nMinReorganizationPeers{4};
+    int nMinReorganizationAge{43200}; // 12 hours in seconds
+    int nAssetActivationHeight{1};
+
+    /** Meowcoin: PoW algorithm transition timestamps */
+    uint32_t nKAWPOWActivationTime{0};
+    uint32_t nMEOWPOWActivationTime{0};
 };
 
 std::optional<ChainType> GetNetworkForMagic(const MessageStartChars& pchMessageStart);

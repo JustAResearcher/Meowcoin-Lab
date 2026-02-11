@@ -980,7 +980,7 @@ static RPCHelpMan getblocktemplate()
         }
     }
 
-    result.pushKV("version", block.nVersion);
+    result.pushKV("version", static_cast<int32_t>(block.nVersion));
     result.pushKV("rules", std::move(aRules));
     result.pushKV("vbavailable", std::move(vbavailable));
     result.pushKV("vbrequired", int(0));

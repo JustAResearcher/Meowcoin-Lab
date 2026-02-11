@@ -25,6 +25,7 @@ if (ENABLE_IPC AND NOT WITH_EXTERNAL_LIBMULTIPROCESS)
 endif()
 include(../cmake/secp256k1.cmake)
 add_secp256k1(secp256k1)
+add_subdirectory(algo)
 
 # Set top-level target output locations.
 if(NOT CMAKE_RUNTIME_OUTPUT_DIRECTORY)
@@ -60,10 +61,12 @@ endif()
 
 add_library(bitcoin_consensus STATIC EXCLUDE_FROM_ALL
   arith_uint256.cpp
+  auxpow.cpp
   consensus/merkle.cpp
   consensus/tx_check.cpp
   hash.cpp
   primitives/block.cpp
+  primitives/pureheader.cpp
   primitives/transaction.cpp
   pubkey.cpp
   script/interpreter.cpp
@@ -124,6 +127,7 @@ add_library(bitcoin_common STATIC EXCLUDE_FROM_ALL
   policy/feerate.cpp
   policy/policy.cpp
   pow.cpp
+  pow_hash.cpp
   protocol.cpp
   psbt.cpp
   rpc/rawtransaction_util.cpp
@@ -144,6 +148,8 @@ target_link_libraries(bitcoin_common
     bitcoin_util
     univalue
     secp256k1
+    ethash
+    sph_algo
     Boost::headers
     $<TARGET_NAME_IF_EXISTS:USDT::headers>
     $<$<PLATFORM_ID:Windows>:ws2_32>
@@ -178,6 +184,7 @@ endif()
 add_library(bitcoin_node STATIC EXCLUDE_FROM_ALL
   addrdb.cpp
   addrman.cpp
+  assets/assets.cpp
   banman.cpp
   bip324.cpp
   blockencodings.cpp
@@ -250,6 +257,7 @@ add_library(bitcoin_node STATIC EXCLUDE_FROM_ALL
   rpc/fees.cpp
   rpc/mempool.cpp
   rpc/mining.cpp
+  rpc/auxpow_miner.cpp
   rpc/net.cpp
   rpc/node.cpp
   rpc/output_script.cpp
