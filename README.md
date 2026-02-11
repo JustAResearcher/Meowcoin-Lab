@@ -1,79 +1,98 @@
-Bitcoin Core integration/staging tree
-=====================================
+# Meowcoin-Lab
 
-https://bitcoincore.org
+Meowcoin consensus layer ported onto **Bitcoin Core v30.2** — a modern, maintained C++20 codebase.
 
-For an immediately usable, binary version of the Bitcoin Core software, see
-https://bitcoincore.org/en/download/.
+## What Is This?
 
-What is Bitcoin Core?
----------------------
+This repository takes the battle-tested Bitcoin Core v30.2 codebase and replaces its consensus rules with Meowcoin's:
 
-Bitcoin Core connects to the Bitcoin peer-to-peer network to download and fully
-validate blocks and transactions. It also includes a wallet and graphical user
-interface, which can be optionally built.
+- **Multi-algorithm PoW** — X16RV2 → KAWPOW → MEOWPOW progression, plus Scrypt-based AuxPoW (merged mining)
+- **Asset layer foundation** — UTXO-based asset issuance, transfer, and management (Ravencoin-derived)
+- **LWMA / DGW difficulty adjustment** — replacing Bitcoin's 2016-block retarget with per-block algorithms
+- **AuxPoW (merged mining)** — Scrypt-based auxiliary proof-of-work for merge-mined blocks
+- **Meowcoin P2P protocol** — custom message types, service flags, and network magic
 
-Further information about Bitcoin Core is available in the [doc folder](/doc).
+## Build Status
 
-License
--------
+| Item | Status |
+|------|--------|
+| Compiler | MSVC 19.44 / VS 2022 / C++20 / x64 |
+| Errors | **0** |
+| Warnings | **0** |
+| Regtest smoke test | Genesis block connects, node reaches "Done loading" |
 
-Bitcoin Core is released under the terms of the MIT license. See [COPYING](COPYING) for more
-information or see https://opensource.org/license/MIT.
+## Architecture
 
-Development Process
--------------------
+Built on Bitcoin Core v30.2 (commit `4d7d5f6b79`), with Meowcoin consensus from commit `5e22826efc`.
 
-The `master` branch is regularly built (see `doc/build-*.md` for instructions) and tested, but it is not guaranteed to be
-completely stable. [Tags](https://github.com/bitcoin/bitcoin/tags) are created
-regularly from release branches to indicate new official, stable release versions of Bitcoin Core.
+### PoW Algorithm Timeline
 
-The https://github.com/bitcoin-core/gui repository is used exclusively for the
-development of the GUI. Its master branch is identical in all monotree
-repositories. Release branches and tags do not exist, so please do not fork
-that repository unless it is for development reasons.
+| Era | Algorithm | Activation (Mainnet) |
+|-----|-----------|---------------------|
+| Genesis → Oct 2022 | X16RV2 | Block 0 (nTime=1661730843) |
+| Oct 2022 → Mar 2024 | KAWPOW | nTime ≥ 1662493424 |
+| Mar 2024 → present | MEOWPOW | nTime ≥ 1710799200 |
+| Merged-mining blocks | Scrypt (AuxPoW) | Any height (version flag) |
 
-The contribution workflow is described in [CONTRIBUTING.md](CONTRIBUTING.md)
-and useful hints for developers can be found in [doc/developer-notes.md](doc/developer-notes.md).
+### Key Modified Files
 
-Testing
--------
+| Area | Files |
+|------|-------|
+| Block header / versioning | `primitives/pureheader.h`, `primitives/block.cpp`, `primitives/block.h` |
+| PoW hash algorithms | `pow_hash.cpp`, `crypto/ethash/`, `algo/`, `crypto/scrypt.cpp` |
+| Consensus parameters | `kernel/chainparams.cpp`, `consensus/params.h` |
+| Validation | `validation.cpp`, `pow.cpp`, `pow.h` |
+| AuxPoW | `auxpow.cpp`, `auxpow.h`, `rpc/auxpow_miner.cpp` |
+| Asset layer | `assets/` (foundation — DB, types, messages, rewards) |
+| P2P protocol | `net_processing.cpp`, `protocol.h`, `net.h` |
+| Difficulty | `pow.cpp` (LWMA + DGW) |
 
-Testing and code review is the bottleneck for development; we get more pull
-requests than we can review and test on short notice. Please be patient and help out by testing
-other people's pull requests, and remember this is a security-critical project where any mistake might cost people
-lots of money.
+## Building
 
-### Automated Testing
+### Prerequisites
 
-Developers are strongly encouraged to write [unit tests](src/test/README.md) for new code, and to
-submit new unit tests for old code. Unit tests can be compiled and run
-(assuming they weren't disabled during the generation of the build system) with: `ctest`. Further details on running
-and extending unit tests can be found in [/src/test/README.md](/src/test/README.md).
+- Visual Studio 2022 (C++20)
+- CMake 4.x+
+- vcpkg at `C:\vcpkg` (or adjust path)
 
-There are also [regression and integration tests](/test), written
-in Python.
-These tests can be run (if the [test dependencies](/test) are installed) with: `build/test/functional/test_runner.py`
-(assuming `build` is your build directory).
+### Configure & Build
 
-The CI (Continuous Integration) systems make sure that every pull request is tested on Windows, Linux, and macOS.
-The CI must pass on all commits before merge to avoid unrelated CI failures on new pull requests.
+```powershell
+cd bitcoin
+cmake -B build -G "Visual Studio 17 2022" -A x64 `
+  -DCMAKE_TOOLCHAIN_FILE=C:/vcpkg/scripts/buildsystems/vcpkg.cmake `
+  -DVCPKG_MANIFEST_NO_DEFAULT_FEATURES=ON `
+  -DBUILD_GUI=OFF -DWITH_ZMQ=OFF -DENABLE_WALLET=OFF `
+  -DBUILD_TESTS=OFF -DBUILD_BENCH=OFF -DBUILD_FUZZ_BINARY=OFF
 
-### Manual Quality Assurance (QA) Testing
+cmake --build build --config Release --target bitcoind bitcoin-cli
+```
 
-Changes should be tested by somebody other than the developer who wrote the
-code. This is especially important for large or high-risk changes. It is useful
-to add a test plan to the pull request description if testing the changes is
-not straightforward.
+### Smoke Test
 
-Translations
-------------
+```powershell
+.\build\bin\Release\bitcoind.exe --printtoconsole --regtest --datadir=.\testrun
+```
 
-Changes to translations as well as new translations can be submitted to
-[Bitcoin Core's Transifex page](https://explore.transifex.com/bitcoin/bitcoin/).
+## Validation Report
 
-Translations are periodically pulled from Transifex and merged into the git repository. See the
-[translation process](doc/translation_process.md) for details on how this works.
+See [VALIDATION_REPORT.md](VALIDATION_REPORT.md) for a detailed analysis of:
 
-**Important**: We do not accept translation changes as GitHub pull requests because the next
-pull from Transifex would automatically overwrite them again.
+1. **PoW-on-load analysis** — where PoW checks happen, what was changed, comparison to Meowcoin
+2. **Algo selection correctness** — hash algorithm dispatch, powLimit per-algo, X16R/X16RV2 transition
+3. **Historical chain validation test plan** — step-by-step plan to prove equivalence against real Meowcoin chain data
+
+## Next Steps
+
+- [ ] Verify mainnet genesis hash and re-enable assertions
+- [ ] Full IBD sync against Meowcoin mainnet
+- [ ] Automated PoW test vectors for each era
+- [ ] Checkpoint optimization for KAWPOW/MEOWPOW blocks
+- [ ] Wallet integration
+- [ ] GUI support
+
+## License
+
+Released under the terms of the MIT license. See [COPYING](COPYING) for details.
+
+Based on [Bitcoin Core](https://github.com/bitcoin/bitcoin) v30.2 and [Meowcoin](https://meowcoin.cc).
