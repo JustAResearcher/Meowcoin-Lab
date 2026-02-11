@@ -65,6 +65,7 @@ add_library(bitcoin_consensus STATIC EXCLUDE_FROM_ALL
   consensus/merkle.cpp
   consensus/tx_check.cpp
   hash.cpp
+  pow_hash.cpp
   primitives/block.cpp
   primitives/pureheader.cpp
   primitives/transaction.cpp
@@ -79,6 +80,8 @@ target_link_libraries(bitcoin_consensus
     core_interface
     bitcoin_crypto
     secp256k1
+    ethash
+    sph_algo
 )
 
 if(WITH_ZMQ)
@@ -127,7 +130,6 @@ add_library(bitcoin_common STATIC EXCLUDE_FROM_ALL
   policy/feerate.cpp
   policy/policy.cpp
   pow.cpp
-  pow_hash.cpp
   protocol.cpp
   psbt.cpp
   rpc/rawtransaction_util.cpp
