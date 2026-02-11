@@ -352,9 +352,8 @@ public:
         ::nMEOWPOWActivationTime = 1707354000;
 
         genesis = CreateGenesisBlock(1661734222, 7680541, 0x1e00ffff, 4, 5000 * COIN);
-        consensus.hashGenesisBlock = genesis.GetHash();
-        // TODO: Genesis hash assertion requires X16R hashing
-        // assert(consensus.hashGenesisBlock == uint256{"000000eaab417d6dfe9bd75119972e1d07ecfe8ff655bef7c2acb3d9a0eeed81"});
+        consensus.hashGenesisBlock = genesis.GetX16RHash();
+        assert(consensus.hashGenesisBlock == uint256{"000000eaab417d6dfe9bd75119972e1d07ecfe8ff655bef7c2acb3d9a0eeed81"});
         assert(genesis.hashMerkleRoot == uint256{"e8916cf6592c8433d598c3a5fe60a9741fd2a997b39d93af2d789cdd9d9a7390"});
 
         vFixedSeeds.clear();
@@ -464,7 +463,7 @@ public:
         m_assumed_chain_state_size = 0;
 
         genesis = CreateGenesisBlock(1661730843, 351574, 0x1e00ffff, 4, 5000 * COIN);
-        consensus.hashGenesisBlock = genesis.GetHash();
+        consensus.hashGenesisBlock = genesis.GetX16RHash();
 
         vFixedSeeds.clear();
         vSeeds.clear();
@@ -620,8 +619,7 @@ public:
         ::nMEOWPOWActivationTime = 3582830167;
 
         genesis = CreateGenesisBlock(1661734578, 1, 0x207fffff, 4, 5000 * COIN);
-        consensus.hashGenesisBlock = genesis.GetHash();
-        // TODO: Genesis hash assertion requires X16R hashing
+        consensus.hashGenesisBlock = genesis.GetX16RHash();
         // assert(consensus.hashGenesisBlock == uint256{"0b2c703dc93bb63a36c4e33b85be4855ddbca2ac951a7a0a29b8de0408200a3c"});
         assert(genesis.hashMerkleRoot == uint256{"e8916cf6592c8433d598c3a5fe60a9741fd2a997b39d93af2d789cdd9d9a7390"});
 

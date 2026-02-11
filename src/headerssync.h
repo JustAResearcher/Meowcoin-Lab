@@ -17,18 +17,29 @@
 #include <deque>
 #include <vector>
 
-// A compressed CBlockHeader, which leaves out the prevhash
+// A compressed CBlockHeader, which leaves out the prevhash.
+// Meowcoin extension: also stores KAWPOW/MEOWPOW fields and AuxPoW data,
+// which are required for full header validation after the presync stage.
 struct CompressedHeader {
-    // header
-    int32_t nVersion{0};
+    // Pure header fields (shared with Bitcoin)
+    CBlockVersion nVersion;
     uint256 hashMerkleRoot;
     uint32_t nTime{0};
     uint32_t nBits{0};
     uint32_t nNonce{0};
 
+    // KAWPOW / MEOWPOW fields (post-activation)
+    uint32_t nHeight{0};
+    uint64_t nNonce64{0};
+    uint256 mix_hash;
+
+    // AuxPoW data (merge-mined blocks)
+    std::shared_ptr<CAuxPow> auxpow;
+
     CompressedHeader()
     {
         hashMerkleRoot.SetNull();
+        mix_hash.SetNull();
     }
 
     CompressedHeader(const CBlockHeader& header)
@@ -38,6 +49,10 @@ struct CompressedHeader {
         nTime = header.nTime;
         nBits = header.nBits;
         nNonce = header.nNonce;
+        nHeight = header.nHeight;
+        nNonce64 = header.nNonce64;
+        mix_hash = header.mix_hash;
+        auxpow = header.auxpow;
     }
 
     CBlockHeader GetFullHeader(const uint256& hash_prev_block) {
@@ -48,6 +63,10 @@ struct CompressedHeader {
         ret.nTime = nTime;
         ret.nBits = nBits;
         ret.nNonce = nNonce;
+        ret.nHeight = nHeight;
+        ret.nNonce64 = nNonce64;
+        ret.mix_hash = mix_hash;
+        ret.auxpow = auxpow;
         return ret;
     };
 };
@@ -238,6 +257,12 @@ private:
 
     /** Store the latest header received while in PRESYNC (initialized to m_chain_start) */
     CBlockHeader m_last_header_received;
+
+    /** Cached hash of m_last_header_received.
+     *  Meowcoin note: we cache this because CBlockHeader::GetHash() may not
+     *  reproduce the canonical hash for the genesis block (which was mined
+     *  with X16R but has a timestamp after the X16RV2 activation). */
+    uint256 m_last_header_hash;
 
     /** Height of m_last_header_received */
     int64_t m_current_height{0};

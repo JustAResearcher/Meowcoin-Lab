@@ -4173,7 +4173,12 @@ std::vector<unsigned char> ChainstateManager::GenerateCoinbaseCommitment(CBlock&
 bool HasValidProofOfWork(const std::vector<CBlockHeader>& headers, const Consensus::Params& consensusParams)
 {
     return std::all_of(headers.cbegin(), headers.cend(),
-            [&](const auto& header) { return CheckProofOfWork(header.GetHash(), header.nBits, consensusParams);});
+            [&](const auto& header) {
+                // Meowcoin: use the multi-algo CheckProofOfWork that checks
+                // against the per-algorithm powLimit (MEOWPOW or SCRYPT).
+                PowAlgo algo = header.nVersion.GetAlgo();
+                return CheckProofOfWork(header.GetHash(), header.nBits, algo, consensusParams);
+            });
 }
 
 bool IsBlockMutated(const CBlock& block, bool check_witness_root)

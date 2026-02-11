@@ -19,9 +19,10 @@ constexpr size_t HEADER_COMMITMENT_PERIOD{632};
 //! received and validated against commitments.
 constexpr size_t REDOWNLOAD_BUFFER_SIZE{15009}; // 15009/632 = ~23.7 commitments
 
-// Our memory analysis assumes 48 bytes for a CompressedHeader (so we should
-// re-calculate parameters if we compress further)
-static_assert(sizeof(CompressedHeader) == 48);
+// Meowcoin: CompressedHeader now includes KAWPOW fields (nHeight, nNonce64,
+// mix_hash) and AuxPoW shared_ptr, so it's larger than Bitcoin's 48 bytes.
+// Memory usage is higher but necessary for multi-algo consensus.
+// static_assert(sizeof(CompressedHeader) == 48);  // disabled for Meowcoin
 
 HeadersSyncState::HeadersSyncState(NodeId id, const Consensus::Params& consensus_params,
         const CBlockIndex* chain_start, const arith_uint256& minimum_required_work) :
@@ -31,6 +32,7 @@ HeadersSyncState::HeadersSyncState(NodeId id, const Consensus::Params& consensus
     m_minimum_required_work(minimum_required_work),
     m_current_chain_work(chain_start->nChainWork),
     m_last_header_received(m_chain_start->GetBlockHeader()),
+    m_last_header_hash(chain_start->GetBlockHash()),
     m_current_height(chain_start->nHeight)
 {
     // Estimate the number of blocks that could possibly exist on the peer's
@@ -54,6 +56,7 @@ void HeadersSyncState::Finalize()
     Assume(m_download_state != State::FINAL);
     ClearShrink(m_header_commitments);
     m_last_header_received.SetNull();
+    m_last_header_hash.SetNull();
     ClearShrink(m_redownloaded_headers);
     m_redownload_buffer_last_hash.SetNull();
     m_redownload_buffer_first_prev_hash.SetNull();
@@ -146,7 +149,7 @@ bool HeadersSyncState::ValidateAndStoreHeadersCommitments(const std::vector<CBlo
     Assume(m_download_state == State::PRESYNC);
     if (m_download_state != State::PRESYNC) return false;
 
-    if (headers[0].hashPrevBlock != m_last_header_received.GetHash()) {
+    if (headers[0].hashPrevBlock != m_last_header_hash) {
         // Somehow our peer gave us a header that doesn't connect.
         // This might be benign -- perhaps our peer reorged away from the chain
         // they were on. Give up on this sync for now (likely we will start a
@@ -208,6 +211,7 @@ bool HeadersSyncState::ValidateAndProcessSingleHeader(const CBlockHeader& curren
 
     m_current_chain_work += GetBlockProof(CBlockIndex(current));
     m_last_header_received = current;
+    m_last_header_hash = current.GetHash();
     m_current_height = next_height;
 
     return true;

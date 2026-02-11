@@ -208,7 +208,8 @@ uint256 HashX16RV2(const unsigned char* pbegin, const unsigned char* pend,
     sph_tiger_context        ctx_tiger;
 
     static unsigned char pblank[1];
-    unsigned char hash[16][64];
+    unsigned char hash[16][64] = {}; // Must be zero-initialized: Tiger (cases 4,6,15) writes
+                                     // only 24 bytes but the subsequent 512-bit hash reads 64.
 
     for (int i = 0; i < 16; i++)
     {
