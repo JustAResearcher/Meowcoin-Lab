@@ -51,8 +51,10 @@
 #include <util/translation.h>
 #include <validation.h>
 #include <validationinterface.h>
+#include <primitives/algos.h>
 #include <versionbits.h>
 
+#include <algorithm>
 #include <cstdint>
 
 #include <condition_variable>
@@ -108,6 +110,19 @@ double GetDifficulty(const CBlockIndex& blockindex)
     }
 
     return dDiff;
+}
+
+/** Walk the chain backwards from tip to find the most recent block mined by
+ *  a given PowAlgo.  Returns its difficulty, or 1.0 if none found. */
+static double GetDifficultyForAlgo(const CChain& chain, PowAlgo algo)
+{
+    const CBlockIndex* pindex = chain.Tip();
+    while (pindex) {
+        if (pindex->nVersion.GetAlgo() == algo)
+            return GetDifficulty(*pindex);
+        pindex = pindex->pprev;
+    }
+    return 1.0;
 }
 
 static int ComputeNextBlockAndDepth(const CBlockIndex& tip, const CBlockIndex& blockindex, const CBlockIndex*& next)
@@ -469,19 +484,53 @@ static RPCHelpMan getdifficulty()
 {
     return RPCHelpMan{
         "getdifficulty",
-        "Returns the proof-of-work difficulty as a multiple of the minimum difficulty.\n",
-                {},
+        "Returns the proof-of-work difficulty as a multiple of the minimum difficulty.\n"
+        "Optionally specify an algorithm to get the difficulty of the most recent block of that type.\n"
+        "If no algorithm is specified, defaults to Scrypt when auxpow=1 is set in config, otherwise MeowPOW.\n",
+                {
+                    {"algo", RPCArg::Type::STR, RPCArg::Optional::OMITTED,
+                     "Algorithm: 0 or \"meowpow\" for MeowPOW, 1 or \"scrypt\" for Scrypt/AuxPoW. "
+                     "Defaults to MeowPOW unless auxpow=1 is set in config."},
+                },
                 RPCResult{
                     RPCResult::Type::NUM, "", "the proof-of-work difficulty as a multiple of the minimum difficulty."},
                 RPCExamples{
                     HelpExampleCli("getdifficulty", "")
+            + HelpExampleCli("getdifficulty", "0")
+            + HelpExampleCli("getdifficulty", "\"scrypt\"")
             + HelpExampleRpc("getdifficulty", "")
                 },
         [&](const RPCHelpMan& self, const JSONRPCRequest& request) -> UniValue
 {
     ChainstateManager& chainman = EnsureAnyChainman(request.context);
     LOCK(cs_main);
-    return GetDifficulty(*CHECK_NONFATAL(chainman.ActiveChain().Tip()));
+
+    if (request.params[0].isNull()) {
+        // No algo specified — default based on auxpow config.
+        if (gArgs.GetBoolArg("-auxpow", false)) {
+            return GetDifficultyForAlgo(chainman.ActiveChain(), PowAlgo::SCRYPT);
+        }
+        return GetDifficulty(*CHECK_NONFATAL(chainman.ActiveChain().Tip()));
+    }
+
+    // Parse the algo parameter.
+    PowAlgo algo;
+    const UniValue& v = request.params[0];
+    if (v.isNum()) {
+        int i = v.getInt<int>();
+        if (i == 0) algo = PowAlgo::MEOWPOW;
+        else if (i == 1) algo = PowAlgo::SCRYPT;
+        else throw JSONRPCError(RPC_INVALID_PARAMETER, "algo must be 0 (meowpow) or 1 (scrypt)");
+    } else {
+        std::string s = v.get_str();
+        std::transform(s.begin(), s.end(), s.begin(),
+                       [](unsigned char c){ return std::tolower(c); });
+        if (s == "0" || s == "meowpow" || s == "meow") algo = PowAlgo::MEOWPOW;
+        else if (s == "1" || s == "scrypt" || s == "auxpow") algo = PowAlgo::SCRYPT;
+        else throw JSONRPCError(RPC_INVALID_PARAMETER, "algo must be \"meowpow\" (0) or \"scrypt\" (1)");
+    }
+
+    return GetDifficultyForAlgo(chainman.ActiveChain(), algo);
 },
     };
 }
