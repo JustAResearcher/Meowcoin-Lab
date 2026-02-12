@@ -119,8 +119,13 @@ bool BlockTreeDB::LoadBlockIndexGuts(const Consensus::Params& consensusParams, s
         if (pcursor->GetKey(key) && key.first == DB_BLOCK_INDEX) {
             CDiskBlockIndex diskindex;
             if (pcursor->GetValue(diskindex)) {
-                // Construct block index object
-                CBlockIndex* pindexNew = insertBlockIndex(diskindex.ConstructBlockHash());
+                // Meowcoin: Use the block hash from the LevelDB key directly.
+                // ConstructBlockHash() creates a minimal CBlockHeader and calls
+                // GetHash(), but it lacks KAWPOW fields (nHeight, nNonce64,
+                // mix_hash) so it computes the wrong hash for KAWPOW blocks.
+                // The correct hash was stored as the key when the entry was
+                // originally written (via bi->GetBlockHash() in WriteBatchSync).
+                CBlockIndex* pindexNew = insertBlockIndex(key.second);
                 pindexNew->pprev          = insertBlockIndex(diskindex.hashPrev);
                 pindexNew->nHeight        = diskindex.nHeight;
                 pindexNew->nFile          = diskindex.nFile;
@@ -131,6 +136,9 @@ bool BlockTreeDB::LoadBlockIndexGuts(const Consensus::Params& consensusParams, s
                 pindexNew->nTime          = diskindex.nTime;
                 pindexNew->nBits          = diskindex.nBits;
                 pindexNew->nNonce         = diskindex.nNonce;
+                pindexNew->nHeaderHeight  = diskindex.nHeaderHeight;
+                pindexNew->nNonce64       = diskindex.nNonce64;
+                pindexNew->mix_hash       = diskindex.mix_hash;
                 pindexNew->nStatus        = diskindex.nStatus;
                 pindexNew->nTx            = diskindex.nTx;
 

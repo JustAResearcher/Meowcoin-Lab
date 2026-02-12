@@ -209,6 +209,10 @@ enum opcodetype
     // Opcode added by BIP 342 (Tapscript)
     OP_CHECKSIGADD = 0xba,
 
+    // Meowcoin asset opcode (inherited from Ravencoin).
+    // Marks the boundary between standard script and asset payload data.
+    OP_MEWC_ASSET = 0xc0,
+
     OP_INVALIDOPCODE = 0xff,
 };
 

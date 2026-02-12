@@ -1213,6 +1213,16 @@ bool EvalScript(std::vector<std::vector<unsigned char> >& stack, const CScript& 
                 }
                 break;
 
+                case OP_MEWC_ASSET:
+                {
+                    // Meowcoin asset opcode: everything after this byte is
+                    // asset payload data (transfer, issue, reissue, etc.).
+                    // The standard script (P2PKH) preceding it has already
+                    // completed and left true on the stack.  Skip to end.
+                    pc = pend;
+                }
+                break;
+
                 default:
                     return set_error(serror, SCRIPT_ERR_BAD_OPCODE);
             }
