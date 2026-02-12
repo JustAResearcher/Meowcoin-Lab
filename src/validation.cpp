@@ -4174,8 +4174,14 @@ bool HasValidProofOfWork(const std::vector<CBlockHeader>& headers, const Consens
 {
     return std::all_of(headers.cbegin(), headers.cend(),
             [&](const auto& header) {
-                // Meowcoin: use the multi-algo CheckProofOfWork that checks
-                // against the per-algorithm powLimit (MEOWPOW or SCRYPT).
+                // AuxPoW blocks: the proof of work is in the parent block's
+                // Scrypt hash, not the header hash.
+                if (header.nVersion.IsAuxpow()) {
+                    if (!header.auxpow) return false;
+                    return CheckProofOfWork(header.auxpow->getParentBlockHash(),
+                                           header.nBits, PowAlgo::SCRYPT, consensusParams);
+                }
+                // KAWPOW/MEOWPOW/X16R/X16RV2: check header hash
                 PowAlgo algo = header.nVersion.GetAlgo();
                 return CheckProofOfWork(header.GetHash(), header.nBits, algo, consensusParams);
             });

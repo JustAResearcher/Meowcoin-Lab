@@ -15,7 +15,7 @@ uint32_t nMEOWPOWActivationTime = 0;
 
 uint256 CBlockHeader::GetHash() const
 {
-    // AuxPoW blocks use the pure header hash (SHA256d of the 6-field header).
+    // AuxPoW blocks use the Scrypt hash of the pure 6-field header.
     if (this->nVersion.IsAuxpow()) {
         return CPureBlockHeader::GetHash();
     }
