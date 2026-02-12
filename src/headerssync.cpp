@@ -22,7 +22,7 @@ constexpr size_t REDOWNLOAD_BUFFER_SIZE{15009}; // 15009/632 = ~23.7 commitments
 // Meowcoin: CompressedHeader now includes KAWPOW fields (nHeight, nNonce64,
 // mix_hash) and AuxPoW shared_ptr, so it's larger than Bitcoin's 48 bytes.
 // Memory usage is higher but necessary for multi-algo consensus.
-// static_assert(sizeof(CompressedHeader) == 48);  // disabled for Meowcoin
+static_assert(sizeof(CompressedHeader) >= 48);
 
 HeadersSyncState::HeadersSyncState(NodeId id, const Consensus::Params& consensus_params,
         const CBlockIndex* chain_start, const arith_uint256& minimum_required_work) :

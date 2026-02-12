@@ -190,8 +190,9 @@ public:
     uint32_t nBits{0};
     uint32_t nNonce{0};
 
-    //! Meowcoin: KAWPOW/MEOWPOW header fields (needed to reconstruct GetHash())
-    uint32_t nHeaderHeight{0};
+    //! Meowcoin: KAWPOW/MEOWPOW header fields (needed to reconstruct GetHash()).
+    //! nHeight (inherited from CBlockIndex) serves as the KAWPOW header height —
+    //! they are always the same value for valid blocks.
     uint64_t nNonce64{0};
     uint256 mix_hash{};
 
@@ -207,7 +208,6 @@ public:
           nTime{block.nTime},
           nBits{block.nBits},
           nNonce{block.nNonce},
-          nHeaderHeight{block.nHeight},
           nNonce64{block.nNonce64},
           mix_hash{block.mix_hash}
     {
@@ -246,7 +246,7 @@ public:
         block.nBits = nBits;
         block.nNonce = nNonce;
         // Meowcoin: KAWPOW/MEOWPOW fields
-        block.nHeight = nHeaderHeight;
+        block.nHeight = nHeight;
         block.nNonce64 = nNonce64;
         block.mix_hash = mix_hash;
         return block;
@@ -405,14 +405,17 @@ public:
         READWRITE(obj.hashMerkleRoot);
         READWRITE(obj.nTime);
         READWRITE(obj.nBits);
-        READWRITE(obj.nNonce);
 
-        // Meowcoin: KAWPOW/MEOWPOW header fields.  Required to reconstruct
-        // the block hash for KAWPOW/MEOWPOW blocks (GetHash depends on
-        // nHeaderHeight, nNonce64, mix_hash).
-        READWRITE(obj.nHeaderHeight);
-        READWRITE(obj.nNonce64);
-        READWRITE(obj.mix_hash);
+        // Meowcoin: conditional serialization matching CBlockHeader wire format.
+        // Pre-KAWPOW / AuxPoW blocks use nNonce only.
+        // KAWPOW+ blocks use nNonce64 + mix_hash (nHeight is already serialized
+        // above via CBlockIndex::nHeight).
+        if (obj.nTime >= nKAWPOWActivationTime && !obj.nVersion.IsAuxpow()) {
+            READWRITE(obj.nNonce64);
+            READWRITE(obj.mix_hash);
+        } else {
+            READWRITE(obj.nNonce);
+        }
     }
 
     uint256 ConstructBlockHash() const
@@ -425,7 +428,7 @@ public:
         block.nBits = nBits;
         block.nNonce = nNonce;
         // Meowcoin: KAWPOW/MEOWPOW fields needed for correct hash dispatch
-        block.nHeight = nHeaderHeight;
+        block.nHeight = nHeight;
         block.nNonce64 = nNonce64;
         block.mix_hash = mix_hash;
         return block.GetHash();

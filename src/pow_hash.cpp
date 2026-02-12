@@ -78,7 +78,7 @@ uint256 HashX16R(const unsigned char* pbegin, const unsigned char* pend,
     sph_sha512_context       ctx_sha512;
 
     static unsigned char pblank[1];
-    unsigned char hash[16][64];
+    unsigned char hash[16][64] = {}; // Zero-init for safety (matches X16RV2 fix)
 
     for (int i = 0; i < 16; i++)
     {
