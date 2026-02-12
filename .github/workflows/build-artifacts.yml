@@ -124,7 +124,7 @@ jobs:
             -DBUILD_FUZZ_BINARY=OFF \
             -DWITH_ZMQ=OFF \
             -DVCPKG_MANIFEST_NO_DEFAULT_FEATURES=ON \
-            -DVCPKG_MANIFEST_FEATURES="wallet"
+            '-DVCPKG_MANIFEST_FEATURES=wallet;qt'
 
       - name: Build
         working-directory: build
