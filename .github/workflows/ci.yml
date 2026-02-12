@@ -2,16 +2,12 @@
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or https://opensource.org/license/mit.
 
-name: CI
+name: CI (upstream Bitcoin Core — disabled)
+# Upstream Bitcoin Core CI pipeline. Disabled for Meowcoin-Lab because the
+# test suites assume Bitcoin consensus.  Kept for reference and future use.
+# Trigger manually via Actions tab if needed.
 on:
-  # See: https://docs.github.com/en/actions/writing-workflows/choosing-when-your-workflow-runs/events-that-trigger-workflows#pull_request.
-  pull_request:
-  # See: https://docs.github.com/en/actions/writing-workflows/choosing-when-your-workflow-runs/events-that-trigger-workflows#push.
-  push:
-    branches:
-      - '**'
-    tags-ignore:
-      - '**'
+  workflow_dispatch:
 
 concurrency:
   group: ${{ github.event_name != 'pull_request' && github.run_id || github.ref }}

@@ -4,12 +4,77 @@ on:
   push:
     branches:
       - main
+  pull_request:
+  workflow_dispatch:
 
 concurrency:
-  group: build-${{ github.sha }}
+  group: build-${{ github.event_name != 'pull_request' && github.run_id || github.ref }}
   cancel-in-progress: true
 
+defaults:
+  run:
+    shell: bash
+
 jobs:
+  # ─────────────────────────────────────────────
+  # Linux x64 — GCC, system packages (Release)
+  # ─────────────────────────────────────────────
+  build-linux:
+    name: 'Linux x64 (GCC)'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 120
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            build-essential cmake ninja-build pkgconf ccache \
+            libevent-dev libboost-dev libsqlite3-dev \
+            qt6-base-dev qt6-tools-dev qt6-l10n-tools libqrencode-dev
+
+      - name: Cache ccache
+        uses: actions/cache@v4
+        with:
+          path: ~/.ccache
+          key: linux-ccache-${{ github.sha }}
+          restore-keys: linux-ccache-
+
+      - name: Configure CMake
+        run: |
+          cmake -B build -G Ninja \
+            -DCMAKE_BUILD_TYPE=Release \
+            -DCMAKE_C_COMPILER_LAUNCHER=ccache \
+            -DCMAKE_CXX_COMPILER_LAUNCHER=ccache \
+            -DBUILD_GUI=ON \
+            -DBUILD_TESTS=OFF \
+            -DBUILD_BENCH=OFF \
+            -DBUILD_FUZZ_BINARY=OFF \
+            -DWITH_ZMQ=OFF \
+            -DENABLE_IPC=OFF \
+            -DENABLE_WALLET=ON
+
+      - name: Build
+        run: cmake --build build -j $(nproc)
+
+      - name: Collect binaries
+        run: |
+          mkdir -p artifact-linux
+          for bin in bitcoind bitcoin-cli bitcoin-tx bitcoin-util bitcoin-wallet bitcoin-qt bitcoin; do
+            cp "build/bin/${bin}" artifact-linux/ 2>/dev/null || true
+          done
+          strip artifact-linux/* 2>/dev/null || true
+
+      - name: Upload Linux artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: meowcoin-linux-x64
+          path: artifact-linux/
+          retention-days: 30
+
   # ─────────────────────────────────────────────
   # Windows x64 — MSVC + vcpkg (Release, DLL)
   # ─────────────────────────────────────────────
@@ -53,7 +118,7 @@ jobs:
         run: |
           cmake -B build --preset vs2022 \
             -DCMAKE_TOOLCHAIN_FILE="${VCPKG_INSTALLATION_ROOT}/scripts/buildsystems/vcpkg.cmake" \
-            -DBUILD_GUI=OFF \
+            -DBUILD_GUI=ON \
             -DBUILD_TESTS=OFF \
             -DBUILD_BENCH=OFF \
             -DBUILD_FUZZ_BINARY=OFF \
@@ -63,8 +128,7 @@ jobs:
 
       - name: Build
         working-directory: build
-        run: |
-          cmake --build . -j $NUMBER_OF_PROCESSORS --config Release
+        run: cmake --build . -j $NUMBER_OF_PROCESSORS --config Release
 
       - name: Collect binaries
         shell: pwsh
@@ -85,30 +149,29 @@ jobs:
           retention-days: 30
 
   # ─────────────────────────────────────────────
-  # Linux x64 — GCC, system packages (Release)
+  # macOS ARM64 — Clang, Homebrew (Release)
   # ─────────────────────────────────────────────
-  build-linux:
-    name: 'Linux x64 (GCC)'
-    runs-on: ubuntu-24.04
+  build-macos:
+    name: 'macOS ARM64 (Clang)'
+    runs-on: macos-14
     timeout-minutes: 120
 
     steps:
       - name: Checkout
         uses: actions/checkout@v5
 
-      - name: Install dependencies
+      - name: Install Homebrew packages
+        env:
+          HOMEBREW_NO_INSTALLED_DEPENDENTS_CHECK: 1
         run: |
-          sudo apt-get update
-          sudo apt-get install -y \
-            build-essential cmake ninja-build pkgconf ccache \
-            libevent-dev libboost-dev libsqlite3-dev
+          brew install --quiet coreutils ninja pkgconf ccache boost libevent qt@6 qrencode
 
       - name: Cache ccache
         uses: actions/cache@v4
         with:
-          path: ~/.ccache
-          key: linux-ccache-${{ github.sha }}
-          restore-keys: linux-ccache-
+          path: ~/Library/Caches/ccache
+          key: macos-ccache-${{ github.sha }}
+          restore-keys: macos-ccache-
 
       - name: Configure CMake
         run: |
@@ -116,33 +179,27 @@ jobs:
             -DCMAKE_BUILD_TYPE=Release \
             -DCMAKE_C_COMPILER_LAUNCHER=ccache \
             -DCMAKE_CXX_COMPILER_LAUNCHER=ccache \
-            -DBUILD_GUI=OFF \
+            -DBUILD_GUI=ON \
             -DBUILD_TESTS=OFF \
             -DBUILD_BENCH=OFF \
             -DBUILD_FUZZ_BINARY=OFF \
             -DWITH_ZMQ=OFF \
+            -DENABLE_IPC=OFF \
             -DENABLE_WALLET=ON
 
       - name: Build
-        run: |
-          cmake --build build -j $(nproc)
+        run: cmake --build build -j $(sysctl -n hw.logicalcpu)
 
       - name: Collect binaries
         run: |
-          mkdir -p artifact-linux
-          # Copy main binaries
-          cp build/bin/bitcoind         artifact-linux/ 2>/dev/null || true
-          cp build/bin/bitcoin-cli      artifact-linux/ 2>/dev/null || true
-          cp build/bin/bitcoin-tx       artifact-linux/ 2>/dev/null || true
-          cp build/bin/bitcoin-util     artifact-linux/ 2>/dev/null || true
-          cp build/bin/bitcoin-wallet   artifact-linux/ 2>/dev/null || true
-          cp build/bin/bitcoin          artifact-linux/ 2>/dev/null || true
-          # Strip debug symbols to reduce size
-          strip artifact-linux/* 2>/dev/null || true
+          mkdir -p artifact-macos
+          for bin in bitcoind bitcoin-cli bitcoin-tx bitcoin-util bitcoin-wallet bitcoin-qt bitcoin; do
+            cp "build/bin/${bin}" artifact-macos/ 2>/dev/null || true
+          done
 
-      - name: Upload Linux artifacts
+      - name: Upload macOS artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: meowcoin-linux-x64
-          path: artifact-linux/
+          name: meowcoin-macos-arm64
+          path: artifact-macos/
           retention-days: 30
