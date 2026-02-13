@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# Copyright (c) 2022 The Bitcoin Core developers
+# Copyright (c) 2022 The Meowcoin Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 import os
@@ -10,13 +10,13 @@ import tempfile
 import argparse
 
 BINARIES = [
-'bin/bitcoin',
-'bin/bitcoind',
-'bin/bitcoin-cli',
-'bin/bitcoin-tx',
-'bin/bitcoin-wallet',
-'bin/bitcoin-util',
-'bin/bitcoin-qt',
+'bin/meowcoin',
+'bin/meowcoind',
+'bin/meowcoin-cli',
+'bin/meowcoin-tx',
+'bin/meowcoin-wallet',
+'bin/meowcoin-util',
+'bin/meowcoin-qt',
 ]
 
 parser = argparse.ArgumentParser(

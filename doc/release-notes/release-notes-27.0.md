@@ -1,46 +1,46 @@
-Bitcoin Core version 27.0 is now available from:
+Meowcoin Core version 27.0 is now available from:
 
-  <https://bitcoincore.org/bin/bitcoin-core-27.0/>
+  <https://meowcoincore.org/bin/meowcoin-core-27.0/>
 
 This release includes new features, various bug fixes and performance
 improvements, as well as updated translations.
 
 Please report bugs using the issue tracker at GitHub:
 
-  <https://github.com/bitcoin/bitcoin/issues>
+  <https://github.com/meowcoin/meowcoin/issues>
 
 To receive security and update notifications, please subscribe to:
 
-  <https://bitcoincore.org/en/list/announcements/join/>
+  <https://meowcoincore.org/en/list/announcements/join/>
 
 How to Upgrade
 ==============
 
 If you are running an older version, shut it down. Wait until it has completely
 shut down (which might take a few minutes in some cases), then run the
-installer (on Windows) or just copy over `/Applications/Bitcoin-Qt` (on macOS)
-or `bitcoind`/`bitcoin-qt` (on Linux).
+installer (on Windows) or just copy over `/Applications/Meowcoin-Qt` (on macOS)
+or `meowcoind`/`meowcoin-qt` (on Linux).
 
-Upgrading directly from a version of Bitcoin Core that has reached its EOL is
+Upgrading directly from a version of Meowcoin Core that has reached its EOL is
 possible, but it might take some time if the data directory needs to be migrated. Old
-wallet versions of Bitcoin Core are generally supported.
+wallet versions of Meowcoin Core are generally supported.
 
 Compatibility
 ==============
 
-Bitcoin Core is supported and extensively tested on operating systems
-using the Linux Kernel 3.17+, macOS 11.0+, and Windows 7 and newer. Bitcoin
+Meowcoin Core is supported and extensively tested on operating systems
+using the Linux Kernel 3.17+, macOS 11.0+, and Windows 7 and newer. Meowcoin
 Core should also work on most other Unix-like systems but is not as
-frequently tested on them. It is not recommended to use Bitcoin Core on
+frequently tested on them. It is not recommended to use Meowcoin Core on
 unsupported systems.
 
 Notable changes
 ===============
 
-libbitcoinconsensus
+libmeowcoinconsensus
 -------------------
 
-- libbitcoinconsensus is deprecated and will be removed for v28. This library has
+- libmeowcoinconsensus is deprecated and will be removed for v28. This library has
   existed for nearly 10 years with very little known uptake or impact. It has
   become a maintenance burden.
 
@@ -48,7 +48,7 @@ libbitcoinconsensus
   the library can continue to use the final release indefinitely, with the
   understanding that Taproot is its final consensus update.
 
-  In the future, libbitcoinkernel will provide a much more useful API that is
+  In the future, libmeowcoinkernel will provide a much more useful API that is
   aware of the UTXO set, and therefore be able to fully validate transactions and
   blocks. (#29189)
 
@@ -109,7 +109,7 @@ Updated RPCs
 Build System
 ------------
 
-- A C++20 capable compiler is now required to build Bitcoin Core. (#28349)
+- A C++20 capable compiler is now required to build Meowcoin Core. (#28349)
 - MacOS releases are configured to use the hardened runtime libraries (#29127)
 
 Wallet
@@ -119,7 +119,7 @@ Wallet
   large input sets and lower transaction costs at high feerates. CoinGrinder
   searches for the input set with minimal weight. Solutions found by
   CoinGrinder will produce a change output. CoinGrinder is only active at
-  elevated feerates (default: 30+ sat/vB, based on `-consolidatefeerate`×3). (#27877)
+  elevated feerates (default: 30+ mewc/vB, based on `-consolidatefeerate`×3). (#27877)
 - The Branch And Bound coin selection algorithm will be disabled when the subtract fee
   from outputs feature is used. (#28994)
 - If the birth time of a descriptor is detected to be later than the first transaction
@@ -137,7 +137,7 @@ Pruning
 Init
 ----
 
-- Various fixes to prevent issues where subsequent instances of Bitcoin Core would
+- Various fixes to prevent issues where subsequent instances of Meowcoin Core would
   result in deletion of files in use by an existing instance. (#28784, #28946)
 - Improved handling of empty `settings.json` files. (#29144)
 
@@ -214,4 +214,4 @@ Thanks to everyone who directly contributed to this release:
 
 
 As well as to everyone that helped with translations on
-[Transifex](https://www.transifex.com/bitcoin/bitcoin/).
+[Transifex](https://www.transifex.com/meowcoin/meowcoin/).

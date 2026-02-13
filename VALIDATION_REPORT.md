@@ -1,4 +1,4 @@
-# Meowcoin → Bitcoin Core v30.2 Port — Validation Report
+# Meowcoin → Meowcoin Core v30.2 Port — Validation Report
 
 **Date:** 2025-01-XX  
 **Scope:** PoW-on-load analysis, algo selection correctness, historical chain validation test plan  
@@ -11,7 +11,7 @@
 
 ### 1.1 — Where PoW Checks Happen
 
-| # | Location | Function | Our Fork | Meowcoin | Bitcoin v30.2 |
+| # | Location | Function | Our Fork | Meowcoin | Meowcoin v30.2 |
 |---|----------|----------|----------|----------|---------------|
 | A | Block index load | `blockstorage.cpp:137` | **Removed** — comment only | **Removed** — PoW removed from `ReadBlockOrHeader()` to prevent segfaults | `CheckProofOfWork(hash, nBits, params)` via `CheckProofOfWorkImpl` |
 | B | `ReadBlock()` disk read | `blockstorage.cpp:1018` | **Removed** — comment explains multi-algo cost | **Removed** — same rationale | `CheckProofOfWork(hash, nBits, params)` before hash comparison |
@@ -21,12 +21,12 @@
 | F | `ContextualCheckBlockHeader()` | `validation.cpp:4233` | Checks `nBits` via `GetNextWorkRequired` | Same | Same |
 | G | `AcceptBlock()` → `CheckBlock()` | `validation.cpp:4509` | Calls `CheckBlock()` → `CheckBlockHeader()` (site C) | Same | Same |
 | H | `ProcessNewBlock()` | `validation.cpp:4575` | Calls `CheckBlock()` → `AcceptBlock()` → sites C,E,F,G | Same | Same |
-| I | `min_pow_checked` anti-DoS | `validation.cpp:4390` | Preserved from Bitcoin v30.2 | N/A (older Bitcoin) | Reject headers without anti-DoS PoW proof |
+| I | `min_pow_checked` anti-DoS | `validation.cpp:4390` | Preserved from Meowcoin v30.2 | N/A (older Meowcoin) | Reject headers without anti-DoS PoW proof |
 
 ### 1.2 — What We Changed and Why
 
 **Site A — Block index load (REMOVED)**  
-Bitcoin v30.2 calls `CheckProofOfWork(hash, nBits, params)` when deserializing the block index from LevelDB during startup. This uses the scalar `params.powLimit` (most permissive). We removed it because:
+Meowcoin v30.2 calls `CheckProofOfWork(hash, nBits, params)` when deserializing the block index from LevelDB during startup. This uses the scalar `params.powLimit` (most permissive). We removed it because:
 - Multi-algo PoW re-verification on every startup is expensive
 - Meowcoin also removes this check (validated at original acceptance)
 - The scalar `CheckProofOfWorkImpl` wouldn't correctly validate with per-algo limits anyway
@@ -34,7 +34,7 @@ Bitcoin v30.2 calls `CheckProofOfWork(hash, nBits, params)` when deserializing t
 **Risk:** LOW — Matches Meowcoin behavior. Corruption would be caught by the block-hash comparison in `ReadBlock()`.
 
 **Site B — ReadBlock() disk read (REMOVED)**  
-Bitcoin v30.2 calls `CheckProofOfWork` after deserializing a block from disk. We removed it for the same rationale. The block hash comparison (`block_hash != *expected_hash`) still catches corruption.
+Meowcoin v30.2 calls `CheckProofOfWork` after deserializing a block from disk. We removed it for the same rationale. The block hash comparison (`block_hash != *expected_hash`) still catches corruption.
 
 **Risk:** LOW — Matches Meowcoin. Block hash integrity check remains.
 
@@ -160,7 +160,7 @@ This means all non-AuxPoW blocks share the `MEOWPOW` powLimit regardless of whet
 ### 3.1 — Prerequisites
 
 1. **Meowcoin reference node** — A synced Meowcoin node (or access to `meowcoin-cli`) with the full mainnet chain
-2. **Our fork binary** — `bitcoind.exe` compiled from current source
+2. **Our fork binary** — `meowcoind.exe` compiled from current source
 3. **Sample blocks** — At minimum, blocks at the following heights:
 
 | Height | Era | Expected Hash Algo | Purpose |
@@ -185,8 +185,8 @@ meowcoin-cli getblockhash 0
 # Expected: 000000edd819220359469c54f2614b5602ebc775ea67a64602f354bdaa320f70
 
 # Our fork — regtest (check that genesis matches)
-bitcoind -regtest -daemon
-bitcoin-cli -regtest getblockhash 0
+meowcoind -regtest -daemon
+meowcoin-cli -regtest getblockhash 0
 # Compare
 ```
 
@@ -223,7 +223,7 @@ Do this for at least one block from each era (X16RV2, KAWPOW, MEOWPOW, AuxPoW).
 
 ```bash
 # Connect our fork to a Meowcoin seed node and let it sync
-bitcoind -connect=<meowcoin-node-ip> -debug=validation
+meowcoind -connect=<meowcoin-node-ip> -debug=validation
 
 # Monitor for any "bad-*" or "high-hash" rejection messages
 # Success = reaching chain tip with no validation failures
@@ -300,7 +300,7 @@ Create `src/test/meowcoin_pow_tests.cpp` with:
 
 ### 4.4 — Next Checklist
 
-- [ ] Run `bitcoind` on mainnet and verify genesis hash output matches `000000edd819...`
+- [ ] Run `meowcoind` on mainnet and verify genesis hash output matches `000000edd819...`
 - [ ] If genesis matches, uncomment the 3 `assert(consensus.hashGenesisBlock == ...)` lines
 - [ ] Replace X16RV2 TODO comment with explanatory note
 - [ ] Obtain raw block headers from Meowcoin mainnet for each era boundary

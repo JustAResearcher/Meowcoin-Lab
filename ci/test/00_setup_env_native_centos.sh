@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #
-# Copyright (c) 2020-present The Bitcoin Core developers
+# Copyright (c) 2020-present The Meowcoin Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -18,4 +18,4 @@ export BITCOIN_CONFIG="\
  -DREDUCE_EXPORTS=ON \
  -DCMAKE_BUILD_TYPE=Debug \
 "
-export BITCOIN_CMD="bitcoin -m" # Used in functional tests
+export BITCOIN_CMD="meowcoin -m" # Used in functional tests

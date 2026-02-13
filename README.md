@@ -1,14 +1,14 @@
 # Meowcoin-Lab
 
-Meowcoin consensus layer ported onto **Bitcoin Core v30.2** — a modern, maintained C++20 codebase.
+Meowcoin consensus layer ported onto **Meowcoin Core v30.2** — a modern, maintained C++20 codebase.
 
 ## What Is This?
 
-This repository takes the battle-tested Bitcoin Core v30.2 codebase and replaces its consensus rules with Meowcoin's:
+This repository takes the battle-tested Meowcoin Core v30.2 codebase and replaces its consensus rules with Meowcoin's:
 
 - **Multi-algorithm PoW** — X16RV2 → KAWPOW → MEOWPOW progression, plus Scrypt-based AuxPoW (merged mining)
 - **Asset layer foundation** — UTXO-based asset issuance, transfer, and management (Ravencoin-derived)
-- **LWMA / DGW difficulty adjustment** — replacing Bitcoin's 2016-block retarget with per-block algorithms
+- **LWMA / DGW difficulty adjustment** — replacing Meowcoin's 2016-block retarget with per-block algorithms
 - **AuxPoW (merged mining)** — Scrypt-based auxiliary proof-of-work for merge-mined blocks
 - **Meowcoin P2P protocol** — custom message types, service flags, and network magic
 
@@ -23,7 +23,7 @@ This repository takes the battle-tested Bitcoin Core v30.2 codebase and replaces
 
 ## Architecture
 
-Built on Bitcoin Core v30.2 (commit `4d7d5f6b79`), with Meowcoin consensus from commit `5e22826efc`.
+Built on Meowcoin Core v30.2 (commit `4d7d5f6b79`), with Meowcoin consensus from commit `5e22826efc`.
 
 ### PoW Algorithm Timeline
 
@@ -58,20 +58,20 @@ Built on Bitcoin Core v30.2 (commit `4d7d5f6b79`), with Meowcoin consensus from 
 ### Configure & Build
 
 ```powershell
-cd bitcoin
+cd meowcoin
 cmake -B build -G "Visual Studio 17 2022" -A x64 `
   -DCMAKE_TOOLCHAIN_FILE=C:/vcpkg/scripts/buildsystems/vcpkg.cmake `
   -DVCPKG_MANIFEST_NO_DEFAULT_FEATURES=ON `
   -DBUILD_GUI=OFF -DWITH_ZMQ=OFF -DENABLE_WALLET=OFF `
   -DBUILD_TESTS=OFF -DBUILD_BENCH=OFF -DBUILD_FUZZ_BINARY=OFF
 
-cmake --build build --config Release --target bitcoind bitcoin-cli
+cmake --build build --config Release --target meowcoind meowcoin-cli
 ```
 
 ### Smoke Test
 
 ```powershell
-.\build\bin\Release\bitcoind.exe --printtoconsole --regtest --datadir=.\testrun
+.\build\bin\Release\meowcoind.exe --printtoconsole --regtest --datadir=.\testrun
 ```
 
 ## Validation Report
@@ -95,4 +95,4 @@ See [VALIDATION_REPORT.md](VALIDATION_REPORT.md) for a detailed analysis of:
 
 Released under the terms of the MIT license. See [COPYING](COPYING) for details.
 
-Based on [Bitcoin Core](https://github.com/bitcoin/bitcoin) v30.2 and [Meowcoin](https://meowcoin.cc).
+Based on [Meowcoin Core](https://github.com/Meowcoin-Foundation/Meowcoin) v30.2 and [Meowcoin](https://meowcoin.cc).

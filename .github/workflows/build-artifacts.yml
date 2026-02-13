@@ -63,7 +63,7 @@ jobs:
       - name: Collect binaries
         run: |
           mkdir -p artifact-linux
-          for bin in bitcoind bitcoin-cli bitcoin-tx bitcoin-util bitcoin-wallet bitcoin-qt bitcoin; do
+          for bin in meowcoind meowcoin-cli meowcoin-tx meowcoin-util meowcoin-wallet meowcoin-qt meowcoin; do
             cp "build/bin/${bin}" artifact-linux/ 2>/dev/null || true
           done
           strip artifact-linux/* 2>/dev/null || true
@@ -193,7 +193,7 @@ jobs:
       - name: Collect binaries
         run: |
           mkdir -p artifact-macos
-          for bin in bitcoind bitcoin-cli bitcoin-tx bitcoin-util bitcoin-wallet bitcoin-qt bitcoin; do
+          for bin in meowcoind meowcoin-cli meowcoin-tx meowcoin-util meowcoin-wallet meowcoin-qt meowcoin; do
             cp "build/bin/${bin}" artifact-macos/ 2>/dev/null || true
           done
 

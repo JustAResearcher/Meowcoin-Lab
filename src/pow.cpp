@@ -1,5 +1,5 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
-// Copyright (c) 2009-2022 The Bitcoin Core developers
+// Copyright (c) 2009-2022 The Meowcoin Core developers
 // Copyright (c) 2017-2021 The Meowcoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
@@ -99,7 +99,7 @@ static unsigned int DarkGravityWave(const CBlockIndex* pindexLast,
 
 // ---------------------------------------------------------------------------
 // LWMA-1 multi-algo (post-AuxPoW era)
-// Copyright (c) 2017-2019 The Bitcoin Gold developers, Zawy, iamstenman
+// Copyright (c) 2017-2019 The Meowcoin Gold developers, Zawy, iamstenman
 // Algorithm by Zawy, a modification of WT-144 by Tom Harding
 // ---------------------------------------------------------------------------
 static unsigned int GetNextWorkRequired_LWMA_MultiAlgo(
@@ -191,7 +191,7 @@ static unsigned int GetNextWorkRequired_LWMA_MultiAlgo(
 }
 
 // ---------------------------------------------------------------------------
-// Original BTC-style retarget (genesis era, before DGW)
+// Original MEWC-style retarget (genesis era, before DGW)
 // ---------------------------------------------------------------------------
 static unsigned int GetNextWorkRequiredBTC(const CBlockIndex* pindexLast,
                                            const CBlockHeader* pblock,
@@ -274,7 +274,7 @@ unsigned int CalculateNextWorkRequired(const CBlockIndex* pindexLast,
 }
 
 // ---------------------------------------------------------------------------
-// PermittedDifficultyTransition (kept from Bitcoin Core for test harness)
+// PermittedDifficultyTransition (kept from Meowcoin Core for test harness)
 // ---------------------------------------------------------------------------
 bool PermittedDifficultyTransition(const Consensus::Params& params, int64_t height,
                                    uint32_t old_nbits, uint32_t new_nbits)

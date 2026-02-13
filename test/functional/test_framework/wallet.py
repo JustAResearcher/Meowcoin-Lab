@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# Copyright (c) 2020-2022 The Bitcoin Core developers
+# Copyright (c) 2020-2022 The Meowcoin Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 """A limited-functionality wallet, which may replace a real wallet in tests"""
@@ -264,7 +264,7 @@ class MiniWallet:
         """
         Create and send a tx with an output to a given scriptPubKey/amount,
         plus a change output to our internal address. To keep things simple, a
-        fixed fee given in Satoshi is used.
+        fixed fee given in Mew is used.
 
         Note that this method fails if there is no single internal utxo
         available that can cover the cost for the amount and the fixed fee

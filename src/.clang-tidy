@@ -1,6 +1,6 @@
 Checks: '
 -*,
-bitcoin-*,
+meowcoin-*,
 bugprone-argument-comment,
 bugprone-move-forwarding-reference,
 bugprone-string-constructor,

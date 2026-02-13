@@ -1,5 +1,5 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
-// Copyright (c) 2009-2021 The Bitcoin Core developers
+// Copyright (c) 2009-2021 The Meowcoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -11,7 +11,7 @@
 /** Amount in satoshis (Can be negative) */
 typedef int64_t CAmount;
 
-/** The amount of satoshis in one BTC. */
+/** The amount of satoshis in one MEWC. */
 static constexpr CAmount COIN = 100000000;
 
 /** No amount larger than this (in satoshi) is valid.

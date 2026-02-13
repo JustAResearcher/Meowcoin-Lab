@@ -1,11 +1,11 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
-// Copyright (c) 2009-present The Bitcoin Core developers
+// Copyright (c) 2009-present The Meowcoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #include <wallet/wallet.h>
 
-#include <bitcoin-build-config.h> // IWYU pragma: keep
+#include <meowcoin-build-config.h> // IWYU pragma: keep
 #include <addresstype.h>
 #include <blockfilter.h>
 #include <chain.h>
@@ -1123,9 +1123,9 @@ CWalletTx* CWallet::AddToWallet(CTransactionRef tx, const TxState& state, const 
 #ifndef WIN32
         // Substituting the wallet name isn't currently supported on windows
         // because windows shell escaping has not been implemented yet:
-        // https://github.com/bitcoin/bitcoin/pull/13339#issuecomment-537384875
+        // https://github.com/meowcoin/meowcoin/pull/13339#issuecomment-537384875
         // A few ways it could be implemented in the future are described in:
-        // https://github.com/bitcoin/bitcoin/pull/13339#issuecomment-461288094
+        // https://github.com/meowcoin/meowcoin/pull/13339#issuecomment-461288094
         ReplaceAll(strCmd, "%w", ShellEscape(GetName()));
 #endif
         std::thread t(runCommand, strCmd);
@@ -1143,7 +1143,7 @@ bool CWallet::LoadToWallet(const Txid& hash, const UpdateWalletTxFn& fill_wtx)
     if (!fill_wtx(wtx, ins.second)) {
         return false;
     }
-    // If wallet doesn't have a chain (e.g when using bitcoin-wallet tool),
+    // If wallet doesn't have a chain (e.g when using meowcoin-wallet tool),
     // don't bother to update txn.
     if (HaveChain()) {
       wtx.updateState(chain());
@@ -1453,7 +1453,7 @@ void CWallet::transactionRemovedFromMempool(const CTransactionRef& tx, MemPoolRe
         //    provide the conflicting block's hash and height, and for backwards
         //    compatibility reasons it may not be not safe to store conflicted
         //    wallet transactions with a null block hash. See
-        //    https://github.com/bitcoin/bitcoin/pull/18600#discussion_r420195993.
+        //    https://github.com/meowcoin/meowcoin/pull/18600#discussion_r420195993.
         // 2. For most of these transactions, the wallet's internal conflict
         //    detection in the blockConnected handler will subsequently call
         //    MarkConflicted and update them with CONFLICTED status anyway. This
@@ -1461,7 +1461,7 @@ void CWallet::transactionRemovedFromMempool(const CTransactionRef& tx, MemPoolRe
         //    block, or that has ancestors in the wallet with inputs spent by
         //    the block.
         // 3. Longstanding behavior since the sync implementation in
-        //    https://github.com/bitcoin/bitcoin/pull/9371 and the prior sync
+        //    https://github.com/meowcoin/meowcoin/pull/9371 and the prior sync
         //    implementation before that was to mark these transactions
         //    unconfirmed rather than conflicted.
         //
@@ -1469,7 +1469,7 @@ void CWallet::transactionRemovedFromMempool(const CTransactionRef& tx, MemPoolRe
         // when improving this code in the future. The wallet's heuristics for
         // distinguishing between conflicted and unconfirmed transactions are
         // imperfect, and could be improved in general, see
-        // https://github.com/bitcoin-core/bitcoin-devwiki/wiki/Wallet-Transaction-Conflict-Tracking
+        // https://github.com/meowcoin-core/meowcoin-devwiki/wiki/Wallet-Transaction-Conflict-Tracking
         SyncTransaction(tx, TxStateInactive{});
     }
 
@@ -2727,8 +2727,8 @@ void CWallet::ListLockedCoins(std::vector<COutPoint>& vOutpts) const
  *   the block time.
  *
  * For more information see CWalletTx::nTimeSmart,
- * https://bitcointalk.org/?topic=54527, or
- * https://github.com/bitcoin/bitcoin/pull/1393.
+ * https://meowcointalk.org/?topic=54527, or
+ * https://github.com/meowcoin/meowcoin/pull/1393.
  */
 unsigned int CWallet::ComputeTimeSmart(const CWalletTx& wtx, bool rescanning_old_block) const
 {
@@ -3143,7 +3143,7 @@ bool CWallet::AttachChain(const std::shared_ptr<CWallet>& walletInstance, interf
             // Wallet is assumed to be from another chain, if genesis block in the active
             // chain differs from the genesis block known to the wallet.
             if (chain.getBlockHash(0) != locator.vHave.back()) {
-                error = Untranslated("Wallet files should not be reused across chains. Restart bitcoind with -walletcrosschain to override.");
+                error = Untranslated("Wallet files should not be reused across chains. Restart meowcoind with -walletcrosschain to override.");
                 return false;
             }
         }
