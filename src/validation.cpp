@@ -20,6 +20,7 @@
 #include <cuckoocache.h>
 #include <flatfile.h>
 #include <hash.h>
+#include <key_io.h>
 #include <kernel/chain.h>
 #include <kernel/chainparams.h>
 #include <kernel/coinstats.h>
@@ -2683,6 +2684,44 @@ bool Chainstate::ConnectBlock(const CBlock& block, BlockValidationState& state, 
         state.Invalid(BlockValidationResult::BLOCK_CONSENSUS, "bad-cb-amount",
                       strprintf("coinbase pays too much (actual=%d vs limit=%d)", block.vtx[0]->GetValueOut(), blockReward));
     }
+
+    // Meowcoin: Community Autonomous Fund enforcement
+    // Check that coinbase has the correct community fund output (vout[1])
+    if (state.IsValid()) {
+        const CAmount nSubsidy = GetBlockSubsidy(pindex->nHeight, params.GetConsensus());
+        const CAmount nCommunityAutonomousAmount = params.CommunityAutonomousAmount();
+        const CAmount nCommunityAutonomousAmountValue = (nSubsidy * nCommunityAutonomousAmount) / 100;
+
+        // Only enforce if community fund is configured (non-zero percentage)
+        if (nCommunityAutonomousAmount > 0) {
+            if (block.vtx[0]->vout.size() < 2) {
+                state.Invalid(BlockValidationResult::BLOCK_CONSENSUS, "bad-cb-community-autonomous-missing",
+                              "coinbase missing community autonomous fund output");
+            } else {
+                // Check amount
+                if (block.vtx[0]->vout[1].nValue != nCommunityAutonomousAmountValue) {
+                    state.Invalid(BlockValidationResult::BLOCK_CONSENSUS, "bad-cb-community-autonomous-amount",
+                                  strprintf("coinbase Community Autonomous Amount Is Invalid. Actual: %ld Should be: %ld",
+                                            block.vtx[0]->vout[1].nValue, nCommunityAutonomousAmountValue));
+                } else {
+                    // Check address
+                    const std::string& strCommunityAutonomousAddress = params.CommunityAutonomousAddress();
+                    CTxDestination destCommunityAutonomous = DecodeDestination(strCommunityAutonomousAddress);
+                    if (!IsValidDestination(destCommunityAutonomous)) {
+                        LogError("ConnectBlock(): Invalid Meowcoin community autonomous address %s\n", strCommunityAutonomousAddress);
+                    } else {
+                        CScript scriptPubKeyCommunityAutonomous = GetScriptForDestination(destCommunityAutonomous);
+                        if (block.vtx[0]->vout[1].scriptPubKey != scriptPubKeyCommunityAutonomous) {
+                            state.Invalid(BlockValidationResult::BLOCK_CONSENSUS, "bad-cb-community-autonomous-address",
+                                          strprintf("coinbase Community Autonomous Address Is Invalid. Actual: %s Should Be: %s",
+                                                    HexStr(block.vtx[0]->vout[1].scriptPubKey), HexStr(scriptPubKeyCommunityAutonomous)));
+                        }
+                    }
+                }
+            }
+        }
+    }
+
     if (control) {
         auto parallel_result = control->Complete();
         if (parallel_result.has_value() && state.IsValid()) {

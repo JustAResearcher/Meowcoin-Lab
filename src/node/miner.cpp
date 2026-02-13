@@ -8,6 +8,7 @@
 #include <chain.h>
 #include <chainparams.h>
 #include <coins.h>
+#include <key_io.h>
 #include <common/args.h>
 #include <consensus/amount.h>
 #include <consensus/consensus.h>
@@ -164,9 +165,36 @@ std::unique_ptr<CBlockTemplate> BlockAssembler::CreateNewBlock()
     coinbaseTx.vin.resize(1);
     coinbaseTx.vin[0].prevout.SetNull();
     coinbaseTx.vin[0].nSequence = CTxIn::MAX_SEQUENCE_NONFINAL; // Make sure timelock is enforced.
-    coinbaseTx.vout.resize(1);
-    coinbaseTx.vout[0].scriptPubKey = m_options.coinbase_output_script;
-    coinbaseTx.vout[0].nValue = nFees + GetBlockSubsidy(nHeight, chainparams.GetConsensus());
+
+    // Meowcoin: Calculate block subsidy and community fund amount
+    const CAmount nSubsidy = GetBlockSubsidy(nHeight, chainparams.GetConsensus());
+    const CAmount nTotalReward = nFees + nSubsidy;
+    const CAmount nCommunityAutonomousAmount = chainparams.CommunityAutonomousAmount();
+    const CAmount nCommunityAutonomousValue = (nSubsidy * nCommunityAutonomousAmount) / 100;
+
+    // Set up outputs: miner gets the remainder after community fund
+    if (nCommunityAutonomousAmount > 0) {
+        coinbaseTx.vout.resize(2);
+        // Output 0: Miner payout (subsidy + fees - community fund)
+        coinbaseTx.vout[0].scriptPubKey = m_options.coinbase_output_script;
+        coinbaseTx.vout[0].nValue = nTotalReward - nCommunityAutonomousValue;
+        // Output 1: Community Autonomous Fund
+        const std::string& strCommunityAutonomousAddress = chainparams.CommunityAutonomousAddress();
+        CTxDestination destCommunityAutonomous = DecodeDestination(strCommunityAutonomousAddress);
+        if (!IsValidDestination(destCommunityAutonomous)) {
+            LogError("CreateNewBlock(): Invalid Meowcoin community autonomous address %s\n", strCommunityAutonomousAddress);
+            coinbaseTx.vout.resize(1); // Fallback to single output
+            coinbaseTx.vout[0].nValue = nTotalReward;
+        } else {
+            coinbaseTx.vout[1].scriptPubKey = GetScriptForDestination(destCommunityAutonomous);
+            coinbaseTx.vout[1].nValue = nCommunityAutonomousValue;
+        }
+    } else {
+        coinbaseTx.vout.resize(1);
+        coinbaseTx.vout[0].scriptPubKey = m_options.coinbase_output_script;
+        coinbaseTx.vout[0].nValue = nTotalReward;
+    }
+
     coinbaseTx.vin[0].scriptSig = CScript() << nHeight << OP_0;
     Assert(nHeight > 0);
     coinbaseTx.nLockTime = static_cast<uint32_t>(nHeight - 1);
