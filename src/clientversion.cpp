@@ -71,14 +71,13 @@ std::string FormatSubVersion(const std::string& name, int nClientVersion, const 
 
 std::string CopyrightHolders(const std::string& strPrefix)
 {
-    const auto copyright_devs = strprintf(_(COPYRIGHT_HOLDERS), COPYRIGHT_HOLDERS_SUBSTITUTION).translated;
-    std::string strCopyrightHolders = strPrefix + copyright_devs;
+    std::string str;
 
-    // Make sure Meowcoin Core copyright is not removed by accident
-    if (copyright_devs.find("Meowcoin Core") == std::string::npos) {
-        strCopyrightHolders += "\n" + strPrefix + "The Meowcoin Core developers";
-    }
-    return strCopyrightHolders;
+    str += strPrefix + strprintf("Copyright (C) 2009-%i The Bitcoin Core developers", COPYRIGHT_YEAR);
+    str += "\n" + strPrefix + strprintf("Copyright (C) 2017-%i The Ravencoin developers", COPYRIGHT_YEAR);
+    str += "\n" + strPrefix + strprintf("Copyright (C) 2021-%i The Meowcoin Core developers", COPYRIGHT_YEAR);
+
+    return str;
 }
 
 std::string LicenseInfo()
