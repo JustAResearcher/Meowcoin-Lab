@@ -335,6 +335,16 @@ std::vector<std::pair<int, bool>> VersionBitsCache::CheckUnknownActivations(cons
     LOCK(m_mutex);
     std::vector<std::pair<int, bool>> result;
     for (int bit = 0; bit < VERSIONBITS_NUM_BITS; ++bit) {
+        // Skip AuxPoW chain ID bits (16-20)
+        if (bit >= 16 && bit <= 20) {
+            continue;
+        }
+
+        // Skip legacy permanently-set bit 28
+        if (bit == 28) {
+            continue;
+        }
+
         WarningBitsConditionChecker checker(chainparams, m_caches, bit);
         ThresholdState state = checker.GetStateFor(pindex, m_warning_caches.at(bit));
         if (state == ACTIVE || state == LOCKED_IN) {
