@@ -37,6 +37,9 @@
 #include <util/translation.h>
 #include <validation.h>
 
+#include <QColor>
+#include <QPalette>
+
 #ifdef ENABLE_WALLET
 #include <qt/paymentserver.h>
 #include <qt/walletcontroller.h>
@@ -506,6 +509,19 @@ int GuiMain(int argc, char* argv[])
 #endif
 
     BitcoinApplication app;
+
+    // Set Meowcoin brand palette — gold accent (#bd840a) instead of default blue
+    {
+        QPalette meowPalette = app.palette();
+        QColor meowGold(0xbd, 0x84, 0x0a);       // #bd840a
+        QColor meowGoldLight(0xd9, 0xa8, 0x3e);   // lighter variant for inactive
+        meowPalette.setColor(QPalette::Active,   QPalette::Highlight,     meowGold);
+        meowPalette.setColor(QPalette::Inactive, QPalette::Highlight,     meowGoldLight);
+        meowPalette.setColor(QPalette::Active,   QPalette::HighlightedText, Qt::white);
+        meowPalette.setColor(QPalette::Inactive, QPalette::HighlightedText, Qt::white);
+        app.setPalette(meowPalette);
+    }
+
     GUIUtil::LoadFont(QStringLiteral(":/fonts/monospace"));
 
     /// 2. Parse command-line options. We do this after qt in order to show an error if there are problems parsing these
