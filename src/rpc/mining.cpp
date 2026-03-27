@@ -766,6 +766,8 @@ static RPCHelpMan getblocktemplate()
                 {RPCResult::Type::NUM, "height", "The height of the next block"},
                 {RPCResult::Type::STR_HEX, "signet_challenge", /*optional=*/true, "Only on signet"},
                 {RPCResult::Type::STR_HEX, "default_witness_commitment", /*optional=*/true, "a valid witness commitment for the unmodified block template"},
+                {RPCResult::Type::STR, "CommunityAutonomousAddress", /*optional=*/true, "community autonomous fund payout address (must appear as coinbase vout[1])"},
+                {RPCResult::Type::NUM, "CommunityAutonomousValue", /*optional=*/true, "community autonomous fund payout amount in satoshis"},
             }},
         },
         RPCExamples{
@@ -1086,6 +1088,14 @@ static RPCHelpMan getblocktemplate()
 
     if (!block_template->getCoinbaseCommitment().empty()) {
         result.pushKV("default_witness_commitment", HexStr(block_template->getCoinbaseCommitment()));
+    }
+
+    const CChainParams& chainparams = chainman.GetParams();
+    const CAmount nCommunityAutonomousAmount = chainparams.CommunityAutonomousAmount();
+    if (nCommunityAutonomousAmount > 0) {
+        result.pushKV("CommunityAutonomousAddress", chainparams.CommunityAutonomousAddress());
+        const CAmount nSubsidy = GetBlockSubsidy(pindexPrev->nHeight + 1, consensusParams);
+        result.pushKV("CommunityAutonomousValue", (int64_t)((nSubsidy * nCommunityAutonomousAmount) / 100));
     }
 
     return result;
