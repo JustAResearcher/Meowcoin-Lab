@@ -22,6 +22,7 @@
 #include <qt/utilitydialog.h>
 
 #ifdef ENABLE_WALLET
+#include <assets/assets.h>
 #include <qt/walletcontroller.h>
 #include <qt/walletframe.h>
 #include <qt/walletmodel.h>
@@ -54,6 +55,7 @@
 #include <QKeySequence>
 #include <QListWidget>
 #include <QMenu>
+#include <QToolButton>
 #include <QMenuBar>
 #include <QMessageBox>
 #include <QMimeData>
@@ -277,6 +279,26 @@ void BitcoinGUI::createActions()
     historyAction->setShortcut(QKeySequence(QStringLiteral("Alt+4")));
     tabGroup->addAction(historyAction);
 
+    transferAssetAction = new QAction(platformStyle->SingleColorIcon(":/icons/asset_transfer"), tr("&Transfer Assets"), this);
+    transferAssetAction->setStatusTip(tr("Transfer assets to Meowcoin addresses"));
+    transferAssetAction->setToolTip(transferAssetAction->statusTip());
+    transferAssetAction->setShortcut(QKeySequence(QStringLiteral("Alt+5")));
+
+    createAssetAction = new QAction(platformStyle->SingleColorIcon(":/icons/asset_create"), tr("&Create Assets"), this);
+    createAssetAction->setStatusTip(tr("Create new assets"));
+    createAssetAction->setToolTip(createAssetAction->statusTip());
+    createAssetAction->setShortcut(QKeySequence(QStringLiteral("Alt+6")));
+
+    manageAssetAction = new QAction(platformStyle->SingleColorIcon(":/icons/asset_manage"), tr("&Manage Assets"), this);
+    manageAssetAction->setStatusTip(tr("Manage existing assets"));
+    manageAssetAction->setToolTip(manageAssetAction->statusTip());
+    manageAssetAction->setShortcut(QKeySequence(QStringLiteral("Alt+7")));
+
+    restrictedAssetAction = new QAction(platformStyle->SingleColorIcon(":/icons/asset_edit"), tr("&Restricted Assets"), this);
+    restrictedAssetAction->setStatusTip(tr("Manage restricted assets"));
+    restrictedAssetAction->setToolTip(restrictedAssetAction->statusTip());
+    restrictedAssetAction->setShortcut(QKeySequence(QStringLiteral("Alt+8")));
+
 #ifdef ENABLE_WALLET
     // These showNormalIfMinimized are needed because Send Coins and Receive Coins
     // can be triggered from the tray menu, and need to show the GUI to be useful.
@@ -288,6 +310,14 @@ void BitcoinGUI::createActions()
     connect(receiveCoinsAction, &QAction::triggered, this, &BitcoinGUI::gotoReceiveCoinsPage);
     connect(historyAction, &QAction::triggered, [this]{ showNormalIfMinimized(); });
     connect(historyAction, &QAction::triggered, this, &BitcoinGUI::gotoHistoryPage);
+    connect(transferAssetAction, &QAction::triggered, [this]{ showNormalIfMinimized(); });
+    connect(transferAssetAction, &QAction::triggered, this, &BitcoinGUI::gotoAssetsPage);
+    connect(createAssetAction, &QAction::triggered, [this]{ showNormalIfMinimized(); });
+    connect(createAssetAction, &QAction::triggered, this, &BitcoinGUI::gotoCreateAssetsPage);
+    connect(manageAssetAction, &QAction::triggered, [this]{ showNormalIfMinimized(); });
+    connect(manageAssetAction, &QAction::triggered, this, &BitcoinGUI::gotoManageAssetsPage);
+    connect(restrictedAssetAction, &QAction::triggered, [this]{ showNormalIfMinimized(); });
+    connect(restrictedAssetAction, &QAction::triggered, this, &BitcoinGUI::gotoRestrictedAssetsPage);
 #endif // ENABLE_WALLET
 
     quitAction = new QAction(tr("E&xit"), this);
@@ -601,6 +631,22 @@ void BitcoinGUI::createToolBars()
         toolbar->addAction(sendCoinsAction);
         toolbar->addAction(receiveCoinsAction);
         toolbar->addAction(historyAction);
+
+        QAction* assetsMenuAction = new QAction(platformStyle->SingleColorIcon(":/icons/asset_manage"), tr("&Assets"), this);
+        assetsMenuAction->setToolTip(tr("Asset management"));
+        QMenu* assetsMenu = new QMenu(this);
+        assetsMenu->addAction(transferAssetAction);
+        assetsMenu->addAction(createAssetAction);
+        assetsMenu->addAction(manageAssetAction);
+        assetsMenu->addAction(restrictedAssetAction);
+        assetsMenuAction->setMenu(assetsMenu);
+        toolbar->addAction(assetsMenuAction);
+
+        QToolButton* assetsBtn = qobject_cast<QToolButton*>(toolbar->widgetForAction(assetsMenuAction));
+        if (assetsBtn) {
+            assetsBtn->setPopupMode(QToolButton::InstantPopup);
+        }
+
         overviewAction->setChecked(true);
 
 #ifdef ENABLE_WALLET
@@ -759,6 +805,10 @@ void BitcoinGUI::addWallet(WalletModel* walletModel)
     });
     connect(wallet_view, &WalletView::encryptionStatusChanged, this, &BitcoinGUI::updateWalletStatus);
     connect(wallet_view, &WalletView::incomingTransaction, this, &BitcoinGUI::incomingTransaction);
+    connect(wallet_view, &WalletView::checkAssets, this, &BitcoinGUI::checkAssets);
+    connect(wallet_view, &WalletView::assetPageRequested, this, &BitcoinGUI::gotoAssetsPage);
+    connect(wallet_view, &WalletView::createAssetPageRequested, this, &BitcoinGUI::gotoCreateAssetsPage);
+    connect(wallet_view, &WalletView::manageAssetPageRequested, this, &BitcoinGUI::gotoManageAssetsPage);
     connect(this, &BitcoinGUI::setPrivacy, wallet_view, &WalletView::setPrivacy);
     const bool privacy = isPrivacyModeActivated();
     wallet_view->setPrivacy(privacy);
@@ -822,6 +872,10 @@ void BitcoinGUI::setWalletActionsEnabled(bool enabled)
     sendCoinsAction->setEnabled(enabled);
     receiveCoinsAction->setEnabled(enabled);
     historyAction->setEnabled(enabled);
+    transferAssetAction->setEnabled(enabled);
+    createAssetAction->setEnabled(enabled);
+    manageAssetAction->setEnabled(enabled);
+    restrictedAssetAction->setEnabled(enabled);
     encryptWalletAction->setEnabled(enabled);
     backupWalletAction->setEnabled(enabled);
     changePassphraseAction->setEnabled(enabled);
@@ -993,6 +1047,39 @@ void BitcoinGUI::gotoSendCoinsPage(QString addr)
 {
     sendCoinsAction->setChecked(true);
     if (walletFrame) walletFrame->gotoSendCoinsPage(addr);
+}
+
+void BitcoinGUI::gotoAssetsPage()
+{
+    transferAssetAction->setChecked(true);
+    if (walletFrame) walletFrame->gotoAssetsPage();
+}
+
+void BitcoinGUI::gotoCreateAssetsPage()
+{
+    createAssetAction->setChecked(true);
+    if (walletFrame) walletFrame->gotoCreateAssetsPage();
+}
+
+void BitcoinGUI::gotoManageAssetsPage()
+{
+    manageAssetAction->setChecked(true);
+    if (walletFrame) walletFrame->gotoManageAssetsPage();
+}
+
+void BitcoinGUI::gotoRestrictedAssetsPage()
+{
+    restrictedAssetAction->setChecked(true);
+    if (walletFrame) walletFrame->gotoRestrictedAssetsPage();
+}
+
+void BitcoinGUI::checkAssets()
+{
+    bool fAssetsEnabled = AreAssetsDeployed();
+    transferAssetAction->setEnabled(fAssetsEnabled);
+    createAssetAction->setEnabled(fAssetsEnabled);
+    manageAssetAction->setEnabled(fAssetsEnabled);
+    restrictedAssetAction->setEnabled(fAssetsEnabled && AreRestrictedAssetsDeployed());
 }
 
 void BitcoinGUI::gotoSignMessageTab(QString addr)

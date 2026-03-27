@@ -28,6 +28,7 @@ add_library(meowcoin_wallet STATIC EXCLUDE_FROM_ALL
   rpc/wallet.cpp
   scriptpubkeyman.cpp
   spend.cpp
+  asset_tx.cpp
   sqlite.cpp
   transaction.cpp
   wallet.cpp
@@ -38,6 +39,7 @@ target_link_libraries(meowcoin_wallet
   PRIVATE
     core_interface
     meowcoin_common
+    bitcoin_assets
     $<TARGET_NAME_IF_EXISTS:unofficial::sqlite3::sqlite3>
     $<TARGET_NAME_IF_EXISTS:SQLite::SQLite3>
     univalue

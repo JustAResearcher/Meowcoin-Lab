@@ -4,6 +4,8 @@
 
 #include <qt/platformstyle.h>
 
+bool darkModeEnabled = false;
+
 #include <QApplication>
 #include <QColor>
 #include <QImage>
@@ -119,6 +121,16 @@ QIcon PlatformStyle::SingleColorIcon(const QIcon& icon) const
 QIcon PlatformStyle::TextColorIcon(const QIcon& icon) const
 {
     return ColorizeIcon(icon, TextColor());
+}
+
+QIcon PlatformStyle::SingleColorIconOnOff(const QString& filenameOn, const QString& filenameOff) const
+{
+    QIcon icon;
+    QPixmap onPix(filenameOn);
+    QPixmap offPix(filenameOff);
+    icon.addPixmap(onPix, QIcon::Normal, QIcon::On);
+    icon.addPixmap(offPix, QIcon::Normal, QIcon::Off);
+    return icon;
 }
 
 const PlatformStyle *PlatformStyle::instantiate(const QString &platformId)

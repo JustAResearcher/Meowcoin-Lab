@@ -5,6 +5,8 @@
 #include <qt/walletmodel.h>
 
 #include <qt/addresstablemodel.h>
+#include <qt/assettablemodel.h>
+#include <qt/myrestrictedassettablemodel.h>
 #include <qt/clientmodel.h>
 #include <qt/guiconstants.h>
 #include <qt/guiutil.h>
@@ -50,6 +52,7 @@ WalletModel::WalletModel(std::unique_ptr<interfaces::Wallet> wallet, ClientModel
     addressTableModel = new AddressTableModel(this);
     transactionTableModel = new TransactionTableModel(platformStyle, this);
     recentRequestsTableModel = new RecentRequestsTableModel(this);
+    assetTableModel = new AssetTableModel(this);
 
     subscribeToCoreSignals();
 }
@@ -122,6 +125,8 @@ void WalletModel::checkBalanceChanged(const interfaces::WalletBalances& new_bala
         m_cached_balances = new_balances;
         Q_EMIT balanceChanged(new_balances);
     }
+    if (assetTableModel)
+        assetTableModel->checkBalanceChanged();
 }
 
 interfaces::WalletBalances WalletModel::getCachedBalance() const
@@ -302,6 +307,16 @@ TransactionTableModel* WalletModel::getTransactionTableModel() const
 RecentRequestsTableModel* WalletModel::getRecentRequestsTableModel() const
 {
     return recentRequestsTableModel;
+}
+
+AssetTableModel* WalletModel::getAssetTableModel() const
+{
+    return assetTableModel;
+}
+
+MyRestrictedAssetsTableModel* WalletModel::getMyRestrictedAssetsTableModel() const
+{
+    return myRestrictedAssetsTableModel;
 }
 
 WalletModel::EncryptionStatus WalletModel::getEncryptionStatus() const

@@ -180,6 +180,14 @@ public:
         return it->second.GetPosition();
     }
 
+    CTxDestination destAssetChange = CNoDestination();
+    std::string strAssetSelected;
+    std::set<COutPoint> setAssetsSelected;
+
+    bool HasAssetSelected() const { return !setAssetsSelected.empty(); }
+    void SelectAsset(const COutPoint& output) { setAssetsSelected.insert(output); }
+    void UnSelectAsset(const COutPoint& output) { setAssetsSelected.erase(output); }
+
 private:
     //! Selected inputs (inputs that will be used, regardless of whether they're optimal or not)
     std::map<COutPoint, PreselectedInput> m_selected;

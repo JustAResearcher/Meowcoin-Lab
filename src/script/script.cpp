@@ -247,6 +247,134 @@ bool CScript::IsPayToTaproot() const
             (*this)[1] == 0x20);
 }
 
+// Meowcoin asset marker bytes (must match defines in assets/assets.h)
+static constexpr uint8_t MEWC_R_BYTE = 114;
+static constexpr uint8_t MEWC_V_BYTE = 118;
+static constexpr uint8_t MEWC_N_BYTE = 110;
+static constexpr uint8_t MEWC_T_BYTE = 116;
+static constexpr uint8_t MEWC_Q_BYTE = 113;
+static constexpr uint8_t MEWC_O_BYTE = 111;
+static constexpr uint8_t MEWC_R2_BYTE = 114; // 'r' for reissue marker
+
+bool CScript::IsAssetScript(int& nType, bool& fIsOwner, int& nStartingIndex) const
+{
+    if (this->size() > 31) {
+        if ((*this)[25] == OP_MEWC_ASSET) {
+            int index = -1;
+            if ((*this)[27] == MEWC_R_BYTE) {
+                if ((*this)[28] == MEWC_V_BYTE)
+                    if ((*this)[29] == MEWC_N_BYTE)
+                        index = 30;
+            } else {
+                if ((*this)[28] == MEWC_R_BYTE) {
+                    if ((*this)[29] == MEWC_V_BYTE)
+                        if ((*this)[30] == MEWC_N_BYTE)
+                            index = 31;
+                }
+            }
+
+            if (index > 0) {
+                nStartingIndex = index + 1;
+                if ((*this)[index] == MEWC_T_BYTE) {
+                    nType = 10; // TX_TRANSFER_ASSET
+                    return true;
+                } else if ((*this)[index] == MEWC_Q_BYTE && this->size() > 39) {
+                    nType = 8; // TX_NEW_ASSET
+                    fIsOwner = false;
+                    return true;
+                } else if ((*this)[index] == MEWC_O_BYTE) {
+                    nType = 8; // TX_NEW_ASSET
+                    fIsOwner = true;
+                    return true;
+                } else if ((*this)[index] == MEWC_R2_BYTE) {
+                    nType = 9; // TX_REISSUE_ASSET
+                    return true;
+                }
+            }
+        }
+    }
+    return false;
+}
+
+bool CScript::IsAssetScript(int& nType, bool& fIsOwner) const
+{
+    int nStartingIndex = 0;
+    return IsAssetScript(nType, fIsOwner, nStartingIndex);
+}
+
+bool CScript::IsAssetScript() const
+{
+    int nType = 0;
+    bool fIsOwner = false;
+    return IsAssetScript(nType, fIsOwner);
+}
+
+bool CScript::IsNewAsset() const
+{
+    int nType = 0;
+    bool fIsOwner = false;
+    if (!IsAssetScript(nType, fIsOwner))
+        return false;
+    return nType == 8 && !fIsOwner;
+}
+
+bool CScript::IsOwnerAsset() const
+{
+    int nType = 0;
+    bool fIsOwner = false;
+    if (!IsAssetScript(nType, fIsOwner))
+        return false;
+    return nType == 8 && fIsOwner;
+}
+
+bool CScript::IsReissueAsset() const
+{
+    int nType = 0;
+    bool fIsOwner = false;
+    if (!IsAssetScript(nType, fIsOwner))
+        return false;
+    return nType == 9;
+}
+
+bool CScript::IsTransferAsset() const
+{
+    int nType = 0;
+    bool fIsOwner = false;
+    if (!IsAssetScript(nType, fIsOwner))
+        return false;
+    return nType == 10;
+}
+
+bool CScript::IsNullAssetTxDataScript() const
+{
+    return (this->size() > 23 &&
+            (*this)[0] == OP_MEWC_ASSET &&
+            (*this)[1] == 0x14);
+}
+
+bool CScript::IsNullGlobalRestrictionAssetTxDataScript() const
+{
+    return (this->size() > 6 &&
+            (*this)[0] == OP_MEWC_ASSET &&
+            (*this)[1] == OP_RESERVED &&
+            (*this)[2] == OP_RESERVED);
+}
+
+bool CScript::IsNullAssetVerifierTxDataScript() const
+{
+    return (this->size() > 3 &&
+            (*this)[0] == OP_MEWC_ASSET &&
+            (*this)[1] == OP_RESERVED &&
+            (*this)[2] != OP_RESERVED);
+}
+
+bool CScript::IsNullAsset() const
+{
+    return IsNullAssetTxDataScript() ||
+           IsNullGlobalRestrictionAssetTxDataScript() ||
+           IsNullAssetVerifierTxDataScript();
+}
+
 // A witness program is any valid CScript that consists of a 1-byte push opcode
 // followed by a data push between 2 and 40 bytes.
 bool CScript::IsWitnessProgram(int& version, std::vector<unsigned char>& program) const

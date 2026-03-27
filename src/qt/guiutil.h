@@ -43,6 +43,7 @@ class QAction;
 class QDateTime;
 class QDialog;
 class QFont;
+class QGraphicsDropShadowEffect;
 class QKeySequence;
 class QLineEdit;
 class QMenu;
@@ -416,6 +417,8 @@ namespace GUIUtil
 
     QString WalletDisplayName(const std::string& name);
     QString WalletDisplayName(const QString& name);
+
+    QGraphicsDropShadowEffect *getShadowEffect();
 
 } // namespace GUIUtil
 

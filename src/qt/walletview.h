@@ -10,10 +10,14 @@
 
 #include <QStackedWidget>
 
+class AssetsDialog;
 class ClientModel;
+class CreateAssetDialog;
 class OverviewPage;
 class PlatformStyle;
 class ReceiveCoinsDialog;
+class ReissueAssetDialog;
+class RestrictedAssetsDialog;
 class SendCoinsDialog;
 class SendCoinsRecipient;
 class TransactionView;
@@ -67,6 +71,11 @@ private:
 
     TransactionView *transactionView;
 
+    AssetsDialog *assetsPage;
+    CreateAssetDialog *createAssetsPage;
+    ReissueAssetDialog *manageAssetsPage;
+    RestrictedAssetsDialog *restrictedAssetsPage;
+
     QProgressDialog* progressDialog{nullptr};
     const PlatformStyle *platformStyle;
 
@@ -79,6 +88,12 @@ public Q_SLOTS:
     void gotoReceiveCoinsPage();
     /** Switch to send coins page */
     void gotoSendCoinsPage(QString addr = "");
+
+    /** Switch to asset pages */
+    void gotoAssetsPage();
+    void gotoCreateAssetsPage();
+    void gotoManageAssetsPage();
+    void gotoRestrictedAssetsPage();
 
     /** Show Sign/Verify Message dialog and switch to sign message tab */
     void gotoSignMessageTab(QString addr = "");
@@ -122,6 +137,10 @@ Q_SIGNALS:
     void incomingTransaction(const QString& date, BitcoinUnit unit, const CAmount& amount, const QString& type, const QString& address, const QString& label, const QString& walletName);
     /** Notify that the out of sync warning icon has been pressed */
     void outOfSyncWarningClicked();
+    void checkAssets();
+    void assetPageRequested();
+    void createAssetPageRequested();
+    void manageAssetPageRequested();
 };
 
 #endif // BITCOIN_QT_WALLETVIEW_H

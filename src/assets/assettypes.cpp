@@ -1,6 +1,29 @@
-// Copyright (c) 2017-2021 The Meowcoin Core developers
+// Copyright (c) 2017-2019 The Meowcoin Core developers
+// Copyright (c) 2022 The Meowcoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-// Placeholder — asset type helpers will go here once the
-// full asset subsystem is ported.
+#include <assets/assettypes.h>
+
+#include <hash.h>
+#include <span.h>
+
+int IntFromAssetType(AssetType type) {
+    return (int)type;
+}
+
+AssetType AssetTypeFromInt(int nType) {
+    return (AssetType)nType;
+}
+
+uint256 CAssetCacheQualifierAddress::GetHash() {
+    return Hash(MakeUCharSpan(assetName), MakeUCharSpan(address));
+}
+
+uint256 CAssetCacheRestrictedAddress::GetHash() {
+    return Hash(MakeUCharSpan(assetName), MakeUCharSpan(address));
+}
+
+uint256 CAssetCacheRootQualifierChecker::GetHash() {
+    return Hash(MakeUCharSpan(rootAssetName), MakeUCharSpan(address));
+}

@@ -560,6 +560,19 @@ public:
 
     bool IsPayToTaproot() const;
 
+    /** Meowcoin asset script detection */
+    bool IsAssetScript(int& nType, bool& fIsOwner, int& nStartingIndex) const;
+    bool IsAssetScript(int& nType, bool& fIsOwner) const;
+    bool IsAssetScript() const;
+    bool IsNewAsset() const;
+    bool IsOwnerAsset() const;
+    bool IsReissueAsset() const;
+    bool IsTransferAsset() const;
+    bool IsNullAsset() const;
+    bool IsNullAssetTxDataScript() const;
+    bool IsNullGlobalRestrictionAssetTxDataScript() const;
+    bool IsNullAssetVerifierTxDataScript() const;
+
     /** Called by IsStandardTx and P2SH/BIP62 VerifyScript (which makes it consensus-critical). */
     bool IsPushOnly(const_iterator pc) const;
     bool IsPushOnly() const;

@@ -10,6 +10,13 @@
 #include <kernel/checks.h>
 
 #include <addrman.h>
+#include <assets/assets.h>
+#include <assets/assetdb.h>
+#include <assets/assetsnapshotdb.h>
+#include <assets/messages.h>
+#include <assets/myassetsdb.h>
+#include <assets/restricteddb.h>
+#include <assets/snapshotrequestdb.h>
 #include <banman.h>
 #include <blockfilter.h>
 #include <chain.h>
@@ -141,6 +148,17 @@ using node::NodeContext;
 using node::ShouldPersistMempool;
 using node::VerifyLoadedChainstate;
 using util::Join;
+
+// Messaging database globals
+CMessageDB* pmessagedb = nullptr;
+CMessageChannelDB* pmessagechanneldb = nullptr;
+CMyRestrictedDB* pmyrestricteddb = nullptr;
+CLRUCache<std::string, CMessage>* pMessagesCache = nullptr;
+CLRUCache<std::string, int8_t>* pMessageSubscribedChannelsCache = nullptr;
+CLRUCache<std::string, int8_t>* pMessagesSeenAddressCache = nullptr;
+CSnapshotRequestDB* pSnapshotRequestDb = nullptr;
+CAssetSnapshotDB* pAssetSnapshotDb = nullptr;
+CDistributeSnapshotRequestDB* pDistributeSnapshotDb = nullptr;
 using util::ReplaceAll;
 using util::ToString;
 
@@ -387,6 +405,16 @@ void Shutdown(NodeContext& node)
         ipc->disconnectIncoming();
     }
 
+    // Clean up asset databases and caches
+    delete passets; passets = nullptr;
+    delete passetsdb; passetsdb = nullptr;
+    delete passetsCache; passetsCache = nullptr;
+    delete prestricteddb; prestricteddb = nullptr;
+    delete passetsVerifierCache; passetsVerifierCache = nullptr;
+    delete passetsQualifierCache; passetsQualifierCache = nullptr;
+    delete passetsRestrictionCache; passetsRestrictionCache = nullptr;
+    delete passetsGlobalRestrictionCache; passetsGlobalRestrictionCache = nullptr;
+
 #ifdef ENABLE_ZMQ
     if (g_zmq_notification_interface) {
         if (node.validation_signals) node.validation_signals->UnregisterValidationInterface(g_zmq_notification_interface.get());
@@ -521,6 +549,7 @@ void SetupServerArgs(ArgsManager& argsman, bool can_listen_ipc)
             "(default: 0 = disable pruning blocks, 1 = allow manual pruning via RPC, >=%u = automatically prune block files to stay under the specified target size in MiB)", MIN_DISK_SPACE_FOR_BLOCK_FILES / 1024 / 1024), ArgsManager::ALLOW_ANY, OptionsCategory::OPTIONS);
     argsman.AddArg("-reindex", "If enabled, wipe chain state and block index, and rebuild them from blk*.dat files on disk. Also wipe and rebuild other optional indexes that are active. If an assumeutxo snapshot was loaded, its chainstate will be wiped as well. The snapshot can then be reloaded via RPC.", ArgsManager::ALLOW_ANY, OptionsCategory::OPTIONS);
     argsman.AddArg("-reindex-chainstate", "If enabled, wipe chain state, and rebuild it from blk*.dat files on disk. If an assumeutxo snapshot was loaded, its chainstate will be wiped as well. The snapshot can then be reloaded via RPC.", ArgsManager::ALLOW_ANY, OptionsCategory::OPTIONS);
+    argsman.AddArg("-reindexassets", "If enabled, wipe and rebuild the asset database by scanning existing blocks. Much faster than a full -reindex.", ArgsManager::ALLOW_ANY, OptionsCategory::OPTIONS);
     argsman.AddArg("-settings=<file>", strprintf("Specify path to dynamic settings data file. Can be disabled with -nosettings. File is written at runtime and not meant to be edited by users (use %s instead for custom settings). Relative paths will be prefixed by datadir location. (default: %s)", BITCOIN_CONF_FILENAME, BITCOIN_SETTINGS_FILENAME), ArgsManager::ALLOW_ANY, OptionsCategory::OPTIONS);
 #if HAVE_SYSTEM
     argsman.AddArg("-startupnotify=<cmd>", "Execute command on startup.", ArgsManager::ALLOW_ANY, OptionsCategory::OPTIONS);
@@ -1755,6 +1784,7 @@ bool AppInitMain(NodeContext& node, interfaces::BlockAndHeaderTipInfo* tip_info)
 
     bool do_reindex{args.GetBoolArg("-reindex", false)};
     const bool do_reindex_chainstate{args.GetBoolArg("-reindex-chainstate", false)};
+    bool do_reindex_assets{args.GetBoolArg("-reindexassets", false)};
 
     // Chainstate initialization and loading may be retried once with reindexing by GUI users
     auto [status, error] = InitAndLoadChainstate(
@@ -1824,6 +1854,97 @@ bool AppInitMain(NodeContext& node, interfaces::BlockAndHeaderTipInfo* tip_info)
 
     // Init indexes
     for (auto index : node.indexes) if (!index->Init()) return false;
+
+    // ********************************************************* Step 8b: initialize asset databases
+    {
+        const size_t nAssetDBCache = 1 << 20; // 1 MB
+
+        delete passets;
+        delete passetsdb;
+        delete passetsCache;
+        delete prestricteddb;
+        delete passetsVerifierCache;
+        delete passetsQualifierCache;
+        delete passetsRestrictionCache;
+        delete passetsGlobalRestrictionCache;
+
+        passetsdb = new CAssetsDB(args.GetDataDirNet(), nAssetDBCache, false, do_reindex || do_reindex_assets);
+        passets = new CAssetsCache();
+        passetsCache = new CLRUCache<std::string, CDatabasedAssetData>(MAX_CACHE_ASSETS_SIZE);
+        prestricteddb = new CRestrictedDB(args.GetDataDirNet(), nAssetDBCache, false, do_reindex || do_reindex_assets);
+        passetsVerifierCache = new CLRUCache<std::string, CNullAssetTxVerifierString>(MAX_CACHE_ASSETS_SIZE);
+        passetsQualifierCache = new CLRUCache<std::string, int8_t>(MAX_CACHE_ASSETS_SIZE);
+        passetsRestrictionCache = new CLRUCache<std::string, int8_t>(MAX_CACHE_ASSETS_SIZE);
+        passetsGlobalRestrictionCache = new CLRUCache<std::string, int8_t>(MAX_CACHE_ASSETS_SIZE);
+
+        if (!passetsdb->LoadAssets(*passetsCache, &passets->mapAssetsAddressAmount, fAssetIndex)) {
+            return InitError(_("Failed to load Assets Database"));
+        }
+
+        // Check asset DB consistency with chain tip
+        {
+            uint256 assetBestBlock;
+            uint256 coinsBestBlock;
+            {
+                LOCK(cs_main);
+                coinsBestBlock = node.chainman->ActiveChainstate().CoinsTip().GetBestBlock();
+            }
+            bool hasAssetBestBlock = passetsdb->ReadBestBlock(assetBestBlock);
+
+            if (!coinsBestBlock.IsNull() && hasAssetBestBlock && assetBestBlock != coinsBestBlock) {
+                LogPrintf("Asset DB best block (%s) differs from UTXO tip (%s). Triggering automatic asset reindex.\n",
+                          assetBestBlock.ToString(), coinsBestBlock.ToString());
+                delete passets;
+                delete passetsdb;
+                delete prestricteddb;
+                passetsCache->Clear();
+                passetsVerifierCache->Clear();
+                passetsQualifierCache->Clear();
+                passetsRestrictionCache->Clear();
+                passetsGlobalRestrictionCache->Clear();
+                passetsdb = new CAssetsDB(args.GetDataDirNet(), nAssetDBCache, false, true);
+                prestricteddb = new CRestrictedDB(args.GetDataDirNet(), nAssetDBCache, false, true);
+                passets = new CAssetsCache();
+                do_reindex_assets = true;
+            } else if (!coinsBestBlock.IsNull() && !hasAssetBestBlock && !passetsdb->IsEmpty()) {
+                LogPrintf("Asset DB has no best block marker and is non-empty. Triggering automatic asset reindex for consistency.\n");
+                delete passets;
+                delete passetsdb;
+                delete prestricteddb;
+                passetsCache->Clear();
+                passetsVerifierCache->Clear();
+                passetsQualifierCache->Clear();
+                passetsRestrictionCache->Clear();
+                passetsGlobalRestrictionCache->Clear();
+                passetsdb = new CAssetsDB(args.GetDataDirNet(), nAssetDBCache, false, true);
+                prestricteddb = new CRestrictedDB(args.GetDataDirNet(), nAssetDBCache, false, true);
+                passets = new CAssetsCache();
+                do_reindex_assets = true;
+            } else if (!coinsBestBlock.IsNull() && !hasAssetBestBlock) {
+                // Empty DB with no marker. If assets are deployed on this chain,
+                // we need to rebuild from scratch so metadata is available.
+                if (AreAssetsDeployed()) {
+                    LogPrintf("Asset DB is empty but assets are active on this chain. Triggering automatic asset reindex.\n");
+                    delete passets;
+                    delete passetsdb;
+                    delete prestricteddb;
+                    passetsCache->Clear();
+                    passetsVerifierCache->Clear();
+                    passetsQualifierCache->Clear();
+                    passetsRestrictionCache->Clear();
+                    passetsGlobalRestrictionCache->Clear();
+                    passetsdb = new CAssetsDB(args.GetDataDirNet(), nAssetDBCache, false, true);
+                    prestricteddb = new CRestrictedDB(args.GetDataDirNet(), nAssetDBCache, false, true);
+                    passets = new CAssetsCache();
+                    do_reindex_assets = true;
+                } else {
+                    passetsdb->WriteBestBlock(coinsBestBlock);
+                }
+            }
+        }
+
+        LogPrintf("Asset database initialized successfully\n");
+    }
 
     // ********************************************************* Step 9: load wallet
     for (const auto& client : node.chain_clients) {
@@ -1934,6 +2055,14 @@ bool AppInitMain(NodeContext& node, interfaces::BlockAndHeaderTipInfo* tip_info)
                 LogError("Failed to send shutdown signal after finishing block import\n");
             }
             return;
+        }
+
+        // Rebuild asset database if requested
+        if (do_reindex_assets) {
+            uiInterface.InitMessage(_("Rebuilding asset database..."));
+            if (!ReindexAssets(chainman)) {
+                LogError("Failed to reindex assets\n");
+            }
         }
 
         // Start indexes initial sync

@@ -53,6 +53,7 @@ target_link_libraries(meowcoin_clientversion
 )
 add_dependencies(meowcoin_clientversion generate_build_info)
 
+add_subdirectory(assets)
 add_subdirectory(crypto)
 add_subdirectory(util)
 if(ENABLE_IPC)
@@ -186,7 +187,6 @@ endif()
 add_library(meowcoin_node STATIC EXCLUDE_FROM_ALL
   addrdb.cpp
   addrman.cpp
-  assets/assets.cpp
   banman.cpp
   bip324.cpp
   blockencodings.cpp
@@ -254,10 +254,12 @@ add_library(meowcoin_node STATIC EXCLUDE_FROM_ALL
   policy/settings.cpp
   policy/truc_policy.cpp
   rest.cpp
+  rpc/assets.cpp
   rpc/blockchain.cpp
   rpc/external_signer.cpp
   rpc/fees.cpp
   rpc/mempool.cpp
+  rpc/messages.cpp
   rpc/mining.cpp
   rpc/auxpow_miner.cpp
   rpc/net.cpp
@@ -284,6 +286,7 @@ add_library(meowcoin_node STATIC EXCLUDE_FROM_ALL
 target_link_libraries(meowcoin_node
   PRIVATE
     core_interface
+    bitcoin_assets
     meowcoin_common
     meowcoin_util
     $<TARGET_NAME_IF_EXISTS:meowcoin_zmq>

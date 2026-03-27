@@ -32,6 +32,10 @@ enum class TxoutType {
     WITNESS_V0_KEYHASH,
     WITNESS_V1_TAPROOT,
     WITNESS_UNKNOWN, //!< Only for Witness versions not already defined above
+    NEW_ASSET,
+    REISSUE_ASSET,
+    TRANSFER_ASSET,
+    RESTRICTED_ASSET_DATA, //!< OP_MEWC_ASSET data carrier for qualifiers/verifiers
 };
 
 /** Get the name of a TxoutType as a string */

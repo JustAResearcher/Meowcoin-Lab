@@ -5,6 +5,8 @@
 #ifndef BITCOIN_QT_PLATFORMSTYLE_H
 #define BITCOIN_QT_PLATFORMSTYLE_H
 
+extern bool darkModeEnabled;
+
 #include <QIcon>
 #include <QPixmap>
 #include <QString>
@@ -35,6 +37,9 @@ public:
 
     /** Colorize an icon (given object) with the text color */
     QIcon TextColorIcon(const QIcon& icon) const;
+
+    /** Create icon with on/off states for toolbar */
+    QIcon SingleColorIconOnOff(const QString& filenameOn, const QString& filenameOff) const;
 
 private:
     PlatformStyle(const QString &name, bool imagesOnButtons, bool colorizeIcons, bool useExtraSpacing);

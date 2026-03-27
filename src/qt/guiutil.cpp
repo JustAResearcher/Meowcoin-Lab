@@ -45,6 +45,7 @@
 #include <QFont>
 #include <QFontDatabase>
 #include <QFontMetrics>
+#include <QGraphicsDropShadowEffect>
 #include <QGuiApplication>
 #include <QJsonObject>
 #include <QKeyEvent>
@@ -996,4 +997,13 @@ QString WalletDisplayName(const std::string& name)
 {
     return WalletDisplayName(QString::fromStdString(name));
 }
+QGraphicsDropShadowEffect *getShadowEffect()
+{
+    QGraphicsDropShadowEffect *shadow = new QGraphicsDropShadowEffect;
+    shadow->setBlurRadius(50);
+    shadow->setColor(QColor(0, 0, 0, 80));
+    shadow->setOffset(8.0);
+    return shadow;
+}
+
 } // namespace GUIUtil

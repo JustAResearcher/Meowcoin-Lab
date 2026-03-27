@@ -141,6 +141,7 @@ target_link_libraries(meowcoinqt
   PRIVATE
     core_interface
     meowcoin_cli
+    bitcoin_assets
     leveldb
     Boost::headers
     $<TARGET_NAME_IF_EXISTS:QRencode::QRencode>
@@ -211,6 +212,33 @@ if(ENABLE_WALLET)
       walletmodeltransaction.h
       walletview.cpp
       walletview.h
+      assetcontroldialog.cpp
+      assetcontroldialog.h
+      assetcontroltreewidget.cpp
+      assetcontroltreewidget.h
+      assetfilterproxy.cpp
+      assetfilterproxy.h
+      assetrecord.h
+      assetsdialog.cpp
+      assetsdialog.h
+      assettablemodel.cpp
+      assettablemodel.h
+      createassetdialog.cpp
+      createassetdialog.h
+      myrestrictedassetrecord.cpp
+      myrestrictedassetrecord.h
+      myrestrictedassettablemodel.cpp
+      myrestrictedassettablemodel.h
+      reissueassetdialog.cpp
+      reissueassetdialog.h
+      restrictedassignqualifier.cpp
+      restrictedassignqualifier.h
+      restrictedassetsdialog.cpp
+      restrictedassetsdialog.h
+      restrictedfreezeaddress.cpp
+      restrictedfreezeaddress.h
+      sendassetsentry.cpp
+      sendassetsentry.h
   )
   target_link_libraries(meowcoinqt
     PRIVATE

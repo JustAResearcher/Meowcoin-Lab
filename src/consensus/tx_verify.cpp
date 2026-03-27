@@ -4,15 +4,22 @@
 
 #include <consensus/tx_verify.h>
 
+#include <assets/assets.h>
+#include <assets/assettypes.h>
+#include <assets/messages.h>
 #include <chain.h>
 #include <coins.h>
 #include <consensus/amount.h>
 #include <consensus/consensus.h>
 #include <consensus/validation.h>
+#include <key_io.h>
+#include <logging.h>
 #include <primitives/transaction.h>
 #include <script/interpreter.h>
+#include <tinyformat.h>
 #include <util/check.h>
 #include <util/moneystr.h>
+#include <util/time.h>
 
 bool IsFinalTx(const CTransaction &tx, int nBlockHeight, int64_t nBlockTime)
 {
@@ -201,5 +208,253 @@ bool Consensus::CheckTxInputs(const CTransaction& tx, TxValidationState& state, 
     }
 
     txfee = txfee_aux;
+    return true;
+}
+
+bool fMessaging = false;
+
+bool Consensus::CheckTxAssets(const CTransaction& tx, TxValidationState& state, const CCoinsViewCache& inputs,
+                              CAssetsCache* assetCache, const CTxMemPool* mempool,
+                              std::vector<std::pair<std::string, uint256>>& vPairReissueAssets,
+                              const bool fRunningUnitTests, std::set<CMessage>* setMessages,
+                              int64_t nBlocktime,
+                              std::vector<std::pair<std::string, CNullAssetTxData>>* myNullAssetData)
+{
+    if (!inputs.HaveInputs(tx)) {
+        return state.Invalid(TxValidationResult::TX_MISSING_INPUTS, "bad-txns-inputs-missing-or-spent",
+                             strprintf("%s: inputs missing/spent", __func__));
+    }
+
+    std::map<std::string, CAmount> totalInputs;
+    std::map<std::string, std::string> mapAddresses;
+
+    for (unsigned int i = 0; i < tx.vin.size(); ++i) {
+        const COutPoint &prevout = tx.vin[i].prevout;
+        const Coin& coin = inputs.AccessCoin(prevout);
+        assert(!coin.IsSpent());
+
+        if (coin.out.scriptPubKey.IsAssetScript()) {
+            CAssetOutputEntry data;
+            if (!GetAssetData(coin.out.scriptPubKey, data))
+                return state.Invalid(TxValidationResult::TX_CONSENSUS, "bad-txns-failed-to-get-asset-from-script");
+
+            if (totalInputs.count(data.assetName))
+                totalInputs.at(data.assetName) += data.nAmount;
+            else
+                totalInputs.insert(make_pair(data.assetName, data.nAmount));
+
+            if (AreMessagesDeployed()) {
+                mapAddresses.insert(make_pair(data.assetName, EncodeDestination(data.destination)));
+            }
+
+            if (IsAssetNameAnRestricted(data.assetName)) {
+                if (assetCache && assetCache->CheckForAddressRestriction(data.assetName, EncodeDestination(data.destination), true)) {
+                    return state.Invalid(TxValidationResult::TX_CONSENSUS, "bad-txns-restricted-asset-transfer-from-frozen-address");
+                }
+            }
+        }
+    }
+
+    std::map<std::string, CAmount> totalOutputs;
+    int index = 0;
+    int64_t currentTime = TicksSinceEpoch<std::chrono::seconds>(NodeClock::now());
+    std::string strError = "";
+    for (const auto& txout : tx.vout) {
+        bool fIsAsset = false;
+        int nType = 0;
+        bool fIsOwner = false;
+        if (txout.scriptPubKey.IsAssetScript(nType, fIsOwner))
+            fIsAsset = true;
+
+        if (assetCache) {
+            if (fIsAsset && !AreAssetsDeployed())
+                return state.Invalid(TxValidationResult::TX_CONSENSUS, "bad-txns-is-asset-and-asset-not-active");
+
+            if (txout.scriptPubKey.IsNullAsset()) {
+                if (!AreRestrictedAssetsDeployed())
+                    return state.Invalid(TxValidationResult::TX_CONSENSUS,
+                                         "bad-tx-null-asset-data-before-restricted-assets-activated");
+
+                if (txout.scriptPubKey.IsNullAssetTxDataScript()) {
+                    if (!ContextualCheckNullAssetTxOut(txout, assetCache, strError, myNullAssetData))
+                        return state.Invalid(TxValidationResult::TX_CONSENSUS, strError);
+                } else if (txout.scriptPubKey.IsNullGlobalRestrictionAssetTxDataScript()) {
+                    if (!ContextualCheckGlobalAssetTxOut(txout, assetCache, strError))
+                        return state.Invalid(TxValidationResult::TX_CONSENSUS, strError);
+                } else if (txout.scriptPubKey.IsNullAssetVerifierTxDataScript()) {
+                    if (!ContextualCheckVerifierAssetTxOut(txout, assetCache, strError))
+                        return state.Invalid(TxValidationResult::TX_CONSENSUS, strError);
+                } else {
+                    return state.Invalid(TxValidationResult::TX_CONSENSUS, "bad-tx-null-asset-data-unknown-type");
+                }
+            }
+        }
+
+        if (nType == TX_TRANSFER_ASSET) {
+            CAssetTransfer transfer;
+            std::string address = "";
+            if (!TransferAssetFromScript(txout.scriptPubKey, transfer, address))
+                return state.Invalid(TxValidationResult::TX_CONSENSUS, "bad-tx-asset-transfer-bad-deserialize");
+
+            if (!ContextualCheckTransferAsset(assetCache, transfer, address, strError))
+                return state.Invalid(TxValidationResult::TX_CONSENSUS, strError);
+
+            if (totalOutputs.count(transfer.strName))
+                totalOutputs.at(transfer.strName) += transfer.nAmount;
+            else
+                totalOutputs.insert(make_pair(transfer.strName, transfer.nAmount));
+
+            if (!fRunningUnitTests) {
+                if (IsAssetNameAnOwner(transfer.strName)) {
+                    if (transfer.nAmount != OWNER_ASSET_AMOUNT)
+                        return state.Invalid(TxValidationResult::TX_CONSENSUS, "bad-txns-transfer-owner-amount-was-not-1");
+                } else {
+                    CNewAsset asset;
+                    if (!assetCache->GetAssetMetaDataIfExists(transfer.strName, asset))
+                        return state.Invalid(TxValidationResult::TX_CONSENSUS, "bad-txns-transfer-asset-not-exist");
+
+                    if (asset.strName != transfer.strName)
+                        return state.Invalid(TxValidationResult::TX_CONSENSUS, "bad-txns-asset-database-corrupted");
+
+                    if (!CheckAmountWithUnits(transfer.nAmount, asset.units))
+                        return state.Invalid(TxValidationResult::TX_CONSENSUS, "bad-txns-transfer-asset-amount-not-match-units");
+                }
+            }
+
+            if (AreMessagesDeployed() && fMessaging && setMessages) {
+                if (IsAssetNameAnOwner(transfer.strName) || IsAssetNameAnMsgChannel(transfer.strName)) {
+                    if (!transfer.message.empty()) {
+                        if (transfer.nExpireTime == 0 || transfer.nExpireTime > currentTime) {
+                            if (mapAddresses.count(transfer.strName)) {
+                                if (mapAddresses.at(transfer.strName) == address) {
+                                    COutPoint out(tx.GetHash(), index);
+                                    CMessage message(out, transfer.strName, transfer.message,
+                                                     transfer.nExpireTime, nBlocktime);
+                                    setMessages->insert(message);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        } else if (nType == TX_REISSUE_ASSET) {
+            CReissueAsset reissue;
+            std::string address;
+            if (!ReissueAssetFromScript(txout.scriptPubKey, reissue, address))
+                return state.Invalid(TxValidationResult::TX_CONSENSUS, "bad-tx-asset-reissue-bad-deserialize");
+
+            if (mapReissuedAssets.count(reissue.strName)) {
+                if (mapReissuedAssets.at(reissue.strName) != tx.GetHash().ToUint256())
+                    return state.Invalid(TxValidationResult::TX_CONSENSUS, "bad-tx-reissue-chaining-not-allowed");
+            } else {
+                vPairReissueAssets.emplace_back(std::make_pair(reissue.strName, tx.GetHash().ToUint256()));
+            }
+        }
+        index++;
+    }
+
+    if (assetCache) {
+        if (IsNewAsset(tx)) {
+            CNewAsset asset;
+            std::string address;
+            if (!AssetFromScript(tx.vout[tx.vout.size() - 1].scriptPubKey, asset, address)) {
+                return state.Invalid(TxValidationResult::TX_CONSENSUS, "bad-txns-issue-serialzation-failed");
+            }
+            if (!ContextualCheckNewAsset(assetCache, asset, strError, mempool))
+                return state.Invalid(TxValidationResult::TX_CONSENSUS, strError);
+
+        } else if (IsReissueAsset(tx)) {
+            CReissueAsset reissue_asset;
+            std::string address;
+            if (!ReissueAssetFromScript(tx.vout[tx.vout.size() - 1].scriptPubKey, reissue_asset, address)) {
+                return state.Invalid(TxValidationResult::TX_CONSENSUS, "bad-txns-reissue-serialzation-failed");
+            }
+            if (!ContextualCheckReissueAsset(assetCache, reissue_asset, strError, tx))
+                return state.Invalid(TxValidationResult::TX_CONSENSUS, "bad-txns-reissue-contextual-" + strError);
+        } else if (IsNewUniqueAsset(tx)) {
+            if (!ContextualCheckUniqueAssetTx(assetCache, strError, tx))
+                return state.Invalid(TxValidationResult::TX_CONSENSUS, "bad-txns-issue-unique-contextual-" + strError);
+        } else if (IsNewMsgChannelAsset(tx)) {
+            if (!AreMessagesDeployed())
+                return state.Invalid(TxValidationResult::TX_CONSENSUS, "bad-txns-issue-msgchannel-before-messaging-is-active");
+            CNewAsset asset;
+            std::string strAddress;
+            if (!MsgChannelAssetFromTransaction(tx, asset, strAddress))
+                return state.Invalid(TxValidationResult::TX_CONSENSUS, "bad-txns-issue-msgchannel-serialzation-failed");
+            if (!ContextualCheckNewAsset(assetCache, asset, strError, mempool))
+                return state.Invalid(TxValidationResult::TX_CONSENSUS, "bad-txns-issue-msgchannel-contextual-" + strError);
+        } else if (IsNewQualifierAsset(tx)) {
+            if (!AreRestrictedAssetsDeployed())
+                return state.Invalid(TxValidationResult::TX_CONSENSUS, "bad-txns-issue-qualifier-before-it-is-active");
+            CNewAsset asset;
+            std::string strAddress;
+            if (!QualifierAssetFromTransaction(tx, asset, strAddress))
+                return state.Invalid(TxValidationResult::TX_CONSENSUS, "bad-txns-issue-qualifier-serialzation-failed");
+            if (!ContextualCheckNewAsset(assetCache, asset, strError, mempool))
+                return state.Invalid(TxValidationResult::TX_CONSENSUS, "bad-txns-issue-qualfier-contextual" + strError);
+        } else if (IsNewRestrictedAsset(tx)) {
+            if (!AreRestrictedAssetsDeployed())
+                return state.Invalid(TxValidationResult::TX_CONSENSUS, "bad-txns-issue-restricted-before-it-is-active");
+            CNewAsset asset;
+            std::string strAddress;
+            if (!RestrictedAssetFromTransaction(tx, asset, strAddress))
+                return state.Invalid(TxValidationResult::TX_CONSENSUS, "bad-txns-issue-restricted-serialzation-failed");
+            if (!ContextualCheckNewAsset(assetCache, asset, strError, mempool))
+                return state.Invalid(TxValidationResult::TX_CONSENSUS, "bad-txns-issue-restricted-contextual" + strError);
+            CNullAssetTxVerifierString verifier;
+            if (!GetVerifierStringFromTx(tx, verifier, strError))
+                return state.Invalid(TxValidationResult::TX_CONSENSUS, "bad-txns-issue-restricted-verifier-search-" + strError);
+            if (!ContextualCheckVerifierString(assetCache, verifier.verifier_string, strAddress, strError))
+                return state.Invalid(TxValidationResult::TX_CONSENSUS, strError);
+        } else {
+            for (const auto& out : tx.vout) {
+                int nType;
+                bool _isOwner;
+                if (out.scriptPubKey.IsAssetScript(nType, _isOwner)) {
+                    if (nType != TX_TRANSFER_ASSET) {
+                        return state.Invalid(TxValidationResult::TX_CONSENSUS, "bad-txns-bad-asset-transaction");
+                    }
+                } else {
+                    bool hasMewcAssetOp = false;
+                    CScript::const_iterator pc = out.scriptPubKey.begin();
+                    opcodetype opcode;
+                    while (pc < out.scriptPubKey.end()) {
+                        if (!out.scriptPubKey.GetOp(pc, opcode))
+                            break;
+                        if (opcode == OP_MEWC_ASSET) {
+                            hasMewcAssetOp = true;
+                            break;
+                        }
+                    }
+                    if (hasMewcAssetOp) {
+                        if (AreRestrictedAssetsDeployed()) {
+                            if (out.scriptPubKey[0] != OP_MEWC_ASSET) {
+                                return state.Invalid(TxValidationResult::TX_CONSENSUS,
+                                                     "bad-txns-op-mewc-asset-not-in-right-script-location");
+                            }
+                        } else {
+                            return state.Invalid(TxValidationResult::TX_CONSENSUS, "bad-txns-bad-asset-script");
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    for (const auto& outValue : totalOutputs) {
+        if (!totalInputs.count(outValue.first)) {
+            std::string errorMsg = strprintf("Bad Transaction - Trying to create outpoint for asset that you don't have: %s", outValue.first);
+            return state.Invalid(TxValidationResult::TX_CONSENSUS, "bad-tx-inputs-outputs-mismatch " + errorMsg);
+        }
+        if (totalInputs.at(outValue.first) != outValue.second) {
+            std::string errorMsg = strprintf("Bad Transaction - Assets would be burnt %s", outValue.first);
+            return state.Invalid(TxValidationResult::TX_CONSENSUS, "bad-tx-inputs-outputs-mismatch " + errorMsg);
+        }
+    }
+
+    if (totalOutputs.size() != totalInputs.size()) {
+        return state.Invalid(TxValidationResult::TX_CONSENSUS, "bad-tx-asset-inputs-size-does-not-match-outputs-size");
+    }
+
     return true;
 }

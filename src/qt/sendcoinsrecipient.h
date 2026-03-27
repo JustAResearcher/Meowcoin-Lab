@@ -58,4 +58,23 @@ public:
     }
 };
 
+class SendAssetsRecipient
+{
+public:
+    explicit SendAssetsRecipient() : amount(0) {}
+    explicit SendAssetsRecipient(const QString &addr, const QString &_label, const CAmount& _amount, const QString &_message):
+        address(addr), label(_label), amount(_amount), message(_message) {}
+
+    QString assetName;
+    QString address;
+    QString label;
+    CAmount amount;
+    QString message;
+    QString authenticatedMerchant;
+
+    struct {
+        bool IsInitialized() const { return false; }
+    } paymentRequest;
+};
+
 #endif // BITCOIN_QT_SENDCOINSRECIPIENT_H

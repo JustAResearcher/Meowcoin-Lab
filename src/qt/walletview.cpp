@@ -6,6 +6,10 @@
 
 #include <qt/addressbookpage.h>
 #include <qt/askpassphrasedialog.h>
+#include <qt/assetsdialog.h>
+#include <qt/createassetdialog.h>
+#include <qt/reissueassetdialog.h>
+#include <qt/restrictedassetsdialog.h>
 #include <qt/clientmodel.h>
 #include <qt/guiutil.h>
 #include <qt/optionsmodel.h>
@@ -63,6 +67,11 @@ WalletView::WalletView(WalletModel* wallet_model, const PlatformStyle* _platform
     sendCoinsPage = new SendCoinsDialog(platformStyle);
     sendCoinsPage->setModel(walletModel);
 
+    assetsPage = new AssetsDialog(platformStyle);
+    createAssetsPage = new CreateAssetDialog(platformStyle);
+    manageAssetsPage = new ReissueAssetDialog(platformStyle);
+    restrictedAssetsPage = new RestrictedAssetsDialog(platformStyle);
+
     usedSendingAddressesPage = new AddressBookPage(platformStyle, AddressBookPage::ForEditing, AddressBookPage::SendingTab, this);
     usedSendingAddressesPage->setModel(walletModel->getAddressTableModel());
 
@@ -73,6 +82,10 @@ WalletView::WalletView(WalletModel* wallet_model, const PlatformStyle* _platform
     addWidget(transactionsPage);
     addWidget(receiveCoinsPage);
     addWidget(sendCoinsPage);
+    addWidget(assetsPage);
+    addWidget(createAssetsPage);
+    addWidget(manageAssetsPage);
+    addWidget(restrictedAssetsPage);
 
     connect(overviewPage, &OverviewPage::transactionClicked, this, &WalletView::transactionClicked);
     // Clicking on a transaction on the overview pre-selects the transaction on the transaction history page
@@ -91,6 +104,16 @@ WalletView::WalletView(WalletModel* wallet_model, const PlatformStyle* _platform
     connect(sendCoinsPage, &SendCoinsDialog::message, this, &WalletView::message);
     // Pass through messages from transactionView
     connect(transactionView, &TransactionView::message, this, &WalletView::message);
+    // Pass through messages from asset pages
+    connect(assetsPage, &AssetsDialog::message, this, &WalletView::message);
+    connect(createAssetsPage, &CreateAssetDialog::message, this, &WalletView::message);
+    connect(manageAssetsPage, &ReissueAssetDialog::message, this, &WalletView::message);
+    connect(restrictedAssetsPage, &RestrictedAssetsDialog::message, this, &WalletView::message);
+
+    assetsPage->setModel(walletModel);
+    createAssetsPage->setModel(walletModel);
+    manageAssetsPage->setModel(walletModel);
+    restrictedAssetsPage->setModel(walletModel);
 
     connect(this, &WalletView::setPrivacy, overviewPage, &OverviewPage::setPrivacy);
     connect(this, &WalletView::setPrivacy, this, &WalletView::disableTransactionView);
@@ -146,6 +169,7 @@ void WalletView::processNewTransaction(const QModelIndex& parent, int start, int
 void WalletView::gotoOverviewPage()
 {
     setCurrentWidget(overviewPage);
+    Q_EMIT checkAssets();
 }
 
 void WalletView::gotoHistoryPage()
@@ -283,4 +307,31 @@ void WalletView::showProgress(const QString &title, int nProgress)
 void WalletView::disableTransactionView(bool disable)
 {
     transactionView->setDisabled(disable);
+}
+
+static bool fFirstAssetVisit = true;
+
+void WalletView::gotoAssetsPage()
+{
+    if (fFirstAssetVisit) {
+        fFirstAssetVisit = false;
+        assetsPage->handleFirstSelection();
+    }
+    setCurrentWidget(assetsPage);
+    assetsPage->focusAssetListBox();
+}
+
+void WalletView::gotoCreateAssetsPage()
+{
+    setCurrentWidget(createAssetsPage);
+}
+
+void WalletView::gotoManageAssetsPage()
+{
+    setCurrentWidget(manageAssetsPage);
+}
+
+void WalletView::gotoRestrictedAssetsPage()
+{
+    setCurrentWidget(restrictedAssetsPage);
 }

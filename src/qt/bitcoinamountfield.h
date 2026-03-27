@@ -82,4 +82,38 @@ private Q_SLOTS:
 
 };
 
+class AssetAmountField : public QWidget
+{
+    Q_OBJECT
+    Q_PROPERTY(qint64 value READ value WRITE setValue NOTIFY valueChanged USER true)
+
+public:
+    explicit AssetAmountField(QWidget *parent = nullptr);
+
+    CAmount value(bool *value=nullptr) const;
+    void setValue(const CAmount& value);
+    void setUnit(int unit);
+    void setMaxAmount(CAmount maxAmount);
+    void SetAllowEmpty(bool allow);
+    void SetMinValue(const CAmount& value);
+    void SetMaxValue(const CAmount& value);
+    void setSingleStep(const CAmount& step);
+    void setReadOnly(bool fReadOnly);
+    void setValid(bool valid);
+    bool validate();
+    void clear();
+    void setEnabled(bool fEnabled);
+    QWidget *setupTabChain(QWidget *prev);
+
+Q_SIGNALS:
+    void valueChanged();
+
+protected:
+    bool eventFilter(QObject *object, QEvent *event) override;
+
+private:
+    AmountSpinBox* amount{nullptr};
+    int assetUnit{0};
+};
+
 #endif // BITCOIN_QT_BITCOINAMOUNTFIELD_H

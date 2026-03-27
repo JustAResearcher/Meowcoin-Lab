@@ -64,6 +64,9 @@ CAmount GetDustThreshold(const CTxOut& txout, const CFeeRate& dustRelayFeeIn)
 
 bool IsDust(const CTxOut& txout, const CFeeRate& dustRelayFeeIn)
 {
+    if (txout.scriptPubKey.IsAssetScript())
+        return false;
+
     return (txout.nValue < GetDustThreshold(txout, dustRelayFeeIn));
 }
 

@@ -44,6 +44,7 @@ TxSize CalculateMaximumSignedTxSize(const CTransaction& tx, const CWallet* walle
  */
 struct CoinsResult {
     std::map<OutputType, std::vector<COutput>> coins;
+    std::map<std::string, std::vector<COutput>> mapAssetCoins;
 
     /** Concatenate and return all COutputs as one vector */
     std::vector<COutput> All() const;
@@ -93,6 +94,17 @@ CoinsResult AvailableCoins(const CWallet& wallet,
                            const CCoinControl* coinControl = nullptr,
                            std::optional<CFeeRate> feerate = std::nullopt,
                            const CoinFilterParams& params = {}) EXCLUSIVE_LOCKS_REQUIRED(wallet.cs_wallet);
+
+CoinsResult AvailableCoinsWithAssets(const CWallet& wallet,
+                                     const CCoinControl* coinControl = nullptr,
+                                     std::optional<CFeeRate> feerate = std::nullopt,
+                                     const CoinFilterParams& params = {}) EXCLUSIVE_LOCKS_REQUIRED(wallet.cs_wallet);
+
+bool SelectAssets(const CWallet& wallet,
+                  const std::map<std::string, std::vector<COutput>>& mapAssetCoins,
+                  const std::map<std::string, CAmount>& mapAssetTargets,
+                  std::set<COutput>& setCoinsRet,
+                  std::map<std::string, CAmount>& nValueRet) EXCLUSIVE_LOCKS_REQUIRED(wallet.cs_wallet);
 
 /**
  * Find non-change parent output.

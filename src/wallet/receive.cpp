@@ -8,6 +8,7 @@
 #include <wallet/receive.h>
 #include <wallet/transaction.h>
 #include <wallet/wallet.h>
+#include <assets/assets.h>
 
 namespace wallet {
 bool InputIsMine(const CWallet& wallet, const CTxIn& txin)
@@ -191,6 +192,82 @@ void CachedTxGetAmounts(const CWallet& wallet, const CWalletTx& wtx,
             listReceived.push_back(output);
     }
 
+}
+
+void CachedTxGetAmounts(const CWallet& wallet, const CWalletTx& wtx,
+                  std::list<COutputEntry>& listReceived,
+                  std::list<COutputEntry>& listSent, CAmount& nFee,
+                  bool include_change,
+                  std::list<CAssetOutputEntry>& assetsReceived,
+                  std::list<CAssetOutputEntry>& assetsSent)
+{
+    CachedTxGetAmounts(wallet, wtx, listReceived, listSent, nFee, include_change);
+
+    assetsReceived.clear();
+    assetsSent.clear();
+
+    CAmount nDebit = CachedTxGetDebit(wallet, wtx, /*avoid_reuse=*/false);
+
+    LOCK(wallet.cs_wallet);
+    for (unsigned int i = 0; i < wtx.tx->vout.size(); ++i)
+    {
+        const CTxOut& txout = wtx.tx->vout[i];
+
+        if (!txout.scriptPubKey.IsAssetScript())
+            continue;
+
+        bool ismine = wallet.IsMine(txout);
+
+        if (nDebit <= 0 && !ismine)
+            continue;
+
+        CTxDestination address;
+        int nType = 0;
+        bool fIsOwner = false;
+        if (!txout.scriptPubKey.IsAssetScript(nType, fIsOwner)) {
+            address = CNoDestination();
+        } else {
+            ExtractDestination(txout.scriptPubKey, address);
+        }
+
+        CAssetOutputEntry assetEntry;
+        assetEntry.vout = (int)i;
+        assetEntry.destination = address;
+
+        CAssetTransfer assetTransfer;
+        CNewAsset newAsset;
+        CReissueAsset reissueAsset;
+        std::string strAddress;
+        std::string ownerName;
+
+        if (TransferAssetFromScript(txout.scriptPubKey, assetTransfer, strAddress)) {
+            assetEntry.type = TxoutType::TRANSFER_ASSET;
+            assetEntry.assetName = assetTransfer.strName;
+            assetEntry.nAmount = assetTransfer.nAmount;
+            assetEntry.message = assetTransfer.message;
+            assetEntry.expireTime = assetTransfer.nExpireTime;
+        } else if (AssetFromScript(txout.scriptPubKey, newAsset, strAddress)) {
+            assetEntry.type = TxoutType::NEW_ASSET;
+            assetEntry.assetName = newAsset.strName;
+            assetEntry.nAmount = newAsset.nAmount;
+        } else if (OwnerAssetFromScript(txout.scriptPubKey, ownerName, strAddress)) {
+            assetEntry.type = TxoutType::NEW_ASSET;
+            assetEntry.assetName = ownerName;
+            assetEntry.nAmount = OWNER_ASSET_AMOUNT;
+        } else if (ReissueAssetFromScript(txout.scriptPubKey, reissueAsset, strAddress)) {
+            assetEntry.type = TxoutType::REISSUE_ASSET;
+            assetEntry.assetName = reissueAsset.strName;
+            assetEntry.nAmount = reissueAsset.nAmount;
+        } else {
+            continue;
+        }
+
+        if (nDebit > 0 && assetEntry.type == TxoutType::TRANSFER_ASSET)
+            assetsSent.push_back(assetEntry);
+
+        if (ismine)
+            assetsReceived.push_back(assetEntry);
+    }
 }
 
 bool CachedTxIsFromMe(const CWallet& wallet, const CWalletTx& wtx)

@@ -7,6 +7,7 @@
 
 #include <consensus/amount.h>
 #include <primitives/transaction_identifier.h>
+#include <addresstype.h>
 #include <wallet/transaction.h>
 #include <wallet/wallet.h>
 
@@ -34,11 +35,31 @@ struct COutputEntry
     CAmount amount;
     int vout;
 };
+
+struct CAssetOutputEntry
+{
+    TxoutType type;
+    std::string assetName;
+    CTxDestination destination;
+    CAmount nAmount;
+    std::string message;
+    int64_t expireTime;
+    int vout;
+};
+
 void CachedTxGetAmounts(const CWallet& wallet, const CWalletTx& wtx,
                         std::list<COutputEntry>& listReceived,
                         std::list<COutputEntry>& listSent,
                         CAmount& nFee,
                         bool include_change);
+
+void CachedTxGetAmounts(const CWallet& wallet, const CWalletTx& wtx,
+                        std::list<COutputEntry>& listReceived,
+                        std::list<COutputEntry>& listSent,
+                        CAmount& nFee,
+                        bool include_change,
+                        std::list<CAssetOutputEntry>& assetsReceived,
+                        std::list<CAssetOutputEntry>& assetsSent);
 bool CachedTxIsFromMe(const CWallet& wallet, const CWalletTx& wtx);
 bool CachedTxIsTrusted(const CWallet& wallet, const CWalletTx& wtx, std::set<Txid>& trusted_parents) EXCLUSIVE_LOCKS_REQUIRED(wallet.cs_wallet);
 bool CachedTxIsTrusted(const CWallet& wallet, const CWalletTx& wtx);
