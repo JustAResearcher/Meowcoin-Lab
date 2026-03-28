@@ -556,7 +556,7 @@ class RawTransactionsTest(BitcoinTestFramework):
 
     def test_spend_2of2(self):
         """Spend a 2-of-2 multisig transaction over fundraw."""
-        self.log.info("Test fundpsbt spending 2-of-2 multisig")
+        self.log.info("Test fundpsmt spending 2-of-2 multisig")
 
         # Create 2-of-2 addr.
         addr1 = self.nodes[2].getnewaddress()
@@ -585,10 +585,10 @@ class RawTransactionsTest(BitcoinTestFramework):
         oldBalance = self.nodes[1].getbalance()
         inputs = []
         outputs = {self.nodes[1].getnewaddress():1.1}
-        funded_psbt = wmulti.walletcreatefundedpsbt(inputs=inputs, outputs=outputs, changeAddress=w2.getrawchangeaddress())['psbt']
+        funded_psmt = wmulti.walletcreatefundedpsmt(inputs=inputs, outputs=outputs, changeAddress=w2.getrawchangeaddress())['psmt']
 
-        signed_psbt = w2.walletprocesspsbt(funded_psbt)
-        self.nodes[2].sendrawtransaction(signed_psbt['hex'])
+        signed_psmt = w2.walletprocesspsmt(funded_psmt)
+        self.nodes[2].sendrawtransaction(signed_psmt['hex'])
         self.generate(self.nodes[2], 1)
 
         # Make sure funds are received at node1.
@@ -1176,9 +1176,9 @@ class RawTransactionsTest(BitcoinTestFramework):
         tx = wallet.send(outputs=[{addr1: 8}], **options)
         assert tx["complete"]
         # Check that only the preset inputs were added to the tx
-        decoded_psbt_inputs = self.nodes[0].decodepsbt(tx["psbt"])['tx']['vin']
-        assert_equal(len(decoded_psbt_inputs), 2)
-        for input in decoded_psbt_inputs:
+        decoded_psmt_inputs = self.nodes[0].decodepsmt(tx["psmt"])['tx']['vin']
+        assert_equal(len(decoded_psmt_inputs), 2)
+        for input in decoded_psmt_inputs:
             assert_equal(input["txid"], source_tx["txid"])
 
         # Case (5), assert that inputs are added to the tx by explicitly setting add_inputs=true
@@ -1192,47 +1192,47 @@ class RawTransactionsTest(BitcoinTestFramework):
 
         ################################################
 
-        # Case (1), 'walletcreatefundedpsbt' command
+        # Case (1), 'walletcreatefundedpsmt' command
         # Default add_inputs value with no preset inputs (add_inputs=true)
         inputs = []
         outputs = {self.nodes[1].getnewaddress(): 8}
-        assert "psbt" in wallet.walletcreatefundedpsbt(inputs=inputs, outputs=outputs)
+        assert "psmt" in wallet.walletcreatefundedpsmt(inputs=inputs, outputs=outputs)
 
-        # Case (2), 'walletcreatefundedpsbt' command
+        # Case (2), 'walletcreatefundedpsmt' command
         # Default add_inputs value with preset inputs (add_inputs=false).
         inputs = [{
             "txid": source_tx["txid"],
             "vout": 1  # change position was hardcoded to index 0
         }]
         outputs = {self.nodes[1].getnewaddress(): 8}
-        assert_raises_rpc_error(-4, ERR_NOT_ENOUGH_PRESET_INPUTS, wallet.walletcreatefundedpsbt, inputs=inputs, outputs=outputs)
+        assert_raises_rpc_error(-4, ERR_NOT_ENOUGH_PRESET_INPUTS, wallet.walletcreatefundedpsmt, inputs=inputs, outputs=outputs)
 
         # Case (3), Explicit add_inputs=true and preset inputs (with preset inputs not-covering the target amount)
         options["add_inputs"] = True
-        assert "psbt" in wallet.walletcreatefundedpsbt(outputs=[{addr1: 8}], inputs=inputs, **options)
+        assert "psmt" in wallet.walletcreatefundedpsmt(outputs=[{addr1: 8}], inputs=inputs, **options)
 
         # Case (4), Explicit add_inputs=true and preset inputs (with preset inputs covering the target amount)
         inputs.append({
             "txid": source_tx["txid"],
             "vout": 2  # change position was hardcoded to index 0
         })
-        psbt_tx = wallet.walletcreatefundedpsbt(outputs=[{addr1: 8}], inputs=inputs, **options)
+        psmt_tx = wallet.walletcreatefundedpsmt(outputs=[{addr1: 8}], inputs=inputs, **options)
         # Check that only the preset inputs were added to the tx
-        decoded_psbt_inputs = self.nodes[0].decodepsbt(psbt_tx["psbt"])['tx']['vin']
-        assert_equal(len(decoded_psbt_inputs), 2)
-        for input in decoded_psbt_inputs:
+        decoded_psmt_inputs = self.nodes[0].decodepsmt(psmt_tx["psmt"])['tx']['vin']
+        assert_equal(len(decoded_psmt_inputs), 2)
+        for input in decoded_psmt_inputs:
             assert_equal(input["txid"], source_tx["txid"])
 
-        # Case (5), 'walletcreatefundedpsbt' command
+        # Case (5), 'walletcreatefundedpsmt' command
         # Explicit add_inputs=true, no preset inputs
         options = {
             "add_inputs": True
         }
-        assert "psbt" in wallet.walletcreatefundedpsbt(inputs=[], outputs=outputs, **options)
+        assert "psmt" in wallet.walletcreatefundedpsmt(inputs=[], outputs=outputs, **options)
 
         # Case (6). Explicit add_inputs=false, no preset inputs:
         options = {"add_inputs": False}
-        assert_raises_rpc_error(-4, ERR_NOT_ENOUGH_PRESET_INPUTS, wallet.walletcreatefundedpsbt, inputs=[], outputs=outputs, **options)
+        assert_raises_rpc_error(-4, ERR_NOT_ENOUGH_PRESET_INPUTS, wallet.walletcreatefundedpsmt, inputs=[], outputs=outputs, **options)
 
         self.nodes[2].unloadwallet("test_preset_inputs")
 

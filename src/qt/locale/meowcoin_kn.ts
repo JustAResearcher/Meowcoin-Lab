@@ -461,8 +461,8 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">ನಿರ್ದಿಷ್ಟಪಡಿಸಿದ ಬಿಟ್‌ಕಾಯಿನ್ ವಿಳಾಸಗಳೊಂದಿಗೆ ಸಹಿ ಮಾಡಿರುವುದನ್ನು ಖಚಿತಪಡಿಸಿಕೊಳ್ಳಲು ಸಂದೇಶಗಳನ್ನು ಪರಿಶೀಲಿಸಿ</translation>
     </message>
     <message>
-        <source>&amp;Load PSBT from file…</source>
-        <translation type="unfinished">&amp;ಫೈಲ್‌ನಿಂದ PSBT ಅನ್ನು ಲೋಡ್ ಮಾಡಿ...</translation>
+        <source>&amp;Load PSMT from file…</source>
+        <translation type="unfinished">&amp;ಫೈಲ್‌ನಿಂದ PSMT ಅನ್ನು ಲೋಡ್ ಮಾಡಿ...</translation>
     </message>
     <message>
         <source>Open &amp;URI…</source>

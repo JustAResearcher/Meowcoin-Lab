@@ -531,7 +531,7 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">אמת הודעות כדי להבטיח שהן נחתמו עם כתובת ביטקוין מסוימות</translation>
     </message>
     <message>
-        <source>&amp;Load PSBT from file…</source>
+        <source>&amp;Load PSMT from file…</source>
         <translation type="unfinished">&amp;טעינת PBST מקובץ…</translation>
     </message>
     <message>
@@ -646,8 +646,8 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">העלה עיסקת ביטקוין חתומה חלקית</translation>
     </message>
     <message>
-        <source>Load PSBT from &amp;clipboard…</source>
-        <translation type="unfinished">העלאת PSBT מהקליפבורד...</translation>
+        <source>Load PSMT from &amp;clipboard…</source>
+        <translation type="unfinished">העלאת PSMT מהקליפבורד...</translation>
     </message>
     <message>
         <source>Load Partially Signed Meowcoin Transaction from clipboard</source>
@@ -1688,7 +1688,7 @@ Signing is only possible with addresses of the type 'legacy'.</source>
     </message>
 </context>
 <context>
-    <name>PSBTOperationsDialog</name>
+    <name>PSMTOperationsDialog</name>
     <message>
         <source>Sign Tx</source>
         <translation type="unfinished">חתימת עיסקה</translation>
@@ -1742,16 +1742,16 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">שידור העיסקה נכשל: %1</translation>
     </message>
     <message>
-        <source>PSBT copied to clipboard.</source>
-        <translation type="unfinished">PSBT הועתקה ללוח הגזירים.</translation>
+        <source>PSMT copied to clipboard.</source>
+        <translation type="unfinished">PSMT הועתקה ללוח הגזירים.</translation>
     </message>
     <message>
         <source>Save Transaction Data</source>
         <translation type="unfinished">שמירת נתוני העיסקה</translation>
     </message>
     <message>
-        <source>PSBT saved to disk.</source>
-        <translation type="unfinished">PSBT נשמרה לדיסק.</translation>
+        <source>PSMT saved to disk.</source>
+        <translation type="unfinished">PSMT נשמרה לדיסק.</translation>
     </message>
     <message>
         <source>own address</source>
@@ -2517,8 +2517,8 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">י&amp;צירת לא חתומה</translation>
     </message>
     <message>
-        <source>Creates a Partially Signed Meowcoin Transaction (PSBT) for use with e.g. an offline %1 wallet, or a PSBT-compatible hardware wallet.</source>
-        <translation type="unfinished">יוצר עסקת ביטקוין חתומה חלקית (PSBT) לשימוש עם ארנק %1 לא מחובר למשל, או עם PSBT ארנק חומרה תואם.</translation>
+        <source>Creates a Partially Signed Meowcoin Transaction (PSMT) for use with e.g. an offline %1 wallet, or a PSMT-compatible hardware wallet.</source>
+        <translation type="unfinished">יוצר עסקת ביטקוין חתומה חלקית (PSMT) לשימוש עם ארנק %1 לא מחובר למשל, או עם PSMT ארנק חומרה תואם.</translation>
     </message>
     <message>
         <source>%1 to '%2'</source>
@@ -2537,9 +2537,9 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">שמירת נתוני העיסקה</translation>
     </message>
     <message>
-        <source>PSBT saved</source>
-        <extracomment>Popup message when a PSBT has been saved to a file</extracomment>
-        <translation type="unfinished">PSBT נשמרה</translation>
+        <source>PSMT saved</source>
+        <extracomment>Popup message when a PSMT has been saved to a file</extracomment>
+        <translation type="unfinished">PSMT נשמרה</translation>
     </message>
     <message>
         <source>or</source>
@@ -2550,9 +2550,9 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">תוכלו להגדיל את העמלה מאוחר יותר (איתות Replace-By-Fee, BIP-125).</translation>
     </message>
     <message>
-        <source>Please, review your transaction proposal. This will produce a Partially Signed Meowcoin Transaction (PSBT) which you can save or copy and then sign with e.g. an offline %1 wallet, or a PSBT-compatible hardware wallet.</source>
-        <extracomment>Text to inform a user attempting to create a transaction of their current options. At this stage, a user can only create a PSBT. This string is displayed when private keys are disabled and an external signer is not available.</extracomment>
-        <translation type="unfinished">בבקשה לסקור את העיסקה המוצעת. הדבר יצור עיסקת ביטקוין חתומה חלקית (PSBT) אשר ניתן לשמור או להעתיק ואז לחתום עם למשל ארנק לא מקוון %1, או עם ארנק חומרה תואם-PSBT.</translation>
+        <source>Please, review your transaction proposal. This will produce a Partially Signed Meowcoin Transaction (PSMT) which you can save or copy and then sign with e.g. an offline %1 wallet, or a PSMT-compatible hardware wallet.</source>
+        <extracomment>Text to inform a user attempting to create a transaction of their current options. At this stage, a user can only create a PSMT. This string is displayed when private keys are disabled and an external signer is not available.</extracomment>
+        <translation type="unfinished">בבקשה לסקור את העיסקה המוצעת. הדבר יצור עיסקת ביטקוין חתומה חלקית (PSMT) אשר ניתן לשמור או להעתיק ואז לחתום עם למשל ארנק לא מקוון %1, או עם ארנק חומרה תואם-PSMT.</translation>
     </message>
     <message>
         <source>Please, review your transaction.</source>
@@ -3219,24 +3219,24 @@ Go to File &gt; Open Wallet to load a wallet.
         <translation type="unfinished">שגיאה</translation>
     </message>
     <message>
-        <source>Unable to decode PSBT from clipboard (invalid base64)</source>
-        <translation type="unfinished">לא ניתן לפענח PSBT מתוך לוח הגזירים (base64 שגוי)  </translation>
+        <source>Unable to decode PSMT from clipboard (invalid base64)</source>
+        <translation type="unfinished">לא ניתן לפענח PSMT מתוך לוח הגזירים (base64 שגוי)  </translation>
     </message>
     <message>
         <source>Load Transaction Data</source>
         <translation type="unfinished">טעינת נתוני עיסקה</translation>
     </message>
     <message>
-        <source>Partially Signed Transaction (*.psbt)</source>
-        <translation type="unfinished">עיסקה חתומה חלקית  (*.psbt)</translation>
+        <source>Partially Signed Transaction (*.psmt)</source>
+        <translation type="unfinished">עיסקה חתומה חלקית  (*.psmt)</translation>
     </message>
     <message>
-        <source>PSBT file must be smaller than 100 MiB</source>
-        <translation type="unfinished">קובץ PSBT צריך להיות קטמן מ 100 MiB</translation>
+        <source>PSMT file must be smaller than 100 MiB</source>
+        <translation type="unfinished">קובץ PSMT צריך להיות קטמן מ 100 MiB</translation>
     </message>
     <message>
-        <source>Unable to decode PSBT</source>
-        <translation type="unfinished">לא מצליח לפענח PSBT</translation>
+        <source>Unable to decode PSMT</source>
+        <translation type="unfinished">לא מצליח לפענח PSMT</translation>
     </message>
 </context>
 <context>
@@ -3279,8 +3279,8 @@ Go to File &gt; Open Wallet to load a wallet.
         <translation type="unfinished">לא ניתן לשמור את העסקה כטיוטה.</translation>
     </message>
     <message>
-        <source>PSBT copied</source>
-        <translation type="unfinished">PSBT הועתקה</translation>
+        <source>PSMT copied</source>
+        <translation type="unfinished">PSMT הועתקה</translation>
     </message>
     <message>
         <source>Can't sign transaction.</source>

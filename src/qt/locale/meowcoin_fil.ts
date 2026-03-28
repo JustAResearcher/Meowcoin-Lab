@@ -1302,7 +1302,7 @@ Signing is only possible with addresses of the type 'legacy'.</source>
     </message>
 </context>
 <context>
-    <name>PSBTOperationsDialog</name>
+    <name>PSMTOperationsDialog</name>
     <message>
         <source>Sign Tx</source>
         <translation type="unfinished">I-sign ang Tx</translation>
@@ -2004,8 +2004,8 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">Lumikha ng Unsigned</translation>
     </message>
     <message>
-        <source>Creates a Partially Signed Meowcoin Transaction (PSBT) for use with e.g. an offline %1 wallet, or a PSBT-compatible hardware wallet.</source>
-        <translation type="unfinished">Lumilikha ng isang Bahagyang Signed Meowcoin Transaction (PSBT) para magamit sa hal. isang offline na%1 wallet, o isang wallet na hardware na katugma sa PSBT.</translation>
+        <source>Creates a Partially Signed Meowcoin Transaction (PSMT) for use with e.g. an offline %1 wallet, or a PSMT-compatible hardware wallet.</source>
+        <translation type="unfinished">Lumilikha ng isang Bahagyang Signed Meowcoin Transaction (PSMT) para magamit sa hal. isang offline na%1 wallet, o isang wallet na hardware na katugma sa PSMT.</translation>
     </message>
     <message>
         <source>%1 to '%2'</source>
@@ -2667,8 +2667,8 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">Hindi ma-draft ang transaksyon</translation>
     </message>
     <message>
-        <source>PSBT copied</source>
-        <translation type="unfinished">Kinopya ang PSBT</translation>
+        <source>PSMT copied</source>
+        <translation type="unfinished">Kinopya ang PSMT</translation>
     </message>
     <message>
         <source>Can't sign transaction.</source>

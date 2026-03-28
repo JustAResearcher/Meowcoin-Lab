@@ -12,4 +12,9 @@ target_sources(fuzz
     spend.cpp
     wallet_bdb_parser.cpp
 )
-target_link_libraries(fuzz meowcoin_wallet)
+target_link_libraries(fuzz
+  meowcoin_wallet
+  meowcoin_node
+  bitcoin_assets
+  meowcoin_node
+)

@@ -144,8 +144,8 @@ private:
     QAction* usedReceivingAddressesAction = nullptr;
     QAction* signMessageAction = nullptr;
     QAction* verifyMessageAction = nullptr;
-    QAction* m_load_psbt_action = nullptr;
-    QAction* m_load_psbt_clipboard_action = nullptr;
+    QAction* m_load_psmt_action = nullptr;
+    QAction* m_load_psmt_clipboard_action = nullptr;
     QAction* aboutAction = nullptr;
     QAction* receiveCoinsAction = nullptr;
     QAction* optionsAction = nullptr;
@@ -300,7 +300,7 @@ public Q_SLOTS:
     /** Show Sign/Verify Message dialog and switch to verify message tab */
     void gotoVerifyMessageTab(QString addr = "");
     /** Load Partially Signed Bitcoin Transaction from file or clipboard */
-    void gotoLoadPSBT(bool from_clipboard = false);
+    void gotoLoadPSMT(bool from_clipboard = false);
     /** Enable history action when privacy is changed */
     void enableHistoryAction(bool privacy);
 

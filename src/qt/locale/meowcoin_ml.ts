@@ -487,7 +487,7 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">നിർദ്ദിഷ്ട ബിറ്റ്കോയിൻ വിലാസങ്ങളിൽ സന്ദേശങ്ങൾ ഒപ്പിട്ടിട്ടുണ്ടെന്ന് ഉറപ്പാക്കാൻ സ്ഥിരീകരിക്കുക</translation>
     </message>
     <message>
-        <source>&amp;Load PSBT from file…</source>
+        <source>&amp;Load PSMT from file…</source>
         <translation type="unfinished"> തുറന്ന് URL</translation>
     </message>
     <message>
@@ -1169,7 +1169,7 @@ Signing is only possible with addresses of the type 'legacy'.</source>
     </message>
     </context>
 <context>
-    <name>PSBTOperationsDialog</name>
+    <name>PSMTOperationsDialog</name>
     <message>
         <source>Save…</source>
         <translation type="unfinished">സൂക്ഷിക്കുക</translation>

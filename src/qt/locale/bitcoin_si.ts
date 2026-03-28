@@ -899,7 +899,7 @@
     </message>
     </context>
 <context>
-    <name>PSBTOperationsDialog</name>
+    <name>PSMTOperationsDialog</name>
     <message>
         <source>or</source>
         <translation type="unfinished">හෝ</translation>

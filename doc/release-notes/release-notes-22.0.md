@@ -177,9 +177,9 @@ Wallet
   For ranged descriptors, it also returns the range boundaries and the next index to generate addresses from. (#20226)
 
 - The `bumpfee` RPC is not available with wallets that have private keys
-  disabled. `psbtbumpfee` can be used instead. (#20891)
+  disabled. `psmtbumpfee` can be used instead. (#20891)
 
-- The `fundrawtransaction`, `send` and `walletcreatefundedpsbt` RPCs now support an `include_unsafe` option
+- The `fundrawtransaction`, `send` and `walletcreatefundedpsmt` RPCs now support an `include_unsafe` option
   that when `true` allows using unsafe inputs to fund the transaction.
   Note that the resulting transaction may become invalid if one of the unsafe inputs disappears.
   If that happens, the transaction must be funded with different inputs and republished. (#21359)
@@ -438,14 +438,14 @@ A detailed list of changes in this version follows. To keep the list to a manage
 - meowcoin/meowcoin#21311 Document optional fields for `getchaintxstats` result (theStack)
 - meowcoin/meowcoin#21359 `include_unsafe` option for fundrawtransaction (t-bast)
 - meowcoin/meowcoin#21426 Remove `scantxoutset` EXPERIMENTAL warning (jonatack)
-- meowcoin/meowcoin#21544 Missing doc updates for bumpfee psbt update (MarcoFalke)
+- meowcoin/meowcoin#21544 Missing doc updates for bumpfee psmt update (MarcoFalke)
 - meowcoin/meowcoin#21594 Add `network` field to `getnodeaddresses` (jonatack)
 - meowcoin/meowcoin#21595, meowcoin/meowcoin#21753 cli: Create `-addrinfo` (jonatack)
 - meowcoin/meowcoin#21602 Add additional ban time fields to `listbanned` (jarolrod)
 - meowcoin/meowcoin#21679 Keep default argument value in correct type (promag)
 - meowcoin/meowcoin#21718 Improve error message for `getblock` invalid datatype (klementtan)
 - meowcoin/meowcoin#21913 RPCHelpMan fixes (kallewoof)
-- meowcoin/meowcoin#22021 `bumpfee`/`psbtbumpfee` fixes and updates (jonatack)
+- meowcoin/meowcoin#22021 `bumpfee`/`psmtbumpfee` fixes and updates (jonatack)
 - meowcoin/meowcoin#22043 `addpeeraddress` test coverage, code simplify/constness (jonatack)
 - meowcoin/meowcoin#22327 cli: Avoid truncating `-rpcwaittimeout` (MarcoFalke)
 
@@ -778,7 +778,7 @@ A detailed list of changes in this version follows. To keep the list to a manage
 - meowcoin/meowcoin#21597 Document `race:validation_chainstatemanager_tests` suppression (MarcoFalke)
 - meowcoin/meowcoin#21599 Replace file level integer overflow suppression with function level suppression (practicalswift)
 - meowcoin/meowcoin#21604 Document why no symbol names can be used for suppressions (MarcoFalke)
-- meowcoin/meowcoin#21606 fuzz: Extend psbt fuzz target a bit (MarcoFalke)
+- meowcoin/meowcoin#21606 fuzz: Extend psmt fuzz target a bit (MarcoFalke)
 - meowcoin/meowcoin#21617 fuzz: Fix uninitialized read in i2p test (MarcoFalke)
 - meowcoin/meowcoin#21630 fuzz: split FuzzedSock interface and implementation (vasild)
 - meowcoin/meowcoin#21634 Skip SQLite fsyncs while testing (achow101)

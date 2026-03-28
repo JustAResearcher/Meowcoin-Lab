@@ -490,8 +490,8 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">Fa'amaonia manatu e fa'amaonia ai na'o le 'alelesi fa'amaonia i tuatusi Meowcoin fa'amaonia</translation>
     </message>
     <message>
-        <source>&amp;Load PSBT from file…</source>
-        <translation type="unfinished">&amp;La'u mai le PSBT mai le faila...</translation>
+        <source>&amp;Load PSMT from file…</source>
+        <translation type="unfinished">&amp;La'u mai le PSMT mai le faila...</translation>
     </message>
     <message>
         <source>Open &amp;URI…</source>
@@ -606,8 +606,8 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">Laʻu le Galuega Fa'amaonia Meowcoin i le vaega</translation>
     </message>
     <message>
-        <source>Load PSBT from &amp;clipboard…</source>
-        <translation type="unfinished">Loli PSBT mai le &amp;clipboard…</translation>
+        <source>Load PSMT from &amp;clipboard…</source>
+        <translation type="unfinished">Loli PSMT mai le &amp;clipboard…</translation>
     </message>
     <message>
         <source>Load Partially Signed Meowcoin Transaction from clipboard</source>
@@ -1621,14 +1621,14 @@ O le fa'amaoniga o le malaga o le a fai se kopi o le 'aofa'i a'o le'i fa'aauau l
         <translation type="unfinished">&amp;Fa'aaoga le suiga e le'o fa'amaonia</translation>
     </message>
     <message>
-        <source>Enable &amp;PSBT controls</source>
-        <extracomment>An options window setting to enable PSBT controls.</extracomment>
-        <translation type="unfinished">Fa'ataga ma le pule o &amp;PSBT</translation>
+        <source>Enable &amp;PSMT controls</source>
+        <extracomment>An options window setting to enable PSMT controls.</extracomment>
+        <translation type="unfinished">Fa'ataga ma le pule o &amp;PSMT</translation>
     </message>
     <message>
-        <source>Whether to show PSBT controls.</source>
-        <extracomment>Tooltip text for options window setting that enables PSBT controls.</extracomment>
-        <translation type="unfinished">Pe fa'amaonia e fa'aalia i le Pule o le PSBT.</translation>
+        <source>Whether to show PSMT controls.</source>
+        <extracomment>Tooltip text for options window setting that enables PSMT controls.</extracomment>
+        <translation type="unfinished">Pe fa'amaonia e fa'aalia i le Pule o le PSMT.</translation>
     </message>
     <message>
         <source>External Signer (e.g. hardware wallet)</source>

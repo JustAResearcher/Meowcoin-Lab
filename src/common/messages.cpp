@@ -103,22 +103,22 @@ bool FeeModeFromString(const std::string& mode_string, FeeEstimateMode& fee_esti
     return false;
 }
 
-bilingual_str PSBTErrorString(PSBTError err)
+bilingual_str PSMTErrorString(PSMTError err)
 {
     switch (err) {
-        case PSBTError::MISSING_INPUTS:
+        case PSMTError::MISSING_INPUTS:
             return Untranslated("Inputs missing or spent");
-        case PSBTError::SIGHASH_MISMATCH:
-            return Untranslated("Specified sighash value does not match value stored in PSBT");
-        case PSBTError::EXTERNAL_SIGNER_NOT_FOUND:
+        case PSMTError::SIGHASH_MISMATCH:
+            return Untranslated("Specified sighash value does not match value stored in PSMT");
+        case PSMTError::EXTERNAL_SIGNER_NOT_FOUND:
             return Untranslated("External signer not found");
-        case PSBTError::EXTERNAL_SIGNER_FAILED:
+        case PSMTError::EXTERNAL_SIGNER_FAILED:
             return Untranslated("External signer failed to sign");
-        case PSBTError::UNSUPPORTED:
-            return Untranslated("Signer does not support PSBT");
-        case PSBTError::INCOMPLETE:
+        case PSMTError::UNSUPPORTED:
+            return Untranslated("Signer does not support PSMT");
+        case PSMTError::INCOMPLETE:
             return Untranslated("Input needs additional signatures or other data");
-        case PSBTError::OK:
+        case PSMTError::OK:
             return Untranslated("No errors");
         // no default case, so the compiler can warn about missing cases
     }

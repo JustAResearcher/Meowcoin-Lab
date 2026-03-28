@@ -2,30 +2,30 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef BITCOIN_QT_PSBTOPERATIONSDIALOG_H
-#define BITCOIN_QT_PSBTOPERATIONSDIALOG_H
+#ifndef BITCOIN_QT_PSMTOPERATIONSDIALOG_H
+#define BITCOIN_QT_PSMTOPERATIONSDIALOG_H
 
 #include <QDialog>
 #include <QString>
 
-#include <psbt.h>
+#include <psmt.h>
 #include <qt/clientmodel.h>
 #include <qt/walletmodel.h>
 
 namespace Ui {
-class PSBTOperationsDialog;
+class PSMTOperationsDialog;
 }
 
 /** Dialog showing transaction details. */
-class PSBTOperationsDialog : public QDialog
+class PSMTOperationsDialog : public QDialog
 {
     Q_OBJECT
 
 public:
-    explicit PSBTOperationsDialog(QWidget* parent, WalletModel* walletModel, ClientModel* clientModel);
-    ~PSBTOperationsDialog();
+    explicit PSMTOperationsDialog(QWidget* parent, WalletModel* walletModel, ClientModel* clientModel);
+    ~PSMTOperationsDialog();
 
-    void openWithPSBT(PartiallySignedTransaction psbtx);
+    void openWithPSMT(PartiallySignedTransaction psmtx);
 
 public Q_SLOTS:
     void signTransaction();
@@ -34,7 +34,7 @@ public Q_SLOTS:
     void saveTransaction();
 
 private:
-    Ui::PSBTOperationsDialog* m_ui;
+    Ui::PSMTOperationsDialog* m_ui;
     PartiallySignedTransaction m_transaction_data;
     WalletModel* m_wallet_model;
     ClientModel* m_client_model;
@@ -45,11 +45,11 @@ private:
         ERR
     };
 
-    size_t couldSignInputs(const PartiallySignedTransaction &psbtx);
+    size_t couldSignInputs(const PartiallySignedTransaction &psmtx);
     void updateTransactionDisplay();
-    QString renderTransaction(const PartiallySignedTransaction &psbtx);
+    QString renderTransaction(const PartiallySignedTransaction &psmtx);
     void showStatus(const QString &msg, StatusLevel level);
-    void showTransactionStatus(const PartiallySignedTransaction &psbtx);
+    void showTransactionStatus(const PartiallySignedTransaction &psmtx);
 };
 
-#endif // BITCOIN_QT_PSBTOPERATIONSDIALOG_H
+#endif // BITCOIN_QT_PSMTOPERATIONSDIALOG_H

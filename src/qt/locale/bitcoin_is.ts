@@ -459,8 +459,8 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">Yfirfara skilaboð til að tryggja að kvittað hafi verið fyrir þau með tilteknum Bitcoin færslugildum</translation>
     </message>
     <message>
-        <source>&amp;Load PSBT from file…</source>
-        <translation type="unfinished">&amp;Hlaða PSBT úr skrá...</translation>
+        <source>&amp;Load PSMT from file…</source>
+        <translation type="unfinished">&amp;Hlaða PSMT úr skrá...</translation>
     </message>
     <message>
         <source>Open &amp;URI…</source>
@@ -915,7 +915,7 @@ Signing is only possible with addresses of the type 'legacy'.</source>
     </message>
     </context>
 <context>
-    <name>PSBTOperationsDialog</name>
+    <name>PSMTOperationsDialog</name>
     <message>
         <source>Sign Tx</source>
         <translation type="unfinished">Skilti Tx</translation>

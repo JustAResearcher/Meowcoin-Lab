@@ -392,8 +392,8 @@
         <translation type="unfinished">Verifikasi pesan untuk memastikan bahwa pesan tersebut ditanda tangani oleh suatu alamat Bitcoin tertentu</translation>
     </message>
     <message>
-        <source>&amp;Load PSBT from file…</source>
-        <translation type="unfinished">&amp;Muat PSBT dari file...</translation>
+        <source>&amp;Load PSMT from file…</source>
+        <translation type="unfinished">&amp;Muat PSMT dari file...</translation>
     </message>
     <message>
         <source>Open &amp;URI…</source>
@@ -506,8 +506,8 @@
         <translation type="unfinished">Muat transaksi Bitcoin yang ditandatangani seperapat</translation>
     </message>
     <message>
-        <source>Load PSBT from &amp;clipboard…</source>
-        <translation type="unfinished">Masukkan PSBT dari &amp;clipboard</translation>
+        <source>Load PSMT from &amp;clipboard…</source>
+        <translation type="unfinished">Masukkan PSMT dari &amp;clipboard</translation>
     </message>
     <message>
         <source>Load Partially Signed Bitcoin Transaction from clipboard</source>
@@ -1283,14 +1283,14 @@ Proses migrasi akan mencadangkan dompet sebelum melakukan pemindahan. Fail cadan
         <translation type="unfinished">&amp;Perubahan saldo untuk transaksi yang belum dikonfirmasi</translation>
     </message>
     <message>
-        <source>Enable &amp;PSBT controls</source>
-        <extracomment>An options window setting to enable PSBT controls.</extracomment>
-        <translation type="unfinished">Aktifkan kontrol &amp;PSBT</translation>
+        <source>Enable &amp;PSMT controls</source>
+        <extracomment>An options window setting to enable PSMT controls.</extracomment>
+        <translation type="unfinished">Aktifkan kontrol &amp;PSMT</translation>
     </message>
     <message>
-        <source>Whether to show PSBT controls.</source>
-        <extracomment>Tooltip text for options window setting that enables PSBT controls.</extracomment>
-        <translation type="unfinished">Apakah akan menampilkan kontrol PSBT.</translation>
+        <source>Whether to show PSMT controls.</source>
+        <extracomment>Tooltip text for options window setting that enables PSMT controls.</extracomment>
+        <translation type="unfinished">Apakah akan menampilkan kontrol PSMT.</translation>
     </message>
     <message>
         <source>External Signer (e.g. hardware wallet)</source>
@@ -1342,9 +1342,9 @@ Proses migrasi akan mencadangkan dompet sebelum melakukan pemindahan. Fail cadan
     </message>
 </context>
 <context>
-    <name>PSBTOperationsDialog</name>
+    <name>PSMTOperationsDialog</name>
     <message>
-        <source>PSBT Operations</source>
+        <source>PSMT Operations</source>
         <translation type="unfinished">Operasi PBST</translation>
     </message>
     <message>
@@ -1400,8 +1400,8 @@ Proses migrasi akan mencadangkan dompet sebelum melakukan pemindahan. Fail cadan
         <translation type="unfinished">Broadcast transaksi gagal: %1</translation>
     </message>
     <message>
-        <source>PSBT copied to clipboard.</source>
-        <translation type="unfinished">PSBT disalin ke clipboard</translation>
+        <source>PSMT copied to clipboard.</source>
+        <translation type="unfinished">PSMT disalin ke clipboard</translation>
     </message>
     <message>
         <source>Save Transaction Data</source>
@@ -1409,12 +1409,12 @@ Proses migrasi akan mencadangkan dompet sebelum melakukan pemindahan. Fail cadan
     </message>
     <message>
         <source>Partially Signed Transaction (Binary)</source>
-        <extracomment>Expanded name of the binary PSBT file format. See: BIP 174.</extracomment>
+        <extracomment>Expanded name of the binary PSMT file format. See: BIP 174.</extracomment>
         <translation type="unfinished">Transaksi yang Ditandatangani Sebagian (Biner)</translation>
     </message>
     <message>
-        <source>PSBT saved to disk.</source>
-        <translation type="unfinished">PSBT disimpan ke disk.</translation>
+        <source>PSMT saved to disk.</source>
+        <translation type="unfinished">PSMT disimpan ke disk.</translation>
     </message>
     <message>
         <source>Sends %1 to %2</source>
@@ -1555,17 +1555,17 @@ Proses migrasi akan mencadangkan dompet sebelum melakukan pemindahan. Fail cadan
     </message>
     <message>
         <source>Unsigned Transaction</source>
-        <comment>PSBT copied</comment>
-        <extracomment>Caption of "PSBT has been copied" messagebox</extracomment>
+        <comment>PSMT copied</comment>
+        <extracomment>Caption of "PSMT has been copied" messagebox</extracomment>
         <translation type="unfinished">Transaksi tidak Tertandatangani</translation>
     </message>
     <message>
-        <source>The PSBT has been copied to the clipboard. You can also save it.</source>
-        <translation type="unfinished">PSBT telah disalin ke clipboard. Anda juga dapat menyimpannya.</translation>
+        <source>The PSMT has been copied to the clipboard. You can also save it.</source>
+        <translation type="unfinished">PSMT telah disalin ke clipboard. Anda juga dapat menyimpannya.</translation>
     </message>
     <message>
-        <source>PSBT saved to disk</source>
-        <translation type="unfinished">PSBT disimpan ke disk.</translation>
+        <source>PSMT saved to disk</source>
+        <translation type="unfinished">PSMT disimpan ke disk.</translation>
     </message>
     <message numerus="yes">
         <source>Estimated to begin confirmation within %n block(s).</source>
@@ -1653,8 +1653,8 @@ Proses migrasi akan mencadangkan dompet sebelum melakukan pemindahan. Fail cadan
 <context>
     <name>WalletModel</name>
     <message>
-        <source>Fee-bump PSBT copied to clipboard</source>
-        <translation type="unfinished">PSBT berbayar disalin ke clipboard</translation>
+        <source>Fee-bump PSMT copied to clipboard</source>
+        <translation type="unfinished">PSMT berbayar disalin ke clipboard</translation>
     </message>
     </context>
 <context>

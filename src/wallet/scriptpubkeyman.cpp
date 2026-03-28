@@ -21,7 +21,7 @@
 
 #include <optional>
 
-using common::PSBTError;
+using common::PSMTError;
 using util::ToString;
 
 namespace wallet {
@@ -864,7 +864,7 @@ std::optional<MigrationData> LegacyDataSPKM::MigrateToDescriptor()
     }
 
     // Legacy wallets can also contain scripts whose P2SH, P2WSH, or P2SH-P2WSH it is not watching for
-    // but can provide script data to a PSBT spending them. These "solvable" output scripts will need to
+    // but can provide script data to a PSMT spending them. These "solvable" output scripts will need to
     // be put into the separate "solvables" wallet.
     // These can be detected by going through the entire candidate output scripts, finding the not IsMine scripts,
     // and checking CanProvide() which will dummy sign.
@@ -1415,16 +1415,16 @@ SigningResult DescriptorScriptPubKeyMan::SignMessage(const std::string& message,
     return SigningResult::OK;
 }
 
-std::optional<PSBTError> DescriptorScriptPubKeyMan::FillPSBT(PartiallySignedTransaction& psbtx, const PrecomputedTransactionData& txdata, std::optional<int> sighash_type, bool sign, bool bip32derivs, int* n_signed, bool finalize) const
+std::optional<PSMTError> DescriptorScriptPubKeyMan::FillPSMT(PartiallySignedTransaction& psmtx, const PrecomputedTransactionData& txdata, std::optional<int> sighash_type, bool sign, bool bip32derivs, int* n_signed, bool finalize) const
 {
     if (n_signed) {
         *n_signed = 0;
     }
-    for (unsigned int i = 0; i < psbtx.tx->vin.size(); ++i) {
-        const CTxIn& txin = psbtx.tx->vin[i];
-        PSBTInput& input = psbtx.inputs.at(i);
+    for (unsigned int i = 0; i < psmtx.tx->vin.size(); ++i) {
+        const CTxIn& txin = psmtx.tx->vin[i];
+        PSMTInput& input = psmtx.inputs.at(i);
 
-        if (PSBTInputSigned(input)) {
+        if (PSMTInputSigned(input)) {
             continue;
         }
 
@@ -1434,7 +1434,7 @@ std::optional<PSBTError> DescriptorScriptPubKeyMan::FillPSBT(PartiallySignedTran
             script = input.witness_utxo.scriptPubKey;
         } else if (input.non_witness_utxo) {
             if (txin.prevout.n >= input.non_witness_utxo->vout.size()) {
-                return PSBTError::MISSING_INPUTS;
+                return PSMTError::MISSING_INPUTS;
             }
             script = input.non_witness_utxo->vout[txin.prevout.n].scriptPubKey;
         } else {
@@ -1485,12 +1485,12 @@ std::optional<PSBTError> DescriptorScriptPubKeyMan::FillPSBT(PartiallySignedTran
             }
         }
 
-        PSBTError res = SignPSBTInput(HidingSigningProvider(keys.get(), /*hide_secret=*/!sign, /*hide_origin=*/!bip32derivs), psbtx, i, &txdata, sighash_type, nullptr, finalize);
-        if (res != PSBTError::OK && res != PSBTError::INCOMPLETE) {
+        PSMTError res = SignPSMTInput(HidingSigningProvider(keys.get(), /*hide_secret=*/!sign, /*hide_origin=*/!bip32derivs), psmtx, i, &txdata, sighash_type, nullptr, finalize);
+        if (res != PSMTError::OK && res != PSMTError::INCOMPLETE) {
             return res;
         }
 
-        bool signed_one = PSBTInputSigned(input);
+        bool signed_one = PSMTInputSigned(input);
         if (n_signed && (signed_one || !sign)) {
             // If sign is false, we assume that we _could_ sign if we get here. This
             // will never have false negatives; it is hard to tell under what i
@@ -1500,12 +1500,12 @@ std::optional<PSBTError> DescriptorScriptPubKeyMan::FillPSBT(PartiallySignedTran
     }
 
     // Fill in the bip32 keypaths and redeemscripts for the outputs so that hardware wallets can identify change
-    for (unsigned int i = 0; i < psbtx.tx->vout.size(); ++i) {
-        std::unique_ptr<SigningProvider> keys = GetSolvingProvider(psbtx.tx->vout.at(i).scriptPubKey);
+    for (unsigned int i = 0; i < psmtx.tx->vout.size(); ++i) {
+        std::unique_ptr<SigningProvider> keys = GetSolvingProvider(psmtx.tx->vout.at(i).scriptPubKey);
         if (!keys) {
             continue;
         }
-        UpdatePSBTOutput(HidingSigningProvider(keys.get(), /*hide_secret=*/true, /*hide_origin=*/!bip32derivs), psbtx, i);
+        UpdatePSMTOutput(HidingSigningProvider(keys.get(), /*hide_secret=*/true, /*hide_origin=*/!bip32derivs), psmtx, i);
     }
 
     return {};

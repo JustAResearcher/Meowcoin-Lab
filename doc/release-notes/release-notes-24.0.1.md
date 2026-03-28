@@ -206,7 +206,7 @@ Wallet
   wallet will now default to opt-in RBF on transactions that it creates. (#25610)
 
 - The `replaceable` option for the `createrawtransaction` and
-  `createpsbt` RPCs will now default to `true`. Transactions created
+  `createpsmt` RPCs will now default to `true`. Transactions created
   with these RPCs will default to having opt-in RBF enabled. (#25610)
 
 - The `wsh()` output descriptor was extended with Miniscript support. You can import Miniscript

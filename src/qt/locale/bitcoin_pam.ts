@@ -530,7 +530,7 @@
     </message>
     </context>
 <context>
-    <name>PSBTOperationsDialog</name>
+    <name>PSMTOperationsDialog</name>
     <message>
         <source>own address</source>
         <translation type="unfinished">sariling address</translation>

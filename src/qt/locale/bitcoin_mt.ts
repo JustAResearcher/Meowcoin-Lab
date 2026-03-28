@@ -465,8 +465,8 @@ L-iffirmar huwa possibbli biss b'indirizzi tat-tip 'legacy'.</translation>
         <translation type="unfinished">Ivverifika l-messaġġi biex tiżgura li ġew iffirmati b'indirizzi Bitcoin speċifikati</translation>
     </message>
     <message>
-        <source>&amp;Load PSBT from file…</source>
-        <translation type="unfinished">&amp;Tagħbija PSBT mill-fajl...</translation>
+        <source>&amp;Load PSMT from file…</source>
+        <translation type="unfinished">&amp;Tagħbija PSMT mill-fajl...</translation>
     </message>
     <message>
         <source>Open &amp;URI…</source>
@@ -574,8 +574,8 @@ L-iffirmar huwa possibbli biss b'indirizzi tat-tip 'legacy'.</translation>
         <translation type="unfinished">Tagħbija Transazzjoni Bitcoin iffirmata parzjalment</translation>
     </message>
     <message>
-        <source>Load PSBT from &amp;clipboard…</source>
-        <translation type="unfinished">Tagħbija PSBT minn &amp;clipboard...</translation>
+        <source>Load PSMT from &amp;clipboard…</source>
+        <translation type="unfinished">Tagħbija PSMT minn &amp;clipboard...</translation>
     </message>
     <message>
         <source>Load Partially Signed Bitcoin Transaction from clipboard</source>

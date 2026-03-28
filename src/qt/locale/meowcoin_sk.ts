@@ -548,8 +548,8 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">Overiť, či boli správy podpísané uvedenou Meowcoin adresou</translation>
     </message>
     <message>
-        <source>&amp;Load PSBT from file…</source>
-        <translation type="unfinished">&amp;Načítať PSBT zo súboru…</translation>
+        <source>&amp;Load PSMT from file…</source>
+        <translation type="unfinished">&amp;Načítať PSMT zo súboru…</translation>
     </message>
     <message>
         <source>Open &amp;URI…</source>
@@ -664,8 +664,8 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">Načítať sčasti podpísanú Meowcoin transakciu</translation>
     </message>
     <message>
-        <source>Load PSBT from &amp;clipboard…</source>
-        <translation type="unfinished">Načítať PSBT zo s&amp;chránky…</translation>
+        <source>Load PSMT from &amp;clipboard…</source>
+        <translation type="unfinished">Načítať PSMT zo s&amp;chránky…</translation>
     </message>
     <message>
         <source>Load Partially Signed Meowcoin Transaction from clipboard</source>
@@ -1694,14 +1694,14 @@ Proces migrácie vytvorí zálohu peňaženky pred samotnou migráciou. Tento z�
         <translation type="unfinished">&amp;Minúť nepotvrdený výdavok</translation>
     </message>
     <message>
-        <source>Enable &amp;PSBT controls</source>
-        <extracomment>An options window setting to enable PSBT controls.</extracomment>
-        <translation type="unfinished">Povoliť ovládanie &amp;PSBT</translation>
+        <source>Enable &amp;PSMT controls</source>
+        <extracomment>An options window setting to enable PSMT controls.</extracomment>
+        <translation type="unfinished">Povoliť ovládanie &amp;PSMT</translation>
     </message>
     <message>
-        <source>Whether to show PSBT controls.</source>
-        <extracomment>Tooltip text for options window setting that enables PSBT controls.</extracomment>
-        <translation type="unfinished">Zobrazenie ovládania PSBT.</translation>
+        <source>Whether to show PSMT controls.</source>
+        <extracomment>Tooltip text for options window setting that enables PSMT controls.</extracomment>
+        <translation type="unfinished">Zobrazenie ovládania PSMT.</translation>
     </message>
     <message>
         <source>External Signer (e.g. hardware wallet)</source>
@@ -1934,10 +1934,10 @@ Proces migrácie vytvorí zálohu peňaženky pred samotnou migráciou. Tento z�
     </message>
 </context>
 <context>
-    <name>PSBTOperationsDialog</name>
+    <name>PSMTOperationsDialog</name>
     <message>
-        <source>PSBT Operations</source>
-        <translation type="unfinished">Operácie PSBT</translation>
+        <source>PSMT Operations</source>
+        <translation type="unfinished">Operácie PSMT</translation>
     </message>
     <message>
         <source>Sign Tx</source>
@@ -1996,8 +1996,8 @@ Proces migrácie vytvorí zálohu peňaženky pred samotnou migráciou. Tento z�
         <translation type="unfinished">Odosielanie transakcie zlyhalo: %1</translation>
     </message>
     <message>
-        <source>PSBT copied to clipboard.</source>
-        <translation type="unfinished">PSBT bola skopírovaná.</translation>
+        <source>PSMT copied to clipboard.</source>
+        <translation type="unfinished">PSMT bola skopírovaná.</translation>
     </message>
     <message>
         <source>Save Transaction Data</source>
@@ -2005,12 +2005,12 @@ Proces migrácie vytvorí zálohu peňaženky pred samotnou migráciou. Tento z�
     </message>
     <message>
         <source>Partially Signed Transaction (Binary)</source>
-        <extracomment>Expanded name of the binary PSBT file format. See: BIP 174.</extracomment>
+        <extracomment>Expanded name of the binary PSMT file format. See: BIP 174.</extracomment>
         <translation type="unfinished">Čiastočne podpísaná transakcia (binárna)</translation>
     </message>
     <message>
-        <source>PSBT saved to disk.</source>
-        <translation type="unfinished">PSBT bola uložená na disk.</translation>
+        <source>PSMT saved to disk.</source>
+        <translation type="unfinished">PSMT bola uložená na disk.</translation>
     </message>
     <message>
         <source>Sends %1 to %2</source>
@@ -3092,8 +3092,8 @@ Poznámka: Keďže poplatok je počítaný za bajt, poplatok pri sadzbe "100 sat
         <translation type="unfinished">Vy&amp;tvoriť bez podpisu</translation>
     </message>
     <message>
-        <source>Creates a Partially Signed Meowcoin Transaction (PSBT) for use with e.g. an offline %1 wallet, or a PSBT-compatible hardware wallet.</source>
-        <translation type="unfinished">Vytvorí čiastočne podpísanú Meowcoin transakciu (Partially Signed Meowcoin Transaction - PSBT) na použitie napríklad s offline %1 peňaženkou alebo v hardvérovej peňaženke kompatibilnej s PSBT.</translation>
+        <source>Creates a Partially Signed Meowcoin Transaction (PSMT) for use with e.g. an offline %1 wallet, or a PSMT-compatible hardware wallet.</source>
+        <translation type="unfinished">Vytvorí čiastočne podpísanú Meowcoin transakciu (Partially Signed Meowcoin Transaction - PSMT) na použitie napríklad s offline %1 peňaženkou alebo v hardvérovej peňaženke kompatibilnej s PSMT.</translation>
     </message>
     <message>
         <source>%1 to '%2'</source>
@@ -3127,13 +3127,13 @@ Poznámka: Keďže poplatok je počítaný za bajt, poplatok pri sadzbe "100 sat
     </message>
     <message>
         <source>Partially Signed Transaction (Binary)</source>
-        <extracomment>Expanded name of the binary PSBT file format. See: BIP 174.</extracomment>
+        <extracomment>Expanded name of the binary PSMT file format. See: BIP 174.</extracomment>
         <translation type="unfinished">Čiastočne podpísaná transakcia (binárna)</translation>
     </message>
     <message>
-        <source>PSBT saved</source>
-        <extracomment>Popup message when a PSBT has been saved to a file</extracomment>
-        <translation type="unfinished">PSBT uložená</translation>
+        <source>PSMT saved</source>
+        <extracomment>Popup message when a PSMT has been saved to a file</extracomment>
+        <translation type="unfinished">PSMT uložená</translation>
     </message>
     <message>
         <source>External balance:</source>
@@ -3148,9 +3148,9 @@ Poznámka: Keďže poplatok je počítaný za bajt, poplatok pri sadzbe "100 sat
         <translation type="unfinished">Poplatok môžete navýšiť neskôr (vysiela sa "Replace-By-Fee" - nahradenie poplatkom, BIP-125).</translation>
     </message>
     <message>
-        <source>Please, review your transaction proposal. This will produce a Partially Signed Meowcoin Transaction (PSBT) which you can save or copy and then sign with e.g. an offline %1 wallet, or a PSBT-compatible hardware wallet.</source>
-        <extracomment>Text to inform a user attempting to create a transaction of their current options. At this stage, a user can only create a PSBT. This string is displayed when private keys are disabled and an external signer is not available.</extracomment>
-        <translation type="unfinished">Prečítajte si prosím svoj návrh transakcie. Výsledkom bude čiastočne podpísaná meowcoinová transakcia (PSBT), ktorú môžete uložiť alebo skopírovať a potom podpísať napr. cez offline peňaženku %1 alebo hardvérovú peňaženku kompatibilnú s PSBT.</translation>
+        <source>Please, review your transaction proposal. This will produce a Partially Signed Meowcoin Transaction (PSMT) which you can save or copy and then sign with e.g. an offline %1 wallet, or a PSMT-compatible hardware wallet.</source>
+        <extracomment>Text to inform a user attempting to create a transaction of their current options. At this stage, a user can only create a PSMT. This string is displayed when private keys are disabled and an external signer is not available.</extracomment>
+        <translation type="unfinished">Prečítajte si prosím svoj návrh transakcie. Výsledkom bude čiastočne podpísaná meowcoinová transakcia (PSMT), ktorú môžete uložiť alebo skopírovať a potom podpísať napr. cez offline peňaženku %1 alebo hardvérovú peňaženku kompatibilnú s PSMT.</translation>
     </message>
     <message>
         <source>%1 from wallet '%2'</source>
@@ -3162,9 +3162,9 @@ Poznámka: Keďže poplatok je počítaný za bajt, poplatok pri sadzbe "100 sat
         <translation type="unfinished">Chcete vytvoriť túto transakciu?</translation>
     </message>
     <message>
-        <source>Please, review your transaction. You can create and send this transaction or create a Partially Signed Meowcoin Transaction (PSBT), which you can save or copy and then sign with, e.g., an offline %1 wallet, or a PSBT-compatible hardware wallet.</source>
-        <extracomment>Text to inform a user attempting to create a transaction of their current options. At this stage, a user can send their transaction or create a PSBT. This string is displayed when both private keys and PSBT controls are enabled.</extracomment>
-        <translation type="unfinished">Skontrolujte prosím svoj návrh transakcie. Môžete vytvoriť a odoslať túto transakciu alebo vytvoriť čiastočne podpísanú meowcoinovú transakciu (PSBT), ktorú môžete uložiť alebo skopírovať a potom podpísať napr. cez offline peňaženku %1 alebo hardvérovú peňaženku kompatibilnú s PSBT.</translation>
+        <source>Please, review your transaction. You can create and send this transaction or create a Partially Signed Meowcoin Transaction (PSMT), which you can save or copy and then sign with, e.g., an offline %1 wallet, or a PSMT-compatible hardware wallet.</source>
+        <extracomment>Text to inform a user attempting to create a transaction of their current options. At this stage, a user can send their transaction or create a PSMT. This string is displayed when both private keys and PSMT controls are enabled.</extracomment>
+        <translation type="unfinished">Skontrolujte prosím svoj návrh transakcie. Môžete vytvoriť a odoslať túto transakciu alebo vytvoriť čiastočne podpísanú meowcoinovú transakciu (PSMT), ktorú môžete uložiť alebo skopírovať a potom podpísať napr. cez offline peňaženku %1 alebo hardvérovú peňaženku kompatibilnú s PSMT.</translation>
     </message>
     <message>
         <source>Please, review your transaction.</source>
@@ -3185,17 +3185,17 @@ Poznámka: Keďže poplatok je počítaný za bajt, poplatok pri sadzbe "100 sat
     </message>
     <message>
         <source>Unsigned Transaction</source>
-        <comment>PSBT copied</comment>
-        <extracomment>Caption of "PSBT has been copied" messagebox</extracomment>
+        <comment>PSMT copied</comment>
+        <extracomment>Caption of "PSMT has been copied" messagebox</extracomment>
         <translation type="unfinished">Nepodpísaná transakcia</translation>
     </message>
     <message>
-        <source>The PSBT has been copied to the clipboard. You can also save it.</source>
-        <translation type="unfinished">PSBT bolo skopírované do schránky. Môžete to tiež uložiť.</translation>
+        <source>The PSMT has been copied to the clipboard. You can also save it.</source>
+        <translation type="unfinished">PSMT bolo skopírované do schránky. Môžete to tiež uložiť.</translation>
     </message>
     <message>
-        <source>PSBT saved to disk</source>
-        <translation type="unfinished">PSBT uložené na disk</translation>
+        <source>PSMT saved to disk</source>
+        <translation type="unfinished">PSMT uložené na disk</translation>
     </message>
     <message>
         <source>Confirm send coins</source>
@@ -3913,24 +3913,24 @@ Choďte do Súbor &gt; Otvoriť Peňaženku, pre načítanie peňaženky.
         <translation type="unfinished">Chyba</translation>
     </message>
     <message>
-        <source>Unable to decode PSBT from clipboard (invalid base64)</source>
-        <translation type="unfinished">Nepodarilo sa dekódovať skopírovanú PSBT (invalid base64)</translation>
+        <source>Unable to decode PSMT from clipboard (invalid base64)</source>
+        <translation type="unfinished">Nepodarilo sa dekódovať skopírovanú PSMT (invalid base64)</translation>
     </message>
     <message>
         <source>Load Transaction Data</source>
         <translation type="unfinished">Načítať údaje o transakcii</translation>
     </message>
     <message>
-        <source>Partially Signed Transaction (*.psbt)</source>
-        <translation type="unfinished">Čiastočne podpísaná transakcia (*.psbt)</translation>
+        <source>Partially Signed Transaction (*.psmt)</source>
+        <translation type="unfinished">Čiastočne podpísaná transakcia (*.psmt)</translation>
     </message>
     <message>
-        <source>PSBT file must be smaller than 100 MiB</source>
-        <translation type="unfinished">Súbor PSBT musí byť menší než 100 MiB</translation>
+        <source>PSMT file must be smaller than 100 MiB</source>
+        <translation type="unfinished">Súbor PSMT musí byť menší než 100 MiB</translation>
     </message>
     <message>
-        <source>Unable to decode PSBT</source>
-        <translation type="unfinished">Nepodarilo sa dekódovať PSBT</translation>
+        <source>Unable to decode PSMT</source>
+        <translation type="unfinished">Nepodarilo sa dekódovať PSMT</translation>
     </message>
 </context>
 <context>
@@ -3977,12 +3977,12 @@ Choďte do Súbor &gt; Otvoriť Peňaženku, pre načítanie peňaženky.
         <translation type="unfinished">Nemožno naplánovať túto transakciu.</translation>
     </message>
     <message>
-        <source>PSBT copied</source>
-        <translation type="unfinished">PSBT skopírovaná</translation>
+        <source>PSMT copied</source>
+        <translation type="unfinished">PSMT skopírovaná</translation>
     </message>
     <message>
-        <source>Fee-bump PSBT copied to clipboard</source>
-        <translation type="unfinished">Navýšenie poplatku PSBT skopírovaná do schránky</translation>
+        <source>Fee-bump PSMT copied to clipboard</source>
+        <translation type="unfinished">Navýšenie poplatku PSMT skopírovaná do schránky</translation>
     </message>
     <message>
         <source>Can't sign transaction.</source>

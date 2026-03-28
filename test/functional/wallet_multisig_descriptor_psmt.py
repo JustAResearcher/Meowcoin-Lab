@@ -2,7 +2,7 @@
 # Copyright (c) 2021-2022 The Meowcoin Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
-"""Test a basic M-of-N multisig setup between multiple people using descriptor wallets and PSBTs, as well as a signing flow.
+"""Test a basic M-of-N multisig setup between multiple people using descriptor wallets and PSMTs, as well as a signing flow.
 
 This is meant to be documentation as much as functional tests, so it is kept as simple and readable as possible.
 """
@@ -14,7 +14,7 @@ from test_framework.util import (
 )
 
 
-class WalletMultisigDescriptorPSBTTest(BitcoinTestFramework):
+class WalletMultisigDescriptorPSMTTest(BitcoinTestFramework):
     def set_test_params(self):
         self.num_nodes = 3
         self.setup_clean_chain = True
@@ -33,9 +33,9 @@ class WalletMultisigDescriptorPSBTTest(BitcoinTestFramework):
         return pkh_descriptor["desc"].split("pkh(")[1].split(")")[0]
 
     @staticmethod
-    def _check_psbt(psbt, to, value, multisig):
-        """Helper function for any of the N participants to check the psbt with decodepsbt and verify it is OK before signing."""
-        tx = multisig.decodepsbt(psbt)["tx"]
+    def _check_psmt(psmt, to, value, multisig):
+        """Helper function for any of the N participants to check the psmt with decodepsmt and verify it is OK before signing."""
+        tx = multisig.decodepsmt(psmt)["tx"]
         amount = 0
         for vout in tx["vout"]:
             address = vout["scriptPubKey"]["address"]
@@ -111,21 +111,21 @@ class WalletMultisigDescriptorPSBTTest(BitcoinTestFramework):
         self.log.info("Send a transaction from the multisig!")
         to = participants["signers"][self.N - 1].getnewaddress()
         value = 1
-        self.log.info("First, make a sending transaction, created using `walletcreatefundedpsbt` (anyone can initiate this)...")
-        psbt = participants["multisigs"][0].walletcreatefundedpsbt(inputs=[], outputs={to: value}, feeRate=0.00010)
+        self.log.info("First, make a sending transaction, created using `walletcreatefundedpsmt` (anyone can initiate this)...")
+        psmt = participants["multisigs"][0].walletcreatefundedpsmt(inputs=[], outputs={to: value}, feeRate=0.00010)
 
-        psbts = []
-        self.log.info("Now at least M users check the psbt with decodepsbt and (if OK) signs it with walletprocesspsbt...")
+        psmts = []
+        self.log.info("Now at least M users check the psmt with decodepsmt and (if OK) signs it with walletprocesspsmt...")
         for m in range(self.M):
             signers_multisig = participants["multisigs"][m]
-            self._check_psbt(psbt["psbt"], to, value, signers_multisig)
+            self._check_psmt(psmt["psmt"], to, value, signers_multisig)
             signing_wallet = participants["signers"][m]
-            partially_signed_psbt = signing_wallet.walletprocesspsbt(psbt["psbt"])
-            psbts.append(partially_signed_psbt["psbt"])
+            partially_signed_psmt = signing_wallet.walletprocesspsmt(psmt["psmt"])
+            psmts.append(partially_signed_psmt["psmt"])
 
-        self.log.info("Finally, collect the signed PSBTs with combinepsbt, finalizepsbt, then broadcast the resulting transaction...")
-        combined = coordinator_wallet.combinepsbt(psbts)
-        finalized = coordinator_wallet.finalizepsbt(combined)
+        self.log.info("Finally, collect the signed PSMTs with combinepsmt, finalizepsmt, then broadcast the resulting transaction...")
+        combined = coordinator_wallet.combinepsmt(psmts)
+        finalized = coordinator_wallet.finalizepsmt(combined)
         coordinator_wallet.sendrawtransaction(finalized["hex"])
 
         self.log.info("Check that balances are correct after the transaction has been included in a block.")
@@ -134,14 +134,14 @@ class WalletMultisigDescriptorPSBTTest(BitcoinTestFramework):
         assert_equal(participants["signers"][self.N - 1].getbalance(), value)
 
         self.log.info("Send another transaction from the multisig, this time with a daisy chained signing flow (one after another in series)!")
-        psbt = participants["multisigs"][0].walletcreatefundedpsbt(inputs=[], outputs={to: value}, feeRate=0.00010)
+        psmt = participants["multisigs"][0].walletcreatefundedpsmt(inputs=[], outputs={to: value}, feeRate=0.00010)
         for m in range(self.M):
             signers_multisig = participants["multisigs"][m]
-            self._check_psbt(psbt["psbt"], to, value, signers_multisig)
+            self._check_psmt(psmt["psmt"], to, value, signers_multisig)
             signing_wallet = participants["signers"][m]
-            psbt = signing_wallet.walletprocesspsbt(psbt["psbt"])
-            assert_equal(psbt["complete"], m == self.M - 1)
-        coordinator_wallet.sendrawtransaction(psbt["hex"])
+            psmt = signing_wallet.walletprocesspsmt(psmt["psmt"])
+            assert_equal(psmt["complete"], m == self.M - 1)
+        coordinator_wallet.sendrawtransaction(psmt["hex"])
 
         self.log.info("Check that balances are correct after the transaction has been included in a block.")
         self.generate(self.nodes[0], 1)
@@ -150,4 +150,4 @@ class WalletMultisigDescriptorPSBTTest(BitcoinTestFramework):
 
 
 if __name__ == "__main__":
-    WalletMultisigDescriptorPSBTTest(__file__).main()
+    WalletMultisigDescriptorPSMTTest(__file__).main()

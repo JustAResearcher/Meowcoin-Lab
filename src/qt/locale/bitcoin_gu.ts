@@ -546,8 +546,8 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">સંદેશાઓની ખાતરી કરવા માટે કે તેઓ નિર્દિષ્ટ Bitcoin સરનામાંઓ સાથે સહી કરેલ છે તેની ખાતરી કરો</translation>
     </message>
     <message>
-        <source>&amp;Load PSBT from file…</source>
-        <translation type="unfinished">&amp;ફાઇલમાંથી PSBT લોડ કરો...</translation>
+        <source>&amp;Load PSMT from file…</source>
+        <translation type="unfinished">&amp;ફાઇલમાંથી PSMT લોડ કરો...</translation>
     </message>
     <message>
         <source>Open &amp;URI…</source>
@@ -661,8 +661,8 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">આંશિક રીતે સહી કરેલ બિટકોઈન ટ્રાન્ઝેક્શન લોડ કરો</translation>
     </message>
     <message>
-        <source>Load PSBT from &amp;clipboard…</source>
-        <translation type="unfinished">&amp;ક્લિપબોર્ડ માંથી PSBT લોડ કરો...</translation>
+        <source>Load PSMT from &amp;clipboard…</source>
+        <translation type="unfinished">&amp;ક્લિપબોર્ડ માંથી PSMT લોડ કરો...</translation>
     </message>
     <message>
         <source>Load Partially Signed Bitcoin Transaction from clipboard</source>
@@ -1685,14 +1685,14 @@ The migration process will create a backup of the wallet before migrating. This 
         <translation type="unfinished">&amp;અપ્રમાણિત ફેરફાર ખર્ચો</translation>
     </message>
     <message>
-        <source>Enable &amp;PSBT controls</source>
-        <extracomment>An options window setting to enable PSBT controls.</extracomment>
-        <translation type="unfinished">&amp;PSBT નિયંત્રણો સક્ષમ કરો</translation>
+        <source>Enable &amp;PSMT controls</source>
+        <extracomment>An options window setting to enable PSMT controls.</extracomment>
+        <translation type="unfinished">&amp;PSMT નિયંત્રણો સક્ષમ કરો</translation>
     </message>
     <message>
-        <source>Whether to show PSBT controls.</source>
-        <extracomment>Tooltip text for options window setting that enables PSBT controls.</extracomment>
-        <translation type="unfinished">PSBT નિયંત્રણો દર્શાવવા કે કેમ.</translation>
+        <source>Whether to show PSMT controls.</source>
+        <extracomment>Tooltip text for options window setting that enables PSMT controls.</extracomment>
+        <translation type="unfinished">PSMT નિયંત્રણો દર્શાવવા કે કેમ.</translation>
     </message>
     <message>
         <source>External Signer (e.g. hardware wallet)</source>
@@ -1937,10 +1937,10 @@ The migration process will create a backup of the wallet before migrating. This 
     </message>
 </context>
 <context>
-    <name>PSBTOperationsDialog</name>
+    <name>PSMTOperationsDialog</name>
     <message>
-        <source>PSBT Operations</source>
-        <translation type="unfinished">PSBT કામગીરી</translation>
+        <source>PSMT Operations</source>
+        <translation type="unfinished">PSMT કામગીરી</translation>
     </message>
     <message>
         <source>Sign Tx</source>
@@ -1999,8 +1999,8 @@ The migration process will create a backup of the wallet before migrating. This 
         <translation type="unfinished">વ્યવહાર પ્રસારણ નિષ્ફળ: %1</translation>
     </message>
     <message>
-        <source>PSBT copied to clipboard.</source>
-        <translation type="unfinished">PSBT ક્લિપબોર્ડ પર કૉપિ કર્યું.</translation>
+        <source>PSMT copied to clipboard.</source>
+        <translation type="unfinished">PSMT ક્લિપબોર્ડ પર કૉપિ કર્યું.</translation>
     </message>
     <message>
         <source>Save Transaction Data</source>
@@ -2008,12 +2008,12 @@ The migration process will create a backup of the wallet before migrating. This 
     </message>
     <message>
         <source>Partially Signed Transaction (Binary)</source>
-        <extracomment>Expanded name of the binary PSBT file format. See: BIP 174.</extracomment>
+        <extracomment>Expanded name of the binary PSMT file format. See: BIP 174.</extracomment>
         <translation type="unfinished">આંશિક રીતે હસ્તાક્ષરિત વ્યવહાર (દ્વિસંગી)</translation>
     </message>
     <message>
-        <source>PSBT saved to disk.</source>
-        <translation type="unfinished">PSBT ડિસ્કમાં સાચવ્યું.</translation>
+        <source>PSMT saved to disk.</source>
+        <translation type="unfinished">PSMT ડિસ્કમાં સાચવ્યું.</translation>
     </message>
     <message>
         <source>Sends %1 to %2</source>
@@ -2894,7 +2894,7 @@ For more information on using this console, type %6.
     </message>
     <message>
         <source>Partially Signed Transaction (Binary)</source>
-        <extracomment>Expanded name of the binary PSBT file format. See: BIP 174.</extracomment>
+        <extracomment>Expanded name of the binary PSMT file format. See: BIP 174.</extracomment>
         <translation type="unfinished">આંશિક રીતે હસ્તાક્ષરિત વ્યવહાર (દ્વિસંગી)</translation>
     </message>
     <message>

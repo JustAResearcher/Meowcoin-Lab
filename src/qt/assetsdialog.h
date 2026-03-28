@@ -8,7 +8,7 @@
 
 #include <qt/walletmodel.h>
 #include <qt/sendcoinsrecipient.h>
-#include <psbt.h>
+#include <psmt.h>
 
 #include <QDialog>
 #include <QMessageBox>
@@ -81,7 +81,7 @@ private:
     void updateFeeMinimizedLabel();
     // Update the passed in CCoinControl with state from the GUI
     void updateAssetControlState(wallet::CCoinControl& ctrl);
-    void presentPSBT(PartiallySignedTransaction& psbtx);
+    void presentPSMT(PartiallySignedTransaction& psmtx);
 
 
 

@@ -134,11 +134,11 @@ class WalletSignerTest(BitcoinTestFramework):
             hww.walletdisplayaddress, address_fail
         )
 
-        self.log.info('Prepare mock PSBT')
+        self.log.info('Prepare mock PSMT')
         self.nodes[0].sendtoaddress(address4, 1)
         self.generate(self.nodes[0], 1)
 
-        # Load private key into wallet to generate a signed PSBT for the mock
+        # Load private key into wallet to generate a signed PSMT for the mock
         self.nodes[1].createwallet(wallet_name="mock", disable_private_keys=False, blank=True)
         mock_wallet = self.nodes[1].get_wallet_rpc("mock")
         assert mock_wallet.getwalletinfo()['private_keys_enabled']
@@ -161,17 +161,17 @@ class WalletSignerTest(BitcoinTestFramework):
         assert_equal(result[1], {'success': True})
         assert_equal(mock_wallet.getwalletinfo()["txcount"], 1)
         dest = self.nodes[0].getnewaddress(address_type='bech32')
-        mock_psbt = mock_wallet.walletcreatefundedpsbt([], {dest:0.5}, 0, {'replaceable': True}, True)['psbt']
-        mock_psbt_signed = mock_wallet.walletprocesspsbt(psbt=mock_psbt, sign=True, sighashtype="ALL", bip32derivs=True)
-        mock_tx = mock_psbt_signed["hex"]
+        mock_psmt = mock_wallet.walletcreatefundedpsmt([], {dest:0.5}, 0, {'replaceable': True}, True)['psmt']
+        mock_psmt_signed = mock_wallet.walletprocesspsmt(psmt=mock_psmt, sign=True, sighashtype="ALL", bip32derivs=True)
+        mock_tx = mock_psmt_signed["hex"]
         assert mock_wallet.testmempoolaccept([mock_tx])[0]["allowed"]
 
         assert_equal(hww.getwalletinfo()["txcount"], 1)
 
         assert hww.testmempoolaccept([mock_tx])[0]["allowed"]
 
-        with open(os.path.join(self.nodes[1].cwd, "mock_psbt"), "w", encoding="utf8") as f:
-            f.write(mock_psbt_signed["psbt"])
+        with open(os.path.join(self.nodes[1].cwd, "mock_psmt"), "w", encoding="utf8") as f:
+            f.write(mock_psmt_signed["psmt"])
 
         self.log.info('Test send using hww1')
 
@@ -188,15 +188,15 @@ class WalletSignerTest(BitcoinTestFramework):
         # Broadcast transaction so we can bump the fee
         hww.sendrawtransaction(res["hex"])
 
-        self.log.info('Prepare fee bumped mock PSBT')
+        self.log.info('Prepare fee bumped mock PSMT')
 
         # Now that the transaction is broadcast, bump fee in mock wallet:
         orig_tx_id = res["txid"]
-        mock_psbt_bumped = mock_wallet.psbtbumpfee(orig_tx_id)["psbt"]
-        mock_psbt_bumped_signed = mock_wallet.walletprocesspsbt(psbt=mock_psbt_bumped, sign=True, sighashtype="ALL", bip32derivs=True)
+        mock_psmt_bumped = mock_wallet.psmtbumpfee(orig_tx_id)["psmt"]
+        mock_psmt_bumped_signed = mock_wallet.walletprocesspsmt(psmt=mock_psmt_bumped, sign=True, sighashtype="ALL", bip32derivs=True)
 
-        with open(os.path.join(self.nodes[1].cwd, "mock_psbt"), "w", encoding="utf8") as f:
-            f.write(mock_psbt_bumped_signed["psbt"])
+        with open(os.path.join(self.nodes[1].cwd, "mock_psmt"), "w", encoding="utf8") as f:
+            f.write(mock_psmt_bumped_signed["psmt"])
 
         self.log.info('Test bumpfee using hww1')
 

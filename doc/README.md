@@ -82,7 +82,7 @@ The Meowcoin repo's [root README](/README.md) contains relevant information on t
 - [Multisig Tutorial](multisig-tutorial.md)
 - [Offline Signing Tutorial](offline-signing-tutorial.md)
 - [P2P bad ports definition and list](p2p-bad-ports.md)
-- [PSBT support](psbt.md)
+- [PSMT support](psmt.md)
 - [Reduce Memory](reduce-memory.md)
 - [Reduce Traffic](reduce-traffic.md)
 - [Tor Support](tor.md)

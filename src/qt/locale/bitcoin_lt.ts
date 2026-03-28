@@ -1425,7 +1425,7 @@ Pasirašymas galimas tik su 'legacy' tipo adresais.</translation>
     </message>
     </context>
 <context>
-    <name>PSBTOperationsDialog</name>
+    <name>PSMTOperationsDialog</name>
     <message>
         <source>Save…</source>
         <translation type="unfinished">Išsaugoti...</translation>

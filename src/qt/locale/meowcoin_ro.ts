@@ -530,8 +530,8 @@ Semnarea este posibilă numai cu adrese de tip "legacy".</translation>
         <translation type="unfinished">Verificaţi mesaje pentru a vă asigura că au fost semnate cu adresa Meowcoin specificată</translation>
     </message>
     <message>
-        <source>&amp;Load PSBT from file…</source>
-        <translation type="unfinished">&amp;Încarcă PSBT din fișier...</translation>
+        <source>&amp;Load PSMT from file…</source>
+        <translation type="unfinished">&amp;Încarcă PSMT din fișier...</translation>
     </message>
     <message>
         <source>Open &amp;URI…</source>
@@ -650,8 +650,8 @@ Semnarea este posibilă numai cu adrese de tip "legacy".</translation>
         <translation type="unfinished">Încărcați Tranzacția Meowcoin Parțial Semnată</translation>
     </message>
     <message>
-        <source>Load PSBT from &amp;clipboard…</source>
-        <translation type="unfinished">Incarca PSBT din &amp;notite</translation>
+        <source>Load PSMT from &amp;clipboard…</source>
+        <translation type="unfinished">Incarca PSMT din &amp;notite</translation>
     </message>
     <message>
         <source>Load Partially Signed Meowcoin Transaction from clipboard</source>
@@ -1578,9 +1578,9 @@ Semnarea este posibilă numai cu adrese de tip "legacy".</translation>
         <translation type="unfinished">Cheltuire rest neconfirmat</translation>
     </message>
     <message>
-        <source>Enable &amp;PSBT controls</source>
-        <extracomment>An options window setting to enable PSBT controls.</extracomment>
-        <translation type="unfinished">Permite controalele &amp;PSBT</translation>
+        <source>Enable &amp;PSMT controls</source>
+        <extracomment>An options window setting to enable PSMT controls.</extracomment>
+        <translation type="unfinished">Permite controalele &amp;PSMT</translation>
     </message>
     <message>
         <source>Accept connections from outside.</source>
@@ -1767,7 +1767,7 @@ Semnarea este posibilă numai cu adrese de tip "legacy".</translation>
     </message>
     </context>
 <context>
-    <name>PSBTOperationsDialog</name>
+    <name>PSMTOperationsDialog</name>
     <message>
         <source>Copy to Clipboard</source>
         <translation type="unfinished">Copiați în clipboard</translation>
@@ -1802,7 +1802,7 @@ Semnarea este posibilă numai cu adrese de tip "legacy".</translation>
     </message>
     <message>
         <source>Partially Signed Transaction (Binary)</source>
-        <extracomment>Expanded name of the binary PSBT file format. See: BIP 174.</extracomment>
+        <extracomment>Expanded name of the binary PSMT file format. See: BIP 174.</extracomment>
         <translation type="unfinished">Tranzacție Semnată Parțial (Binar)</translation>
     </message>
     <message>
@@ -2651,7 +2651,7 @@ Pentru mai multe informații privind folosirea consolei, tastează %6.
     </message>
     <message>
         <source>Partially Signed Transaction (Binary)</source>
-        <extracomment>Expanded name of the binary PSBT file format. See: BIP 174.</extracomment>
+        <extracomment>Expanded name of the binary PSMT file format. See: BIP 174.</extracomment>
         <translation type="unfinished">Tranzacție Semnată Parțial (Binar)</translation>
     </message>
     <message>
@@ -2690,8 +2690,8 @@ Pentru mai multe informații privind folosirea consolei, tastează %6.
     </message>
     <message>
         <source>Unsigned Transaction</source>
-        <comment>PSBT copied</comment>
-        <extracomment>Caption of "PSBT has been copied" messagebox</extracomment>
+        <comment>PSMT copied</comment>
+        <extracomment>Caption of "PSMT has been copied" messagebox</extracomment>
         <translation type="unfinished">Tranzacție nesemnată</translation>
     </message>
     <message>

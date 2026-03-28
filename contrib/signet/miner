@@ -20,7 +20,7 @@ sys.path.insert(0, PATH_BASE_TEST_FUNCTIONAL)
 
 from test_framework.blocktools import get_witness_script, script_BIP34_coinbase_height, SIGNET_HEADER # noqa: E402
 from test_framework.messages import CBlock, CBlockHeader, COutPoint, CTransaction, CTxIn, CTxInWitness, CTxOut, from_binary, from_hex, ser_string, ser_uint256, tx_from_hex, MAX_SEQUENCE_NONFINAL # noqa: E402
-from test_framework.psbt import PSBT, PSBTMap, PSBT_GLOBAL_UNSIGNED_TX, PSBT_IN_FINAL_SCRIPTSIG, PSBT_IN_FINAL_SCRIPTWITNESS, PSBT_IN_NON_WITNESS_UTXO, PSBT_IN_SIGHASH_TYPE # noqa: E402
+from test_framework.psmt import PSMT, PSMTMap, PSMT_GLOBAL_UNSIGNED_TX, PSMT_IN_FINAL_SCRIPTSIG, PSMT_IN_FINAL_SCRIPTWITNESS, PSMT_IN_NON_WITNESS_UTXO, PSMT_IN_SIGHASH_TYPE # noqa: E402
 from test_framework.script import CScript, CScriptOp # noqa: E402
 
 logging.basicConfig(
@@ -28,7 +28,7 @@ logging.basicConfig(
     level=logging.INFO,
     datefmt='%Y-%m-%d %H:%M:%S')
 
-PSBT_SIGNET_BLOCK = b"\xfc\x06signetb"    # proprietary PSBT global field holding the block being signed
+PSMT_SIGNET_BLOCK = b"\xfc\x06signetb"    # proprietary PSMT global field holding the block being signed
 RE_MULTIMINER = re.compile(r"^(\d+)(-(\d+))?/(\d+)$")
 
 def signet_txs(block, challenge):
@@ -63,20 +63,20 @@ def signet_txs(block, challenge):
 
     return spend, to_spend
 
-def decode_challenge_psbt(b64psbt):
-    psbt = PSBT.from_base64(b64psbt)
+def decode_challenge_psmt(b64psmt):
+    psmt = PSMT.from_base64(b64psmt)
 
-    assert len(psbt.tx.vin) == 1
-    assert len(psbt.tx.vout) == 1
-    assert PSBT_SIGNET_BLOCK in psbt.g.map
-    return psbt
+    assert len(psmt.tx.vin) == 1
+    assert len(psmt.tx.vout) == 1
+    assert PSMT_SIGNET_BLOCK in psmt.g.map
+    return psmt
 
-def get_block_from_psbt(psbt):
-    return from_binary(CBlock, psbt.g.map[PSBT_SIGNET_BLOCK])
+def get_block_from_psmt(psmt):
+    return from_binary(CBlock, psmt.g.map[PSMT_SIGNET_BLOCK])
 
-def get_solution_from_psbt(psbt, emptyok=False):
-    scriptSig = psbt.i[0].map.get(PSBT_IN_FINAL_SCRIPTSIG, b"")
-    scriptWitness = psbt.i[0].map.get(PSBT_IN_FINAL_SCRIPTWITNESS, b"\x00")
+def get_solution_from_psmt(psmt, emptyok=False):
+    scriptSig = psmt.i[0].map.get(PSMT_IN_FINAL_SCRIPTSIG, b"")
+    scriptWitness = psmt.i[0].map.get(PSMT_IN_FINAL_SCRIPTWITNESS, b"\x00")
     if emptyok and len(scriptSig) == 0 and scriptWitness == b"\x00":
         return None
     return ser_string(scriptSig) + scriptWitness
@@ -129,18 +129,18 @@ def new_block(tmpl, reward_spk, *, blocktime=None, poolid=None):
 
     return block
 
-def generate_psbt(block, signet_spk):
+def generate_psmt(block, signet_spk):
     signet_spk_bin = bytes.fromhex(signet_spk)
     signme, spendme = signet_txs(block, signet_spk_bin)
-    psbt = PSBT()
-    psbt.g = PSBTMap( {PSBT_GLOBAL_UNSIGNED_TX: signme.serialize(),
-                       PSBT_SIGNET_BLOCK: block.serialize()
+    psmt = PSMT()
+    psmt.g = PSMTMap( {PSMT_GLOBAL_UNSIGNED_TX: signme.serialize(),
+                       PSMT_SIGNET_BLOCK: block.serialize()
                      } )
-    psbt.i = [ PSBTMap( {PSBT_IN_NON_WITNESS_UTXO: spendme.serialize(),
-                         PSBT_IN_SIGHASH_TYPE: bytes([1,0,0,0])})
+    psmt.i = [ PSMTMap( {PSMT_IN_NON_WITNESS_UTXO: spendme.serialize(),
+                         PSMT_IN_SIGHASH_TYPE: bytes([1,0,0,0])})
              ]
-    psbt.o = [ PSBTMap() ]
-    return psbt.to_base64()
+    psmt.o = [ PSMTMap() ]
+    return psmt.to_base64()
 
 def get_poolid(args):
     if args.poolid is not None:
@@ -177,19 +177,19 @@ def get_reward_addr_spk(args, height):
 
     return reward_addr, reward_spk
 
-def do_genpsbt(args):
+def do_genpsmt(args):
     poolid = get_poolid(args)
     tmpl = json.load(sys.stdin)
     signet_spk = tmpl["signet_challenge"]
     _, reward_spk = get_reward_addr_spk(args, tmpl["height"])
     block = new_block(tmpl, reward_spk, poolid=poolid)
-    psbt = generate_psbt(block, signet_spk)
-    print(psbt)
+    psmt = generate_psmt(block, signet_spk)
+    print(psmt)
 
-def do_solvepsbt(args):
-    psbt = decode_challenge_psbt(sys.stdin.read())
-    block = get_block_from_psbt(psbt)
-    signet_solution = get_solution_from_psbt(psbt, emptyok=True)
+def do_solvepsmt(args):
+    psmt = decode_challenge_psmt(sys.stdin.read())
+    block = get_block_from_psmt(psmt)
+    signet_solution = get_solution_from_psmt(psmt, emptyok=True)
     block = finish_block(block, signet_solution, args.grind_cmd)
     print(block.serialize().hex())
 
@@ -353,15 +353,15 @@ class Generate:
         if trivial_challenge(signet_spk):
             signet_solution = None
         else:
-            psbt = generate_psbt(block, signet_spk)
-            input_stream = os.linesep.join([psbt, "true", "ALL"]).encode('utf8')
-            psbt_signed = json.loads(bcli("-stdin", "walletprocesspsbt", input=input_stream))
-            if not psbt_signed.get("complete",False):
-               logging.debug("Generated PSBT: %s" % (psbt,))
-               sys.stderr.write("PSBT signing failed\n")
+            psmt = generate_psmt(block, signet_spk)
+            input_stream = os.linesep.join([psmt, "true", "ALL"]).encode('utf8')
+            psmt_signed = json.loads(bcli("-stdin", "walletprocesspsmt", input=input_stream))
+            if not psmt_signed.get("complete",False):
+               logging.debug("Generated PSMT: %s" % (psmt,))
+               sys.stderr.write("PSMT signing failed\n")
                return None
-            psbt = decode_challenge_psbt(psbt_signed["psbt"])
-            signet_solution = get_solution_from_psbt(psbt)
+            psmt = decode_challenge_psmt(psmt_signed["psmt"])
+            signet_solution = get_solution_from_psmt(psmt)
 
         return finish_block(block, signet_solution, grind_cmd)
 
@@ -542,11 +542,11 @@ def main():
     parser.add_argument("--quiet", action="store_true", help="Only print warnings/errors")
 
     cmds = parser.add_subparsers(help="sub-commands")
-    genpsbt = cmds.add_parser("genpsbt", help="Generate a block PSBT for signing")
-    genpsbt.set_defaults(fn=do_genpsbt)
+    genpsmt = cmds.add_parser("genpsmt", help="Generate a block PSMT for signing")
+    genpsmt.set_defaults(fn=do_genpsmt)
 
-    solvepsbt = cmds.add_parser("solvepsbt", help="Solve a signed block PSBT")
-    solvepsbt.set_defaults(fn=do_solvepsbt)
+    solvepsmt = cmds.add_parser("solvepsmt", help="Solve a signed block PSMT")
+    solvepsmt.set_defaults(fn=do_solvepsmt)
 
     generate = cmds.add_parser("generate", help="Mine blocks")
     generate.set_defaults(fn=do_generate)
@@ -569,7 +569,7 @@ def main():
     calibrate_by.add_argument("--nbits", type=str, default=None)
     calibrate_by.add_argument("--seconds", type=int, default=None)
 
-    for sp in [genpsbt, generate]:
+    for sp in [genpsmt, generate]:
         payto = sp.add_mutually_exclusive_group(required=True)
         payto.add_argument("--address", default=None, type=str, help="Address for block reward payment")
         payto.add_argument("--descriptor", default=None, type=str, help="Descriptor for block reward payment")
@@ -577,7 +577,7 @@ def main():
         pool.add_argument("--poolnum", default=None, type=int, help="Identify blocks that you mine")
         pool.add_argument("--poolid", default=None, type=str, help="Identify blocks that you mine (eg: /signet:1/)")
 
-    for sp in [solvepsbt, generate, calibrate]:
+    for sp in [solvepsmt, generate, calibrate]:
         sp.add_argument("--grind-cmd", default=None, type=str, required=(sp==calibrate), help="Command to grind a block header for proof-of-work")
 
     args = parser.parse_args(sys.argv[1:])

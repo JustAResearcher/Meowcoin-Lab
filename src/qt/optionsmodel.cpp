@@ -206,10 +206,10 @@ bool OptionsModel::Init(bilingual_str& error)
         settings.setValue("fCoinControlFeatures", false);
     fCoinControlFeatures = settings.value("fCoinControlFeatures", false).toBool();
 
-    if (!settings.contains("enable_psbt_controls")) {
-        settings.setValue("enable_psbt_controls", false);
+    if (!settings.contains("enable_psmt_controls")) {
+        settings.setValue("enable_psmt_controls", false);
     }
-    m_enable_psbt_controls = settings.value("enable_psbt_controls", false).toBool();
+    m_enable_psmt_controls = settings.value("enable_psmt_controls", false).toBool();
 
     // These are shared with the core or have a command-line parameter
     // and we want command-line parameters to overwrite the GUI settings.
@@ -460,8 +460,8 @@ QVariant OptionsModel::getOption(OptionID option, const std::string& suffix) con
         return QVariant::fromValue(m_font_money);
     case CoinControlFeatures:
         return fCoinControlFeatures;
-    case EnablePSBTControls:
-        return settings.value("enable_psbt_controls");
+    case EnablePSMTControls:
+        return settings.value("enable_psmt_controls");
     case Prune:
         return PruneEnabled(setting());
     case PruneSize:
@@ -641,9 +641,9 @@ bool OptionsModel::setOption(OptionID option, const QVariant& value, const std::
         settings.setValue("fCoinControlFeatures", fCoinControlFeatures);
         Q_EMIT coinControlFeaturesChanged(fCoinControlFeatures);
         break;
-    case EnablePSBTControls:
-        m_enable_psbt_controls = value.toBool();
-        settings.setValue("enable_psbt_controls", m_enable_psbt_controls);
+    case EnablePSMTControls:
+        m_enable_psmt_controls = value.toBool();
+        settings.setValue("enable_psmt_controls", m_enable_psmt_controls);
         break;
     case Prune:
         if (changed()) {

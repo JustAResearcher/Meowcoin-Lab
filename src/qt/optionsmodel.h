@@ -72,7 +72,7 @@ public:
         SpendZeroConfChange,    // bool
         Listen,                 // bool
         Server,                 // bool
-        EnablePSBTControls,     // bool
+        EnablePSMTControls,     // bool
         MaskValues,             // bool
         OptionIDRowCount,
     };
@@ -105,7 +105,7 @@ public:
     QFont getFontForMoney() const;
     bool getCoinControlFeatures() const { return fCoinControlFeatures; }
     bool getSubFeeFromAmount() const { return m_sub_fee_from_amount; }
-    bool getEnablePSBTControls() const { return m_enable_psbt_controls; }
+    bool getEnablePSMTControls() const { return m_enable_psmt_controls; }
     const QString& getOverriddenByCommandLine() { return strOverriddenByCommandLine; }
 
     /** Whether -signer was set or not */
@@ -132,7 +132,7 @@ private:
     FontChoice m_font_money{FontChoiceAbstract::EmbeddedFont};
     bool fCoinControlFeatures;
     bool m_sub_fee_from_amount;
-    bool m_enable_psbt_controls;
+    bool m_enable_psmt_controls;
     bool m_mask_values;
 
     /* settings that were overridden by command-line */

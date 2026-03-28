@@ -18,7 +18,7 @@
 #include <utility>
 #include <vector>
 
-using common::PSBTError;
+using common::PSMTError;
 
 namespace wallet {
 bool ExternalSignerScriptPubKeyMan::SetupDescriptor(WalletBatch& batch, std::unique_ptr<Descriptor> desc)
@@ -79,32 +79,32 @@ util::Result<void> ExternalSignerScriptPubKeyMan::DisplayAddress(const CTxDestin
 }
 
 // If sign is true, transaction must previously have been filled
-std::optional<PSBTError> ExternalSignerScriptPubKeyMan::FillPSBT(PartiallySignedTransaction& psbt, const PrecomputedTransactionData& txdata, std::optional<int> sighash_type, bool sign, bool bip32derivs, int* n_signed, bool finalize) const
+std::optional<PSMTError> ExternalSignerScriptPubKeyMan::FillPSMT(PartiallySignedTransaction& psmt, const PrecomputedTransactionData& txdata, std::optional<int> sighash_type, bool sign, bool bip32derivs, int* n_signed, bool finalize) const
 {
     if (!sign) {
-        return DescriptorScriptPubKeyMan::FillPSBT(psbt, txdata, sighash_type, false, bip32derivs, n_signed, finalize);
+        return DescriptorScriptPubKeyMan::FillPSMT(psmt, txdata, sighash_type, false, bip32derivs, n_signed, finalize);
     }
 
     // Already complete if every input is now signed
     bool complete = true;
-    for (const auto& input : psbt.inputs) {
+    for (const auto& input : psmt.inputs) {
         // TODO: for multisig wallets, we should only care if all _our_ inputs are signed
-        complete &= PSBTInputSigned(input);
+        complete &= PSMTInputSigned(input);
     }
     if (complete) return {};
 
     auto signer{GetExternalSigner()};
     if (!signer) {
         LogWarning("%s", util::ErrorString(signer).original);
-        return PSBTError::EXTERNAL_SIGNER_NOT_FOUND;
+        return PSMTError::EXTERNAL_SIGNER_NOT_FOUND;
     }
 
     std::string failure_reason;
-    if(!signer->SignTransaction(psbt, failure_reason)) {
+    if(!signer->SignTransaction(psmt, failure_reason)) {
         LogWarning("Failed to sign: %s\n", failure_reason);
-        return PSBTError::EXTERNAL_SIGNER_FAILED;
+        return PSMTError::EXTERNAL_SIGNER_FAILED;
     }
-    if (finalize) FinalizePSBT(psbt); // This won't work in a multisig setup
+    if (finalize) FinalizePSMT(psmt); // This won't work in a multisig setup
     return {};
 }
 } // namespace wallet

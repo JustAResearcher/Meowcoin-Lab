@@ -566,8 +566,8 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">メッセージを検証して、指定された Meowcoin アドレスで署名されたことを確認する</translation>
     </message>
     <message>
-        <source>&amp;Load PSBT from file…</source>
-        <translation type="unfinished">PSBTをファイルから読む…(&amp;L)</translation>
+        <source>&amp;Load PSMT from file…</source>
+        <translation type="unfinished">PSMTをファイルから読む…(&amp;L)</translation>
     </message>
     <message>
         <source>Open &amp;URI…</source>
@@ -680,8 +680,8 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">部分的に署名されたビットコインのトランザクションを読み込み</translation>
     </message>
     <message>
-        <source>Load PSBT from &amp;clipboard…</source>
-        <translation type="unfinished">PSBTをクリップボードから読む…</translation>
+        <source>Load PSMT from &amp;clipboard…</source>
+        <translation type="unfinished">PSMTをクリップボードから読む…</translation>
     </message>
     <message>
         <source>Load Partially Signed Meowcoin Transaction from clipboard</source>
@@ -1700,14 +1700,14 @@ The migration process will create a backup of the wallet before migrating. This 
         <translation type="unfinished">未承認のお釣りを使用する(&amp;S)</translation>
     </message>
     <message>
-        <source>Enable &amp;PSBT controls</source>
-        <extracomment>An options window setting to enable PSBT controls.</extracomment>
-        <translation type="unfinished">PSBT コントロールを有効にする(&amp;P)</translation>
+        <source>Enable &amp;PSMT controls</source>
+        <extracomment>An options window setting to enable PSMT controls.</extracomment>
+        <translation type="unfinished">PSMT コントロールを有効にする(&amp;P)</translation>
     </message>
     <message>
-        <source>Whether to show PSBT controls.</source>
-        <extracomment>Tooltip text for options window setting that enables PSBT controls.</extracomment>
-        <translation type="unfinished">PSBTコントロールを表示するか否か</translation>
+        <source>Whether to show PSMT controls.</source>
+        <extracomment>Tooltip text for options window setting that enables PSMT controls.</extracomment>
+        <translation type="unfinished">PSMTコントロールを表示するか否か</translation>
     </message>
     <message>
         <source>External Signer (e.g. hardware wallet)</source>
@@ -1948,10 +1948,10 @@ The migration process will create a backup of the wallet before migrating. This 
     </message>
 </context>
 <context>
-    <name>PSBTOperationsDialog</name>
+    <name>PSMTOperationsDialog</name>
     <message>
-        <source>PSBT Operations</source>
-        <translation type="unfinished">PSBTの処理</translation>
+        <source>PSMT Operations</source>
+        <translation type="unfinished">PSMTの処理</translation>
     </message>
     <message>
         <source>Sign Tx</source>
@@ -2010,8 +2010,8 @@ The migration process will create a backup of the wallet before migrating. This 
         <translation type="unfinished">トランザクションのブロードキャストが失敗しました: %1</translation>
     </message>
     <message>
-        <source>PSBT copied to clipboard.</source>
-        <translation type="unfinished">PSBTをクリップボードにコピーしました.</translation>
+        <source>PSMT copied to clipboard.</source>
+        <translation type="unfinished">PSMTをクリップボードにコピーしました.</translation>
     </message>
     <message>
         <source>Save Transaction Data</source>
@@ -2019,12 +2019,12 @@ The migration process will create a backup of the wallet before migrating. This 
     </message>
     <message>
         <source>Partially Signed Transaction (Binary)</source>
-        <extracomment>Expanded name of the binary PSBT file format. See: BIP 174.</extracomment>
+        <extracomment>Expanded name of the binary PSMT file format. See: BIP 174.</extracomment>
         <translation type="unfinished">部分的に署名されたトランザクション（バイナリ）</translation>
     </message>
     <message>
-        <source>PSBT saved to disk.</source>
-        <translation type="unfinished">PSBTはディスクに保存されました。</translation>
+        <source>PSMT saved to disk.</source>
+        <translation type="unfinished">PSMTはディスクに保存されました。</translation>
     </message>
     <message>
         <source>Sends %1 to %2</source>
@@ -3097,8 +3097,8 @@ Note:  Since the fee is calculated on a per-byte basis, a fee rate of "100 satos
         <translation type="unfinished">未署名で作成(&amp;e)</translation>
     </message>
     <message>
-        <source>Creates a Partially Signed Meowcoin Transaction (PSBT) for use with e.g. an offline %1 wallet, or a PSBT-compatible hardware wallet.</source>
-        <translation type="unfinished">オフラインの %1 ウォレット、あるいはPSBTに対応したハードウェアウォレットで使用するためのPSBT(部分的に署名された取引)を作成します。</translation>
+        <source>Creates a Partially Signed Meowcoin Transaction (PSMT) for use with e.g. an offline %1 wallet, or a PSMT-compatible hardware wallet.</source>
+        <translation type="unfinished">オフラインの %1 ウォレット、あるいはPSMTに対応したハードウェアウォレットで使用するためのPSMT(部分的に署名された取引)を作成します。</translation>
     </message>
     <message>
         <source>%1 to '%2'</source>
@@ -3132,13 +3132,13 @@ Note:  Since the fee is calculated on a per-byte basis, a fee rate of "100 satos
     </message>
     <message>
         <source>Partially Signed Transaction (Binary)</source>
-        <extracomment>Expanded name of the binary PSBT file format. See: BIP 174.</extracomment>
+        <extracomment>Expanded name of the binary PSMT file format. See: BIP 174.</extracomment>
         <translation type="unfinished">部分的に署名された取引（バイナリ）</translation>
     </message>
     <message>
-        <source>PSBT saved</source>
-        <extracomment>Popup message when a PSBT has been saved to a file</extracomment>
-        <translation type="unfinished">PSBTは保存されました</translation>
+        <source>PSMT saved</source>
+        <extracomment>Popup message when a PSMT has been saved to a file</extracomment>
+        <translation type="unfinished">PSMTは保存されました</translation>
     </message>
     <message>
         <source>External balance:</source>
@@ -3153,9 +3153,9 @@ Note:  Since the fee is calculated on a per-byte basis, a fee rate of "100 satos
         <translation type="unfinished">手数料は後から上乗せ可能です(Replace-By-Fee(手数料の上乗せ: BIP-125)機能が有効)。</translation>
     </message>
     <message>
-        <source>Please, review your transaction proposal. This will produce a Partially Signed Meowcoin Transaction (PSBT) which you can save or copy and then sign with e.g. an offline %1 wallet, or a PSBT-compatible hardware wallet.</source>
-        <extracomment>Text to inform a user attempting to create a transaction of their current options. At this stage, a user can only create a PSBT. This string is displayed when private keys are disabled and an external signer is not available.</extracomment>
-        <translation type="unfinished">取引の提案を確認してください。これにより、部分的に署名されたBitcoin取引（PSBT）が作成されます。これを保存するかコピーして例えばオフラインの %1 ウォレットやPSBTを扱えるハードウェアウォレットで残りの署名が出来ます。</translation>
+        <source>Please, review your transaction proposal. This will produce a Partially Signed Meowcoin Transaction (PSMT) which you can save or copy and then sign with e.g. an offline %1 wallet, or a PSMT-compatible hardware wallet.</source>
+        <extracomment>Text to inform a user attempting to create a transaction of their current options. At this stage, a user can only create a PSMT. This string is displayed when private keys are disabled and an external signer is not available.</extracomment>
+        <translation type="unfinished">取引の提案を確認してください。これにより、部分的に署名されたBitcoin取引（PSMT）が作成されます。これを保存するかコピーして例えばオフラインの %1 ウォレットやPSMTを扱えるハードウェアウォレットで残りの署名が出来ます。</translation>
     </message>
     <message>
         <source>%1 from wallet '%2'</source>
@@ -3167,9 +3167,9 @@ Note:  Since the fee is calculated on a per-byte basis, a fee rate of "100 satos
         <translation type="unfinished">この取引を作成しますか？</translation>
     </message>
     <message>
-        <source>Please, review your transaction. You can create and send this transaction or create a Partially Signed Meowcoin Transaction (PSBT), which you can save or copy and then sign with, e.g., an offline %1 wallet, or a PSBT-compatible hardware wallet.</source>
-        <extracomment>Text to inform a user attempting to create a transaction of their current options. At this stage, a user can send their transaction or create a PSBT. This string is displayed when both private keys and PSBT controls are enabled.</extracomment>
-        <translation type="unfinished">取引を確認してください。 この取引を作成して送信するか、部分的に署名されたBitcoin取引（Partially Signed Meowcoin Transaction: PSBT）を作成できます。これを保存またはコピーして、オフラインの %1 ウォレットやPSBT互換のハードウェアウォレットなどで署名できます。</translation>
+        <source>Please, review your transaction. You can create and send this transaction or create a Partially Signed Meowcoin Transaction (PSMT), which you can save or copy and then sign with, e.g., an offline %1 wallet, or a PSMT-compatible hardware wallet.</source>
+        <extracomment>Text to inform a user attempting to create a transaction of their current options. At this stage, a user can send their transaction or create a PSMT. This string is displayed when both private keys and PSMT controls are enabled.</extracomment>
+        <translation type="unfinished">取引を確認してください。 この取引を作成して送信するか、部分的に署名されたBitcoin取引（Partially Signed Meowcoin Transaction: PSMT）を作成できます。これを保存またはコピーして、オフラインの %1 ウォレットやPSMT互換のハードウェアウォレットなどで署名できます。</translation>
     </message>
     <message>
         <source>Please, review your transaction.</source>
@@ -3182,8 +3182,8 @@ Note:  Since the fee is calculated on a per-byte basis, a fee rate of "100 satos
     </message>
     <message>
         <source>%1 kvB</source>
-        <comment>PSBT transaction creation</comment>
-        <extracomment>When reviewing a newly created PSBT (via Send flow), the transaction fee is shown, with "virtual size" of the transaction displayed for context</extracomment>
+        <comment>PSMT transaction creation</comment>
+        <extracomment>When reviewing a newly created PSMT (via Send flow), the transaction fee is shown, with "virtual size" of the transaction displayed for context</extracomment>
         <translation type="unfinished">%1kvB</translation>
     </message>
     <message>
@@ -3196,17 +3196,17 @@ Note:  Since the fee is calculated on a per-byte basis, a fee rate of "100 satos
     </message>
     <message>
         <source>Unsigned Transaction</source>
-        <comment>PSBT copied</comment>
-        <extracomment>Caption of "PSBT has been copied" messagebox</extracomment>
+        <comment>PSMT copied</comment>
+        <extracomment>Caption of "PSMT has been copied" messagebox</extracomment>
         <translation type="unfinished">未署名の取引</translation>
     </message>
     <message>
-        <source>The PSBT has been copied to the clipboard. You can also save it.</source>
-        <translation type="unfinished">PSBTはクリップボードにコピーされました。PSBTを保存することも可能です。</translation>
+        <source>The PSMT has been copied to the clipboard. You can also save it.</source>
+        <translation type="unfinished">PSMTはクリップボードにコピーされました。PSMTを保存することも可能です。</translation>
     </message>
     <message>
-        <source>PSBT saved to disk</source>
-        <translation type="unfinished">PSBTはディスクに保存されました</translation>
+        <source>PSMT saved to disk</source>
+        <translation type="unfinished">PSMTはディスクに保存されました</translation>
     </message>
     <message>
         <source>Confirm send coins</source>
@@ -3927,24 +3927,24 @@ Go to File &gt; Open Wallet to load a wallet.
         <translation type="unfinished">エラー</translation>
     </message>
     <message>
-        <source>Unable to decode PSBT from clipboard (invalid base64)</source>
-        <translation type="unfinished">クリップボードのPSBTをデコードできません（無効なbase64）</translation>
+        <source>Unable to decode PSMT from clipboard (invalid base64)</source>
+        <translation type="unfinished">クリップボードのPSMTをデコードできません（無効なbase64）</translation>
     </message>
     <message>
         <source>Load Transaction Data</source>
         <translation type="unfinished">取引データのロード</translation>
     </message>
     <message>
-        <source>Partially Signed Transaction (*.psbt)</source>
-        <translation type="unfinished">部分的に署名された取引(*.psbt)</translation>
+        <source>Partially Signed Transaction (*.psmt)</source>
+        <translation type="unfinished">部分的に署名された取引(*.psmt)</translation>
     </message>
     <message>
-        <source>PSBT file must be smaller than 100 MiB</source>
-        <translation type="unfinished">PSBTファイルは、100 MiB より小さい必要があります。</translation>
+        <source>PSMT file must be smaller than 100 MiB</source>
+        <translation type="unfinished">PSMTファイルは、100 MiB より小さい必要があります。</translation>
     </message>
     <message>
-        <source>Unable to decode PSBT</source>
-        <translation type="unfinished">PSBTファイルを復号できません</translation>
+        <source>Unable to decode PSMT</source>
+        <translation type="unfinished">PSMTファイルを復号できません</translation>
     </message>
 </context>
 <context>
@@ -3991,12 +3991,12 @@ Go to File &gt; Open Wallet to load a wallet.
         <translation type="unfinished">取引のひな型を作成できませんでした。</translation>
     </message>
     <message>
-        <source>PSBT copied</source>
-        <translation type="unfinished">PSBTがコピーされました</translation>
+        <source>PSMT copied</source>
+        <translation type="unfinished">PSMTがコピーされました</translation>
     </message>
     <message>
-        <source>Fee-bump PSBT copied to clipboard</source>
-        <translation type="unfinished">手数料引き上げのPSBTをクリップボードにコピーしました</translation>
+        <source>Fee-bump PSMT copied to clipboard</source>
+        <translation type="unfinished">手数料引き上げのPSMTをクリップボードにコピーしました</translation>
     </message>
     <message>
         <source>Can't sign transaction.</source>

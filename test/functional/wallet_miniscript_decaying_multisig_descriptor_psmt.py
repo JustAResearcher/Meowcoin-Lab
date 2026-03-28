@@ -5,7 +5,7 @@
 """Test a miniscript multisig that starts as 4-of-4 and "decays" to 3-of-4, 2-of-4, and finally 1-of-4 at each future halvening block height.
 
 Spending policy: `thresh(4,pk(key_1),pk(key_2),pk(key_3),pk(key_4),after(t1),after(t2),after(t3))`
-This is similar to `test/functional/wallet_multisig_descriptor_psbt.py`.
+This is similar to `test/functional/wallet_multisig_descriptor_psmt.py`.
 """
 
 import random
@@ -17,7 +17,7 @@ from test_framework.util import (
 )
 
 
-class WalletMiniscriptDecayingMultisigDescriptorPSBTTest(BitcoinTestFramework):
+class WalletMiniscriptDecayingMultisigDescriptorPSMTTest(BitcoinTestFramework):
     def set_test_params(self):
         self.num_nodes = 1
         self.setup_clean_chain = True
@@ -96,28 +96,28 @@ class WalletMiniscriptDecayingMultisigDescriptorPSBTTest(BitcoinTestFramework):
             self.log.info(f"At block height >= {locktime} this multisig is {self.M}-of-{self.N}")
             current_height = self.node.getblock(self.node.getbestblockhash())['height']
 
-            # in this test each signer signs the same psbt "in series" one after the other.
-            # Another option is for each signer to sign the original psbt, and then combine
+            # in this test each signer signs the same psmt "in series" one after the other.
+            # Another option is for each signer to sign the original psmt, and then combine
             # and finalize these. In some cases this may be more optimal for coordination.
-            psbt = multisig.walletcreatefundedpsbt(inputs=[], outputs={receiver.getnewaddress(): amount}, feeRate=0.00010, locktime=locktime)
+            psmt = multisig.walletcreatefundedpsmt(inputs=[], outputs={receiver.getnewaddress(): amount}, feeRate=0.00010, locktime=locktime)
             # the random sample asserts that any of the signing keys can sign for the 3-of-4,
             # 2-of-4, and 1-of-4. While this is basic behavior of the miniscript thresh primitive,
             # it is a critical property of this wallet.
             for i, m in enumerate(random.sample(range(self.M), self.M)):
-                psbt = signers[m].walletprocesspsbt(psbt["psbt"])
-                assert_equal(psbt["complete"], i == self.M - 1)
+                psmt = signers[m].walletprocesspsmt(psmt["psmt"])
+                assert_equal(psmt["complete"], i == self.M - 1)
 
             if self.M < self.N:
                 self.log.info(f"Check that the time-locked transaction is too immature to spend with {self.M}-of-{self.N} at block height {current_height}...")
                 assert_equal(current_height >= locktime, False)
-                assert_raises_rpc_error(-26, "non-final", multisig.sendrawtransaction, psbt["hex"])
+                assert_raises_rpc_error(-26, "non-final", multisig.sendrawtransaction, psmt["hex"])
 
                 self.log.info(f"Generate blocks to reach the time-lock block height {locktime} and broadcast the transaction...")
                 self.generate(self.node, locktime - current_height)
             else:
                 self.log.info("All the signers are required to spend before the first locktime")
 
-            multisig.sendrawtransaction(psbt["hex"])
+            multisig.sendrawtransaction(psmt["hex"])
             sent += amount
 
             self.log.info("Check that balances are correct after the transaction has been included in a block...")
@@ -129,4 +129,4 @@ class WalletMiniscriptDecayingMultisigDescriptorPSBTTest(BitcoinTestFramework):
 
 
 if __name__ == "__main__":
-    WalletMiniscriptDecayingMultisigDescriptorPSBTTest(__file__).main()
+    WalletMiniscriptDecayingMultisigDescriptorPSMTTest(__file__).main()

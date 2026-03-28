@@ -38,7 +38,7 @@
 #include <QSettings>
 #include <QTextDocument>
 
-using common::PSBTError;
+using common::PSMTError;
 using wallet::CCoinControl;
 using wallet::DEFAULT_PAY_TX_FEE;
 
@@ -214,7 +214,7 @@ void SendCoinsDialog::setModel(WalletModel *_model)
             }
         } else if (model->wallet().privateKeysDisabled()) {
             ui->sendButton->setText(tr("Cr&eate Unsigned"));
-            ui->sendButton->setToolTip(tr("Creates a Partially Signed Meowcoin Transaction (PSBT) for use with e.g. an offline %1 wallet, or a PSBT-compatible hardware wallet.").arg(CLIENT_NAME));
+            ui->sendButton->setToolTip(tr("Creates a Partially Signed Meowcoin Transaction (PSMT) for use with e.g. an offline %1 wallet, or a PSMT-compatible hardware wallet.").arg(CLIENT_NAME));
         }
 
         // set the smartfee-sliders default value (wallets default conf.target or last stored value)
@@ -334,14 +334,14 @@ bool SendCoinsDialog::PrepareSendText(QString& question_string, QString& informa
     question_string.append("<br /><span style='font-size:10pt;'>");
     if (model->wallet().privateKeysDisabled() && !model->wallet().hasExternalSigner()) {
         /*: Text to inform a user attempting to create a transaction of their current options. At this stage,
-            a user can only create a PSBT. This string is displayed when private keys are disabled and an external
+            a user can only create a PSMT. This string is displayed when private keys are disabled and an external
             signer is not available. */
-        question_string.append(tr("Please, review your transaction proposal. This will produce a Partially Signed Meowcoin Transaction (PSBT) which you can save or copy and then sign with e.g. an offline %1 wallet, or a PSBT-compatible hardware wallet.").arg(CLIENT_NAME));
-    } else if (model->getOptionsModel()->getEnablePSBTControls()) {
+        question_string.append(tr("Please, review your transaction proposal. This will produce a Partially Signed Meowcoin Transaction (PSMT) which you can save or copy and then sign with e.g. an offline %1 wallet, or a PSMT-compatible hardware wallet.").arg(CLIENT_NAME));
+    } else if (model->getOptionsModel()->getEnablePSMTControls()) {
         /*: Text to inform a user attempting to create a transaction of their current options. At this stage,
-            a user can send their transaction or create a PSBT. This string is displayed when both private keys
-            and PSBT controls are enabled. */
-        question_string.append(tr("Please, review your transaction. You can create and send this transaction or create a Partially Signed Meowcoin Transaction (PSBT), which you can save or copy and then sign with, e.g., an offline %1 wallet, or a PSBT-compatible hardware wallet.").arg(CLIENT_NAME));
+            a user can send their transaction or create a PSMT. This string is displayed when both private keys
+            and PSMT controls are enabled. */
+        question_string.append(tr("Please, review your transaction. You can create and send this transaction or create a Partially Signed Meowcoin Transaction (PSMT), which you can save or copy and then sign with, e.g., an offline %1 wallet, or a PSMT-compatible hardware wallet.").arg(CLIENT_NAME));
     } else {
         /*: Text to prompt a user to review the details of the transaction they are attempting to send. */
         question_string.append(tr("Please, review your transaction."));
@@ -356,8 +356,8 @@ bool SendCoinsDialog::PrepareSendText(QString& question_string, QString& informa
         question_string.append("</b>");
 
         // append transaction size
-        //: When reviewing a newly created PSBT (via Send flow), the transaction fee is shown, with "virtual size" of the transaction displayed for context
-        question_string.append(" (" + tr("%1 kvB", "PSBT transaction creation").arg((double)m_current_transaction->getTransactionSize() / 1000, 0, 'g', 3) + "): ");
+        //: When reviewing a newly created PSMT (via Send flow), the transaction fee is shown, with "virtual size" of the transaction displayed for context
+        question_string.append(" (" + tr("%1 kvB", "PSMT transaction creation").arg((double)m_current_transaction->getTransactionSize() / 1000, 0, 'g', 3) + "): ");
 
         // append transaction fee value
         question_string.append("<span style='color:#aa0000; font-weight:bold;'>");
@@ -398,19 +398,19 @@ bool SendCoinsDialog::PrepareSendText(QString& question_string, QString& informa
     return true;
 }
 
-void SendCoinsDialog::presentPSBT(PartiallySignedTransaction& psbtx)
+void SendCoinsDialog::presentPSMT(PartiallySignedTransaction& psmtx)
 {
-    // Serialize the PSBT
+    // Serialize the PSMT
     DataStream ssTx{};
-    ssTx << psbtx;
+    ssTx << psmtx;
     GUIUtil::setClipboard(EncodeBase64(ssTx.str()).c_str());
     QMessageBox msgBox(this);
-    //: Caption of "PSBT has been copied" messagebox
-    msgBox.setText(tr("Unsigned Transaction", "PSBT copied"));
-    msgBox.setInformativeText(tr("The PSBT has been copied to the clipboard. You can also save it."));
+    //: Caption of "PSMT has been copied" messagebox
+    msgBox.setText(tr("Unsigned Transaction", "PSMT copied"));
+    msgBox.setInformativeText(tr("The PSMT has been copied to the clipboard. You can also save it."));
     msgBox.setStandardButtons(QMessageBox::Save | QMessageBox::Discard);
     msgBox.setDefaultButton(QMessageBox::Discard);
-    msgBox.setObjectName("psbt_copied_message");
+    msgBox.setObjectName("psmt_copied_message");
     switch (msgBox.exec()) {
     case QMessageBox::Save: {
         QString selectedFilter;
@@ -425,19 +425,19 @@ void SendCoinsDialog::presentPSBT(PartiallySignedTransaction& psbtx)
             fileNameSuggestion.append(labelOrAddress + "-" + amount);
             first = false;
         }
-        fileNameSuggestion.append(".psbt");
+        fileNameSuggestion.append(".psmt");
         QString filename = GUIUtil::getSaveFileName(this,
             tr("Save Transaction Data"), fileNameSuggestion,
-            //: Expanded name of the binary PSBT file format. See: BIP 174.
-            tr("Partially Signed Transaction (Binary)") + QLatin1String(" (*.psbt)"), &selectedFilter);
+            //: Expanded name of the binary PSMT file format. See: BIP 174.
+            tr("Partially Signed Transaction (Binary)") + QLatin1String(" (*.psmt)"), &selectedFilter);
         if (filename.isEmpty()) {
             return;
         }
         std::ofstream out{filename.toLocal8Bit().data(), std::ofstream::out | std::ofstream::binary};
         out << ssTx.str();
         out.close();
-        //: Popup message when a PSBT has been saved to a file
-        Q_EMIT message(tr("PSBT saved"), tr("PSBT saved to disk"), CClientUIInterface::MSG_INFORMATION);
+        //: Popup message when a PSMT has been saved to a file
+        Q_EMIT message(tr("PSMT saved"), tr("PSMT saved to disk"), CClientUIInterface::MSG_INFORMATION);
         break;
     }
     case QMessageBox::Discard:
@@ -447,33 +447,33 @@ void SendCoinsDialog::presentPSBT(PartiallySignedTransaction& psbtx)
     } // msgBox.exec()
 }
 
-bool SendCoinsDialog::signWithExternalSigner(PartiallySignedTransaction& psbtx, CMutableTransaction& mtx, bool& complete) {
-    std::optional<PSBTError> err;
+bool SendCoinsDialog::signWithExternalSigner(PartiallySignedTransaction& psmtx, CMutableTransaction& mtx, bool& complete) {
+    std::optional<PSMTError> err;
     try {
-        err = model->wallet().fillPSBT(std::nullopt, /*sign=*/true, /*bip32derivs=*/true, /*n_signed=*/nullptr, psbtx, complete);
+        err = model->wallet().fillPSMT(std::nullopt, /*sign=*/true, /*bip32derivs=*/true, /*n_signed=*/nullptr, psmtx, complete);
     } catch (const std::runtime_error& e) {
         QMessageBox::critical(nullptr, tr("Sign failed"), e.what());
         return false;
     }
-    if (err == PSBTError::EXTERNAL_SIGNER_NOT_FOUND) {
+    if (err == PSMTError::EXTERNAL_SIGNER_NOT_FOUND) {
         //: "External signer" means using devices such as hardware wallets.
         const QString msg = tr("External signer not found");
         QMessageBox::critical(nullptr, msg, msg);
         return false;
     }
-    if (err == PSBTError::EXTERNAL_SIGNER_FAILED) {
+    if (err == PSMTError::EXTERNAL_SIGNER_FAILED) {
         //: "External signer" means using devices such as hardware wallets.
         const QString msg = tr("External signer failure");
         QMessageBox::critical(nullptr, msg, msg);
         return false;
     }
     if (err) {
-        qWarning() << "Failed to sign PSBT";
+        qWarning() << "Failed to sign PSMT";
         processSendCoinsReturn(WalletModel::TransactionCreationFailed);
         return false;
     }
-    // fillPSBT does not always properly finalize
-    complete = FinalizeAndExtractPSBT(psbtx, mtx);
+    // fillPSMT does not always properly finalize
+    complete = FinalizeAndExtractPSMT(psmtx, mtx);
     return true;
 }
 
@@ -488,7 +488,7 @@ void SendCoinsDialog::sendButtonClicked([[maybe_unused]] bool checked)
 
     const QString confirmation = tr("Confirm send coins");
     const bool enable_send{!model->wallet().privateKeysDisabled() || model->wallet().hasExternalSigner()};
-    const bool always_show_unsigned{model->getOptionsModel()->getEnablePSBTControls()};
+    const bool always_show_unsigned{model->getOptionsModel()->getEnablePSMTControls()};
     auto confirmationDialog = new SendConfirmationDialog(confirmation, question_string, informative_text, detailed_text, SEND_CONFIRM_DELAY, enable_send, always_show_unsigned, this);
     confirmationDialog->setAttribute(Qt::WA_DeleteOnClose);
     // TODO: Replace QDialog::exec() with safer QDialog::show().
@@ -504,29 +504,29 @@ void SendCoinsDialog::sendButtonClicked([[maybe_unused]] bool checked)
     if (retval == QMessageBox::Save) {
         // "Create Unsigned" clicked
         CMutableTransaction mtx = CMutableTransaction{*(m_current_transaction->getWtx())};
-        PartiallySignedTransaction psbtx(mtx);
+        PartiallySignedTransaction psmtx(mtx);
         bool complete = false;
         // Fill without signing
-        const auto err{model->wallet().fillPSBT(std::nullopt, /*sign=*/false, /*bip32derivs=*/true, /*n_signed=*/nullptr, psbtx, complete)};
+        const auto err{model->wallet().fillPSMT(std::nullopt, /*sign=*/false, /*bip32derivs=*/true, /*n_signed=*/nullptr, psmtx, complete)};
         assert(!complete);
         assert(!err);
 
-        // Copy PSBT to clipboard and offer to save
-        presentPSBT(psbtx);
+        // Copy PSMT to clipboard and offer to save
+        presentPSMT(psmtx);
     } else {
         // "Send" clicked
         assert(!model->wallet().privateKeysDisabled() || model->wallet().hasExternalSigner());
         bool broadcast = true;
         if (model->wallet().hasExternalSigner()) {
             CMutableTransaction mtx = CMutableTransaction{*(m_current_transaction->getWtx())};
-            PartiallySignedTransaction psbtx(mtx);
+            PartiallySignedTransaction psmtx(mtx);
             bool complete = false;
             // Always fill without signing first. This prevents an external signer
             // from being called prematurely and is not expensive.
-            const auto err{model->wallet().fillPSBT(std::nullopt, /*sign=*/false, /*bip32derivs=*/true, /*n_signed=*/nullptr, psbtx, complete)};
+            const auto err{model->wallet().fillPSMT(std::nullopt, /*sign=*/false, /*bip32derivs=*/true, /*n_signed=*/nullptr, psmtx, complete)};
             assert(!complete);
             assert(!err);
-            send_failure = !signWithExternalSigner(psbtx, mtx, complete);
+            send_failure = !signWithExternalSigner(psmtx, mtx, complete);
             // Don't broadcast when user rejects it on the device or there's a failure:
             broadcast = complete && !send_failure;
             if (!send_failure) {
@@ -537,7 +537,7 @@ void SendCoinsDialog::sendButtonClicked([[maybe_unused]] bool checked)
                     const CTransactionRef tx = MakeTransactionRef(mtx);
                     m_current_transaction->setWtx(tx);
                 } else {
-                    presentPSBT(psbtx);
+                    presentPSMT(psmtx);
                 }
             }
         }
@@ -1073,7 +1073,7 @@ SendConfirmationDialog::SendConfirmationDialog(const QString& title, const QStri
     if (confirmButtonText.isEmpty()) {
         confirmButtonText = yesButton->text();
     }
-    m_psbt_button = button(QMessageBox::Save);
+    m_psmt_button = button(QMessageBox::Save);
     updateButtons();
     connect(&countDownTimer, &QTimer::timeout, this, &SendConfirmationDialog::countDown);
 }
@@ -1102,18 +1102,18 @@ void SendConfirmationDialog::updateButtons()
     {
         yesButton->setEnabled(false);
         yesButton->setText(confirmButtonText + (m_enable_send ? (" (" + QString::number(secDelay) + ")") : QString("")));
-        if (m_psbt_button) {
-            m_psbt_button->setEnabled(false);
-            m_psbt_button->setText(m_psbt_button_text + " (" + QString::number(secDelay) + ")");
+        if (m_psmt_button) {
+            m_psmt_button->setEnabled(false);
+            m_psmt_button->setText(m_psmt_button_text + " (" + QString::number(secDelay) + ")");
         }
     }
     else
     {
         yesButton->setEnabled(m_enable_send);
         yesButton->setText(confirmButtonText);
-        if (m_psbt_button) {
-            m_psbt_button->setEnabled(true);
-            m_psbt_button->setText(m_psbt_button_text);
+        if (m_psmt_button) {
+            m_psmt_button->setEnabled(true);
+            m_psmt_button->setText(m_psmt_button_text);
         }
     }
 }

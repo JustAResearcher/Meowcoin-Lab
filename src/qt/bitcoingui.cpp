@@ -347,10 +347,10 @@ void BitcoinGUI::createActions()
     signMessageAction->setStatusTip(tr("Sign messages with your Bitcoin addresses to prove you own them"));
     verifyMessageAction = new QAction(tr("&Verify message…"), this);
     verifyMessageAction->setStatusTip(tr("Verify messages to ensure they were signed with specified Bitcoin addresses"));
-    m_load_psbt_action = new QAction(tr("&Load PSBT from file…"), this);
-    m_load_psbt_action->setStatusTip(tr("Load Partially Signed Bitcoin Transaction"));
-    m_load_psbt_clipboard_action = new QAction(tr("Load PSBT from &clipboard…"), this);
-    m_load_psbt_clipboard_action->setStatusTip(tr("Load Partially Signed Bitcoin Transaction from clipboard"));
+    m_load_psmt_action = new QAction(tr("&Load PSMT from file…"), this);
+    m_load_psmt_action->setStatusTip(tr("Load Partially Signed Bitcoin Transaction"));
+    m_load_psmt_clipboard_action = new QAction(tr("Load PSMT from &clipboard…"), this);
+    m_load_psmt_clipboard_action->setStatusTip(tr("Load Partially Signed Bitcoin Transaction from clipboard"));
 
     openRPCConsoleAction = new QAction(tr("Node window"), this);
     openRPCConsoleAction->setStatusTip(tr("Open node debugging and diagnostic console"));
@@ -418,8 +418,8 @@ void BitcoinGUI::createActions()
         connect(changePassphraseAction, &QAction::triggered, walletFrame, &WalletFrame::changePassphrase);
         connect(signMessageAction, &QAction::triggered, [this]{ showNormalIfMinimized(); });
         connect(signMessageAction, &QAction::triggered, [this]{ gotoSignMessageTab(); });
-        connect(m_load_psbt_action, &QAction::triggered, [this]{ gotoLoadPSBT(); });
-        connect(m_load_psbt_clipboard_action, &QAction::triggered, [this]{ gotoLoadPSBT(true); });
+        connect(m_load_psmt_action, &QAction::triggered, [this]{ gotoLoadPSMT(); });
+        connect(m_load_psmt_clipboard_action, &QAction::triggered, [this]{ gotoLoadPSMT(true); });
         connect(verifyMessageAction, &QAction::triggered, [this]{ showNormalIfMinimized(); });
         connect(verifyMessageAction, &QAction::triggered, [this]{ gotoVerifyMessageTab(); });
         connect(usedSendingAddressesAction, &QAction::triggered, walletFrame, &WalletFrame::usedSendingAddresses);
@@ -545,8 +545,8 @@ void BitcoinGUI::createMenuBar()
         file->addAction(openAction);
         file->addAction(signMessageAction);
         file->addAction(verifyMessageAction);
-        file->addAction(m_load_psbt_action);
-        file->addAction(m_load_psbt_clipboard_action);
+        file->addAction(m_load_psmt_action);
+        file->addAction(m_load_psmt_clipboard_action);
         file->addSeparator();
     }
     file->addAction(quitAction);
@@ -1091,9 +1091,9 @@ void BitcoinGUI::gotoVerifyMessageTab(QString addr)
 {
     if (walletFrame) walletFrame->gotoVerifyMessageTab(addr);
 }
-void BitcoinGUI::gotoLoadPSBT(bool from_clipboard)
+void BitcoinGUI::gotoLoadPSMT(bool from_clipboard)
 {
-    if (walletFrame) walletFrame->gotoLoadPSBT(from_clipboard);
+    if (walletFrame) walletFrame->gotoLoadPSMT(from_clipboard);
 }
 #endif // ENABLE_WALLET
 

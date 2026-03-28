@@ -60,7 +60,7 @@ class SigningProvider;
 enum class MemPoolRemovalReason;
 enum class SigningResult;
 namespace common {
-enum class PSBTError;
+enum class PSMTError;
 } // namespace common
 namespace interfaces {
 class Wallet;
@@ -666,21 +666,21 @@ public:
     SigningResult SignMessage(const std::string& message, const PKHash& pkhash, std::string& str_sig) const;
 
     /**
-     * Fills out a PSBT with information from the wallet. Fills in UTXOs if we have
-     * them. Tries to sign if sign=true. Sets `complete` if the PSBT is now complete
+     * Fills out a PSMT with information from the wallet. Fills in UTXOs if we have
+     * them. Tries to sign if sign=true. Sets `complete` if the PSMT is now complete
      * (i.e. has all required signatures or signature-parts, and is ready to
      * finalize.) Sets `error` and returns false if something goes wrong.
      *
-     * @param[in]  psbtx PartiallySignedTransaction to fill in
-     * @param[out] complete indicates whether the PSBT is now complete
-     * @param[in]  sighash_type the sighash type to use when signing (if PSBT does not specify)
+     * @param[in]  psmtx PartiallySignedTransaction to fill in
+     * @param[out] complete indicates whether the PSMT is now complete
+     * @param[in]  sighash_type the sighash type to use when signing (if PSMT does not specify)
      * @param[in]  sign whether to sign or not
      * @param[in]  bip32derivs whether to fill in bip32 derivation information if available
      * @param[out] n_signed the number of inputs signed by this wallet
      * @param[in] finalize whether to create the final scriptSig or scriptWitness if possible
      * return error
      */
-    std::optional<common::PSBTError> FillPSBT(PartiallySignedTransaction& psbtx,
+    std::optional<common::PSMTError> FillPSMT(PartiallySignedTransaction& psmtx,
                   bool& complete,
                   std::optional<int> sighash_type = std::nullopt,
                   bool sign = true,

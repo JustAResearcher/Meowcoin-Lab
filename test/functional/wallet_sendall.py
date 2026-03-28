@@ -304,8 +304,8 @@ class SendallTest(BitcoinTestFramework):
         watchonly.importdescriptors(import_req)
 
         sendall_tx_receipt = watchonly.sendall(recipients=[self.remainder_target], inputs=[utxo])
-        psbt = sendall_tx_receipt["psbt"]
-        decoded = self.nodes[0].decodepsbt(psbt)
+        psmt = sendall_tx_receipt["psmt"]
+        decoded = self.nodes[0].decodepsmt(psmt)
         assert_equal(len(decoded["inputs"]), 1)
         assert_equal(len(decoded["outputs"]), 1)
         assert_equal(decoded["tx"]["vin"][0]["txid"], utxo["txid"])

@@ -103,7 +103,7 @@ function signature instead of just the function name. (#32604)
 - #32336 test: Suppress upstream -Wduplicate-decl-specifier in bpfcc
 - #32463 test: fix an incorrect feature_fee_estimation.py subtest
 - #32483 test: fix two intermittent failures in wallet_basic.py
-- #32630 test: fix sync function in rpc_psbt.py
+- #32630 test: fix sync function in rpc_psmt.py
 - #32765 test: Fix list index out of range error in feature_bip68_sequence.py
 - #32742 test: fix catchup loop in outbound eviction functional test
 - #32823 test: Fix wait_for_getheaders() call in test_outbound_eviction_blocks_relay_only()

@@ -553,8 +553,8 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">Ověř zprávy, aby ses ujistil, že byly podepsány danými bitcoinovými adresami</translation>
     </message>
     <message>
-        <source>&amp;Load PSBT from file…</source>
-        <translation type="unfinished">&amp;Načíst PSBT ze souboru...</translation>
+        <source>&amp;Load PSMT from file…</source>
+        <translation type="unfinished">&amp;Načíst PSMT ze souboru...</translation>
     </message>
     <message>
         <source>Open &amp;URI…</source>
@@ -669,8 +669,8 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">Načíst částečně podepsanou Bitcoinovou transakci</translation>
     </message>
     <message>
-        <source>Load PSBT from &amp;clipboard…</source>
-        <translation type="unfinished">Načíst PSBT ze &amp;schránky</translation>
+        <source>Load PSMT from &amp;clipboard…</source>
+        <translation type="unfinished">Načíst PSMT ze &amp;schránky</translation>
     </message>
     <message>
         <source>Load Partially Signed Bitcoin Transaction from clipboard</source>
@@ -1703,14 +1703,14 @@ Proces migrace vytvoří zálohu peněženky před samotnou migrací. Tento zál
         <translation type="unfinished">&amp;Utrácet i ještě nepotvrzené drobné</translation>
     </message>
     <message>
-        <source>Enable &amp;PSBT controls</source>
-        <extracomment>An options window setting to enable PSBT controls.</extracomment>
-        <translation type="unfinished">Povolit &amp;PSBT kontrolu</translation>
+        <source>Enable &amp;PSMT controls</source>
+        <extracomment>An options window setting to enable PSMT controls.</extracomment>
+        <translation type="unfinished">Povolit &amp;PSMT kontrolu</translation>
     </message>
     <message>
-        <source>Whether to show PSBT controls.</source>
-        <extracomment>Tooltip text for options window setting that enables PSBT controls.</extracomment>
-        <translation type="unfinished">Zobrazit ovládací prvky PSBT.</translation>
+        <source>Whether to show PSMT controls.</source>
+        <extracomment>Tooltip text for options window setting that enables PSMT controls.</extracomment>
+        <translation type="unfinished">Zobrazit ovládací prvky PSMT.</translation>
     </message>
     <message>
         <source>External Signer (e.g. hardware wallet)</source>
@@ -1951,10 +1951,10 @@ Proces migrace vytvoří zálohu peněženky před samotnou migrací. Tento zál
     </message>
 </context>
 <context>
-    <name>PSBTOperationsDialog</name>
+    <name>PSMTOperationsDialog</name>
     <message>
-        <source>PSBT Operations</source>
-        <translation type="unfinished">PSBT Operace</translation>
+        <source>PSMT Operations</source>
+        <translation type="unfinished">PSMT Operace</translation>
     </message>
     <message>
         <source>Sign Tx</source>
@@ -2013,8 +2013,8 @@ Proces migrace vytvoří zálohu peněženky před samotnou migrací. Tento zál
         <translation type="unfinished">Odeslání transakce se nezdařilo: %1</translation>
     </message>
     <message>
-        <source>PSBT copied to clipboard.</source>
-        <translation type="unfinished">PSBT zkopírována do schránky.</translation>
+        <source>PSMT copied to clipboard.</source>
+        <translation type="unfinished">PSMT zkopírována do schránky.</translation>
     </message>
     <message>
         <source>Save Transaction Data</source>
@@ -2022,12 +2022,12 @@ Proces migrace vytvoří zálohu peněženky před samotnou migrací. Tento zál
     </message>
     <message>
         <source>Partially Signed Transaction (Binary)</source>
-        <extracomment>Expanded name of the binary PSBT file format. See: BIP 174.</extracomment>
+        <extracomment>Expanded name of the binary PSMT file format. See: BIP 174.</extracomment>
         <translation type="unfinished">částečně podepsaná transakce (binární)</translation>
     </message>
     <message>
-        <source>PSBT saved to disk.</source>
-        <translation type="unfinished">PSBT uložena na disk.</translation>
+        <source>PSMT saved to disk.</source>
+        <translation type="unfinished">PSMT uložena na disk.</translation>
     </message>
     <message>
         <source>Sends %1 to %2</source>
@@ -3093,8 +3093,8 @@ Note:  Since the fee is calculated on a per-byte basis, a fee rate of "100 satos
         <translation type="unfinished">Vytvořit &amp;bez podpisu</translation>
     </message>
     <message>
-        <source>Creates a Partially Signed Bitcoin Transaction (PSBT) for use with e.g. an offline %1 wallet, or a PSBT-compatible hardware wallet.</source>
-        <translation type="unfinished">Vytvořit částečně podepsanou Bitcoin transakci (Partially Signed Bitcoin Transaction - PSBT) k použtí kupříkladu s offline %1 peněženkou nebo s jinou kompatibilní PSBT hardware peněženkou.</translation>
+        <source>Creates a Partially Signed Bitcoin Transaction (PSMT) for use with e.g. an offline %1 wallet, or a PSMT-compatible hardware wallet.</source>
+        <translation type="unfinished">Vytvořit částečně podepsanou Bitcoin transakci (Partially Signed Bitcoin Transaction - PSMT) k použtí kupříkladu s offline %1 peněženkou nebo s jinou kompatibilní PSMT hardware peněženkou.</translation>
     </message>
     <message>
         <source>%1 to '%2'</source>
@@ -3128,13 +3128,13 @@ Note:  Since the fee is calculated on a per-byte basis, a fee rate of "100 satos
     </message>
     <message>
         <source>Partially Signed Transaction (Binary)</source>
-        <extracomment>Expanded name of the binary PSBT file format. See: BIP 174.</extracomment>
+        <extracomment>Expanded name of the binary PSMT file format. See: BIP 174.</extracomment>
         <translation type="unfinished">Částečně podepsaná transakce (binární)</translation>
     </message>
     <message>
-        <source>PSBT saved</source>
-        <extracomment>Popup message when a PSBT has been saved to a file</extracomment>
-        <translation type="unfinished">PSBT uložena</translation>
+        <source>PSMT saved</source>
+        <extracomment>Popup message when a PSMT has been saved to a file</extracomment>
+        <translation type="unfinished">PSMT uložena</translation>
     </message>
     <message>
         <source>External balance:</source>
@@ -3149,9 +3149,9 @@ Note:  Since the fee is calculated on a per-byte basis, a fee rate of "100 satos
         <translation type="unfinished">Poplatek můžete navýšit později (vysílá se "Replace-By-Fee" - nahrazení poplatkem, BIP-125).</translation>
     </message>
     <message>
-        <source>Please, review your transaction proposal. This will produce a Partially Signed Bitcoin Transaction (PSBT) which you can save or copy and then sign with e.g. an offline %1 wallet, or a PSBT-compatible hardware wallet.</source>
-        <extracomment>Text to inform a user attempting to create a transaction of their current options. At this stage, a user can only create a PSBT. This string is displayed when private keys are disabled and an external signer is not available.</extracomment>
-        <translation type="unfinished">Zkontrolujte prosím svůj návrh transakce. Výsledkem bude částečně podepsaná bitcoinová transakce (PSBT), kterou můžete uložit nebo kopírovat a poté podepsat např. pomocí offline %1 peněženky nebo hardwarové peněženky kompatibilní s PSBT.</translation>
+        <source>Please, review your transaction proposal. This will produce a Partially Signed Bitcoin Transaction (PSMT) which you can save or copy and then sign with e.g. an offline %1 wallet, or a PSMT-compatible hardware wallet.</source>
+        <extracomment>Text to inform a user attempting to create a transaction of their current options. At this stage, a user can only create a PSMT. This string is displayed when private keys are disabled and an external signer is not available.</extracomment>
+        <translation type="unfinished">Zkontrolujte prosím svůj návrh transakce. Výsledkem bude částečně podepsaná bitcoinová transakce (PSMT), kterou můžete uložit nebo kopírovat a poté podepsat např. pomocí offline %1 peněženky nebo hardwarové peněženky kompatibilní s PSMT.</translation>
     </message>
     <message>
         <source>%1 from wallet '%2'</source>
@@ -3163,9 +3163,9 @@ Note:  Since the fee is calculated on a per-byte basis, a fee rate of "100 satos
         <translation type="unfinished">Přejete si vytvořit tuto transakci?</translation>
     </message>
     <message>
-        <source>Please, review your transaction. You can create and send this transaction or create a Partially Signed Bitcoin Transaction (PSBT), which you can save or copy and then sign with, e.g., an offline %1 wallet, or a PSBT-compatible hardware wallet.</source>
-        <extracomment>Text to inform a user attempting to create a transaction of their current options. At this stage, a user can send their transaction or create a PSBT. This string is displayed when both private keys and PSBT controls are enabled.</extracomment>
-        <translation type="unfinished">Prosím ověř svojí transakci. Můžeš vytvořit a odeslat tuto transakci nebo vytvořit Částečně Podepsanou Bitcoinovou Transakci (PSBT), kterou můžeš uložit nebo zkopírovat a poté podepsat např. v offline %1 peněžence, nebo hardwarové peněžence kompatibilní s PSBT.</translation>
+        <source>Please, review your transaction. You can create and send this transaction or create a Partially Signed Bitcoin Transaction (PSMT), which you can save or copy and then sign with, e.g., an offline %1 wallet, or a PSMT-compatible hardware wallet.</source>
+        <extracomment>Text to inform a user attempting to create a transaction of their current options. At this stage, a user can send their transaction or create a PSMT. This string is displayed when both private keys and PSMT controls are enabled.</extracomment>
+        <translation type="unfinished">Prosím ověř svojí transakci. Můžeš vytvořit a odeslat tuto transakci nebo vytvořit Částečně Podepsanou Bitcoinovou Transakci (PSMT), kterou můžeš uložit nebo zkopírovat a poté podepsat např. v offline %1 peněžence, nebo hardwarové peněžence kompatibilní s PSMT.</translation>
     </message>
     <message>
         <source>Please, review your transaction.</source>
@@ -3186,17 +3186,17 @@ Note:  Since the fee is calculated on a per-byte basis, a fee rate of "100 satos
     </message>
     <message>
         <source>Unsigned Transaction</source>
-        <comment>PSBT copied</comment>
-        <extracomment>Caption of "PSBT has been copied" messagebox</extracomment>
+        <comment>PSMT copied</comment>
+        <extracomment>Caption of "PSMT has been copied" messagebox</extracomment>
         <translation type="unfinished">Nepodepsaná Transakce</translation>
     </message>
     <message>
-        <source>The PSBT has been copied to the clipboard. You can also save it.</source>
-        <translation type="unfinished">PSBT bylo zkopírováno do schránky. Můžete si jej také uložit.</translation>
+        <source>The PSMT has been copied to the clipboard. You can also save it.</source>
+        <translation type="unfinished">PSMT bylo zkopírováno do schránky. Můžete si jej také uložit.</translation>
     </message>
     <message>
-        <source>PSBT saved to disk</source>
-        <translation type="unfinished">PSBT uloženo na disk</translation>
+        <source>PSMT saved to disk</source>
+        <translation type="unfinished">PSMT uloženo na disk</translation>
     </message>
     <message>
         <source>Confirm send coins</source>
@@ -3902,24 +3902,24 @@ Přejděte do Soubor &gt; Otevřít peněženku pro načtení peněženky.
         <translation type="unfinished">Chyba</translation>
     </message>
     <message>
-        <source>Unable to decode PSBT from clipboard (invalid base64)</source>
-        <translation type="unfinished">Nelze dekódovat PSBT ze schránky (neplatné kódování base64)</translation>
+        <source>Unable to decode PSMT from clipboard (invalid base64)</source>
+        <translation type="unfinished">Nelze dekódovat PSMT ze schránky (neplatné kódování base64)</translation>
     </message>
     <message>
         <source>Load Transaction Data</source>
         <translation type="unfinished">Načíst data o transakci</translation>
     </message>
     <message>
-        <source>Partially Signed Transaction (*.psbt)</source>
-        <translation type="unfinished">Částečně podepsaná transakce (*.psbt)</translation>
+        <source>Partially Signed Transaction (*.psmt)</source>
+        <translation type="unfinished">Částečně podepsaná transakce (*.psmt)</translation>
     </message>
     <message>
-        <source>PSBT file must be smaller than 100 MiB</source>
-        <translation type="unfinished">Soubor PSBT musí být menší než 100 MiB</translation>
+        <source>PSMT file must be smaller than 100 MiB</source>
+        <translation type="unfinished">Soubor PSMT musí být menší než 100 MiB</translation>
     </message>
     <message>
-        <source>Unable to decode PSBT</source>
-        <translation type="unfinished">Nelze dekódovat PSBT</translation>
+        <source>Unable to decode PSMT</source>
+        <translation type="unfinished">Nelze dekódovat PSMT</translation>
     </message>
 </context>
 <context>
@@ -3966,8 +3966,8 @@ Přejděte do Soubor &gt; Otevřít peněženku pro načtení peněženky.
         <translation type="unfinished">Nelze navrhnout transakci.</translation>
     </message>
     <message>
-        <source>PSBT copied</source>
-        <translation type="unfinished">PSBT zkopírována</translation>
+        <source>PSMT copied</source>
+        <translation type="unfinished">PSMT zkopírována</translation>
     </message>
     <message>
         <source>Can't sign transaction.</source>

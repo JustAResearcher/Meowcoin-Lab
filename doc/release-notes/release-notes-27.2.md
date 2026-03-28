@@ -50,11 +50,11 @@ Notable changes
 
 ### RPC
 
-- #30357 Fix cases of calls to FillPSBT errantly returning complete=true
+- #30357 Fix cases of calls to FillPSMT errantly returning complete=true
 
-### PSBT
+### PSMT
 
-- #29855 psbt: Check non witness utxo outpoint early
+- #29855 psmt: Check non witness utxo outpoint early
 
 ### Test
 

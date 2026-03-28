@@ -528,7 +528,7 @@ Diňe "miras" görnüşli salgylar bilen gol çekmek mümkin.</translation>
         <translation type="unfinished">Habarlaryň görkezilen Bitkoin salgylary bilen gol çekilendigini kepillendirmek üçin habarlary tassykla</translation>
     </message>
     <message>
-        <source>&amp;Load PSBT from file…</source>
+        <source>&amp;Load PSMT from file…</source>
         <translation type="unfinished">Faýldan BGÇBA &amp;ýükle…</translation>
     </message>
     <message>
@@ -643,7 +643,7 @@ Diňe "miras" görnüşli salgylar bilen gol çekmek mümkin.</translation>
         <translation type="unfinished">Bölekleýýin gol çekilen bitkoin geleşigini ýükle</translation>
     </message>
     <message>
-        <source>Load PSBT from &amp;clipboard…</source>
+        <source>Load PSMT from &amp;clipboard…</source>
         <translation type="unfinished">&amp;alyş-çalyş panelinden BGÇBA ýükle…</translation>
     </message>
     <message>
@@ -1596,14 +1596,14 @@ Diňe "miras" görnüşli salgylar bilen gol çekmek mümkin.</translation>
         <translation type="unfinished">Tassyklanmadyk gaýtargyny &amp;sow</translation>
     </message>
     <message>
-        <source>Enable &amp;PSBT controls</source>
-        <extracomment>An options window setting to enable PSBT controls.</extracomment>
-        <translation type="unfinished">&amp;PSBT dolandyryşyny işjeňleşdir</translation>
+        <source>Enable &amp;PSMT controls</source>
+        <extracomment>An options window setting to enable PSMT controls.</extracomment>
+        <translation type="unfinished">&amp;PSMT dolandyryşyny işjeňleşdir</translation>
     </message>
     <message>
-        <source>Whether to show PSBT controls.</source>
-        <extracomment>Tooltip text for options window setting that enables PSBT controls.</extracomment>
-        <translation type="unfinished">PSBT dolandyryşyny görkezmelimi.</translation>
+        <source>Whether to show PSMT controls.</source>
+        <extracomment>Tooltip text for options window setting that enables PSMT controls.</extracomment>
+        <translation type="unfinished">PSMT dolandyryşyny görkezmelimi.</translation>
     </message>
     <message>
         <source>External Signer (e.g. hardware wallet)</source>
@@ -1840,10 +1840,10 @@ Diňe "miras" görnüşli salgylar bilen gol çekmek mümkin.</translation>
     </message>
 </context>
 <context>
-    <name>PSBTOperationsDialog</name>
+    <name>PSMTOperationsDialog</name>
     <message>
-        <source>PSBT Operations</source>
-        <translation type="unfinished">PSBT amallary</translation>
+        <source>PSMT Operations</source>
+        <translation type="unfinished">PSMT amallary</translation>
     </message>
     <message>
         <source>Sign Tx</source>
@@ -1902,8 +1902,8 @@ Diňe "miras" görnüşli salgylar bilen gol çekmek mümkin.</translation>
         <translation type="unfinished">Amal ýaýlymy şowsuz: %1</translation>
     </message>
     <message>
-        <source>PSBT copied to clipboard.</source>
-        <translation type="unfinished">PSBT alyş-çalyş buferine göçürildi.</translation>
+        <source>PSMT copied to clipboard.</source>
+        <translation type="unfinished">PSMT alyş-çalyş buferine göçürildi.</translation>
     </message>
     <message>
         <source>Save Transaction Data</source>
@@ -1911,12 +1911,12 @@ Diňe "miras" görnüşli salgylar bilen gol çekmek mümkin.</translation>
     </message>
     <message>
         <source>Partially Signed Transaction (Binary)</source>
-        <extracomment>Expanded name of the binary PSBT file format. See: BIP 174.</extracomment>
+        <extracomment>Expanded name of the binary PSMT file format. See: BIP 174.</extracomment>
         <translation type="unfinished">Bölekleýin gol çekilen amal (binar)</translation>
     </message>
     <message>
-        <source>PSBT saved to disk.</source>
-        <translation type="unfinished">PSBT diskde ýatda saklandy.</translation>
+        <source>PSMT saved to disk.</source>
+        <translation type="unfinished">PSMT diskde ýatda saklandy.</translation>
     </message>
     <message>
         <source>Unable to calculate transaction fee or total transaction amount.</source>
@@ -2391,7 +2391,7 @@ Size bu ýalňyşlyk gelýän bolsa, siz täjirden BIP21-e gabat gelýän URI-ni
     </message>
     <message>
         <source>Partially Signed Transaction (Binary)</source>
-        <extracomment>Expanded name of the binary PSBT file format. See: BIP 174.</extracomment>
+        <extracomment>Expanded name of the binary PSMT file format. See: BIP 174.</extracomment>
         <translation type="unfinished">Bölekleýin gol çekilen amal (binar)</translation>
     </message>
     <message>

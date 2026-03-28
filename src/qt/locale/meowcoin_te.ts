@@ -508,8 +508,8 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">సందేశాలు పేర్కొన్న బిట్‌కాయిన్ చిరునామాలతో సంతకం చేసినట్లు నిర్ధారించుకోవడానికి వాటిని ధృవీకరించండి</translation>
     </message>
     <message>
-        <source>&amp;Load PSBT from file…</source>
-        <translation type="unfinished">&amp;ఫైల్ నుండి PSBTని లోడ్ చేయండి...</translation>
+        <source>&amp;Load PSMT from file…</source>
+        <translation type="unfinished">&amp;ఫైల్ నుండి PSMTని లోడ్ చేయండి...</translation>
     </message>
     <message>
         <source>Open &amp;URI…</source>
@@ -623,8 +623,8 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">పాక్షికంగా సంతకం చేసిన బిట్‌కాయిన్ లావాదేవీని లోడ్ చేయండి</translation>
     </message>
     <message>
-        <source>Load PSBT from &amp;clipboard…</source>
-        <translation type="unfinished">&amp;క్లిప్‌బోర్డ్ నుండి PSBTని లోడ్ చేయండి...</translation>
+        <source>Load PSMT from &amp;clipboard…</source>
+        <translation type="unfinished">&amp;క్లిప్‌బోర్డ్ నుండి PSMTని లోడ్ చేయండి...</translation>
     </message>
     <message>
         <source>Load Partially Signed Meowcoin Transaction from clipboard</source>
@@ -1491,14 +1491,14 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">&amp;ధృవీకరించబడని మార్పును ఖర్చు చేయండి</translation>
     </message>
     <message>
-        <source>Enable &amp;PSBT controls</source>
-        <extracomment>An options window setting to enable PSBT controls.</extracomment>
-        <translation type="unfinished">&amp;PSBT నియంత్రణలను ప్రారంభించండి</translation>
+        <source>Enable &amp;PSMT controls</source>
+        <extracomment>An options window setting to enable PSMT controls.</extracomment>
+        <translation type="unfinished">&amp;PSMT నియంత్రణలను ప్రారంభించండి</translation>
     </message>
     <message>
-        <source>Whether to show PSBT controls.</source>
-        <extracomment>Tooltip text for options window setting that enables PSBT controls.</extracomment>
-        <translation type="unfinished">PSBT నియంత్రణలను చూపాలా వద్దా.</translation>
+        <source>Whether to show PSMT controls.</source>
+        <extracomment>Tooltip text for options window setting that enables PSMT controls.</extracomment>
+        <translation type="unfinished">PSMT నియంత్రణలను చూపాలా వద్దా.</translation>
     </message>
     <message>
         <source>External Signer (e.g. hardware wallet)</source>
@@ -1739,7 +1739,7 @@ Signing is only possible with addresses of the type 'legacy'.</source>
     </message>
 </context>
 <context>
-    <name>PSBTOperationsDialog</name>
+    <name>PSMTOperationsDialog</name>
     <message>
         <source>Sign Tx</source>
         <translation type="unfinished">లావాదేవీ పై సంతకం చేయండి</translation>
@@ -1797,8 +1797,8 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">లావాదేవీ ప్రసారం విఫలమైంది: %1</translation>
     </message>
     <message>
-        <source>PSBT copied to clipboard.</source>
-        <translation type="unfinished">PSBT క్లిప్‌బోర్డ్‌కి కాపీ చేయబడింది.</translation>
+        <source>PSMT copied to clipboard.</source>
+        <translation type="unfinished">PSMT క్లిప్‌బోర్డ్‌కి కాపీ చేయబడింది.</translation>
     </message>
     <message>
         <source>Save Transaction Data</source>
@@ -1806,12 +1806,12 @@ Signing is only possible with addresses of the type 'legacy'.</source>
     </message>
     <message>
         <source>Partially Signed Transaction (Binary)</source>
-        <extracomment>Expanded name of the binary PSBT file format. See: BIP 174.</extracomment>
+        <extracomment>Expanded name of the binary PSMT file format. See: BIP 174.</extracomment>
         <translation type="unfinished">పాక్షికంగా సంతకం చేసిన లావాదేవీ (బైనరీ)</translation>
     </message>
     <message>
-        <source>PSBT saved to disk.</source>
-        <translation type="unfinished">PSBT డిస్క్‌లో సేవ్ చేయబడింది.</translation>
+        <source>PSMT saved to disk.</source>
+        <translation type="unfinished">PSMT డిస్క్‌లో సేవ్ చేయబడింది.</translation>
     </message>
     <message>
         <source>Unable to calculate transaction fee or total transaction amount.</source>
@@ -2281,7 +2281,7 @@ Signing is only possible with addresses of the type 'legacy'.</source>
     </message>
     <message>
         <source>Partially Signed Transaction (Binary)</source>
-        <extracomment>Expanded name of the binary PSBT file format. See: BIP 174.</extracomment>
+        <extracomment>Expanded name of the binary PSMT file format. See: BIP 174.</extracomment>
         <translation type="unfinished">పాక్షికంగా సంతకం చేసిన లావాదేవీ (బైనరీ)</translation>
     </message>
     <message>

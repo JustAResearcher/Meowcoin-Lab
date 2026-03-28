@@ -513,8 +513,8 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">შეამოწმეთ, რომ მესიჯები ხელმოწერილია მითითებული Meowcoin-მისამართით</translation>
     </message>
     <message>
-        <source>&amp;Load PSBT from file…</source>
-        <translation type="unfinished">&amp;ჩატვირთეთ PSBT ფაილიდან…</translation>
+        <source>&amp;Load PSMT from file…</source>
+        <translation type="unfinished">&amp;ჩატვირთეთ PSMT ფაილიდან…</translation>
     </message>
     <message>
         <source>Open &amp;URI…</source>
@@ -1455,7 +1455,7 @@ Signing is only possible with addresses of the type 'legacy'.</source>
     </message>
     </context>
 <context>
-    <name>PSBTOperationsDialog</name>
+    <name>PSMTOperationsDialog</name>
     <message>
         <source>Sign Tx</source>
         <translation type="unfinished">ხელის მოწერა Tx-ზე</translation>
@@ -1509,8 +1509,8 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">ტრანზაქციის მონაცემების გაგზავნა ვერ მოხერხდა: %1</translation>
     </message>
     <message>
-        <source>PSBT copied to clipboard.</source>
-        <translation type="unfinished">PSBT კოპირებულია ბუფერში.</translation>
+        <source>PSMT copied to clipboard.</source>
+        <translation type="unfinished">PSMT კოპირებულია ბუფერში.</translation>
     </message>
     <message>
         <source>Save Transaction Data</source>
@@ -1518,12 +1518,12 @@ Signing is only possible with addresses of the type 'legacy'.</source>
     </message>
     <message>
         <source>Partially Signed Transaction (Binary)</source>
-        <extracomment>Expanded name of the binary PSBT file format. See: BIP 174.</extracomment>
+        <extracomment>Expanded name of the binary PSMT file format. See: BIP 174.</extracomment>
         <translation type="unfinished">ნაწილობრივ ხელმოწერილი ტრანზაქცია (ორობითი)</translation>
     </message>
     <message>
-        <source>PSBT saved to disk.</source>
-        <translation type="unfinished">PSBT შენახულია დისკზე.</translation>
+        <source>PSMT saved to disk.</source>
+        <translation type="unfinished">PSMT შენახულია დისკზე.</translation>
     </message>
     <message>
         <source>own address</source>
@@ -2175,13 +2175,13 @@ Signing is only possible with addresses of the type 'legacy'.</source>
     </message>
     <message>
         <source>Partially Signed Transaction (Binary)</source>
-        <extracomment>Expanded name of the binary PSBT file format. See: BIP 174.</extracomment>
+        <extracomment>Expanded name of the binary PSMT file format. See: BIP 174.</extracomment>
         <translation type="unfinished">ნაწილობრივ ხელმოწერილი ტრანზაქცია (ორობითი)</translation>
     </message>
     <message>
-        <source>PSBT saved</source>
-        <extracomment>Popup message when a PSBT has been saved to a file</extracomment>
-        <translation type="unfinished">PSBT შენახულია</translation>
+        <source>PSMT saved</source>
+        <extracomment>Popup message when a PSMT has been saved to a file</extracomment>
+        <translation type="unfinished">PSMT შენახულია</translation>
     </message>
     <message>
         <source>or</source>

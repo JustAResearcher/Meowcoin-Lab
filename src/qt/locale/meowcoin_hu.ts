@@ -562,8 +562,8 @@ Aláírni csak régi típusú, egyessel kezdődő címekkel lehet.</translation>
         <translation type="unfinished">Üzenetek ellenőrzése, hogy valóban a megjelölt Meowcoin-címekkel vannak-e aláírva</translation>
     </message>
     <message>
-        <source>&amp;Load PSBT from file…</source>
-        <translation type="unfinished">PSBT betöltése &amp;fájlból…</translation>
+        <source>&amp;Load PSMT from file…</source>
+        <translation type="unfinished">PSMT betöltése &amp;fájlból…</translation>
     </message>
     <message>
         <source>Open &amp;URI…</source>
@@ -673,15 +673,15 @@ Aláírni csak régi típusú, egyessel kezdődő címekkel lehet.</translation>
     </message>
     <message>
         <source>Load Partially Signed Meowcoin Transaction</source>
-        <translation type="unfinished">Részlegesen aláírt Meowcoin tranzakció (PSBT) betöltése</translation>
+        <translation type="unfinished">Részlegesen aláírt Meowcoin tranzakció (PSMT) betöltése</translation>
     </message>
     <message>
-        <source>Load PSBT from &amp;clipboard…</source>
-        <translation type="unfinished">PSBT betöltése &amp;vágólapról...</translation>
+        <source>Load PSMT from &amp;clipboard…</source>
+        <translation type="unfinished">PSMT betöltése &amp;vágólapról...</translation>
     </message>
     <message>
         <source>Load Partially Signed Meowcoin Transaction from clipboard</source>
-        <translation type="unfinished">Részlegesen aláírt Meowcoin tranzakció (PSBT) betöltése vágólapról</translation>
+        <translation type="unfinished">Részlegesen aláírt Meowcoin tranzakció (PSMT) betöltése vágólapról</translation>
     </message>
     <message>
         <source>Node window</source>
@@ -1704,14 +1704,14 @@ A migrációs folyamat készít biztonsági mentést a tárcáról migrálás el
         <translation type="unfinished">A jóváhagyatlan visszajáró el&amp;költése</translation>
     </message>
     <message>
-        <source>Enable &amp;PSBT controls</source>
-        <extracomment>An options window setting to enable PSBT controls.</extracomment>
-        <translation type="unfinished">&amp;PSBT vezérlők engedélyezése</translation>
+        <source>Enable &amp;PSMT controls</source>
+        <extracomment>An options window setting to enable PSMT controls.</extracomment>
+        <translation type="unfinished">&amp;PSMT vezérlők engedélyezése</translation>
     </message>
     <message>
-        <source>Whether to show PSBT controls.</source>
-        <extracomment>Tooltip text for options window setting that enables PSBT controls.</extracomment>
-        <translation type="unfinished">Láthatóak legyenek-e a PSBT vezérlők.</translation>
+        <source>Whether to show PSMT controls.</source>
+        <extracomment>Tooltip text for options window setting that enables PSMT controls.</extracomment>
+        <translation type="unfinished">Láthatóak legyenek-e a PSMT vezérlők.</translation>
     </message>
     <message>
         <source>External Signer (e.g. hardware wallet)</source>
@@ -1944,10 +1944,10 @@ A migrációs folyamat készít biztonsági mentést a tárcáról migrálás el
     </message>
 </context>
 <context>
-    <name>PSBTOperationsDialog</name>
+    <name>PSMTOperationsDialog</name>
     <message>
-        <source>PSBT Operations</source>
-        <translation type="unfinished">PSBT műveletek</translation>
+        <source>PSMT Operations</source>
+        <translation type="unfinished">PSMT műveletek</translation>
     </message>
     <message>
         <source>Sign Tx</source>
@@ -2006,8 +2006,8 @@ A migrációs folyamat készít biztonsági mentést a tárcáról migrálás el
         <translation type="unfinished">Tranzakció szétküldése sikertelen: %1</translation>
     </message>
     <message>
-        <source>PSBT copied to clipboard.</source>
-        <translation type="unfinished">PSBT vágólapra másolva.</translation>
+        <source>PSMT copied to clipboard.</source>
+        <translation type="unfinished">PSMT vágólapra másolva.</translation>
     </message>
     <message>
         <source>Save Transaction Data</source>
@@ -2015,12 +2015,12 @@ A migrációs folyamat készít biztonsági mentést a tárcáról migrálás el
     </message>
     <message>
         <source>Partially Signed Transaction (Binary)</source>
-        <extracomment>Expanded name of the binary PSBT file format. See: BIP 174.</extracomment>
-        <translation type="unfinished">Részlegesen Aláírt Tranzakció (PSBT bináris)</translation>
+        <extracomment>Expanded name of the binary PSMT file format. See: BIP 174.</extracomment>
+        <translation type="unfinished">Részlegesen Aláírt Tranzakció (PSMT bináris)</translation>
     </message>
     <message>
-        <source>PSBT saved to disk.</source>
-        <translation type="unfinished">PSBT háttértárolóra mentve.</translation>
+        <source>PSMT saved to disk.</source>
+        <translation type="unfinished">PSMT háttértárolóra mentve.</translation>
     </message>
     <message>
         <source>Sends %1 to %2</source>
@@ -3098,8 +3098,8 @@ Megjegyzés: Mivel a díj bájtonként van kiszámítva, egy "100 satoshi kvB-nk
         <translation type="unfinished">&amp;Aláíratlan létrehozása</translation>
     </message>
     <message>
-        <source>Creates a Partially Signed Meowcoin Transaction (PSBT) for use with e.g. an offline %1 wallet, or a PSBT-compatible hardware wallet.</source>
-        <translation type="unfinished">Létrehoz egy Részlegesen Aláírt Meowcoin Tranzakciót (PSBT) melyet offline %1 tárcával vagy egy PSBT kompatibilis hardver tárcával használhat.</translation>
+        <source>Creates a Partially Signed Meowcoin Transaction (PSMT) for use with e.g. an offline %1 wallet, or a PSMT-compatible hardware wallet.</source>
+        <translation type="unfinished">Létrehoz egy Részlegesen Aláírt Meowcoin Tranzakciót (PSMT) melyet offline %1 tárcával vagy egy PSMT kompatibilis hardver tárcával használhat.</translation>
     </message>
     <message>
         <source>%1 to '%2'</source>
@@ -3133,12 +3133,12 @@ Megjegyzés: Mivel a díj bájtonként van kiszámítva, egy "100 satoshi kvB-nk
     </message>
     <message>
         <source>Partially Signed Transaction (Binary)</source>
-        <extracomment>Expanded name of the binary PSBT file format. See: BIP 174.</extracomment>
-        <translation type="unfinished">Részlegesen aláírt tranzakció (PSBT bináris)</translation>
+        <extracomment>Expanded name of the binary PSMT file format. See: BIP 174.</extracomment>
+        <translation type="unfinished">Részlegesen aláírt tranzakció (PSMT bináris)</translation>
     </message>
     <message>
-        <source>PSBT saved</source>
-        <extracomment>Popup message when a PSBT has been saved to a file</extracomment>
+        <source>PSMT saved</source>
+        <extracomment>Popup message when a PSMT has been saved to a file</extracomment>
         <translation type="unfinished">PBST elmentve</translation>
     </message>
     <message>
@@ -3154,9 +3154,9 @@ Megjegyzés: Mivel a díj bájtonként van kiszámítva, egy "100 satoshi kvB-nk
         <translation type="unfinished">Később növelheti a tranzakció díját (Replace-By-Fee-t jelez, BIP-125).</translation>
     </message>
     <message>
-        <source>Please, review your transaction proposal. This will produce a Partially Signed Meowcoin Transaction (PSBT) which you can save or copy and then sign with e.g. an offline %1 wallet, or a PSBT-compatible hardware wallet.</source>
-        <extracomment>Text to inform a user attempting to create a transaction of their current options. At this stage, a user can only create a PSBT. This string is displayed when private keys are disabled and an external signer is not available.</extracomment>
-        <translation type="unfinished">Kérjük nézze át a tranzakciós javaslatot. Ez létrehoz egy részlegesen aláírt meowcoin tranzakciót (PSBT) amit elmenthet vagy kimásolhat amit később aláírhatja offline %1 tárcával vagy egy PSBT kompatibilis hardvertárcával.</translation>
+        <source>Please, review your transaction proposal. This will produce a Partially Signed Meowcoin Transaction (PSMT) which you can save or copy and then sign with e.g. an offline %1 wallet, or a PSMT-compatible hardware wallet.</source>
+        <extracomment>Text to inform a user attempting to create a transaction of their current options. At this stage, a user can only create a PSMT. This string is displayed when private keys are disabled and an external signer is not available.</extracomment>
+        <translation type="unfinished">Kérjük nézze át a tranzakciós javaslatot. Ez létrehoz egy részlegesen aláírt meowcoin tranzakciót (PSMT) amit elmenthet vagy kimásolhat amit később aláírhatja offline %1 tárcával vagy egy PSMT kompatibilis hardvertárcával.</translation>
     </message>
     <message>
         <source>%1 from wallet '%2'</source>
@@ -3168,9 +3168,9 @@ Megjegyzés: Mivel a díj bájtonként van kiszámítva, egy "100 satoshi kvB-nk
         <translation type="unfinished">Biztosan létrehozza ezt a tranzakciót?</translation>
     </message>
     <message>
-        <source>Please, review your transaction. You can create and send this transaction or create a Partially Signed Meowcoin Transaction (PSBT), which you can save or copy and then sign with, e.g., an offline %1 wallet, or a PSBT-compatible hardware wallet.</source>
-        <extracomment>Text to inform a user attempting to create a transaction of their current options. At this stage, a user can send their transaction or create a PSBT. This string is displayed when both private keys and PSBT controls are enabled.</extracomment>
-        <translation type="unfinished">Kérjük nézze át a tranzakció részleteit. Véglegesítheti és elküldheti ezt a tranzakciót vagy létrehozhat egy részlegesen aláírt meowcoin tranzakciót (PSBT) amit elmentve vagy átmásolva aláírhat egy offline %1 tárcával, vagy PSBT-t támogató hardvertárcával.</translation>
+        <source>Please, review your transaction. You can create and send this transaction or create a Partially Signed Meowcoin Transaction (PSMT), which you can save or copy and then sign with, e.g., an offline %1 wallet, or a PSMT-compatible hardware wallet.</source>
+        <extracomment>Text to inform a user attempting to create a transaction of their current options. At this stage, a user can send their transaction or create a PSMT. This string is displayed when both private keys and PSMT controls are enabled.</extracomment>
+        <translation type="unfinished">Kérjük nézze át a tranzakció részleteit. Véglegesítheti és elküldheti ezt a tranzakciót vagy létrehozhat egy részlegesen aláírt meowcoin tranzakciót (PSMT) amit elmentve vagy átmásolva aláírhat egy offline %1 tárcával, vagy PSMT-t támogató hardvertárcával.</translation>
     </message>
     <message>
         <source>Please, review your transaction.</source>
@@ -3191,17 +3191,17 @@ Megjegyzés: Mivel a díj bájtonként van kiszámítva, egy "100 satoshi kvB-nk
     </message>
     <message>
         <source>Unsigned Transaction</source>
-        <comment>PSBT copied</comment>
-        <extracomment>Caption of "PSBT has been copied" messagebox</extracomment>
+        <comment>PSMT copied</comment>
+        <extracomment>Caption of "PSMT has been copied" messagebox</extracomment>
         <translation type="unfinished">Aláíratlan tranzakció</translation>
     </message>
     <message>
-        <source>The PSBT has been copied to the clipboard. You can also save it.</source>
-        <translation type="unfinished">A PSBT sikeresen vágólapra másolva. Onnan el is tudja menteni.</translation>
+        <source>The PSMT has been copied to the clipboard. You can also save it.</source>
+        <translation type="unfinished">A PSMT sikeresen vágólapra másolva. Onnan el is tudja menteni.</translation>
     </message>
     <message>
-        <source>PSBT saved to disk</source>
-        <translation type="unfinished">PSBT lemezre mentve</translation>
+        <source>PSMT saved to disk</source>
+        <translation type="unfinished">PSMT lemezre mentve</translation>
     </message>
     <message>
         <source>Confirm send coins</source>
@@ -3923,24 +3923,24 @@ A "Fájl &gt; Tárca megnyitása" menüben tölthet be egyet.
         <translation type="unfinished">Hiba</translation>
     </message>
     <message>
-        <source>Unable to decode PSBT from clipboard (invalid base64)</source>
-        <translation type="unfinished">PSBT sikertelen dekódolása a vágólapról (érvénytelen base64)</translation>
+        <source>Unable to decode PSMT from clipboard (invalid base64)</source>
+        <translation type="unfinished">PSMT sikertelen dekódolása a vágólapról (érvénytelen base64)</translation>
     </message>
     <message>
         <source>Load Transaction Data</source>
         <translation type="unfinished">Tranzakció adatainak betöltése</translation>
     </message>
     <message>
-        <source>Partially Signed Transaction (*.psbt)</source>
-        <translation type="unfinished">Részlegesen Aláírt Tranzakció (*.psbt)</translation>
+        <source>Partially Signed Transaction (*.psmt)</source>
+        <translation type="unfinished">Részlegesen Aláírt Tranzakció (*.psmt)</translation>
     </message>
     <message>
-        <source>PSBT file must be smaller than 100 MiB</source>
-        <translation type="unfinished">A PSBT fájlnak kisebbnek kell lennie, mint 100 MiB</translation>
+        <source>PSMT file must be smaller than 100 MiB</source>
+        <translation type="unfinished">A PSMT fájlnak kisebbnek kell lennie, mint 100 MiB</translation>
     </message>
     <message>
-        <source>Unable to decode PSBT</source>
-        <translation type="unfinished">PSBT dekódolása sikertelen</translation>
+        <source>Unable to decode PSMT</source>
+        <translation type="unfinished">PSMT dekódolása sikertelen</translation>
     </message>
 </context>
 <context>
@@ -3987,12 +3987,12 @@ A "Fájl &gt; Tárca megnyitása" menüben tölthet be egyet.
         <translation type="unfinished">Tranzakciós piszkozat létrehozása sikertelen.</translation>
     </message>
     <message>
-        <source>PSBT copied</source>
-        <translation type="unfinished">PSBT másolva</translation>
+        <source>PSMT copied</source>
+        <translation type="unfinished">PSMT másolva</translation>
     </message>
     <message>
-        <source>Fee-bump PSBT copied to clipboard</source>
-        <translation type="unfinished">Díj emelési PSBT a vágólapra másolva</translation>
+        <source>Fee-bump PSMT copied to clipboard</source>
+        <translation type="unfinished">Díj emelési PSMT a vágólapra másolva</translation>
     </message>
     <message>
         <source>Can't sign transaction.</source>

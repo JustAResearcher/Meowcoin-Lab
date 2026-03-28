@@ -472,8 +472,8 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">Verifiser meldinger for å sikre at de ble signert med de spesifiserte Meowcoin-adressene</translation>
     </message>
     <message>
-        <source>&amp;Load PSBT from file…</source>
-        <translation type="unfinished">&amp;Last inn PSBT fra fil…</translation>
+        <source>&amp;Load PSMT from file…</source>
+        <translation type="unfinished">&amp;Last inn PSMT fra fil…</translation>
     </message>
     <message>
         <source>Open &amp;URI…</source>
@@ -587,8 +587,8 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">Last inn delvis signert Meowcoin-transaksjon</translation>
     </message>
     <message>
-        <source>Load PSBT from &amp;clipboard…</source>
-        <translation type="unfinished">Last inn PSBT fra &amp;utklippstavle…</translation>
+        <source>Load PSMT from &amp;clipboard…</source>
+        <translation type="unfinished">Last inn PSMT fra &amp;utklippstavle…</translation>
     </message>
     <message>
         <source>Load Partially Signed Meowcoin Transaction from clipboard</source>

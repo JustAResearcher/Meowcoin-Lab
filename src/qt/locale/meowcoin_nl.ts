@@ -552,8 +552,8 @@ Ondertekenen is alleen mogelijk met adressen van het type 'legacy'.</translation
         <translation type="unfinished">Verifiëer handtekeningen om zeker te zijn dat de berichten zijn ondertekend met de gespecificeerde Meowcoin adressen</translation>
     </message>
     <message>
-        <source>&amp;Load PSBT from file…</source>
-        <translation type="unfinished">&amp;Laad PSBT vanuit bestand...</translation>
+        <source>&amp;Load PSMT from file…</source>
+        <translation type="unfinished">&amp;Laad PSMT vanuit bestand...</translation>
     </message>
     <message>
         <source>Open &amp;URI…</source>
@@ -667,8 +667,8 @@ Ondertekenen is alleen mogelijk met adressen van het type 'legacy'.</translation
         <translation type="unfinished">Laad gedeeltelijk ondertekende Meowcoin-transactie</translation>
     </message>
     <message>
-        <source>Load PSBT from &amp;clipboard…</source>
-        <translation type="unfinished">Laad PSBT vanaf klembord...</translation>
+        <source>Load PSMT from &amp;clipboard…</source>
+        <translation type="unfinished">Laad PSMT vanaf klembord...</translation>
     </message>
     <message>
         <source>Load Partially Signed Meowcoin Transaction from clipboard</source>
@@ -1842,10 +1842,10 @@ Het migratieproces maakt voorafgaand aan het migreren een backup van de wallet. 
     </message>
 </context>
 <context>
-    <name>PSBTOperationsDialog</name>
+    <name>PSMTOperationsDialog</name>
     <message>
-        <source>PSBT Operations</source>
-        <translation type="unfinished">PSBT Bewerkingen</translation>
+        <source>PSMT Operations</source>
+        <translation type="unfinished">PSMT Bewerkingen</translation>
     </message>
     <message>
         <source>Sign Tx</source>
@@ -1904,8 +1904,8 @@ Het migratieproces maakt voorafgaand aan het migreren een backup van de wallet. 
         <translation type="unfinished">Uitzenden transactie mislukt: %1</translation>
     </message>
     <message>
-        <source>PSBT copied to clipboard.</source>
-        <translation type="unfinished">PSBT gekopieerd naar klembord.</translation>
+        <source>PSMT copied to clipboard.</source>
+        <translation type="unfinished">PSMT gekopieerd naar klembord.</translation>
     </message>
     <message>
         <source>Save Transaction Data</source>
@@ -1913,12 +1913,12 @@ Het migratieproces maakt voorafgaand aan het migreren een backup van de wallet. 
     </message>
     <message>
         <source>Partially Signed Transaction (Binary)</source>
-        <extracomment>Expanded name of the binary PSBT file format. See: BIP 174.</extracomment>
+        <extracomment>Expanded name of the binary PSMT file format. See: BIP 174.</extracomment>
         <translation type="unfinished">Gedeeltelijk Ondertekende Transactie (Binair)</translation>
     </message>
     <message>
-        <source>PSBT saved to disk.</source>
-        <translation type="unfinished">PSBT opgeslagen op de schijf</translation>
+        <source>PSMT saved to disk.</source>
+        <translation type="unfinished">PSMT opgeslagen op de schijf</translation>
     </message>
     <message>
         <source>Sends %1 to %2</source>
@@ -2896,8 +2896,8 @@ Notitie: Omdat de vergoeding per byte wordt gerekend, zal een vergoeding van "10
         <translation type="unfinished">Cr&amp;eëer Ongetekend</translation>
     </message>
     <message>
-        <source>Creates a Partially Signed Meowcoin Transaction (PSBT) for use with e.g. an offline %1 wallet, or a PSBT-compatible hardware wallet.</source>
-        <translation type="unfinished">Creëert een Gedeeltelijk Getekende Meowcoin Transactie (PSBT) om te gebruiken met b.v. een offline %1 wallet, of een PSBT-compatibele hardware wallet.</translation>
+        <source>Creates a Partially Signed Meowcoin Transaction (PSMT) for use with e.g. an offline %1 wallet, or a PSMT-compatible hardware wallet.</source>
+        <translation type="unfinished">Creëert een Gedeeltelijk Getekende Meowcoin Transactie (PSMT) om te gebruiken met b.v. een offline %1 wallet, of een PSMT-compatibele hardware wallet.</translation>
     </message>
     <message>
         <source>%1 to '%2'</source>
@@ -2931,13 +2931,13 @@ Notitie: Omdat de vergoeding per byte wordt gerekend, zal een vergoeding van "10
     </message>
     <message>
         <source>Partially Signed Transaction (Binary)</source>
-        <extracomment>Expanded name of the binary PSBT file format. See: BIP 174.</extracomment>
+        <extracomment>Expanded name of the binary PSMT file format. See: BIP 174.</extracomment>
         <translation type="unfinished">Gedeeltelijk Ondertekende Transactie (Binair)</translation>
     </message>
     <message>
-        <source>PSBT saved</source>
-        <extracomment>Popup message when a PSBT has been saved to a file</extracomment>
-        <translation type="unfinished">PSBT opgeslagen</translation>
+        <source>PSMT saved</source>
+        <extracomment>Popup message when a PSMT has been saved to a file</extracomment>
+        <translation type="unfinished">PSMT opgeslagen</translation>
     </message>
     <message>
         <source>External balance:</source>
@@ -2952,9 +2952,9 @@ Notitie: Omdat de vergoeding per byte wordt gerekend, zal een vergoeding van "10
         <translation type="unfinished">Je kunt de vergoeding later verhogen (signaleert Replace-By-Fee, BIP-125).</translation>
     </message>
     <message>
-        <source>Please, review your transaction proposal. This will produce a Partially Signed Meowcoin Transaction (PSBT) which you can save or copy and then sign with e.g. an offline %1 wallet, or a PSBT-compatible hardware wallet.</source>
-        <extracomment>Text to inform a user attempting to create a transaction of their current options. At this stage, a user can only create a PSBT. This string is displayed when private keys are disabled and an external signer is not available.</extracomment>
-        <translation type="unfinished">Controleer aub je transactievoorstel. Dit zal een Gedeeltelijk Getekende Meowcoin Transactie (PSBT) produceren die je kan opslaan of kopiëren en vervolgens ondertekenen met bijv. een offline %1 wallet, of een PSBT-combatibele hardware wallet.</translation>
+        <source>Please, review your transaction proposal. This will produce a Partially Signed Meowcoin Transaction (PSMT) which you can save or copy and then sign with e.g. an offline %1 wallet, or a PSMT-compatible hardware wallet.</source>
+        <extracomment>Text to inform a user attempting to create a transaction of their current options. At this stage, a user can only create a PSMT. This string is displayed when private keys are disabled and an external signer is not available.</extracomment>
+        <translation type="unfinished">Controleer aub je transactievoorstel. Dit zal een Gedeeltelijk Getekende Meowcoin Transactie (PSMT) produceren die je kan opslaan of kopiëren en vervolgens ondertekenen met bijv. een offline %1 wallet, of een PSMT-combatibele hardware wallet.</translation>
     </message>
     <message>
         <source>%1 from wallet '%2'</source>
@@ -2966,9 +2966,9 @@ Notitie: Omdat de vergoeding per byte wordt gerekend, zal een vergoeding van "10
         <translation type="unfinished">Wilt u deze transactie aanmaken?</translation>
     </message>
     <message>
-        <source>Please, review your transaction. You can create and send this transaction or create a Partially Signed Meowcoin Transaction (PSBT), which you can save or copy and then sign with, e.g., an offline %1 wallet, or a PSBT-compatible hardware wallet.</source>
-        <extracomment>Text to inform a user attempting to create a transaction of their current options. At this stage, a user can send their transaction or create a PSBT. This string is displayed when both private keys and PSBT controls are enabled.</extracomment>
-        <translation type="unfinished">Controleer aub je transactie. Je kan deze transactie creëren en verzenden, of een Gedeeltelijk Getekende Meowcoin Transactie (PSBT) maken, die je kan opslaan of kopiëren en daarna ondertekenen, bijv. met een offline %1 wallet, of een PSBT-combatibele hardware wallet.</translation>
+        <source>Please, review your transaction. You can create and send this transaction or create a Partially Signed Meowcoin Transaction (PSMT), which you can save or copy and then sign with, e.g., an offline %1 wallet, or a PSMT-compatible hardware wallet.</source>
+        <extracomment>Text to inform a user attempting to create a transaction of their current options. At this stage, a user can send their transaction or create a PSMT. This string is displayed when both private keys and PSMT controls are enabled.</extracomment>
+        <translation type="unfinished">Controleer aub je transactie. Je kan deze transactie creëren en verzenden, of een Gedeeltelijk Getekende Meowcoin Transactie (PSMT) maken, die je kan opslaan of kopiëren en daarna ondertekenen, bijv. met een offline %1 wallet, of een PSMT-combatibele hardware wallet.</translation>
     </message>
     <message>
         <source>Please, review your transaction.</source>
@@ -2989,17 +2989,17 @@ Notitie: Omdat de vergoeding per byte wordt gerekend, zal een vergoeding van "10
     </message>
     <message>
         <source>Unsigned Transaction</source>
-        <comment>PSBT copied</comment>
-        <extracomment>Caption of "PSBT has been copied" messagebox</extracomment>
+        <comment>PSMT copied</comment>
+        <extracomment>Caption of "PSMT has been copied" messagebox</extracomment>
         <translation type="unfinished">Niet-ondertekende transactie</translation>
     </message>
     <message>
-        <source>The PSBT has been copied to the clipboard. You can also save it.</source>
-        <translation type="unfinished">De PSBT is naar het klembord gekopieerd. Je kunt het ook opslaan.</translation>
+        <source>The PSMT has been copied to the clipboard. You can also save it.</source>
+        <translation type="unfinished">De PSMT is naar het klembord gekopieerd. Je kunt het ook opslaan.</translation>
     </message>
     <message>
-        <source>PSBT saved to disk</source>
-        <translation type="unfinished">PSBT opgeslagen op schijf</translation>
+        <source>PSMT saved to disk</source>
+        <translation type="unfinished">PSMT opgeslagen op schijf</translation>
     </message>
     <message>
         <source>Confirm send coins</source>
@@ -3671,24 +3671,24 @@ Ga naar Bestand &gt; Wallet openen om een wallet te laden.
         <translation type="unfinished">Fout</translation>
     </message>
     <message>
-        <source>Unable to decode PSBT from clipboard (invalid base64)</source>
-        <translation type="unfinished">Onmogelijk om het PSBT te ontcijferen van het klembord (ongeldige base64)</translation>
+        <source>Unable to decode PSMT from clipboard (invalid base64)</source>
+        <translation type="unfinished">Onmogelijk om het PSMT te ontcijferen van het klembord (ongeldige base64)</translation>
     </message>
     <message>
         <source>Load Transaction Data</source>
         <translation type="unfinished">Laad Transactie Data</translation>
     </message>
     <message>
-        <source>Partially Signed Transaction (*.psbt)</source>
-        <translation type="unfinished">Gedeeltelijk ondertekende transactie (*.psbt)</translation>
+        <source>Partially Signed Transaction (*.psmt)</source>
+        <translation type="unfinished">Gedeeltelijk ondertekende transactie (*.psmt)</translation>
     </message>
     <message>
-        <source>PSBT file must be smaller than 100 MiB</source>
-        <translation type="unfinished">Het PSBT bestand moet kleiner dan 100 MiB te zijn.</translation>
+        <source>PSMT file must be smaller than 100 MiB</source>
+        <translation type="unfinished">Het PSMT bestand moet kleiner dan 100 MiB te zijn.</translation>
     </message>
     <message>
-        <source>Unable to decode PSBT</source>
-        <translation type="unfinished">Niet in staat om de PSBT te decoderen</translation>
+        <source>Unable to decode PSMT</source>
+        <translation type="unfinished">Niet in staat om de PSMT te decoderen</translation>
     </message>
 </context>
 <context>
@@ -3735,8 +3735,8 @@ Ga naar Bestand &gt; Wallet openen om een wallet te laden.
         <translation type="unfinished">Kan geen transactievoorstel aanmaken.</translation>
     </message>
     <message>
-        <source>PSBT copied</source>
-        <translation type="unfinished">PSBT is gekopieerd</translation>
+        <source>PSMT copied</source>
+        <translation type="unfinished">PSMT is gekopieerd</translation>
     </message>
     <message>
         <source>Can't sign transaction.</source>

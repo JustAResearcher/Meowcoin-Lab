@@ -73,7 +73,7 @@ not to use coin control features with multiple wallets loaded.
 
 ### RPC and other APIs
 - #15991 Bugfix: fix pruneblockchain returned prune height (jonasschnelli)
-- #15899 Document iswitness flag and fix bug in converttopsbt (MarcoFalke)
+- #15899 Document iswitness flag and fix bug in converttopsmt (MarcoFalke)
 - #16026 Ensure that uncompressed public keys in a multisig always returns a legacy address (achow101)
 - #14039 Disallow extended encoding for non-witness transactions (sipa)
 - #16210 add 2nd arg to signrawtransactionwithkey examples (dooglus)
@@ -97,7 +97,7 @@ not to use coin control features with multiple wallets loaded.
 ### Tests and QA
 - #15826 Pure python EC (sipa)
 - #15893 Add test for superfluous witness record in deserialization (instagibbs)
-- #14818 Bugfix: test/functional/rpc_psbt: Remove check for specific error message that depends on uncertain assumptions (luke-jr)
+- #14818 Bugfix: test/functional/rpc_psmt: Remove check for specific error message that depends on uncertain assumptions (luke-jr)
 - #15831 Add test that addmultisigaddress fails for watchonly addresses (MarcoFalke)
 
 ### Documentation

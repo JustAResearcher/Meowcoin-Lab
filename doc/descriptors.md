@@ -13,7 +13,7 @@ Supporting RPCs are:
 - `getaddressinfo` outputs a descriptor for solvable addresses (since v0.18).
 - `generatetodescriptor` takes as input a descriptor and generates coins to it
   (`regtest` only, since v0.19).
-- `utxoupdatepsbt` takes as input descriptors to add information to the psbt
+- `utxoupdatepsmt` takes as input descriptors to add information to the psmt
   (since v0.19).
 - `createmultisig` and `addmultisigaddress` return descriptors as well (since v0.20).
 - `importdescriptors` takes as input descriptors to import into a descriptor wallet
@@ -160,7 +160,7 @@ are lexicographically ordered as described in BIP67.
 #### Basic multisig example
 
 For a good example of a basic M-of-N multisig between multiple participants using descriptor
-wallets and PSBTs, as well as a signing flow, see [this functional test](/test/functional/wallet_multisig_descriptor_psbt.py).
+wallets and PSMTs, as well as a signing flow, see [this functional test](/test/functional/wallet_multisig_descriptor_psmt.py).
 
 Disclaimers: It is important to note that this example serves as a quick-start and is kept basic for readability. A downside of the approach
 outlined here is that each participant must maintain (and backup) two separate wallets: a signer and the corresponding multisig.
@@ -181,30 +181,30 @@ The basic steps are:
   3. A receiving address is generated for the multisig. As a check to ensure step 2 was done correctly, every participant
      should verify they get the same addresses
   4. Funds are sent to the resulting address
-  5. A sending transaction from the multisig is created using `walletcreatefundedpsbt` (anyone can initiate this). It is simple to do
-     this in the GUI by going to the `Send` tab in the multisig wallet and creating an unsigned transaction (PSBT)
-  6. At least `M` participants check the PSBT with their multisig using `decodepsbt` to verify the transaction is OK before signing it.
-  7. (If OK) the participant signs the PSBT with their signer wallet using `walletprocesspsbt`. It is simple to do this in the GUI by
-     loading the PSBT from file and signing it
-  8. The signed PSBTs are collected with `combinepsbt`, finalized w/ `finalizepsbt`, and then the resulting transaction is broadcasted
+  5. A sending transaction from the multisig is created using `walletcreatefundedpsmt` (anyone can initiate this). It is simple to do
+     this in the GUI by going to the `Send` tab in the multisig wallet and creating an unsigned transaction (PSMT)
+  6. At least `M` participants check the PSMT with their multisig using `decodepsmt` to verify the transaction is OK before signing it.
+  7. (If OK) the participant signs the PSMT with their signer wallet using `walletprocesspsmt`. It is simple to do this in the GUI by
+     loading the PSMT from file and signing it
+  8. The signed PSMTs are collected with `combinepsmt`, finalized w/ `finalizepsmt`, and then the resulting transaction is broadcasted
      to the network. Note that any wallet (eg one of the signers or multisig) is capable of doing this.
   9. Checks that balances are correct after the transaction has been included in a block
 
-You may prefer a daisy chained signing flow where each participant signs the PSBT one after another until
-the PSBT has been signed `M` times and is "complete." For the most part, the steps above remain the same, except (6, 7)
-change slightly from signing the original PSBT in parallel to signing it in series. `combinepsbt` is not necessary with
-this signing flow and the last (`m`th) signer can just broadcast the PSBT after signing. Note that a parallel signing flow may be
+You may prefer a daisy chained signing flow where each participant signs the PSMT one after another until
+the PSMT has been signed `M` times and is "complete." For the most part, the steps above remain the same, except (6, 7)
+change slightly from signing the original PSMT in parallel to signing it in series. `combinepsmt` is not necessary with
+this signing flow and the last (`m`th) signer can just broadcast the PSMT after signing. Note that a parallel signing flow may be
 preferable in cases where there are more signers. This signing flow is also included in the test / Python example.
-[The test](/test/functional/wallet_multisig_descriptor_psbt.py) is meant to be documentation as much as it is a functional test, so
+[The test](/test/functional/wallet_multisig_descriptor_psmt.py) is meant to be documentation as much as it is a functional test, so
 it is kept as simple and readable as possible.
 
 #### Basic Miniscript-enabled "decaying" multisig example
 
-For an example of a multisig that starts as 4-of-4 and "decays" to 3-of-4, 2-of-4, and finally 1-of-4 at each future halvening block height, see [this functional test](/test/functional/wallet_miniscript_decaying_multisig_descriptor_psbt.py).
+For an example of a multisig that starts as 4-of-4 and "decays" to 3-of-4, 2-of-4, and finally 1-of-4 at each future halvening block height, see [this functional test](/test/functional/wallet_miniscript_decaying_multisig_descriptor_psmt.py).
 
 This has the same "architecture" and signing flow as the above [Basic multisig example](#basic-multisig-example). The basic steps are identical aside from the descriptor that defines this wallet, which is of the form: `wsh(thresh(4,pk(XPUB1),s:pk(XPUB2),s:pk(XPUB3),s:pk(XPUB4),sln:after(t1),sln:after(t2),sln:after(t3)))`.
 
-[The test](/test/functional/wallet_miniscript_decaying_multisig_descriptor_psbt.py) is meant to be documentation as much as it is a functional test, so it is kept as simple and readable as possible.
+[The test](/test/functional/wallet_miniscript_decaying_multisig_descriptor_psmt.py) is meant to be documentation as much as it is a functional test, so it is kept as simple and readable as possible.
 
 ### BIP32 derived keys and chains
 

@@ -549,8 +549,8 @@ Només és possible firmar amb adreces del tipus "legacy".</translation>
         <translation type="unfinished">Verifiqueu els missatges per a assegurar-vos que han estat signats amb una adreça Meowcoin específica.</translation>
     </message>
     <message>
-        <source>&amp;Load PSBT from file…</source>
-        <translation type="unfinished">&amp;Carrega la PSBT des del fitxer…</translation>
+        <source>&amp;Load PSMT from file…</source>
+        <translation type="unfinished">&amp;Carrega la PSMT des del fitxer…</translation>
     </message>
     <message>
         <source>Open &amp;URI…</source>
@@ -660,8 +660,8 @@ Només és possible firmar amb adreces del tipus "legacy".</translation>
         <translation type="unfinished">Carrega la transacció Meowcoin signada parcialment</translation>
     </message>
     <message>
-        <source>Load PSBT from &amp;clipboard…</source>
-        <translation type="unfinished">Carrega la PSBT des del &amp;porta-retalls…</translation>
+        <source>Load PSMT from &amp;clipboard…</source>
+        <translation type="unfinished">Carrega la PSMT des del &amp;porta-retalls…</translation>
     </message>
     <message>
         <source>Load Partially Signed Meowcoin Transaction from clipboard</source>
@@ -1657,14 +1657,14 @@ Això és ideal per a carteres de mode només lectura.</translation>
         <translation type="unfinished">&amp;Gasta el canvi sense confirmar</translation>
     </message>
     <message>
-        <source>Enable &amp;PSBT controls</source>
-        <extracomment>An options window setting to enable PSBT controls.</extracomment>
-        <translation type="unfinished">Activa els controls &amp;PSBT</translation>
+        <source>Enable &amp;PSMT controls</source>
+        <extracomment>An options window setting to enable PSMT controls.</extracomment>
+        <translation type="unfinished">Activa els controls &amp;PSMT</translation>
     </message>
     <message>
-        <source>Whether to show PSBT controls.</source>
-        <extracomment>Tooltip text for options window setting that enables PSBT controls.</extracomment>
-        <translation type="unfinished">Si voleu mostrar els controls PSBT.</translation>
+        <source>Whether to show PSMT controls.</source>
+        <extracomment>Tooltip text for options window setting that enables PSMT controls.</extracomment>
+        <translation type="unfinished">Si voleu mostrar els controls PSMT.</translation>
     </message>
     <message>
         <source>External Signer (e.g. hardware wallet)</source>
@@ -1893,10 +1893,10 @@ Això és ideal per a carteres de mode només lectura.</translation>
     </message>
 </context>
 <context>
-    <name>PSBTOperationsDialog</name>
+    <name>PSMTOperationsDialog</name>
     <message>
-        <source>PSBT Operations</source>
-        <translation type="unfinished">Operacions PSBT</translation>
+        <source>PSMT Operations</source>
+        <translation type="unfinished">Operacions PSMT</translation>
     </message>
     <message>
         <source>Sign Tx</source>
@@ -1955,8 +1955,8 @@ Això és ideal per a carteres de mode només lectura.</translation>
         <translation type="unfinished">L'emissió de la transacció ha fallat: %1</translation>
     </message>
     <message>
-        <source>PSBT copied to clipboard.</source>
-        <translation type="unfinished">PSBT copiada al porta-retalls.</translation>
+        <source>PSMT copied to clipboard.</source>
+        <translation type="unfinished">PSMT copiada al porta-retalls.</translation>
     </message>
     <message>
         <source>Save Transaction Data</source>
@@ -1964,12 +1964,12 @@ Això és ideal per a carteres de mode només lectura.</translation>
     </message>
     <message>
         <source>Partially Signed Transaction (Binary)</source>
-        <extracomment>Expanded name of the binary PSBT file format. See: BIP 174.</extracomment>
+        <extracomment>Expanded name of the binary PSMT file format. See: BIP 174.</extracomment>
         <translation type="unfinished">Transacció signada parcialment (binària)</translation>
     </message>
     <message>
-        <source>PSBT saved to disk.</source>
-        <translation type="unfinished">PSBT guardada al disc.</translation>
+        <source>PSMT saved to disk.</source>
+        <translation type="unfinished">PSMT guardada al disc.</translation>
     </message>
     <message>
         <source>Sends %1 to %2</source>
@@ -2922,8 +2922,8 @@ Nota: atès que la tarifa es calcula per byte, una tarifa de "100 satoshis per k
         <translation type="unfinished">Cr&amp;ea sense signar</translation>
     </message>
     <message>
-        <source>Creates a Partially Signed Meowcoin Transaction (PSBT) for use with e.g. an offline %1 wallet, or a PSBT-compatible hardware wallet.</source>
-        <translation type="unfinished">Crea una transacció meowcoin parcialment signada (PSBT) per a utilitzar, per exemple,  amb una cartera %1 fora de línia o amb una cartera compatible amb PSBT.</translation>
+        <source>Creates a Partially Signed Meowcoin Transaction (PSMT) for use with e.g. an offline %1 wallet, or a PSMT-compatible hardware wallet.</source>
+        <translation type="unfinished">Crea una transacció meowcoin parcialment signada (PSMT) per a utilitzar, per exemple,  amb una cartera %1 fora de línia o amb una cartera compatible amb PSMT.</translation>
     </message>
     <message>
         <source>%1 to '%2'</source>
@@ -2957,13 +2957,13 @@ Nota: atès que la tarifa es calcula per byte, una tarifa de "100 satoshis per k
     </message>
     <message>
         <source>Partially Signed Transaction (Binary)</source>
-        <extracomment>Expanded name of the binary PSBT file format. See: BIP 174.</extracomment>
+        <extracomment>Expanded name of the binary PSMT file format. See: BIP 174.</extracomment>
         <translation type="unfinished">Transacció signada parcialment (binària)</translation>
     </message>
     <message>
-        <source>PSBT saved</source>
-        <extracomment>Popup message when a PSBT has been saved to a file</extracomment>
-        <translation type="unfinished">PSBT guardada</translation>
+        <source>PSMT saved</source>
+        <extracomment>Popup message when a PSMT has been saved to a file</extracomment>
+        <translation type="unfinished">PSMT guardada</translation>
     </message>
     <message>
         <source>External balance:</source>
@@ -2978,9 +2978,9 @@ Nota: atès que la tarifa es calcula per byte, una tarifa de "100 satoshis per k
         <translation type="unfinished">Pot incrementar la tarifa més tard (senyala Replace-By-Fee o substitució per tarifa, BIP-125).</translation>
     </message>
     <message>
-        <source>Please, review your transaction proposal. This will produce a Partially Signed Meowcoin Transaction (PSBT) which you can save or copy and then sign with e.g. an offline %1 wallet, or a PSBT-compatible hardware wallet.</source>
-        <extracomment>Text to inform a user attempting to create a transaction of their current options. At this stage, a user can only create a PSBT. This string is displayed when private keys are disabled and an external signer is not available.</extracomment>
-        <translation type="unfinished">Si us plau, revisa la teva proposta de transacció. Es produirà una transacció de Meowcoin amb firma parcial (PSBT) que podeu guardar o copiar i després firmar, per exemple, amb una cartera %1, o amb una cartera física compatible amb PSBT.</translation>
+        <source>Please, review your transaction proposal. This will produce a Partially Signed Meowcoin Transaction (PSMT) which you can save or copy and then sign with e.g. an offline %1 wallet, or a PSMT-compatible hardware wallet.</source>
+        <extracomment>Text to inform a user attempting to create a transaction of their current options. At this stage, a user can only create a PSMT. This string is displayed when private keys are disabled and an external signer is not available.</extracomment>
+        <translation type="unfinished">Si us plau, revisa la teva proposta de transacció. Es produirà una transacció de Meowcoin amb firma parcial (PSMT) que podeu guardar o copiar i després firmar, per exemple, amb una cartera %1, o amb una cartera física compatible amb PSMT.</translation>
     </message>
     <message>
         <source>Do you want to create this transaction?</source>
@@ -3006,8 +3006,8 @@ Nota: atès que la tarifa es calcula per byte, una tarifa de "100 satoshis per k
     </message>
     <message>
         <source>Unsigned Transaction</source>
-        <comment>PSBT copied</comment>
-        <extracomment>Caption of "PSBT has been copied" messagebox</extracomment>
+        <comment>PSMT copied</comment>
+        <extracomment>Caption of "PSMT has been copied" messagebox</extracomment>
         <translation type="unfinished">Transacció no signada</translation>
     </message>
     <message>
@@ -3693,24 +3693,24 @@ Ves a Arxiu &gt; Obrir Cartera per a carregar cartera.
         <translation type="unfinished">Crear una nova cartera</translation>
     </message>
     <message>
-        <source>Unable to decode PSBT from clipboard (invalid base64)</source>
-        <translation type="unfinished">Incapaç de descodificar la PSBT del porta-retalls (base64 invàlida)</translation>
+        <source>Unable to decode PSMT from clipboard (invalid base64)</source>
+        <translation type="unfinished">Incapaç de descodificar la PSMT del porta-retalls (base64 invàlida)</translation>
     </message>
     <message>
         <source>Load Transaction Data</source>
         <translation type="unfinished">Carrega dades de transacció</translation>
     </message>
     <message>
-        <source>Partially Signed Transaction (*.psbt)</source>
-        <translation type="unfinished">Transacció Parcialment Firmada (*.psbt)</translation>
+        <source>Partially Signed Transaction (*.psmt)</source>
+        <translation type="unfinished">Transacció Parcialment Firmada (*.psmt)</translation>
     </message>
     <message>
-        <source>PSBT file must be smaller than 100 MiB</source>
-        <translation type="unfinished">L'arxiu PSBT ha de ser més petit que 100MiB</translation>
+        <source>PSMT file must be smaller than 100 MiB</source>
+        <translation type="unfinished">L'arxiu PSMT ha de ser més petit que 100MiB</translation>
     </message>
     <message>
-        <source>Unable to decode PSBT</source>
-        <translation type="unfinished">Incapaç de descodificar la PSBT</translation>
+        <source>Unable to decode PSMT</source>
+        <translation type="unfinished">Incapaç de descodificar la PSMT</translation>
     </message>
 </context>
 <context>
@@ -3757,8 +3757,8 @@ Ves a Arxiu &gt; Obrir Cartera per a carregar cartera.
         <translation type="unfinished">No es pot redactar la transacció.</translation>
     </message>
     <message>
-        <source>PSBT copied</source>
-        <translation type="unfinished">PSBT copiada</translation>
+        <source>PSMT copied</source>
+        <translation type="unfinished">PSMT copiada</translation>
     </message>
     <message>
         <source>Can't sign transaction.</source>

@@ -88,7 +88,7 @@ public Q_SLOTS:
     void gotoVerifyMessageTab(QString addr = "");
 
     /** Load Partially Signed Meowcoin Transaction */
-    void gotoLoadPSBT(bool from_clipboard = false);
+    void gotoLoadPSMT(bool from_clipboard = false);
 
     /** Encrypt the wallet */
     void encryptWallet();

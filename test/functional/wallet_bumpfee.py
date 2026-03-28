@@ -97,7 +97,7 @@ class BumpFeeTest(BitcoinTestFramework):
         test_bumpfee_with_descendant_fails(self, rbf_node, rbf_node_address, dest_address)
         test_bumpfee_with_abandoned_descendant_succeeds(self, rbf_node, rbf_node_address, dest_address)
         test_dust_to_fee(self, rbf_node, dest_address)
-        test_watchonly_psbt(self, peer_node, rbf_node, dest_address)
+        test_watchonly_psmt(self, peer_node, rbf_node, dest_address)
         test_rebumping(self, rbf_node, dest_address)
         test_rebumping_not_replaceable(self, rbf_node, dest_address)
         test_bumpfee_already_spent(self, rbf_node, dest_address)
@@ -312,23 +312,23 @@ def test_simple_bumpfee_succeeds(self, mode, rbf_node, peer_node, dest_address):
     self.sync_mempools((rbf_node, peer_node))
     assert rbfid in rbf_node.getrawmempool() and rbfid in peer_node.getrawmempool()
     if mode == "fee_rate":
-        bumped_psbt = rbf_node.psbtbumpfee(rbfid, fee_rate=str(NORMAL))
+        bumped_psmt = rbf_node.psmtbumpfee(rbfid, fee_rate=str(NORMAL))
         bumped_tx = rbf_node.bumpfee(rbfid, fee_rate=NORMAL)
     elif mode == "new_outputs":
         new_address = peer_node.getnewaddress()
-        bumped_psbt = rbf_node.psbtbumpfee(rbfid, outputs={new_address: 0.0003})
+        bumped_psmt = rbf_node.psmtbumpfee(rbfid, outputs={new_address: 0.0003})
         bumped_tx = rbf_node.bumpfee(rbfid, outputs={new_address: 0.0003})
     else:
-        bumped_psbt = rbf_node.psbtbumpfee(rbfid)
+        bumped_psmt = rbf_node.psmtbumpfee(rbfid)
         bumped_tx = rbf_node.bumpfee(rbfid)
     assert_equal(bumped_tx["errors"], [])
     assert bumped_tx["fee"] > -rbftx["fee"]
     assert_equal(bumped_tx["origfee"], -rbftx["fee"])
-    assert "psbt" not in bumped_tx
-    assert_equal(bumped_psbt["errors"], [])
-    assert bumped_psbt["fee"] > -rbftx["fee"]
-    assert_equal(bumped_psbt["origfee"], -rbftx["fee"])
-    assert "psbt" in bumped_psbt
+    assert "psmt" not in bumped_tx
+    assert_equal(bumped_psmt["errors"], [])
+    assert bumped_psmt["fee"] > -rbftx["fee"]
+    assert_equal(bumped_psmt["origfee"], -rbftx["fee"])
+    assert "psmt" in bumped_psmt
     # check that bumped_tx propagates, original tx was evicted and has a wallet conflict
     self.sync_mempools((rbf_node, peer_node))
     assert bumped_tx["txid"] in rbf_node.getrawmempool()
@@ -403,19 +403,19 @@ def test_notmine_bumpfee(self, rbf_node, peer_node, dest_address):
     assert_raises_rpc_error(-4, "Transaction contains inputs that don't belong to this wallet",
                             rbf_node.bumpfee, rbfid)
 
-    def finish_psbtbumpfee(psbt):
-        psbt = rbf_node.walletprocesspsbt(psbt)
-        psbt = peer_node.walletprocesspsbt(psbt["psbt"])
-        res = rbf_node.testmempoolaccept([psbt["hex"]])
+    def finish_psmtbumpfee(psmt):
+        psmt = rbf_node.walletprocesspsmt(psmt)
+        psmt = peer_node.walletprocesspsmt(psmt["psmt"])
+        res = rbf_node.testmempoolaccept([psmt["hex"]])
         assert res[0]["allowed"]
         assert_greater_than(res[0]["fees"]["base"], old_fee)
 
-    self.log.info("Test that psbtbumpfee works for non-owned inputs")
-    psbt = rbf_node.psbtbumpfee(txid=rbfid)
-    finish_psbtbumpfee(psbt["psbt"])
+    self.log.info("Test that psmtbumpfee works for non-owned inputs")
+    psmt = rbf_node.psmtbumpfee(txid=rbfid)
+    finish_psmtbumpfee(psmt["psmt"])
 
-    psbt = rbf_node.psbtbumpfee(txid=rbfid, fee_rate=old_feerate + 10)
-    finish_psbtbumpfee(psbt["psbt"])
+    psmt = rbf_node.psmtbumpfee(txid=rbfid, fee_rate=old_feerate + 10)
+    finish_psmtbumpfee(psmt["psmt"])
 
     self.clear_mempool()
 
@@ -572,13 +572,13 @@ def test_maxtxfee_fails(self, rbf_node, dest_address):
     self.clear_mempool()
 
 
-def test_watchonly_psbt(self, peer_node, rbf_node, dest_address):
-    self.log.info('Test that PSBT is returned for bumpfee in watchonly wallets')
+def test_watchonly_psmt(self, peer_node, rbf_node, dest_address):
+    self.log.info('Test that PSMT is returned for bumpfee in watchonly wallets')
     priv_rec_desc = "wpkh([00000001/84'/1'/0']tprv8ZgxMBicQKsPd7Uf69XL1XwhmjHopUGep8GuEiJDZmbQz6o58LninorQAfcKZWARbtRtfnLcJ5MQ2AtHcQJCCRUcMRvmDUjyEmNUWwx8UbK/0/*)#rweraev0"
     pub_rec_desc = rbf_node.getdescriptorinfo(priv_rec_desc)["descriptor"]
     priv_change_desc = "wpkh([00000001/84'/1'/0']tprv8ZgxMBicQKsPd7Uf69XL1XwhmjHopUGep8GuEiJDZmbQz6o58LninorQAfcKZWARbtRtfnLcJ5MQ2AtHcQJCCRUcMRvmDUjyEmNUWwx8UbK/1/*)#j6uzqvuh"
     pub_change_desc = rbf_node.getdescriptorinfo(priv_change_desc)["descriptor"]
-    # Create a wallet with private keys that can sign PSBTs
+    # Create a wallet with private keys that can sign PSMTs
     rbf_node.createwallet(wallet_name="signer", disable_private_keys=False, blank=True)
     signer = rbf_node.get_wallet_rpc("signer")
     assert signer.getwalletinfo()['private_keys_enabled']
@@ -599,7 +599,7 @@ def test_watchonly_psbt(self, peer_node, rbf_node, dest_address):
     result = signer.importdescriptors(reqs)
     assert_equal(result, [{'success': True}, {'success': True}])
 
-    # Create another wallet with just the public keys, which creates PSBTs
+    # Create another wallet with just the public keys, which creates PSMTs
     rbf_node.createwallet(wallet_name="watcher", disable_private_keys=True, blank=True)
     watcher = rbf_node.get_wallet_rpc("watcher")
     assert not watcher.getwalletinfo()['private_keys_enabled']
@@ -629,30 +629,30 @@ def test_watchonly_psbt(self, peer_node, rbf_node, dest_address):
     peer_node.sendmany("", {funding_address1: 0.001, funding_address2: 0.001})
     self.generate(peer_node, 1)
 
-    # Create single-input PSBT for transaction to be bumped
+    # Create single-input PSMT for transaction to be bumped
     # Ensure the payment amount + change can be fully funded using one of the 0.001BTC inputs.
-    psbt = watcher.walletcreatefundedpsbt([watcher.listunspent()[0]], {dest_address: 0.0005}, 0,
-            {"fee_rate": 1, "add_inputs": False}, True)['psbt']
-    psbt_signed = signer.walletprocesspsbt(psbt=psbt, sign=True, sighashtype="ALL", bip32derivs=True)
-    original_txid = watcher.sendrawtransaction(psbt_signed["hex"])
-    assert_equal(len(watcher.decodepsbt(psbt)["tx"]["vin"]), 1)
+    psmt = watcher.walletcreatefundedpsmt([watcher.listunspent()[0]], {dest_address: 0.0005}, 0,
+            {"fee_rate": 1, "add_inputs": False}, True)['psmt']
+    psmt_signed = signer.walletprocesspsmt(psmt=psmt, sign=True, sighashtype="ALL", bip32derivs=True)
+    original_txid = watcher.sendrawtransaction(psmt_signed["hex"])
+    assert_equal(len(watcher.decodepsmt(psmt)["tx"]["vin"]), 1)
 
     # bumpfee can't be used on watchonly wallets
-    assert_raises_rpc_error(-4, "bumpfee is not available with wallets that have private keys disabled. Use psbtbumpfee instead.", watcher.bumpfee, original_txid)
+    assert_raises_rpc_error(-4, "bumpfee is not available with wallets that have private keys disabled. Use psmtbumpfee instead.", watcher.bumpfee, original_txid)
 
     # Bump fee, obnoxiously high to add additional watchonly input
-    bumped_psbt = watcher.psbtbumpfee(original_txid, fee_rate=HIGH)
-    assert_greater_than(len(watcher.decodepsbt(bumped_psbt['psbt'])["tx"]["vin"]), 1)
-    assert "txid" not in bumped_psbt
-    assert_equal(bumped_psbt["origfee"], -watcher.gettransaction(original_txid)["fee"])
-    assert not watcher.finalizepsbt(bumped_psbt["psbt"])["complete"]
+    bumped_psmt = watcher.psmtbumpfee(original_txid, fee_rate=HIGH)
+    assert_greater_than(len(watcher.decodepsmt(bumped_psmt['psmt'])["tx"]["vin"]), 1)
+    assert "txid" not in bumped_psmt
+    assert_equal(bumped_psmt["origfee"], -watcher.gettransaction(original_txid)["fee"])
+    assert not watcher.finalizepsmt(bumped_psmt["psmt"])["complete"]
 
     # Sign bumped transaction
-    bumped_psbt_signed = signer.walletprocesspsbt(psbt=bumped_psbt["psbt"], sign=True, sighashtype="ALL", bip32derivs=True)
-    assert bumped_psbt_signed["complete"]
+    bumped_psmt_signed = signer.walletprocesspsmt(psmt=bumped_psmt["psmt"], sign=True, sighashtype="ALL", bip32derivs=True)
+    assert bumped_psmt_signed["complete"]
 
     # Broadcast bumped transaction
-    bumped_txid = watcher.sendrawtransaction(bumped_psbt_signed["hex"])
+    bumped_txid = watcher.sendrawtransaction(bumped_psmt_signed["hex"])
     assert bumped_txid in rbf_node.getrawmempool()
     assert original_txid not in rbf_node.getrawmempool()
 

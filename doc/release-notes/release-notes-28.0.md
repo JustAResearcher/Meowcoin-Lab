@@ -224,7 +224,7 @@ Wallet
   transactions when the parent transaction is dropped from the mempool, which can cause wallet
   balances to appear higher. (#27307)
 
-- A new `max_tx_weight` option has been added to the RPCs `fundrawtransaction`, `walletcreatefundedpsbt`, and `send`.
+- A new `max_tx_weight` option has been added to the RPCs `fundrawtransaction`, `walletcreatefundedpsmt`, and `send`.
 It specifies the maximum transaction weight. If the limit is exceeded during funding, the transaction will not be built.
 The default value is 4,000,000 WU. (#29523)
 

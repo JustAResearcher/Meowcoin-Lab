@@ -33,7 +33,7 @@
 #include <policy/truc_policy.h>
 #include <primitives/block.h>
 #include <primitives/transaction.h>
-#include <psbt.h>
+#include <psmt.h>
 #include <pubkey.h>
 #include <random.h>
 #include <script/descriptor.h>
@@ -85,7 +85,7 @@ struct KeyOriginInfo;
 
 using common::AmountErrMsg;
 using common::AmountHighWarn;
-using common::PSBTError;
+using common::PSMTError;
 using interfaces::FoundBlock;
 using util::ReplaceAll;
 using util::ToString;
@@ -2166,18 +2166,18 @@ bool CWallet::SignTransaction(CMutableTransaction& tx, const std::map<COutPoint,
     return false;
 }
 
-std::optional<PSBTError> CWallet::FillPSBT(PartiallySignedTransaction& psbtx, bool& complete, std::optional<int> sighash_type, bool sign, bool bip32derivs, size_t * n_signed, bool finalize) const
+std::optional<PSMTError> CWallet::FillPSMT(PartiallySignedTransaction& psmtx, bool& complete, std::optional<int> sighash_type, bool sign, bool bip32derivs, size_t * n_signed, bool finalize) const
 {
     if (n_signed) {
         *n_signed = 0;
     }
     LOCK(cs_wallet);
     // Get all of the previous transactions
-    for (unsigned int i = 0; i < psbtx.tx->vin.size(); ++i) {
-        const CTxIn& txin = psbtx.tx->vin[i];
-        PSBTInput& input = psbtx.inputs.at(i);
+    for (unsigned int i = 0; i < psmtx.tx->vin.size(); ++i) {
+        const CTxIn& txin = psmtx.tx->vin[i];
+        PSMTInput& input = psmtx.inputs.at(i);
 
-        if (PSBTInputSigned(input)) {
+        if (PSMTInputSigned(input)) {
             continue;
         }
 
@@ -2194,12 +2194,12 @@ std::optional<PSBTError> CWallet::FillPSBT(PartiallySignedTransaction& psbtx, bo
         }
     }
 
-    const PrecomputedTransactionData txdata = PrecomputePSBTData(psbtx);
+    const PrecomputedTransactionData txdata = PrecomputePSMTData(psmtx);
 
     // Fill in information from ScriptPubKeyMans
     for (ScriptPubKeyMan* spk_man : GetAllScriptPubKeyMans()) {
         int n_signed_this_spkm = 0;
-        const auto error{spk_man->FillPSBT(psbtx, txdata, sighash_type, sign, bip32derivs, &n_signed_this_spkm, finalize)};
+        const auto error{spk_man->FillPSMT(psmtx, txdata, sighash_type, sign, bip32derivs, &n_signed_this_spkm, finalize)};
         if (error) {
             return error;
         }
@@ -2209,12 +2209,12 @@ std::optional<PSBTError> CWallet::FillPSBT(PartiallySignedTransaction& psbtx, bo
         }
     }
 
-    RemoveUnnecessaryTransactions(psbtx);
+    RemoveUnnecessaryTransactions(psmtx);
 
     // Complete if every input is now signed
     complete = true;
-    for (size_t i = 0; i < psbtx.inputs.size(); ++i) {
-        complete &= PSBTInputSignedAndVerified(psbtx, i, &txdata);
+    for (size_t i = 0; i < psmtx.inputs.size(); ++i) {
+        complete &= PSMTInputSignedAndVerified(psmtx, i, &txdata);
     }
 
     return {};

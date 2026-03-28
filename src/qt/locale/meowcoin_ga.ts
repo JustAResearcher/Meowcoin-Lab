@@ -572,8 +572,8 @@ Ní féidir síniú ach le seoltaí 'oidhreachta'.</translation>
         <translation type="unfinished">Teachtaireachtaí a fhíorú lena chinntiú go raibh siad sínithe le seoltaí sainithe Meowcoin</translation>
     </message>
     <message>
-        <source>&amp;Load PSBT from file…</source>
-        <translation type="unfinished">&amp;Lódáil PSBT ón gcomhad…</translation>
+        <source>&amp;Load PSMT from file…</source>
+        <translation type="unfinished">&amp;Lódáil PSMT ón gcomhad…</translation>
     </message>
     <message>
         <source>Open &amp;URI…</source>
@@ -688,8 +688,8 @@ Ní féidir síniú ach le seoltaí 'oidhreachta'.</translation>
         <translation type="unfinished">Lódáil Idirbheart Meowcoin Sínithe go Páirteach</translation>
     </message>
     <message>
-        <source>Load PSBT from &amp;clipboard…</source>
-        <translation type="unfinished">Luchtaigh PSBT ón &amp;gearrthaisce…</translation>
+        <source>Load PSMT from &amp;clipboard…</source>
+        <translation type="unfinished">Luchtaigh PSMT ón &amp;gearrthaisce…</translation>
     </message>
     <message>
         <source>Load Partially Signed Meowcoin Transaction from clipboard</source>
@@ -1718,14 +1718,14 @@ Cruthóidh an próiseas imirce cúltaca den sparán roimh imirce. Ainmneofar an 
         <translation type="unfinished">Caith &amp;sóinseáil neamhdheimhnithe</translation>
     </message>
     <message>
-        <source>Enable &amp;PSBT controls</source>
-        <extracomment>An options window setting to enable PSBT controls.</extracomment>
-        <translation type="unfinished">Cumasaigh &amp; rialuithe PSBT</translation>
+        <source>Enable &amp;PSMT controls</source>
+        <extracomment>An options window setting to enable PSMT controls.</extracomment>
+        <translation type="unfinished">Cumasaigh &amp; rialuithe PSMT</translation>
     </message>
     <message>
-        <source>Whether to show PSBT controls.</source>
-        <extracomment>Tooltip text for options window setting that enables PSBT controls.</extracomment>
-        <translation type="unfinished">Cibé ar cheart rialuithe PSBT a thaispeáint.</translation>
+        <source>Whether to show PSMT controls.</source>
+        <extracomment>Tooltip text for options window setting that enables PSMT controls.</extracomment>
+        <translation type="unfinished">Cibé ar cheart rialuithe PSMT a thaispeáint.</translation>
     </message>
     <message>
         <source>External Signer (e.g. hardware wallet)</source>
@@ -1966,10 +1966,10 @@ Cruthóidh an próiseas imirce cúltaca den sparán roimh imirce. Ainmneofar an 
     </message>
 </context>
 <context>
-    <name>PSBTOperationsDialog</name>
+    <name>PSMTOperationsDialog</name>
     <message>
-        <source>PSBT Operations</source>
-        <translation type="unfinished">Oibríochtaí PSBT</translation>
+        <source>PSMT Operations</source>
+        <translation type="unfinished">Oibríochtaí PSMT</translation>
     </message>
     <message>
         <source>Sign Tx</source>
@@ -2028,7 +2028,7 @@ Cruthóidh an próiseas imirce cúltaca den sparán roimh imirce. Ainmneofar an 
         <translation type="unfinished">Theip ar chraoladh idirbhirt: %1</translation>
     </message>
     <message>
-        <source>PSBT copied to clipboard.</source>
+        <source>PSMT copied to clipboard.</source>
         <translation type="unfinished">Cóipeáladh IBSP chuig an gearrthaisce.</translation>
     </message>
     <message>
@@ -2037,11 +2037,11 @@ Cruthóidh an próiseas imirce cúltaca den sparán roimh imirce. Ainmneofar an 
     </message>
     <message>
         <source>Partially Signed Transaction (Binary)</source>
-        <extracomment>Expanded name of the binary PSBT file format. See: BIP 174.</extracomment>
+        <extracomment>Expanded name of the binary PSMT file format. See: BIP 174.</extracomment>
         <translation type="unfinished">Idirbheart Páirt-Sínithe (Dénártha)</translation>
     </message>
     <message>
-        <source>PSBT saved to disk.</source>
+        <source>PSMT saved to disk.</source>
         <translation type="unfinished">IBSP sábháilte ar dhiosca.</translation>
     </message>
     <message>
@@ -3127,7 +3127,7 @@ Nóta: Ós rud é go ríomhtar an táille ar bhonn in aghaidh an bheart, ní tha
         <translation type="unfinished">Cruthaigh Gan Sín</translation>
     </message>
     <message>
-        <source>Creates a Partially Signed Meowcoin Transaction (PSBT) for use with e.g. an offline %1 wallet, or a PSBT-compatible hardware wallet.</source>
+        <source>Creates a Partially Signed Meowcoin Transaction (PSMT) for use with e.g. an offline %1 wallet, or a PSMT-compatible hardware wallet.</source>
         <translation type="unfinished">Cruthaíonn Idirbheart Meowcoin Sínithe go Páirteach (IBSP) le húsáid le e.g. sparán as líne %1, nó sparán crua-earraí atá comhoiriúnach le IBSP.</translation>
     </message>
     <message>
@@ -3162,12 +3162,12 @@ Nóta: Ós rud é go ríomhtar an táille ar bhonn in aghaidh an bheart, ní tha
     </message>
     <message>
         <source>Partially Signed Transaction (Binary)</source>
-        <extracomment>Expanded name of the binary PSBT file format. See: BIP 174.</extracomment>
+        <extracomment>Expanded name of the binary PSMT file format. See: BIP 174.</extracomment>
         <translation type="unfinished">Idirbheart Páirt-Sínithe (Dénártha)</translation>
     </message>
     <message>
-        <source>PSBT saved</source>
-        <extracomment>Popup message when a PSBT has been saved to a file</extracomment>
+        <source>PSMT saved</source>
+        <extracomment>Popup message when a PSMT has been saved to a file</extracomment>
         <translation type="unfinished">IBSP sábháilte</translation>
     </message>
     <message>
@@ -3183,8 +3183,8 @@ Nóta: Ós rud é go ríomhtar an táille ar bhonn in aghaidh an bheart, ní tha
         <translation type="unfinished">Féadfaidh tú an táille a mhéadú níos déanaí (comhartha chuig Athchuir-Le-Táille, BIP-125).</translation>
     </message>
     <message>
-        <source>Please, review your transaction proposal. This will produce a Partially Signed Meowcoin Transaction (PSBT) which you can save or copy and then sign with e.g. an offline %1 wallet, or a PSBT-compatible hardware wallet.</source>
-        <extracomment>Text to inform a user attempting to create a transaction of their current options. At this stage, a user can only create a PSBT. This string is displayed when private keys are disabled and an external signer is not available.</extracomment>
+        <source>Please, review your transaction proposal. This will produce a Partially Signed Meowcoin Transaction (PSMT) which you can save or copy and then sign with e.g. an offline %1 wallet, or a PSMT-compatible hardware wallet.</source>
+        <extracomment>Text to inform a user attempting to create a transaction of their current options. At this stage, a user can only create a PSMT. This string is displayed when private keys are disabled and an external signer is not available.</extracomment>
         <translation type="unfinished">Le do thoil, déan athbhreithniú ar do thogra idirbhirt. Tabharfaidh sé seo Idirbheart Meowcoin Sínithe go Páirteach (IBSP) ar féidir leat a shábháil nó a chóipeáil agus a shíniú ansin le m.sh. sparán as líne %1, nó sparán crua-earraí atá comhoiriúnach le IBSP.</translation>
     </message>
     <message>
@@ -3197,9 +3197,9 @@ Nóta: Ós rud é go ríomhtar an táille ar bhonn in aghaidh an bheart, ní tha
         <translation type="unfinished">Ar mhaith leat an t-idirbheart seo a chruthú?</translation>
     </message>
     <message>
-        <source>Please, review your transaction. You can create and send this transaction or create a Partially Signed Meowcoin Transaction (PSBT), which you can save or copy and then sign with, e.g., an offline %1 wallet, or a PSBT-compatible hardware wallet.</source>
-        <extracomment>Text to inform a user attempting to create a transaction of their current options. At this stage, a user can send their transaction or create a PSBT. This string is displayed when both private keys and PSBT controls are enabled.</extracomment>
-        <translation type="unfinished">Le do thoil, athbhreithnigh d'idirbheart. Is féidir leat an t-idirbheart seo a chruthú agus a sheoladh nó Idirbheart Meowcoin Páirt-Sínithe (PSBT) a chruthú, ar féidir leat a shábháil nó a chóipeáil agus a shíniú ansin le, m.sh., sparán %1 as líne, nó sparán crua-earraí PSBT-comhoiriúnach.</translation>
+        <source>Please, review your transaction. You can create and send this transaction or create a Partially Signed Meowcoin Transaction (PSMT), which you can save or copy and then sign with, e.g., an offline %1 wallet, or a PSMT-compatible hardware wallet.</source>
+        <extracomment>Text to inform a user attempting to create a transaction of their current options. At this stage, a user can send their transaction or create a PSMT. This string is displayed when both private keys and PSMT controls are enabled.</extracomment>
+        <translation type="unfinished">Le do thoil, athbhreithnigh d'idirbheart. Is féidir leat an t-idirbheart seo a chruthú agus a sheoladh nó Idirbheart Meowcoin Páirt-Sínithe (PSMT) a chruthú, ar féidir leat a shábháil nó a chóipeáil agus a shíniú ansin le, m.sh., sparán %1 as líne, nó sparán crua-earraí PSMT-comhoiriúnach.</translation>
     </message>
     <message>
         <source>Please, review your transaction.</source>
@@ -3220,17 +3220,17 @@ Nóta: Ós rud é go ríomhtar an táille ar bhonn in aghaidh an bheart, ní tha
     </message>
     <message>
         <source>Unsigned Transaction</source>
-        <comment>PSBT copied</comment>
-        <extracomment>Caption of "PSBT has been copied" messagebox</extracomment>
+        <comment>PSMT copied</comment>
+        <extracomment>Caption of "PSMT has been copied" messagebox</extracomment>
         <translation type="unfinished">Idirbheart Gan Sínithe</translation>
     </message>
     <message>
-        <source>The PSBT has been copied to the clipboard. You can also save it.</source>
-        <translation type="unfinished">Tá an PSBT cóipeáilte chuig an ngearrthaisce. Is féidir leat é a shábháil freisin.</translation>
+        <source>The PSMT has been copied to the clipboard. You can also save it.</source>
+        <translation type="unfinished">Tá an PSMT cóipeáilte chuig an ngearrthaisce. Is féidir leat é a shábháil freisin.</translation>
     </message>
     <message>
-        <source>PSBT saved to disk</source>
-        <translation type="unfinished">PSBT sábháilte ar diosca</translation>
+        <source>PSMT saved to disk</source>
+        <translation type="unfinished">PSMT sábháilte ar diosca</translation>
     </message>
     <message>
         <source>Confirm send coins</source>
@@ -3952,7 +3952,7 @@ Téigh go Comhad &gt; Oscail Sparán chun sparán a lódáil.
         <translation type="unfinished">Earráid</translation>
     </message>
     <message>
-        <source>Unable to decode PSBT from clipboard (invalid base64)</source>
+        <source>Unable to decode PSMT from clipboard (invalid base64)</source>
         <translation type="unfinished">Ní féidir IBSP a dhíchódú ón ghearrthaisce (Bun64 neamhbhailí)</translation>
     </message>
     <message>
@@ -3960,15 +3960,15 @@ Téigh go Comhad &gt; Oscail Sparán chun sparán a lódáil.
         <translation type="unfinished">Lódáil Sonraí Idirbheart</translation>
     </message>
     <message>
-        <source>Partially Signed Transaction (*.psbt)</source>
-        <translation type="unfinished">Idirbheart Sínithe go Páirteach (*.psbt)</translation>
+        <source>Partially Signed Transaction (*.psmt)</source>
+        <translation type="unfinished">Idirbheart Sínithe go Páirteach (*.psmt)</translation>
     </message>
     <message>
-        <source>PSBT file must be smaller than 100 MiB</source>
+        <source>PSMT file must be smaller than 100 MiB</source>
         <translation type="unfinished">Caithfidh comhad IBSP a bheith níos lú ná 100 MiB</translation>
     </message>
     <message>
-        <source>Unable to decode PSBT</source>
+        <source>Unable to decode PSMT</source>
         <translation type="unfinished">Ní féidir díchódú IBSP</translation>
     </message>
 </context>
@@ -4016,12 +4016,12 @@ Téigh go Comhad &gt; Oscail Sparán chun sparán a lódáil.
         <translation type="unfinished">Ní féidir dréachtú idirbheart.</translation>
     </message>
     <message>
-        <source>PSBT copied</source>
+        <source>PSMT copied</source>
         <translation type="unfinished">IBSP cóipeáilte</translation>
     </message>
     <message>
-        <source>Fee-bump PSBT copied to clipboard</source>
-        <translation type="unfinished">Cóipeáil PSBT bump táille chuig an ngearrthaisce</translation>
+        <source>Fee-bump PSMT copied to clipboard</source>
+        <translation type="unfinished">Cóipeáil PSMT bump táille chuig an ngearrthaisce</translation>
     </message>
     <message>
         <source>Can't sign transaction.</source>

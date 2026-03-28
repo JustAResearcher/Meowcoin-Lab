@@ -140,8 +140,8 @@ void OptionTests::parametersInteraction()
 
 void OptionTests::extractFilter()
 {
-    QString filter = QString("Partially Signed Transaction (Binary) (*.psbt)");
-    QCOMPARE(GUIUtil::ExtractFirstSuffixFromFilter(filter), "psbt");
+    QString filter = QString("Partially Signed Transaction (Binary) (*.psmt)");
+    QCOMPARE(GUIUtil::ExtractFirstSuffixFromFilter(filter), "psmt");
 
     filter = QString("Image (*.png *.jpg)");
     QCOMPARE(GUIUtil::ExtractFirstSuffixFromFilter(filter), "png");

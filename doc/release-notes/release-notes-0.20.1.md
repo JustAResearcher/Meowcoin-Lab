@@ -92,10 +92,10 @@ notifications were sent previously before the v0.19 release, but had been
 broken since that release (bug
 [#18325](https://github.com/meowcoin/meowcoin/issues/18325)).
 
-PSBT changes
+PSMT changes
 ------------
 
-PSBTs will contain both the non-witness utxo and the witness utxo for segwit
+PSMTs will contain both the non-witness utxo and the witness utxo for segwit
 inputs in order to restore compatibility with wallet software that are now
 requiring the full previous transaction for segwit inputs. The witness utxo
 is still provided to maintain compatibility with software which relied on its
@@ -115,9 +115,9 @@ existence to determine whether an input was segwit.
 - #18982 Minimal fix to restore conflicted transaction notifications (ryanofsky)
 
 ### RPC and other APIs
-- #19524 Increment input value sum only once per UTXO in decodepsbt (fanquake)
-- #19517 psbt: Increment input value sum only once per UTXO in decodepsbt (achow101)
-- #19215 psbt: Include and allow both non_witness_utxo and witness_utxo for segwit inputs (achow101)
+- #19524 Increment input value sum only once per UTXO in decodepsmt (fanquake)
+- #19517 psmt: Increment input value sum only once per UTXO in decodepsmt (achow101)
+- #19215 psmt: Include and allow both non_witness_utxo and witness_utxo for segwit inputs (achow101)
 
 ### GUI
 - #19097 Add missing QPainterPath include (achow101)

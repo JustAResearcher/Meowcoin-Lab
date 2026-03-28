@@ -5,10 +5,10 @@
 #include <qt/walletframe.h>
 
 #include <node/interface_ui.h>
-#include <psbt.h>
+#include <psmt.h>
 #include <qt/guiutil.h>
 #include <qt/overviewpage.h>
-#include <qt/psbtoperationsdialog.h>
+#include <qt/psmtoperationsdialog.h>
 #include <qt/walletmodel.h>
 #include <qt/walletview.h>
 #include <util/fs.h>
@@ -218,7 +218,7 @@ void WalletFrame::gotoVerifyMessageTab(QString addr)
         walletView->gotoVerifyMessageTab(addr);
 }
 
-void WalletFrame::gotoLoadPSBT(bool from_clipboard)
+void WalletFrame::gotoLoadPSMT(bool from_clipboard)
 {
     std::vector<unsigned char> data;
 
@@ -226,23 +226,23 @@ void WalletFrame::gotoLoadPSBT(bool from_clipboard)
         std::string raw = QApplication::clipboard()->text().toStdString();
         auto result = DecodeBase64(raw);
         if (!result) {
-            Q_EMIT message(tr("Error"), tr("Unable to decode PSBT from clipboard (invalid base64)"), CClientUIInterface::MSG_ERROR);
+            Q_EMIT message(tr("Error"), tr("Unable to decode PSMT from clipboard (invalid base64)"), CClientUIInterface::MSG_ERROR);
             return;
         }
         data = std::move(*result);
     } else {
         QString filename = GUIUtil::getOpenFileName(this,
             tr("Load Transaction Data"), QString(),
-            tr("Partially Signed Transaction (*.psbt)"), nullptr);
+            tr("Partially Signed Transaction (*.psmt)"), nullptr);
         if (filename.isEmpty()) return;
-        if (GetFileSize(filename.toLocal8Bit().data(), MAX_FILE_SIZE_PSBT) == MAX_FILE_SIZE_PSBT) {
-            Q_EMIT message(tr("Error"), tr("PSBT file must be smaller than 100 MiB"), CClientUIInterface::MSG_ERROR);
+        if (GetFileSize(filename.toLocal8Bit().data(), MAX_FILE_SIZE_PSMT) == MAX_FILE_SIZE_PSMT) {
+            Q_EMIT message(tr("Error"), tr("PSMT file must be smaller than 100 MiB"), CClientUIInterface::MSG_ERROR);
             return;
         }
         std::ifstream in{filename.toLocal8Bit().data(), std::ios::binary};
         data.assign(std::istreambuf_iterator<char>{in}, {});
 
-        // Some psbt files may be base64 strings in the file rather than binary data
+        // Some psmt files may be base64 strings in the file rather than binary data
         std::string b64_str{data.begin(), data.end()};
         b64_str.erase(b64_str.find_last_not_of(" \t\n\r\f\v") + 1); // Trim trailing whitespace
         auto b64_dec = DecodeBase64(b64_str);
@@ -252,14 +252,14 @@ void WalletFrame::gotoLoadPSBT(bool from_clipboard)
     }
 
     std::string error;
-    PartiallySignedTransaction psbtx;
-    if (!DecodeRawPSBT(psbtx, MakeByteSpan(data), error)) {
-        Q_EMIT message(tr("Error"), tr("Unable to decode PSBT") + "\n" + QString::fromStdString(error), CClientUIInterface::MSG_ERROR);
+    PartiallySignedTransaction psmtx;
+    if (!DecodeRawPSMT(psmtx, MakeByteSpan(data), error)) {
+        Q_EMIT message(tr("Error"), tr("Unable to decode PSMT") + "\n" + QString::fromStdString(error), CClientUIInterface::MSG_ERROR);
         return;
     }
 
-    auto dlg = new PSBTOperationsDialog(this, currentWalletModel(), clientModel);
-    dlg->openWithPSBT(psbtx);
+    auto dlg = new PSMTOperationsDialog(this, currentWalletModel(), clientModel);
+    dlg->openWithPSMT(psmtx);
     GUIUtil::ShowModalDialogAsynchronously(dlg);
 }
 

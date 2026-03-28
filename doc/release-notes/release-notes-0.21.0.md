@@ -140,7 +140,7 @@ Updated RPCs
   integers instead of signed 32-bit integers. This matches their treatment in
   consensus logic. Versions greater than 2 continue to be non-standard
   (matching previous behavior of smaller than 1 or greater than 2 being
-  non-standard). Note that this includes the `joinpsbt` command, which combines
+  non-standard). Note that this includes the `joinpsmt` command, which combines
   partially-signed transactions by selecting the highest version number.
   (#16525)
 
@@ -178,7 +178,7 @@ Updated RPCs
   it is recommended to instead use the `permissions` field to understand if specific 
   privileges have been granted to the peer. (#19770)
 
-- The `walletcreatefundedpsbt` RPC call will now fail with
+- The `walletcreatefundedpsmt` RPC call will now fail with
   `Insufficient funds` when inputs are manually selected but are not enough to cover
   the outputs and fee. Additional inputs can automatically be added through the
   new `add_inputs` option. (#16377)
@@ -297,18 +297,18 @@ Wallet
   are explicitly set to true or false, the list is not modified, so the RPC
   methods remain backwards compatible. (#15937)
 
-- A new `send` RPC with similar syntax to `walletcreatefundedpsbt`, including
+- A new `send` RPC with similar syntax to `walletcreatefundedpsmt`, including
   support for coin selection and a custom fee rate, is added. The `send` RPC is
   experimental and may change in subsequent releases. (#16378)
 
 - The `estimate_mode` parameter is now case-insensitive in the `bumpfee`,
   `fundrawtransaction`, `sendmany`, `sendtoaddress`, `send` and
-  `walletcreatefundedpsbt` RPCs. (#11413)
+  `walletcreatefundedpsmt` RPCs. (#11413)
 
 - The `bumpfee` RPC now uses `conf_target` rather than `confTarget` in the
   options. (#11413)
 
-- `fundrawtransaction` and `walletcreatefundedpsbt` when used with the
+- `fundrawtransaction` and `walletcreatefundedpsmt` when used with the
   `lockUnspents` argument now lock manually selected coins, in addition to
   automatically selected coins. Note that locked coins are never used in
   automatic coin selection, but can still be manually selected. (#18244)
@@ -434,7 +434,7 @@ to distinguish between things that are watchonly and things that are not within 
 
 This change does have a caveat. If a Descriptor Wallet with private keys *enabled* has
 a multiple key descriptor without all of the private keys (e.g. `multi(...)` with only one private key),
-then the wallet will fail to sign and broadcast transactions. Such wallets would need to use the PSBT
+then the wallet will fail to sign and broadcast transactions. Such wallets would need to use the PSMT
 workflow but the typical GUI Send, `sendtoaddress`, etc. workflows would still be available, just
 non-functional.
 
@@ -469,9 +469,9 @@ was already being broken by the move to descriptors.
 
 - A new `fee_rate` parameter/option denominated in satoshis per vbyte (mewc/vB)
   is introduced to the `sendtoaddress`, `sendmany`, `fundrawtransaction` and
-  `walletcreatefundedpsbt` RPCs as well as to the experimental new `send`
+  `walletcreatefundedpsmt` RPCs as well as to the experimental new `send`
   RPC. The legacy `feeRate` option in `fundrawtransaction` and
-  `walletcreatefundedpsbt` still exists for setting a fee rate in MEWC per 1,000
+  `walletcreatefundedpsmt` still exists for setting a fee rate in MEWC per 1,000
   vbytes (MEWC/kvB), but it is expected to be deprecated soon to avoid
   confusion. For these RPCs, the fee rate error message is updated from MEWC/kB
   to mewc/vB and the help documentation in MEWC/kB is updated to MEWC/kvB. The
@@ -713,7 +713,7 @@ Tests
 - #18836 Upgradewallet fixes and additional tests (achow101)
 - #20139 Do not return warnings from UpgradeWallet() (stackman27)
 - #20305 Introduce `fee_rate` mewc/vB param/option (jonatack)
-- #20426 Allow zero-fee fundrawtransaction/walletcreatefundedpsbt and other fixes (jonatack)
+- #20426 Allow zero-fee fundrawtransaction/walletcreatefundedpsmt and other fixes (jonatack)
 - #20573 wallet, bugfix: allow send with string `fee_rate` amounts (jonatack)
 
 ### RPC and other APIs
@@ -732,24 +732,24 @@ Tests
 - #19112 Remove special case for unknown service flags (MarcoFalke)
 - #18826 Expose txinwitness for coinbase in JSON form from RPC (rvagg)
 - #19282 Rephrase generatetoaddress help, and use `PACKAGE_NAME` (luke-jr)
-- #16377 don't automatically append inputs in walletcreatefundedpsbt (Sjors)
+- #16377 don't automatically append inputs in walletcreatefundedpsmt (Sjors)
 - #19200 Remove deprecated getaddressinfo fields (jonatack)
 - #19133 rpc, cli, test: add meowcoin-cli -generate command (jonatack)
 - #19469 Deprecate banscore field in getpeerinfo (jonatack)
 - #16525 Dump transaction version as an unsigned integer in RPC/TxToUniv (TheBlueMatt)
-- #19555 Deduplicate WriteHDKeypath() used in decodepsbt (theStack)
+- #19555 Deduplicate WriteHDKeypath() used in decodepsmt (theStack)
 - #19589 Avoid useless mempool query in gettxoutproof (MarcoFalke)
 - #19585 RPCResult Type of MempoolEntryDescription should be OBJ (stylesuxx)
 - #19634 Document getwalletinfo's `unlocked_until` field as optional (justinmoon)
 - #19658 Allow RPC to fetch all addrman records and add records to addrman (jnewbery)
 - #19696 Fix addnode remove command error (fjahr)
-- #18654 Separate bumpfee's psbt creation function into psbtbumpfee (achow101)
+- #18654 Separate bumpfee's psmt creation function into psmtbumpfee (achow101)
 - #19655 Catch listsinceblock `target_confirmations` exceeding block count (adaminsky)
 - #19644 Document returned error fields as optional if applicable (theStack)
 - #19455 rpc generate: print useful help and error message (jonatack)
 - #19550 Add listindices RPC (fjahr)
 - #19169 Validate provided keys for `query_options` parameter in listunspent (PastaPastaPasta)
-- #18244 fundrawtransaction and walletcreatefundedpsbt also lock manually selected coins (Sjors)
+- #18244 fundrawtransaction and walletcreatefundedpsmt also lock manually selected coins (Sjors)
 - #14687 zmq: Enable TCP keepalive (mruddy)
 - #19405 Add network in/out connections to `getnetworkinfo` and `-getinfo` (jonatack)
 - #19878 rawtransaction: Fix argument in combinerawtransaction help message (pinheadmz)
@@ -775,7 +775,7 @@ Tests
 ### GUI
 - #17905 Avoid redundant tx status updates (ryanofsky)
 - #18646 Use `PACKAGE_NAME` in exception message (fanquake)
-- #17509 Save and load PSBT (Sjors)
+- #17509 Save and load PSMT (Sjors)
 - #18769 Remove bug fix for Qt < 5.5 (10xcryptodev)
 - #15768 Add close window shortcut (IPGlider)
 - #16224 Bilingual GUI error messages (hebasto)
@@ -793,7 +793,7 @@ Tests
 - #19132 lock `cs_main`, `m_cached_tip_mutex` in that order (vasild)
 - #18898 Display warnings as rich text (hebasto)
 - #19231 add missing translation.h include to fix build (fanquake)
-- #18027 "PSBT Operations" dialog (gwillen)
+- #18027 "PSMT Operations" dialog (gwillen)
 - #19256 Change combiner for signals to `optional_last_value` (fanquake)
 - #18896 Reset toolbar after all wallets are closed (hebasto)
 - #18993 increase console command max length (10xcryptodev)
@@ -998,7 +998,7 @@ Tests
 - #19562 Fix fuzzer compilation on macOS (freenancial)
 - #19370 Static asserts for consistency of fee defaults (domob1812)
 - #19599 clean `message_count` and `last_message` (troygiorshev)
-- #19597 test decodepsbt fee calculation (count input value only once per UTXO) (theStack)
+- #19597 test decodepsmt fee calculation (count input value only once per UTXO) (theStack)
 - #18011 Replace current benchmarking framework with nanobench (martinus)
 - #19489 Fail `wait_until` early if connection is lost (MarcoFalke)
 - #19340 Preserve the `LockData` initial state if "potential deadlock detected" exception thrown (hebasto)
@@ -1037,7 +1037,7 @@ Tests
 - #20004 Add signet witness commitment section parse tests (MarcoFalke)
 - #20034 Get rid of default wallet hacks (ryanofsky)
 - #20069 Mention commit id in scripted diff error (laanwj)
-- #19947 Cover `change_type` option of "walletcreatefundedpsbt" RPC (guggero)
+- #19947 Cover `change_type` option of "walletcreatefundedpsmt" RPC (guggero)
 - #20126 `p2p_leak_tx.py` improvements (use MiniWallet, add `p2p_lock` acquires) (theStack)
 - #20129 Don't export `in6addr_loopback` (vasild)
 - #20131 Remove unused nVersion=1 in p2p tests (MarcoFalke)
@@ -1145,7 +1145,7 @@ Tests
 - #19005 Add documentation for 'checklevel' argument in 'verifychain' RPC… (kcalvinalvin)
 - #19192 Extract net permissions doc (MarcoFalke)
 - #19071 Separate repository for the gui (MarcoFalke)
-- #19018 fixing description of the field sequence in walletcreatefundedpsbt RPC method (limpbrains)
+- #19018 fixing description of the field sequence in walletcreatefundedpsmt RPC method (limpbrains)
 - #19367 Span pitfalls (sipa)
 - #19408 Windows WSL build recommendation to temporarily disable Win32 PE support (sipsorcery)
 - #19407 explain why passing -mlinker-version is required when cross-compiling (fanquake)

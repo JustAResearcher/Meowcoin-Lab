@@ -594,8 +594,8 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">Перевірте повідомлення для впевненості, що воно підписано вказаною Bitcoin-адресою</translation>
     </message>
     <message>
-        <source>&amp;Load PSBT from file…</source>
-        <translation type="unfinished">&amp;Завантажити PSBT-транзакцію з файлу…</translation>
+        <source>&amp;Load PSMT from file…</source>
+        <translation type="unfinished">&amp;Завантажити PSMT-транзакцію з файлу…</translation>
     </message>
     <message>
         <source>Open &amp;URI…</source>
@@ -707,15 +707,15 @@ Signing is only possible with addresses of the type 'legacy'.</source>
     </message>
     <message>
         <source>Load Partially Signed Bitcoin Transaction</source>
-        <translation type="unfinished">Завантажити частково підписану біткоїн-транзакцію (PSBT)</translation>
+        <translation type="unfinished">Завантажити частково підписану біткоїн-транзакцію (PSMT)</translation>
     </message>
     <message>
-        <source>Load PSBT from &amp;clipboard…</source>
-        <translation type="unfinished">Завантажити PSBT-транзакцію з &amp;буфера обміну…</translation>
+        <source>Load PSMT from &amp;clipboard…</source>
+        <translation type="unfinished">Завантажити PSMT-транзакцію з &amp;буфера обміну…</translation>
     </message>
     <message>
         <source>Load Partially Signed Bitcoin Transaction from clipboard</source>
-        <translation type="unfinished">Завантажити частково підписану біткоїн-транзакцію (PSBT) з буфера обміну</translation>
+        <translation type="unfinished">Завантажити частково підписану біткоїн-транзакцію (PSMT) з буфера обміну</translation>
     </message>
     <message>
         <source>Node window</source>
@@ -1751,14 +1751,14 @@ The migration process will create a backup of the wallet before migrating. This 
         <translation type="unfinished">Витрачати непідтверджену &amp;решту</translation>
     </message>
     <message>
-        <source>Enable &amp;PSBT controls</source>
-        <extracomment>An options window setting to enable PSBT controls.</extracomment>
-        <translation type="unfinished">Увімкнути функції &amp;частково підписаних біткоїн-транзакцій (PSBT)</translation>
+        <source>Enable &amp;PSMT controls</source>
+        <extracomment>An options window setting to enable PSMT controls.</extracomment>
+        <translation type="unfinished">Увімкнути функції &amp;частково підписаних біткоїн-транзакцій (PSMT)</translation>
     </message>
     <message>
-        <source>Whether to show PSBT controls.</source>
-        <extracomment>Tooltip text for options window setting that enables PSBT controls.</extracomment>
-        <translation type="unfinished">Чи потрібно відображати елементи керування PSBT</translation>
+        <source>Whether to show PSMT controls.</source>
+        <extracomment>Tooltip text for options window setting that enables PSMT controls.</extracomment>
+        <translation type="unfinished">Чи потрібно відображати елементи керування PSMT</translation>
     </message>
     <message>
         <source>External Signer (e.g. hardware wallet)</source>
@@ -1999,10 +1999,10 @@ The migration process will create a backup of the wallet before migrating. This 
     </message>
 </context>
 <context>
-    <name>PSBTOperationsDialog</name>
+    <name>PSMTOperationsDialog</name>
     <message>
-        <source>PSBT Operations</source>
-        <translation type="unfinished">Операції з PSBT</translation>
+        <source>PSMT Operations</source>
+        <translation type="unfinished">Операції з PSMT</translation>
     </message>
     <message>
         <source>Sign Tx</source>
@@ -2061,8 +2061,8 @@ The migration process will create a backup of the wallet before migrating. This 
         <translation type="unfinished">Помилка трансляції транзакції: %1</translation>
     </message>
     <message>
-        <source>PSBT copied to clipboard.</source>
-        <translation type="unfinished">PSBT-транзакцію скопійовано в буфер обміну.</translation>
+        <source>PSMT copied to clipboard.</source>
+        <translation type="unfinished">PSMT-транзакцію скопійовано в буфер обміну.</translation>
     </message>
     <message>
         <source>Save Transaction Data</source>
@@ -2070,12 +2070,12 @@ The migration process will create a backup of the wallet before migrating. This 
     </message>
     <message>
         <source>Partially Signed Transaction (Binary)</source>
-        <extracomment>Expanded name of the binary PSBT file format. See: BIP 174.</extracomment>
+        <extracomment>Expanded name of the binary PSMT file format. See: BIP 174.</extracomment>
         <translation type="unfinished">Частково підписана біткоїн-транзакція (бінарний файл)</translation>
     </message>
     <message>
-        <source>PSBT saved to disk.</source>
-        <translation type="unfinished">PSBT-транзакцію збережено на диск.</translation>
+        <source>PSMT saved to disk.</source>
+        <translation type="unfinished">PSMT-транзакцію збережено на диск.</translation>
     </message>
     <message>
         <source>Sends %1 to %2</source>
@@ -3161,8 +3161,8 @@ Note:  Since the fee is calculated on a per-byte basis, a fee rate of "100 satos
         <translation type="unfinished">С&amp;творити непідписану</translation>
     </message>
     <message>
-        <source>Creates a Partially Signed Bitcoin Transaction (PSBT) for use with e.g. an offline %1 wallet, or a PSBT-compatible hardware wallet.</source>
-        <translation type="unfinished">Створює частково підписану біткоїн-транзакцію (PSBT) для використання, наприклад, офлайн-гаманець %1 або гаманця, сумісного з PSBT.</translation>
+        <source>Creates a Partially Signed Bitcoin Transaction (PSMT) for use with e.g. an offline %1 wallet, or a PSMT-compatible hardware wallet.</source>
+        <translation type="unfinished">Створює частково підписану біткоїн-транзакцію (PSMT) для використання, наприклад, офлайн-гаманець %1 або гаманця, сумісного з PSMT.</translation>
     </message>
     <message>
         <source>%1 to '%2'</source>
@@ -3196,13 +3196,13 @@ Note:  Since the fee is calculated on a per-byte basis, a fee rate of "100 satos
     </message>
     <message>
         <source>Partially Signed Transaction (Binary)</source>
-        <extracomment>Expanded name of the binary PSBT file format. See: BIP 174.</extracomment>
+        <extracomment>Expanded name of the binary PSMT file format. See: BIP 174.</extracomment>
         <translation type="unfinished">Частково підписана біткоїн-транзакція (бінарний файл)</translation>
     </message>
     <message>
-        <source>PSBT saved</source>
-        <extracomment>Popup message when a PSBT has been saved to a file</extracomment>
-        <translation type="unfinished">PSBT-транзакцію збережено</translation>
+        <source>PSMT saved</source>
+        <extracomment>Popup message when a PSMT has been saved to a file</extracomment>
+        <translation type="unfinished">PSMT-транзакцію збережено</translation>
     </message>
     <message>
         <source>External balance:</source>
@@ -3217,9 +3217,9 @@ Note:  Since the fee is calculated on a per-byte basis, a fee rate of "100 satos
         <translation type="unfinished">Ви можете збільшити комісію пізніше (сигналізує Заміна-Через-Комісію, BIP-125).</translation>
     </message>
     <message>
-        <source>Please, review your transaction proposal. This will produce a Partially Signed Bitcoin Transaction (PSBT) which you can save or copy and then sign with e.g. an offline %1 wallet, or a PSBT-compatible hardware wallet.</source>
-        <extracomment>Text to inform a user attempting to create a transaction of their current options. At this stage, a user can only create a PSBT. This string is displayed when private keys are disabled and an external signer is not available.</extracomment>
-        <translation type="unfinished">Перевірте запропоновану транзакцію. Буде сформована частково підписана біткоїн-транзакція (PSBT), яку можна зберегти або скопіювати, а потім підписати з використанням, наприклад, офлайн гаманця %1 або апаратного PSBT-сумісного гаманця.</translation>
+        <source>Please, review your transaction proposal. This will produce a Partially Signed Bitcoin Transaction (PSMT) which you can save or copy and then sign with e.g. an offline %1 wallet, or a PSMT-compatible hardware wallet.</source>
+        <extracomment>Text to inform a user attempting to create a transaction of their current options. At this stage, a user can only create a PSMT. This string is displayed when private keys are disabled and an external signer is not available.</extracomment>
+        <translation type="unfinished">Перевірте запропоновану транзакцію. Буде сформована частково підписана біткоїн-транзакція (PSMT), яку можна зберегти або скопіювати, а потім підписати з використанням, наприклад, офлайн гаманця %1 або апаратного PSMT-сумісного гаманця.</translation>
     </message>
     <message>
         <source>%1 from wallet '%2'</source>
@@ -3231,9 +3231,9 @@ Note:  Since the fee is calculated on a per-byte basis, a fee rate of "100 satos
         <translation type="unfinished">Створити таку транзакцію?</translation>
     </message>
     <message>
-        <source>Please, review your transaction. You can create and send this transaction or create a Partially Signed Bitcoin Transaction (PSBT), which you can save or copy and then sign with, e.g., an offline %1 wallet, or a PSBT-compatible hardware wallet.</source>
-        <extracomment>Text to inform a user attempting to create a transaction of their current options. At this stage, a user can send their transaction or create a PSBT. This string is displayed when both private keys and PSBT controls are enabled.</extracomment>
-        <translation type="unfinished">Перевірте транзакцію. Можливо створити та надіслати цю транзакцію або створити частково підписану біткоїн-транзакцію (PSBT), яку можна зберегти або скопіювати, а потім підписати з використанням, наприклад, офлайн гаманця %1 або апаратного PSBT-сумісного гаманця.</translation>
+        <source>Please, review your transaction. You can create and send this transaction or create a Partially Signed Bitcoin Transaction (PSMT), which you can save or copy and then sign with, e.g., an offline %1 wallet, or a PSMT-compatible hardware wallet.</source>
+        <extracomment>Text to inform a user attempting to create a transaction of their current options. At this stage, a user can send their transaction or create a PSMT. This string is displayed when both private keys and PSMT controls are enabled.</extracomment>
+        <translation type="unfinished">Перевірте транзакцію. Можливо створити та надіслати цю транзакцію або створити частково підписану біткоїн-транзакцію (PSMT), яку можна зберегти або скопіювати, а потім підписати з використанням, наприклад, офлайн гаманця %1 або апаратного PSMT-сумісного гаманця.</translation>
     </message>
     <message>
         <source>Please, review your transaction.</source>
@@ -3246,8 +3246,8 @@ Note:  Since the fee is calculated on a per-byte basis, a fee rate of "100 satos
     </message>
     <message>
         <source>%1 kvB</source>
-        <comment>PSBT transaction creation</comment>
-        <extracomment>When reviewing a newly created PSBT (via Send flow), the transaction fee is shown, with "virtual size" of the transaction displayed for context</extracomment>
+        <comment>PSMT transaction creation</comment>
+        <extracomment>When reviewing a newly created PSMT (via Send flow), the transaction fee is shown, with "virtual size" of the transaction displayed for context</extracomment>
         <translation type="unfinished">%1 квБ</translation>
     </message>
     <message>
@@ -3260,17 +3260,17 @@ Note:  Since the fee is calculated on a per-byte basis, a fee rate of "100 satos
     </message>
     <message>
         <source>Unsigned Transaction</source>
-        <comment>PSBT copied</comment>
-        <extracomment>Caption of "PSBT has been copied" messagebox</extracomment>
+        <comment>PSMT copied</comment>
+        <extracomment>Caption of "PSMT has been copied" messagebox</extracomment>
         <translation type="unfinished">Непідписана транзакція</translation>
     </message>
     <message>
-        <source>The PSBT has been copied to the clipboard. You can also save it.</source>
-        <translation type="unfinished">PSBT-транзакцію скопійовано в буфер обміну. Ви також можете зберегти її.</translation>
+        <source>The PSMT has been copied to the clipboard. You can also save it.</source>
+        <translation type="unfinished">PSMT-транзакцію скопійовано в буфер обміну. Ви також можете зберегти її.</translation>
     </message>
     <message>
-        <source>PSBT saved to disk</source>
-        <translation type="unfinished">PSBT-транзакцію збережено на диск</translation>
+        <source>PSMT saved to disk</source>
+        <translation type="unfinished">PSMT-транзакцію збережено на диск</translation>
     </message>
     <message>
         <source>Confirm send coins</source>
@@ -4007,24 +4007,24 @@ Go to File &gt; Open Wallet to load a wallet.
         <translation type="unfinished">Помилка</translation>
     </message>
     <message>
-        <source>Unable to decode PSBT from clipboard (invalid base64)</source>
-        <translation type="unfinished">Не вдалося декодувати PSBT-транзакцію з буфера обміну (неприпустимий base64)</translation>
+        <source>Unable to decode PSMT from clipboard (invalid base64)</source>
+        <translation type="unfinished">Не вдалося декодувати PSMT-транзакцію з буфера обміну (неприпустимий base64)</translation>
     </message>
     <message>
         <source>Load Transaction Data</source>
         <translation type="unfinished">Завантажити дані транзакції</translation>
     </message>
     <message>
-        <source>Partially Signed Transaction (*.psbt)</source>
-        <translation type="unfinished">Частково підписана біткоїн-транзакція (* .psbt)</translation>
+        <source>Partially Signed Transaction (*.psmt)</source>
+        <translation type="unfinished">Частково підписана біткоїн-транзакція (* .psmt)</translation>
     </message>
     <message>
-        <source>PSBT file must be smaller than 100 MiB</source>
-        <translation type="unfinished">Файл PSBT повинен бути менше 100 МіБ</translation>
+        <source>PSMT file must be smaller than 100 MiB</source>
+        <translation type="unfinished">Файл PSMT повинен бути менше 100 МіБ</translation>
     </message>
     <message>
-        <source>Unable to decode PSBT</source>
-        <translation type="unfinished">Не вдалося декодувати PSBT-транзакцію</translation>
+        <source>Unable to decode PSMT</source>
+        <translation type="unfinished">Не вдалося декодувати PSMT-транзакцію</translation>
     </message>
 </context>
 <context>
@@ -4071,12 +4071,12 @@ Go to File &gt; Open Wallet to load a wallet.
         <translation type="unfinished">Неможливо підготувати транзакцію.</translation>
     </message>
     <message>
-        <source>PSBT copied</source>
-        <translation type="unfinished">PSBT-транзакцію скопійовано</translation>
+        <source>PSMT copied</source>
+        <translation type="unfinished">PSMT-транзакцію скопійовано</translation>
     </message>
     <message>
-        <source>Fee-bump PSBT copied to clipboard</source>
-        <translation type="unfinished">PSBT з комісією скопійовано до буферу обміну</translation>
+        <source>Fee-bump PSMT copied to clipboard</source>
+        <translation type="unfinished">PSMT з комісією скопійовано до буферу обміну</translation>
     </message>
     <message>
         <source>Can't sign transaction.</source>

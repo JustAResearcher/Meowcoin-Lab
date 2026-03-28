@@ -20,7 +20,7 @@ At the time of writing, there is no way to extract a specific path from wallets 
 
 ### 1.1 Create the Descriptor Wallets
 
-For a 2-of-3 multisig, create 3 descriptor wallets. It is important that they are of the descriptor type in order to retrieve the wallet descriptors. These wallets contain HD seed and private keys, which will be used to sign the PSBTs and derive the xpub.
+For a 2-of-3 multisig, create 3 descriptor wallets. It is important that they are of the descriptor type in order to retrieve the wallet descriptors. These wallets contain HD seed and private keys, which will be used to sign the PSMTs and derive the xpub.
 
 These three wallets should not be used directly for privacy reasons (public key reuse). They should only be used to sign transactions for the (watch-only) multisig wallet.
 
@@ -150,17 +150,17 @@ The `getbalances` RPC may be used to check the balance. Coins with `trusted` sta
 ./build/bin/meowcoin-cli -signet -rpcwallet="multisig_wallet_01" getbalances
 ```
 
-### 1.5 Create a PSBT
+### 1.5 Create a PSMT
 
-Unlike singlesig wallets, multisig wallets cannot create and sign transactions directly because they require the signatures of the co-signers. Instead they create a Partially Signed Meowcoin Transaction (PSBT).
+Unlike singlesig wallets, multisig wallets cannot create and sign transactions directly because they require the signatures of the co-signers. Instead they create a Partially Signed Meowcoin Transaction (PSMT).
 
-PSBT is a data format that allows wallets and other tools to exchange information about a Meowcoin transaction and the signatures necessary to complete it. [[source](https://meowcoinops.org/en/topics/psbt/)]
+PSMT is a data format that allows wallets and other tools to exchange information about a Meowcoin transaction and the signatures necessary to complete it. [[source](https://meowcoinops.org/en/topics/psmt/)]
 
-The current PSBT version (v0) is defined in [BIP 174](https://github.com/meowcoin/bips/blob/master/bip-0174.mediawiki).
+The current PSMT version (v0) is defined in [BIP 174](https://github.com/meowcoin/bips/blob/master/bip-0174.mediawiki).
 
 For simplicity, the destination address is taken from the `participant_1` wallet in the code above, but it can be any valid meowcoin address.
 
-The `walletcreatefundedpsbt` RPC is used to create and fund a transaction in the PSBT format. It is the first step in creating the PSBT.
+The `walletcreatefundedpsmt` RPC is used to create and fund a transaction in the PSMT format. It is the first step in creating the PSMT.
 
 ```bash
 balance=$(./build/bin/meowcoin-cli -signet -rpcwallet="multisig_wallet_01" getbalance)
@@ -169,73 +169,73 @@ amount=$(echo "$balance * 0.8" | bc -l | sed -e 's/^\./0./' -e 's/^-\./-0./')
 
 destination_addr=$(./build/bin/meowcoin-cli -signet -rpcwallet="participant_1" getnewaddress)
 
-funded_psbt=$(./build/bin/meowcoin-cli -signet -named -rpcwallet="multisig_wallet_01" walletcreatefundedpsbt outputs="{\"$destination_addr\": $amount}" | jq -r '.psbt')
+funded_psmt=$(./build/bin/meowcoin-cli -signet -named -rpcwallet="multisig_wallet_01" walletcreatefundedpsmt outputs="{\"$destination_addr\": $amount}" | jq -r '.psmt')
 ```
 
-There is also the `createpsbt` RPC, which serves the same purpose, but it has no access to the wallet or to the UTXO set. It is functionally the same as `createrawtransaction` and just drops the raw transaction into an otherwise blank PSBT. [[source](https://meowcointalk.org/index.php?topic=5131043.msg50573609#msg50573609)] In most cases, `walletcreatefundedpsbt` solves the problem.
+There is also the `createpsmt` RPC, which serves the same purpose, but it has no access to the wallet or to the UTXO set. It is functionally the same as `createrawtransaction` and just drops the raw transaction into an otherwise blank PSMT. [[source](https://meowcointalk.org/index.php?topic=5131043.msg50573609#msg50573609)] In most cases, `walletcreatefundedpsmt` solves the problem.
 
-The `send` RPC can also return a PSBT if more signatures are needed to sign the transaction.
+The `send` RPC can also return a PSMT if more signatures are needed to sign the transaction.
 
-### 1.6 Decode or Analyze the PSBT
+### 1.6 Decode or Analyze the PSMT
 
-Optionally, the PSBT can be decoded to a JSON format using `decodepsbt` RPC.
+Optionally, the PSMT can be decoded to a JSON format using `decodepsmt` RPC.
 
-The `analyzepsbt` RPC analyzes and provides information about the current status of a PSBT and its inputs, e.g. missing signatures.
+The `analyzepsmt` RPC analyzes and provides information about the current status of a PSMT and its inputs, e.g. missing signatures.
 
 ```bash
-./build/bin/meowcoin-cli -signet decodepsbt $funded_psbt
+./build/bin/meowcoin-cli -signet decodepsmt $funded_psmt
 
-./build/bin/meowcoin-cli -signet analyzepsbt $funded_psbt
+./build/bin/meowcoin-cli -signet analyzepsmt $funded_psmt
 ```
 
-### 1.7 Update the PSBT
+### 1.7 Update the PSMT
 
-In the code above, two PSBTs are created. One signed by `participant_1` wallet and other, by the `participant_2` wallet.
+In the code above, two PSMTs are created. One signed by `participant_1` wallet and other, by the `participant_2` wallet.
 
-The `walletprocesspsbt` is used by the wallet to sign a PSBT.
+The `walletprocesspsmt` is used by the wallet to sign a PSMT.
 
 ```bash
-psbt_1=$(./build/bin/meowcoin-cli -signet -rpcwallet="participant_1" walletprocesspsbt $funded_psbt | jq '.psbt')
+psmt_1=$(./build/bin/meowcoin-cli -signet -rpcwallet="participant_1" walletprocesspsmt $funded_psmt | jq '.psmt')
 
-psbt_2=$(./build/bin/meowcoin-cli -signet -rpcwallet="participant_2" walletprocesspsbt $funded_psbt | jq '.psbt')
+psmt_2=$(./build/bin/meowcoin-cli -signet -rpcwallet="participant_2" walletprocesspsmt $funded_psmt | jq '.psmt')
 ```
 
-### 1.8 Combine the PSBT
+### 1.8 Combine the PSMT
 
-The PSBT, if signed separately by the co-signers, must be combined into one transaction before being finalized. This is done by `combinepsbt` RPC.
+The PSMT, if signed separately by the co-signers, must be combined into one transaction before being finalized. This is done by `combinepsmt` RPC.
 
 ```bash
-combined_psbt=$(./build/bin/meowcoin-cli -signet combinepsbt "[$psbt_1, $psbt_2]")
+combined_psmt=$(./build/bin/meowcoin-cli -signet combinepsmt "[$psmt_1, $psmt_2]")
 ```
 
-There is an RPC called `joinpsbts`, but it has a different purpose than `combinepsbt`. `joinpsbts` joins the inputs from multiple distinct PSBTs into one PSBT.
+There is an RPC called `joinpsmts`, but it has a different purpose than `combinepsmt`. `joinpsmts` joins the inputs from multiple distinct PSMTs into one PSMT.
 
-In the example above, the PSBTs are the same, but signed by different participants. If the user tries to merge them using `joinpsbts`, the error `Input txid:pos exists in multiple PSBTs` is returned. To be able to merge different PSBTs into one, they must have different inputs and outputs.
+In the example above, the PSMTs are the same, but signed by different participants. If the user tries to merge them using `joinpsmts`, the error `Input txid:pos exists in multiple PSMTs` is returned. To be able to merge different PSMTs into one, they must have different inputs and outputs.
 
-### 1.9 Finalize and Broadcast the PSBT
+### 1.9 Finalize and Broadcast the PSMT
 
-The `finalizepsbt` RPC is used to produce a network serialized transaction which can be broadcast with `sendrawtransaction`.
+The `finalizepsmt` RPC is used to produce a network serialized transaction which can be broadcast with `sendrawtransaction`.
 
 It checks that all inputs have complete scriptSigs and scriptWitnesses and, if so, encodes them into network serialized transactions.
 
 ```bash
-finalized_psbt_hex=$(./build/bin/meowcoin-cli -signet finalizepsbt $combined_psbt | jq -r '.hex')
+finalized_psmt_hex=$(./build/bin/meowcoin-cli -signet finalizepsmt $combined_psmt | jq -r '.hex')
 
-./build/bin/meowcoin-cli -signet sendrawtransaction $finalized_psbt_hex
+./build/bin/meowcoin-cli -signet sendrawtransaction $finalized_psmt_hex
 ```
 
-### 1.10 Alternative Workflow (PSBT sequential signatures)
+### 1.10 Alternative Workflow (PSMT sequential signatures)
 
-Instead of each wallet signing the original PSBT and combining them later, the wallets can also sign the PSBTs sequentially. This is less scalable than the previously presented parallel workflow, but it works.
+Instead of each wallet signing the original PSMT and combining them later, the wallets can also sign the PSMTs sequentially. This is less scalable than the previously presented parallel workflow, but it works.
 
-After that, the rest of the process is the same: the PSBT is finalized and transmitted to the network.
+After that, the rest of the process is the same: the PSMT is finalized and transmitted to the network.
 
 ```bash
-psbt_1=$(./build/bin/meowcoin-cli -signet -rpcwallet="participant_1" walletprocesspsbt $funded_psbt | jq -r '.psbt')
+psmt_1=$(./build/bin/meowcoin-cli -signet -rpcwallet="participant_1" walletprocesspsmt $funded_psmt | jq -r '.psmt')
 
-psbt_2=$(./build/bin/meowcoin-cli -signet -rpcwallet="participant_2" walletprocesspsbt $psbt_1 | jq -r '.psbt')
+psmt_2=$(./build/bin/meowcoin-cli -signet -rpcwallet="participant_2" walletprocesspsmt $psmt_1 | jq -r '.psmt')
 
-finalized_psbt_hex=$(./build/bin/meowcoin-cli -signet finalizepsbt $psbt_2 | jq -r '.hex')
+finalized_psmt_hex=$(./build/bin/meowcoin-cli -signet finalizepsmt $psmt_2 | jq -r '.hex')
 
-./build/bin/meowcoin-cli -signet sendrawtransaction $finalized_psbt_hex
+./build/bin/meowcoin-cli -signet sendrawtransaction $finalized_psmt_hex
 ```

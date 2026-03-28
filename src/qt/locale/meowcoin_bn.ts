@@ -283,8 +283,8 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">বার্তা যাচাই করুন...</translation>
     </message>
     <message>
-        <source>&amp;Load PSBT from file…</source>
-        <translation type="unfinished">ফাইল থেকে PSBT লোড করুন...</translation>
+        <source>&amp;Load PSMT from file…</source>
+        <translation type="unfinished">ফাইল থেকে PSMT লোড করুন...</translation>
     </message>
     <message>
         <source>Open &amp;URI…</source>
@@ -338,7 +338,7 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">আংশিক স্বাক্ষরিত বিটকয়েন লেনদেন লোড করুন</translation>
     </message>
     <message>
-        <source>Load PSBT from &amp;clipboard…</source>
+        <source>Load PSMT from &amp;clipboard…</source>
         <translation type="unfinished">&amp;ক্লিপবোর্ড থেকে আংশিক স্বাক্ষরিত বিটকয়েন লেনদেন আনুন</translation>
     </message>
     <message>
@@ -620,9 +620,9 @@ The migration process will create a backup of the wallet before migrating. This 
 <context>
     <name>OptionsDialog</name>
     <message>
-        <source>Whether to show PSBT controls.</source>
-        <extracomment>Tooltip text for options window setting that enables PSBT controls.</extracomment>
-        <translation type="unfinished">দেখাতে হবে কিনা PSBT কন্ট্রোল </translation>
+        <source>Whether to show PSMT controls.</source>
+        <extracomment>Tooltip text for options window setting that enables PSMT controls.</extracomment>
+        <translation type="unfinished">দেখাতে হবে কিনা PSMT কন্ট্রোল </translation>
     </message>
     <message>
         <source>External Signer (e.g. hardware wallet)</source>

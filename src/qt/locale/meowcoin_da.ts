@@ -481,8 +481,8 @@
         <translation type="unfinished">Verificér beskeder for at sikre, at de er signeret med de angivne Meowcoin-adresser</translation>
     </message>
     <message>
-        <source>&amp;Load PSBT from file…</source>
-        <translation type="unfinished">&amp;Indlæs PSBT fra fil...</translation>
+        <source>&amp;Load PSMT from file…</source>
+        <translation type="unfinished">&amp;Indlæs PSMT fra fil...</translation>
     </message>
     <message>
         <source>Open &amp;URI…</source>
@@ -592,8 +592,8 @@
         <translation type="unfinished">Indlæs Partvist Signeret Meowcoin-Transaktion</translation>
     </message>
     <message>
-        <source>Load PSBT from &amp;clipboard…</source>
-        <translation type="unfinished">Indlæs PSBT fra &amp;clipboard</translation>
+        <source>Load PSMT from &amp;clipboard…</source>
+        <translation type="unfinished">Indlæs PSMT fra &amp;clipboard</translation>
     </message>
     <message>
         <source>Load Partially Signed Meowcoin Transaction from clipboard</source>
@@ -1630,7 +1630,7 @@
     </message>
 </context>
 <context>
-    <name>PSBTOperationsDialog</name>
+    <name>PSMTOperationsDialog</name>
     <message>
         <source>Sign Tx</source>
         <translation type="unfinished">Signér Tx</translation>
@@ -1688,8 +1688,8 @@
         <translation type="unfinished">Udsendelse af transaktion mislykkedes: %1</translation>
     </message>
     <message>
-        <source>PSBT copied to clipboard.</source>
-        <translation type="unfinished">PSBT kopieret til udklipsholder.</translation>
+        <source>PSMT copied to clipboard.</source>
+        <translation type="unfinished">PSMT kopieret til udklipsholder.</translation>
     </message>
     <message>
         <source>Save Transaction Data</source>
@@ -1697,12 +1697,12 @@
     </message>
     <message>
         <source>Partially Signed Transaction (Binary)</source>
-        <extracomment>Expanded name of the binary PSBT file format. See: BIP 174.</extracomment>
+        <extracomment>Expanded name of the binary PSMT file format. See: BIP 174.</extracomment>
         <translation type="unfinished">Delvist underskrevet transaktion (Binær)</translation>
     </message>
     <message>
-        <source>PSBT saved to disk.</source>
-        <translation type="unfinished">PSBT gemt på disk.</translation>
+        <source>PSMT saved to disk.</source>
+        <translation type="unfinished">PSMT gemt på disk.</translation>
     </message>
     <message>
         <source>own address</source>
@@ -2664,8 +2664,8 @@ Bemærk: Da gebyret beregnes på per-byte-basis, ville en gebyrsats på "100 sat
         <translation type="unfinished">L&amp;av usigneret</translation>
     </message>
     <message>
-        <source>Creates a Partially Signed Meowcoin Transaction (PSBT) for use with e.g. an offline %1 wallet, or a PSBT-compatible hardware wallet.</source>
-        <translation type="unfinished">Laver en delvist signeret meowcointransaktion (forkortet PSBT) som kan bruges med f.eks. en offline %1 tegnebog. De kan også bruges med PSBT-kompatible hardwaretegnebøger.</translation>
+        <source>Creates a Partially Signed Meowcoin Transaction (PSMT) for use with e.g. an offline %1 wallet, or a PSMT-compatible hardware wallet.</source>
+        <translation type="unfinished">Laver en delvist signeret meowcointransaktion (forkortet PSMT) som kan bruges med f.eks. en offline %1 tegnebog. De kan også bruges med PSMT-kompatible hardwaretegnebøger.</translation>
     </message>
     <message>
         <source>%1 to '%2'</source>
@@ -2699,13 +2699,13 @@ Bemærk: Da gebyret beregnes på per-byte-basis, ville en gebyrsats på "100 sat
     </message>
     <message>
         <source>Partially Signed Transaction (Binary)</source>
-        <extracomment>Expanded name of the binary PSBT file format. See: BIP 174.</extracomment>
+        <extracomment>Expanded name of the binary PSMT file format. See: BIP 174.</extracomment>
         <translation type="unfinished">Delvist underskrevet transaktion (Binær)</translation>
     </message>
     <message>
-        <source>PSBT saved</source>
-        <extracomment>Popup message when a PSBT has been saved to a file</extracomment>
-        <translation type="unfinished">PSBT gemt</translation>
+        <source>PSMT saved</source>
+        <extracomment>Popup message when a PSMT has been saved to a file</extracomment>
+        <translation type="unfinished">PSMT gemt</translation>
     </message>
     <message>
         <source>External balance:</source>
@@ -2720,9 +2720,9 @@ Bemærk: Da gebyret beregnes på per-byte-basis, ville en gebyrsats på "100 sat
         <translation type="unfinished">Du kan øge gebyret senere (signalerer erstat-med-gebyr, BIP-125).</translation>
     </message>
     <message>
-        <source>Please, review your transaction proposal. This will produce a Partially Signed Meowcoin Transaction (PSBT) which you can save or copy and then sign with e.g. an offline %1 wallet, or a PSBT-compatible hardware wallet.</source>
-        <extracomment>Text to inform a user attempting to create a transaction of their current options. At this stage, a user can only create a PSBT. This string is displayed when private keys are disabled and an external signer is not available.</extracomment>
-        <translation type="unfinished">Gennemse venligst dit transaktionsforslag. Dette vil producere en Partvist Signeret Meowcoin Transaktion (PSBT), som du kan gemme eller kopiere, og så signere med f.eks. en offline %1 pung, eller en PSBT-kompatibel maskinelpung.</translation>
+        <source>Please, review your transaction proposal. This will produce a Partially Signed Meowcoin Transaction (PSMT) which you can save or copy and then sign with e.g. an offline %1 wallet, or a PSMT-compatible hardware wallet.</source>
+        <extracomment>Text to inform a user attempting to create a transaction of their current options. At this stage, a user can only create a PSMT. This string is displayed when private keys are disabled and an external signer is not available.</extracomment>
+        <translation type="unfinished">Gennemse venligst dit transaktionsforslag. Dette vil producere en Partvist Signeret Meowcoin Transaktion (PSMT), som du kan gemme eller kopiere, og så signere med f.eks. en offline %1 pung, eller en PSMT-kompatibel maskinelpung.</translation>
     </message>
     <message>
         <source>Do you want to create this transaction?</source>
@@ -2730,9 +2730,9 @@ Bemærk: Da gebyret beregnes på per-byte-basis, ville en gebyrsats på "100 sat
         <translation type="unfinished">Vil du oprette denne transaktion?</translation>
     </message>
     <message>
-        <source>Please, review your transaction. You can create and send this transaction or create a Partially Signed Meowcoin Transaction (PSBT), which you can save or copy and then sign with, e.g., an offline %1 wallet, or a PSBT-compatible hardware wallet.</source>
-        <extracomment>Text to inform a user attempting to create a transaction of their current options. At this stage, a user can send their transaction or create a PSBT. This string is displayed when both private keys and PSBT controls are enabled.</extracomment>
-        <translation type="unfinished">Gennemgå venligst din transaktion. Du kan oprette og sende denne transaktion eller oprette en delvist underskrevet Meowcoin-transaktion (PSBT), som du kan gemme eller kopiere og derefter underskrive med, f.eks. en offline %1 tegnebog eller en PSBT-kompatibel hardwaretegnebog.</translation>
+        <source>Please, review your transaction. You can create and send this transaction or create a Partially Signed Meowcoin Transaction (PSMT), which you can save or copy and then sign with, e.g., an offline %1 wallet, or a PSMT-compatible hardware wallet.</source>
+        <extracomment>Text to inform a user attempting to create a transaction of their current options. At this stage, a user can send their transaction or create a PSMT. This string is displayed when both private keys and PSMT controls are enabled.</extracomment>
+        <translation type="unfinished">Gennemgå venligst din transaktion. Du kan oprette og sende denne transaktion eller oprette en delvist underskrevet Meowcoin-transaktion (PSMT), som du kan gemme eller kopiere og derefter underskrive med, f.eks. en offline %1 tegnebog eller en PSMT-kompatibel hardwaretegnebog.</translation>
     </message>
     <message>
         <source>Please, review your transaction.</source>
@@ -3427,24 +3427,24 @@ Gå til Fil &gt; Åbn Pung for, at indlæse en pung.
         <translation type="unfinished">Fejl</translation>
     </message>
     <message>
-        <source>Unable to decode PSBT from clipboard (invalid base64)</source>
-        <translation type="unfinished">Kan ikke afkode PSBT fra udklipsholder (ugyldigt base64)</translation>
+        <source>Unable to decode PSMT from clipboard (invalid base64)</source>
+        <translation type="unfinished">Kan ikke afkode PSMT fra udklipsholder (ugyldigt base64)</translation>
     </message>
     <message>
         <source>Load Transaction Data</source>
         <translation type="unfinished">Indlæs transaktions data</translation>
     </message>
     <message>
-        <source>Partially Signed Transaction (*.psbt)</source>
-        <translation type="unfinished">Partvist Signeret Transaktion (*.psbt)</translation>
+        <source>Partially Signed Transaction (*.psmt)</source>
+        <translation type="unfinished">Partvist Signeret Transaktion (*.psmt)</translation>
     </message>
     <message>
-        <source>PSBT file must be smaller than 100 MiB</source>
-        <translation type="unfinished">PSBT-fil skal være mindre end 100 MiB</translation>
+        <source>PSMT file must be smaller than 100 MiB</source>
+        <translation type="unfinished">PSMT-fil skal være mindre end 100 MiB</translation>
     </message>
     <message>
-        <source>Unable to decode PSBT</source>
-        <translation type="unfinished">Kunne ikke afkode PSBT</translation>
+        <source>Unable to decode PSMT</source>
+        <translation type="unfinished">Kunne ikke afkode PSMT</translation>
     </message>
 </context>
 <context>
@@ -3491,8 +3491,8 @@ Gå til Fil &gt; Åbn Pung for, at indlæse en pung.
         <translation type="unfinished">Kan ikke lave transaktionsudkast.</translation>
     </message>
     <message>
-        <source>PSBT copied</source>
-        <translation type="unfinished">PSBT kopieret</translation>
+        <source>PSMT copied</source>
+        <translation type="unfinished">PSMT kopieret</translation>
     </message>
     <message>
         <source>Can't sign transaction.</source>

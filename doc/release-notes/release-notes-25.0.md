@@ -96,7 +96,7 @@ meowcoin-cli -named createwallet mywallet load_on_startup=1
 - `decodescript` may now infer a Miniscript descriptor under P2WSH context if it is not lacking
   information. (#27037)
 
-- `finalizepsbt` is now able to finalize a transaction with inputs spending Miniscript-compatible
+- `finalizepsmt` is now able to finalize a transaction with inputs spending Miniscript-compatible
   P2WSH scripts. (#24149)
 
 Changes to wallet related RPCs can be found in the Wallet section below.
@@ -149,7 +149,7 @@ which allows specifying the maximum number of confirmations, have been
 added to the following RPCs in #25375:
   - `fundrawtransaction`
   - `send`
-  - `walletcreatefundedpsbt`
+  - `walletcreatefundedpsmt`
   - `sendall`
 
 - Added a new `next_index` field in the response in `listdescriptors` to
@@ -222,7 +222,7 @@ RPC
   with later ones. (#26628)
 - RPC `listsinceblock` now accepts an optional `label` argument
   to fetch incoming transactions having the specified label. (#25934)
-- Previously `setban`, `addpeeraddress`, `walletcreatefundedpsbt`, methods
+- Previously `setban`, `addpeeraddress`, `walletcreatefundedpsmt`, methods
   allowed non-boolean and non-null values to be passed as boolean parameters.
   Any string, number, array, or object value that was passed would be treated
   as false. After this change, passing any value except `true`, `false`, or

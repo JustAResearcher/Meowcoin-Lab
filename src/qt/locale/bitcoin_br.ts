@@ -636,7 +636,7 @@ Signing is only possible with addresses of the type 'legacy'.</translation>
     </message>
     </context>
 <context>
-    <name>PSBTOperationsDialog</name>
+    <name>PSMTOperationsDialog</name>
     <message>
         <source>Close</source>
         <translation type="unfinished">Serriñ</translation>

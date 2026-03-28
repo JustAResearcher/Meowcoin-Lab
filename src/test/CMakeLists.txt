@@ -159,6 +159,10 @@ target_link_libraries(test_meowcoin
   secp256k1
   Boost::headers
   libevent::extra
+  # bitcoin_assets (via meowcoin_node) calls CDBWrapper from meowcoin_node; with
+  # static libs the linker must see meowcoin_node again after bitcoin_assets.
+  bitcoin_assets
+  meowcoin_node
 )
 
 if(ENABLE_WALLET)

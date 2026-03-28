@@ -467,8 +467,8 @@ Firmar é posible unicamente con enderezos de tipo 'legacy'.</translation>
         <translation type="unfinished">Verifica mensaxes para asegurar que foron asinados con enderezos Meowcoin específicos.</translation>
     </message>
     <message>
-        <source>&amp;Load PSBT from file…</source>
-        <translation type="unfinished">&amp;Cargar PSBT desde ficheiro…</translation>
+        <source>&amp;Load PSMT from file…</source>
+        <translation type="unfinished">&amp;Cargar PSMT desde ficheiro…</translation>
     </message>
     <message>
         <source>Open &amp;URI…</source>
@@ -1193,7 +1193,7 @@ Firmar é posible unicamente con enderezos de tipo 'legacy'.</translation>
     </message>
     </context>
 <context>
-    <name>PSBTOperationsDialog</name>
+    <name>PSMTOperationsDialog</name>
     <message>
         <source>Save…</source>
         <translation type="unfinished">Gardar...</translation>

@@ -527,8 +527,8 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">ធ្វើការបញ្ចាក់សារ ដើម្បីធានាថាសារទាំំងនោះបានចុះហត្ថលេខា ជាមួយអាសយដ្ខានប៊ីតខញ</translation>
     </message>
     <message>
-        <source>&amp;Load PSBT from file…</source>
-        <translation type="unfinished">&amp;ផ្ទុក PSBT ពីឯកសារ...</translation>
+        <source>&amp;Load PSMT from file…</source>
+        <translation type="unfinished">&amp;ផ្ទុក PSMT ពីឯកសារ...</translation>
     </message>
     <message>
         <source>Open &amp;URI…</source>
@@ -634,8 +634,8 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">បង្ហាញប្រត្តិបត្តិការប៊ីតខញដែលបានចុះហត្ថលេខាដោយផ្នែក</translation>
     </message>
     <message>
-        <source>Load PSBT from &amp;clipboard…</source>
-        <translation type="unfinished">ផ្ទុក PSBT ពី &amp;clipboard...</translation>
+        <source>Load PSMT from &amp;clipboard…</source>
+        <translation type="unfinished">ផ្ទុក PSMT ពី &amp;clipboard...</translation>
     </message>
     <message>
         <source>Load Partially Signed Meowcoin Transaction from clipboard</source>
@@ -1439,14 +1439,14 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">អ្នកជំនាញ</translation>
     </message>
     <message>
-        <source>Enable &amp;PSBT controls</source>
-        <extracomment>An options window setting to enable PSBT controls.</extracomment>
-        <translation type="unfinished">បើកដំណើរការការត្រួតពិនិត្យ PSBT</translation>
+        <source>Enable &amp;PSMT controls</source>
+        <extracomment>An options window setting to enable PSMT controls.</extracomment>
+        <translation type="unfinished">បើកដំណើរការការត្រួតពិនិត្យ PSMT</translation>
     </message>
     <message>
-        <source>Whether to show PSBT controls.</source>
-        <extracomment>Tooltip text for options window setting that enables PSBT controls.</extracomment>
-        <translation type="unfinished">ថាតើត្រូវបង្ហាញការគ្រប់គ្រង PSBT ។</translation>
+        <source>Whether to show PSMT controls.</source>
+        <extracomment>Tooltip text for options window setting that enables PSMT controls.</extracomment>
+        <translation type="unfinished">ថាតើត្រូវបង្ហាញការគ្រប់គ្រង PSMT ។</translation>
     </message>
     <message>
         <source>External Signer (e.g. hardware wallet)</source>
@@ -1589,10 +1589,10 @@ Signing is only possible with addresses of the type 'legacy'.</source>
     </message>
     </context>
 <context>
-    <name>PSBTOperationsDialog</name>
+    <name>PSMTOperationsDialog</name>
     <message>
-        <source>PSBT Operations</source>
-        <translation type="unfinished">ប្រតិបត្តិការ PSBT</translation>
+        <source>PSMT Operations</source>
+        <translation type="unfinished">ប្រតិបត្តិការ PSMT</translation>
     </message>
     <message>
         <source>Copy to Clipboard</source>
@@ -1631,8 +1631,8 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">ផ្សព្វផ្សាយប្រត្តិបត្តិការមិនជោគជ័យៈ %1</translation>
     </message>
     <message>
-        <source>PSBT copied to clipboard.</source>
-        <translation type="unfinished">PSBT ត្រូវបានថតចម្លងទៅកាន់ក្ដារតម្រៀប។</translation>
+        <source>PSMT copied to clipboard.</source>
+        <translation type="unfinished">PSMT ត្រូវបានថតចម្លងទៅកាន់ក្ដារតម្រៀប។</translation>
     </message>
     <message>
         <source>Save Transaction Data</source>
@@ -1640,12 +1640,12 @@ Signing is only possible with addresses of the type 'legacy'.</source>
     </message>
     <message>
         <source>Partially Signed Transaction (Binary)</source>
-        <extracomment>Expanded name of the binary PSBT file format. See: BIP 174.</extracomment>
+        <extracomment>Expanded name of the binary PSMT file format. See: BIP 174.</extracomment>
         <translation type="unfinished">ប្រតិបត្តិការដែលបានចុះហត្ថលេខាដោយផ្នែក (ប្រព័ន្ធគោលពីរ)</translation>
     </message>
     <message>
-        <source>PSBT saved to disk.</source>
-        <translation type="unfinished">PSBT បានរក្សាទុកក្នុងឌីស។</translation>
+        <source>PSMT saved to disk.</source>
+        <translation type="unfinished">PSMT បានរក្សាទុកក្នុងឌីស។</translation>
     </message>
     <message>
         <source>Sends %1 to %2</source>
@@ -2371,13 +2371,13 @@ Note:  Since the fee is calculated on a per-byte basis, a fee rate of "100 satos
     </message>
     <message>
         <source>Partially Signed Transaction (Binary)</source>
-        <extracomment>Expanded name of the binary PSBT file format. See: BIP 174.</extracomment>
+        <extracomment>Expanded name of the binary PSMT file format. See: BIP 174.</extracomment>
         <translation type="unfinished">ប្រតិបត្តិការដែលបានចុះហត្ថលេខាដោយផ្នែក (ប្រព័ន្ធគោលពីរ)</translation>
     </message>
     <message>
-        <source>PSBT saved</source>
-        <extracomment>Popup message when a PSBT has been saved to a file</extracomment>
-        <translation type="unfinished"> បានរក្សាទុកPSBT</translation>
+        <source>PSMT saved</source>
+        <extracomment>Popup message when a PSMT has been saved to a file</extracomment>
+        <translation type="unfinished"> បានរក្សាទុកPSMT</translation>
     </message>
     <message>
         <source>External balance:</source>
@@ -2392,9 +2392,9 @@ Note:  Since the fee is calculated on a per-byte basis, a fee rate of "100 satos
         <translation type="unfinished">អ្នកអាចបង្កើនកម្រៃពេលក្រោយ( សញ្ញា ជំនួសដោយកម្រៃ BIP-125)។</translation>
     </message>
     <message>
-        <source>Please, review your transaction proposal. This will produce a Partially Signed Meowcoin Transaction (PSBT) which you can save or copy and then sign with e.g. an offline %1 wallet, or a PSBT-compatible hardware wallet.</source>
-        <extracomment>Text to inform a user attempting to create a transaction of their current options. At this stage, a user can only create a PSBT. This string is displayed when private keys are disabled and an external signer is not available.</extracomment>
-        <translation type="unfinished">សូមពិនិត្យសំណើរប្រត្តិបត្តិការរបស់អ្នកឡើងវិញ។ វានឹងបង្កើតប្រត្តិបត្តិការប៊ីតខញដែលបានចុះហត្ថលេខាដោយផ្នែក (PSBT) ដែលអ្នកអាចរក្សាទុក ឬថតចម្លង រួចហើយសូមចុះហត្ថលេខា។ ឧទាហរណ៏ កាបូបអេឡិចត្រូនិចដែលមិនមានភ្ជាប់អ៊ីនធឺណេត %1 ឬកាបូបដែលមានផ្នែករឹងដែលអាចធ្វើការជាមួយ​ PSBT។</translation>
+        <source>Please, review your transaction proposal. This will produce a Partially Signed Meowcoin Transaction (PSMT) which you can save or copy and then sign with e.g. an offline %1 wallet, or a PSMT-compatible hardware wallet.</source>
+        <extracomment>Text to inform a user attempting to create a transaction of their current options. At this stage, a user can only create a PSMT. This string is displayed when private keys are disabled and an external signer is not available.</extracomment>
+        <translation type="unfinished">សូមពិនិត្យសំណើរប្រត្តិបត្តិការរបស់អ្នកឡើងវិញ។ វានឹងបង្កើតប្រត្តិបត្តិការប៊ីតខញដែលបានចុះហត្ថលេខាដោយផ្នែក (PSMT) ដែលអ្នកអាចរក្សាទុក ឬថតចម្លង រួចហើយសូមចុះហត្ថលេខា។ ឧទាហរណ៏ កាបូបអេឡិចត្រូនិចដែលមិនមានភ្ជាប់អ៊ីនធឺណេត %1 ឬកាបូបដែលមានផ្នែករឹងដែលអាចធ្វើការជាមួយ​ PSMT។</translation>
     </message>
     <message>
         <source>Do you want to create this transaction?</source>
@@ -2402,9 +2402,9 @@ Note:  Since the fee is calculated on a per-byte basis, a fee rate of "100 satos
         <translation type="unfinished">តើអ្នកចង់បង្កើតប្រតិបត្តិការនេះទេ?</translation>
     </message>
     <message>
-        <source>Please, review your transaction. You can create and send this transaction or create a Partially Signed Meowcoin Transaction (PSBT), which you can save or copy and then sign with, e.g., an offline %1 wallet, or a PSBT-compatible hardware wallet.</source>
-        <extracomment>Text to inform a user attempting to create a transaction of their current options. At this stage, a user can send their transaction or create a PSBT. This string is displayed when both private keys and PSBT controls are enabled.</extracomment>
-        <translation type="unfinished">សូមពិនិត្យមើលប្រតិបត្តិការរបស់អ្នក។ អ្នកអាចបង្កើត និងផ្ញើប្រតិបត្តិការនេះ ឬបង្កើតប្រតិបត្តិការ Meowcoin ដែលបានចុះហត្ថលេខាដោយផ្នែក (PSBT) ដែលអ្នកអាចរក្សាទុក ឬចម្លងហើយបន្ទាប់មកចុះហត្ថលេខាជាមួយ ឧ. %1កាបូបក្រៅបណ្តាញ ឬកាបូបហាដវែដែលត្រូវគ្នាជាមួយ PSBT ។</translation>
+        <source>Please, review your transaction. You can create and send this transaction or create a Partially Signed Meowcoin Transaction (PSMT), which you can save or copy and then sign with, e.g., an offline %1 wallet, or a PSMT-compatible hardware wallet.</source>
+        <extracomment>Text to inform a user attempting to create a transaction of their current options. At this stage, a user can send their transaction or create a PSMT. This string is displayed when both private keys and PSMT controls are enabled.</extracomment>
+        <translation type="unfinished">សូមពិនិត្យមើលប្រតិបត្តិការរបស់អ្នក។ អ្នកអាចបង្កើត និងផ្ញើប្រតិបត្តិការនេះ ឬបង្កើតប្រតិបត្តិការ Meowcoin ដែលបានចុះហត្ថលេខាដោយផ្នែក (PSMT) ដែលអ្នកអាចរក្សាទុក ឬចម្លងហើយបន្ទាប់មកចុះហត្ថលេខាជាមួយ ឧ. %1កាបូបក្រៅបណ្តាញ ឬកាបូបហាដវែដែលត្រូវគ្នាជាមួយ PSMT ។</translation>
     </message>
     <message>
         <source>Please, review your transaction.</source>
@@ -2417,8 +2417,8 @@ Note:  Since the fee is calculated on a per-byte basis, a fee rate of "100 satos
     </message>
     <message>
         <source>%1 kvB</source>
-        <comment>PSBT transaction creation</comment>
-        <extracomment>When reviewing a newly created PSBT (via Send flow), the transaction fee is shown, with "virtual size" of the transaction displayed for context</extracomment>
+        <comment>PSMT transaction creation</comment>
+        <extracomment>When reviewing a newly created PSMT (via Send flow), the transaction fee is shown, with "virtual size" of the transaction displayed for context</extracomment>
         <translation type="unfinished">%1kvB</translation>
     </message>
     <message>
@@ -2979,16 +2979,16 @@ Go to File &gt; Open Wallet to load a wallet.
         <translation type="unfinished">បញ្ហា</translation>
     </message>
     <message>
-        <source>Unable to decode PSBT from clipboard (invalid base64)</source>
-        <translation type="unfinished">មិនអាចបកស្រាយអក្សរសម្ងាត់​PSBT ពី​ក្ដារតម្រៀប (មូដ្ឋាន៦៤ មិនត្រឹមត្រូវ)</translation>
+        <source>Unable to decode PSMT from clipboard (invalid base64)</source>
+        <translation type="unfinished">មិនអាចបកស្រាយអក្សរសម្ងាត់​PSMT ពី​ក្ដារតម្រៀប (មូដ្ឋាន៦៤ មិនត្រឹមត្រូវ)</translation>
     </message>
     <message>
         <source>Load Transaction Data</source>
         <translation type="unfinished">ទាញយកទិន្ន័យប្រត្តិបត្តិការ</translation>
     </message>
     <message>
-        <source>Partially Signed Transaction (*.psbt)</source>
-        <translation type="unfinished">ប្រត្តិបត្តិការ ដែលបានចុះហត្ថលេខាដោយផ្នែក (*.psbt)</translation>
+        <source>Partially Signed Transaction (*.psmt)</source>
+        <translation type="unfinished">ប្រត្តិបត្តិការ ដែលបានចុះហត្ថលេខាដោយផ្នែក (*.psmt)</translation>
     </message>
     </context>
 <context>

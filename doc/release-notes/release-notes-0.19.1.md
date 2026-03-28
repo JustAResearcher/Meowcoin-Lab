@@ -61,8 +61,8 @@ distribution provides binaries for the RISC-V platform.
 - #17687 cli: Fix fatal leveldb error when specifying -blockfilterindex=basic twice (brakmic)
 - #17728 require second argument only for scantxoutset start action (achow101)
 - #17445 zmq: Fix due to invalid argument and multiple notifiers (promag)
-- #17524 psbt: handle unspendable psbts (achow101)
-- #17156 psbt: check that various indexes and amounts are within bounds (achow101)
+- #17524 psmt: handle unspendable psmts (achow101)
+- #17156 psmt: check that various indexes and amounts are within bounds (achow101)
 
 ### GUI
 - #17427 Fix missing qRegisterMetaType for `size_t` (hebasto)

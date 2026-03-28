@@ -568,8 +568,8 @@ Das Signieren ist nur mit Adressen vom Typ 'Legacy' möglich.</translation>
         <translation type="unfinished">Nachrichten verifizieren, um sicherzustellen, dass diese mit den angegebenen Meowcoin-Adressen signiert wurden</translation>
     </message>
     <message>
-        <source>&amp;Load PSBT from file…</source>
-        <translation type="unfinished">&amp;Lade PSBT aus Datei…</translation>
+        <source>&amp;Load PSMT from file…</source>
+        <translation type="unfinished">&amp;Lade PSMT aus Datei…</translation>
     </message>
     <message>
         <source>Open &amp;URI…</source>
@@ -1495,14 +1495,14 @@ Während des Migrationsprozesses wird vor der Migration ein Backup der Wallet er
         <translation type="unfinished">&amp;Unbestätigtes Wechselgeld darf ausgegeben werden</translation>
     </message>
     <message>
-        <source>Enable &amp;PSBT controls</source>
-        <extracomment>An options window setting to enable PSBT controls.</extracomment>
-        <translation type="unfinished">&amp;PSBT-Kontrollen aktivieren</translation>
+        <source>Enable &amp;PSMT controls</source>
+        <extracomment>An options window setting to enable PSMT controls.</extracomment>
+        <translation type="unfinished">&amp;PSMT-Kontrollen aktivieren</translation>
     </message>
     <message>
-        <source>Whether to show PSBT controls.</source>
-        <extracomment>Tooltip text for options window setting that enables PSBT controls.</extracomment>
-        <translation type="unfinished">Ob PSBT-Kontrollen angezeigt werden sollen.</translation>
+        <source>Whether to show PSMT controls.</source>
+        <extracomment>Tooltip text for options window setting that enables PSMT controls.</extracomment>
+        <translation type="unfinished">Ob PSMT-Kontrollen angezeigt werden sollen.</translation>
     </message>
     <message>
         <source>External Signer (e.g. hardware wallet)</source>
@@ -1739,10 +1739,10 @@ Während des Migrationsprozesses wird vor der Migration ein Backup der Wallet er
     </message>
 </context>
 <context>
-    <name>PSBTOperationsDialog</name>
+    <name>PSMTOperationsDialog</name>
     <message>
-        <source>PSBT Operations</source>
-        <translation type="unfinished">PSBT-Operationen</translation>
+        <source>PSMT Operations</source>
+        <translation type="unfinished">PSMT-Operationen</translation>
     </message>
     <message>
         <source>Sign Tx</source>
@@ -1801,8 +1801,8 @@ Während des Migrationsprozesses wird vor der Migration ein Backup der Wallet er
         <translation type="unfinished">Rundsenden der Transaktion fehlgeschlagen: %1</translation>
     </message>
     <message>
-        <source>PSBT copied to clipboard.</source>
-        <translation type="unfinished">PSBT in Zwischenablage kopiert.</translation>
+        <source>PSMT copied to clipboard.</source>
+        <translation type="unfinished">PSMT in Zwischenablage kopiert.</translation>
     </message>
     <message>
         <source>Save Transaction Data</source>
@@ -1810,12 +1810,12 @@ Während des Migrationsprozesses wird vor der Migration ein Backup der Wallet er
     </message>
     <message>
         <source>Partially Signed Transaction (Binary)</source>
-        <extracomment>Expanded name of the binary PSBT file format. See: BIP 174.</extracomment>
+        <extracomment>Expanded name of the binary PSMT file format. See: BIP 174.</extracomment>
         <translation type="unfinished">Teilweise signierte Transaktion (binär)</translation>
     </message>
     <message>
-        <source>PSBT saved to disk.</source>
-        <translation type="unfinished">PSBT auf Platte gespeichert.</translation>
+        <source>PSMT saved to disk.</source>
+        <translation type="unfinished">PSMT auf Platte gespeichert.</translation>
     </message>
     <message>
         <source>Sends %1 to %2</source>
@@ -2896,8 +2896,8 @@ Hinweis: Da die Gebühr auf Basis der Bytes berechnet wird, führt eine Gebühre
         <translation type="unfinished">Unsigniert &amp;erzeugen</translation>
     </message>
     <message>
-        <source>Creates a Partially Signed Meowcoin Transaction (PSBT) for use with e.g. an offline %1 wallet, or a PSBT-compatible hardware wallet.</source>
-        <translation type="unfinished">Erzeugt eine teilsignierte Meowcoin Transaktion (PSBT) zur Benutzung mit z.B. einem Offline %1 Wallet oder einem kompatiblen Hardware Wallet.</translation>
+        <source>Creates a Partially Signed Meowcoin Transaction (PSMT) for use with e.g. an offline %1 wallet, or a PSMT-compatible hardware wallet.</source>
+        <translation type="unfinished">Erzeugt eine teilsignierte Meowcoin Transaktion (PSMT) zur Benutzung mit z.B. einem Offline %1 Wallet oder einem kompatiblen Hardware Wallet.</translation>
     </message>
     <message>
         <source>%1 to '%2'</source>
@@ -2931,13 +2931,13 @@ Hinweis: Da die Gebühr auf Basis der Bytes berechnet wird, führt eine Gebühre
     </message>
     <message>
         <source>Partially Signed Transaction (Binary)</source>
-        <extracomment>Expanded name of the binary PSBT file format. See: BIP 174.</extracomment>
+        <extracomment>Expanded name of the binary PSMT file format. See: BIP 174.</extracomment>
         <translation type="unfinished">Teilweise signierte Transaktion (binär)</translation>
     </message>
     <message>
-        <source>PSBT saved</source>
-        <extracomment>Popup message when a PSBT has been saved to a file</extracomment>
-        <translation type="unfinished">PSBT gespeichert</translation>
+        <source>PSMT saved</source>
+        <extracomment>Popup message when a PSMT has been saved to a file</extracomment>
+        <translation type="unfinished">PSMT gespeichert</translation>
     </message>
     <message>
         <source>External balance:</source>
@@ -2952,9 +2952,9 @@ Hinweis: Da die Gebühr auf Basis der Bytes berechnet wird, führt eine Gebühre
         <translation type="unfinished">Sie können die Gebühr später erhöhen (signalisiert Replace-By-Fee, BIP-125).</translation>
     </message>
     <message>
-        <source>Please, review your transaction proposal. This will produce a Partially Signed Meowcoin Transaction (PSBT) which you can save or copy and then sign with e.g. an offline %1 wallet, or a PSBT-compatible hardware wallet.</source>
-        <extracomment>Text to inform a user attempting to create a transaction of their current options. At this stage, a user can only create a PSBT. This string is displayed when private keys are disabled and an external signer is not available.</extracomment>
-        <translation type="unfinished">Überprüfen Sie bitte Ihr Transaktionsvorhaben. Dadurch wird eine Partiell Signierte Meowcoin-Transaktion (PSBT) erstellt, die Sie speichern oder kopieren und dann z. B. mit einer Offline-Wallet %1 oder einer PSBT-kompatible Hardware-Wallet nutzen können.</translation>
+        <source>Please, review your transaction proposal. This will produce a Partially Signed Meowcoin Transaction (PSMT) which you can save or copy and then sign with e.g. an offline %1 wallet, or a PSMT-compatible hardware wallet.</source>
+        <extracomment>Text to inform a user attempting to create a transaction of their current options. At this stage, a user can only create a PSMT. This string is displayed when private keys are disabled and an external signer is not available.</extracomment>
+        <translation type="unfinished">Überprüfen Sie bitte Ihr Transaktionsvorhaben. Dadurch wird eine Partiell Signierte Meowcoin-Transaktion (PSMT) erstellt, die Sie speichern oder kopieren und dann z. B. mit einer Offline-Wallet %1 oder einer PSMT-kompatible Hardware-Wallet nutzen können.</translation>
     </message>
     <message>
         <source>%1 from wallet '%2'</source>
@@ -2966,9 +2966,9 @@ Hinweis: Da die Gebühr auf Basis der Bytes berechnet wird, führt eine Gebühre
         <translation type="unfinished">Möchtest du diese Transaktion erstellen?</translation>
     </message>
     <message>
-        <source>Please, review your transaction. You can create and send this transaction or create a Partially Signed Meowcoin Transaction (PSBT), which you can save or copy and then sign with, e.g., an offline %1 wallet, or a PSBT-compatible hardware wallet.</source>
-        <extracomment>Text to inform a user attempting to create a transaction of their current options. At this stage, a user can send their transaction or create a PSBT. This string is displayed when both private keys and PSBT controls are enabled.</extracomment>
-        <translation type="unfinished">Bitte überprüfen Sie Ihre Transaktion. Sie können diese Transaktion erstellen und versenden oder eine Partiell Signierte Meowcoin Transaction (PSBT) erstellen, die Sie speichern oder kopieren und dann z.B. mit einer offline %1 Wallet oder einer PSBT-kompatiblen Hardware-Wallet signieren können.</translation>
+        <source>Please, review your transaction. You can create and send this transaction or create a Partially Signed Meowcoin Transaction (PSMT), which you can save or copy and then sign with, e.g., an offline %1 wallet, or a PSMT-compatible hardware wallet.</source>
+        <extracomment>Text to inform a user attempting to create a transaction of their current options. At this stage, a user can send their transaction or create a PSMT. This string is displayed when both private keys and PSMT controls are enabled.</extracomment>
+        <translation type="unfinished">Bitte überprüfen Sie Ihre Transaktion. Sie können diese Transaktion erstellen und versenden oder eine Partiell Signierte Meowcoin Transaction (PSMT) erstellen, die Sie speichern oder kopieren und dann z.B. mit einer offline %1 Wallet oder einer PSMT-kompatiblen Hardware-Wallet signieren können.</translation>
     </message>
     <message>
         <source>Please, review your transaction.</source>
@@ -2989,17 +2989,17 @@ Hinweis: Da die Gebühr auf Basis der Bytes berechnet wird, führt eine Gebühre
     </message>
     <message>
         <source>Unsigned Transaction</source>
-        <comment>PSBT copied</comment>
-        <extracomment>Caption of "PSBT has been copied" messagebox</extracomment>
+        <comment>PSMT copied</comment>
+        <extracomment>Caption of "PSMT has been copied" messagebox</extracomment>
         <translation type="unfinished">Unsignierte Transaktion</translation>
     </message>
     <message>
-        <source>The PSBT has been copied to the clipboard. You can also save it.</source>
-        <translation type="unfinished">Die PSBT wurde in die Zwischenablage kopiert. Kann auch abgespeichert werden.</translation>
+        <source>The PSMT has been copied to the clipboard. You can also save it.</source>
+        <translation type="unfinished">Die PSMT wurde in die Zwischenablage kopiert. Kann auch abgespeichert werden.</translation>
     </message>
     <message>
-        <source>PSBT saved to disk</source>
-        <translation type="unfinished">PSBT auf Festplatte gespeichert</translation>
+        <source>PSMT saved to disk</source>
+        <translation type="unfinished">PSMT auf Festplatte gespeichert</translation>
     </message>
     <message>
         <source>Confirm send coins</source>
@@ -3707,24 +3707,24 @@ Gehen Sie zu Datei &gt; Wallet Öffnen, um eine Wallet zu laden.
         <translation type="unfinished">Fehler</translation>
     </message>
     <message>
-        <source>Unable to decode PSBT from clipboard (invalid base64)</source>
-        <translation type="unfinished">Konnte PSBT aus Zwischenablage nicht entschlüsseln (ungültiges Base64)</translation>
+        <source>Unable to decode PSMT from clipboard (invalid base64)</source>
+        <translation type="unfinished">Konnte PSMT aus Zwischenablage nicht entschlüsseln (ungültiges Base64)</translation>
     </message>
     <message>
         <source>Load Transaction Data</source>
         <translation type="unfinished">Lade Transaktionsdaten</translation>
     </message>
     <message>
-        <source>Partially Signed Transaction (*.psbt)</source>
-        <translation type="unfinished">Teilsignierte Transaktion (*.psbt)</translation>
+        <source>Partially Signed Transaction (*.psmt)</source>
+        <translation type="unfinished">Teilsignierte Transaktion (*.psmt)</translation>
     </message>
     <message>
-        <source>PSBT file must be smaller than 100 MiB</source>
-        <translation type="unfinished">PSBT-Datei muss kleiner als 100 MiB sein</translation>
+        <source>PSMT file must be smaller than 100 MiB</source>
+        <translation type="unfinished">PSMT-Datei muss kleiner als 100 MiB sein</translation>
     </message>
     <message>
-        <source>Unable to decode PSBT</source>
-        <translation type="unfinished">PSBT konnte nicht entschlüsselt werden</translation>
+        <source>Unable to decode PSMT</source>
+        <translation type="unfinished">PSMT konnte nicht entschlüsselt werden</translation>
     </message>
 </context>
 <context>
@@ -3771,12 +3771,12 @@ Gehen Sie zu Datei &gt; Wallet Öffnen, um eine Wallet zu laden.
         <translation type="unfinished">Kann Transaktion nicht entwerfen.</translation>
     </message>
     <message>
-        <source>PSBT copied</source>
-        <translation type="unfinished">PSBT kopiert</translation>
+        <source>PSMT copied</source>
+        <translation type="unfinished">PSMT kopiert</translation>
     </message>
     <message>
-        <source>Fee-bump PSBT copied to clipboard</source>
-        <translation type="unfinished">Fee-Bump PSBT in die Zwischenablage kopiert</translation>
+        <source>Fee-bump PSMT copied to clipboard</source>
+        <translation type="unfinished">Fee-Bump PSMT in die Zwischenablage kopiert</translation>
     </message>
     <message>
         <source>Can't sign transaction.</source>

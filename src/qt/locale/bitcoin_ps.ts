@@ -485,8 +485,8 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">پیغامونه تصدیق کړئ ترڅو ډاډ ترلاسه کړئ چې دوی د ټاکل شوو بټ کوین پته سره لاسلیک شوي دي</translation>
     </message>
     <message>
-        <source>&amp;Load PSBT from file…</source>
-        <translation type="unfinished">د فایل څخه PSBT بار کړئ…</translation>
+        <source>&amp;Load PSMT from file…</source>
+        <translation type="unfinished">د فایل څخه PSMT بار کړئ…</translation>
     </message>
     <message>
         <source>Open &amp;URI…</source>
@@ -604,8 +604,8 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">جزوي لاسلیک شوی بټ کوین معامله پورته کړئ</translation>
     </message>
     <message>
-        <source>Load PSBT from &amp;clipboard…</source>
-        <translation type="unfinished">PSBT له &amp; څخه بار کړئ</translation>
+        <source>Load PSMT from &amp;clipboard…</source>
+        <translation type="unfinished">PSMT له &amp; څخه بار کړئ</translation>
     </message>
     <message>
         <source>Load Partially Signed Bitcoin Transaction from clipboard</source>

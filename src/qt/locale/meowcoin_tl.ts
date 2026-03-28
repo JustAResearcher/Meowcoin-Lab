@@ -440,8 +440,8 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">Patunayan ang mga mensahe para matiyak na sila ay napirmahan ng may tinukoy na mga ♦Meowcoin address♦</translation>
     </message>
     <message>
-        <source>&amp;Load PSBT from file…</source>
-        <translation type="unfinished">&amp;I-load ang PSBT mula sa ♦file♦...</translation>
+        <source>&amp;Load PSMT from file…</source>
+        <translation type="unfinished">&amp;I-load ang PSMT mula sa ♦file♦...</translation>
     </message>
     <message>
         <source>Open &amp;URI…</source>

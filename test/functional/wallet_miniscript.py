@@ -5,7 +5,7 @@
 """Test Miniscript descriptors integration in the wallet."""
 
 from test_framework.descriptors import descsum_create
-from test_framework.psbt import PSBT, PSBT_IN_SHA256
+from test_framework.psmt import PSMT, PSMT_IN_SHA256
 from test_framework.test_framework import BitcoinTestFramework
 from test_framework.util import assert_equal
 
@@ -277,7 +277,7 @@ class WalletMiniscriptTest(BitcoinTestFramework):
         dest_addr = self.funder.getnewaddress()
         seq = sequence if sequence is not None else 0xFFFFFFFF - 2
         lt = locktime if locktime is not None else 0
-        psbt = self.ms_sig_wallet.createpsbt(
+        psmt = self.ms_sig_wallet.createpsmt(
             [
                 {
                     "txid": txid,
@@ -291,16 +291,16 @@ class WalletMiniscriptTest(BitcoinTestFramework):
 
         self.log.info("Signing it and checking the satisfaction.")
         if sha256_preimages is not None:
-            psbt = PSBT.from_base64(psbt)
+            psmt = PSMT.from_base64(psmt)
             for (h, preimage) in sha256_preimages.items():
-                k = PSBT_IN_SHA256.to_bytes(1, "big") + bytes.fromhex(h)
-                psbt.i[0].map[k] = bytes.fromhex(preimage)
-            psbt = psbt.to_base64()
-        res = self.ms_sig_wallet.walletprocesspsbt(psbt=psbt, finalize=False)
-        psbtin = self.nodes[0].decodepsbt(res["psbt"])["inputs"][0]
+                k = PSMT_IN_SHA256.to_bytes(1, "big") + bytes.fromhex(h)
+                psmt.i[0].map[k] = bytes.fromhex(preimage)
+            psmt = psmt.to_base64()
+        res = self.ms_sig_wallet.walletprocesspsmt(psmt=psmt, finalize=False)
+        psmtin = self.nodes[0].decodepsmt(res["psmt"])["inputs"][0]
         sigs_field_name = "taproot_script_path_sigs" if is_taproot else "partial_signatures"
-        assert len(psbtin[sigs_field_name]) == sigs_count
-        res = self.ms_sig_wallet.finalizepsbt(res["psbt"])
+        assert len(psmtin[sigs_field_name]) == sigs_count
+        res = self.ms_sig_wallet.finalizepsmt(res["psmt"])
         assert res["complete"] == (stack_size is not None)
 
         if stack_size is not None:

@@ -490,8 +490,8 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">Gwirio negeseuon i sicrhau eu bod wedi eu harwyddo gyda cyfeiriadau Meowcoin penodol</translation>
     </message>
     <message>
-        <source>&amp;Load PSBT from file…</source>
-        <translation type="unfinished">&amp;Llwytho PSBT o ffeil…</translation>
+        <source>&amp;Load PSMT from file…</source>
+        <translation type="unfinished">&amp;Llwytho PSMT o ffeil…</translation>
     </message>
     <message>
         <source>Open &amp;URI…</source>
@@ -608,8 +608,8 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">Llwytho Trafodiad Meowcoin wedi'i Llofnodi'n Rhanol</translation>
     </message>
     <message>
-        <source>Load PSBT from &amp;clipboard…</source>
-        <translation type="unfinished">Llwytho PSBT o &amp;glipbwrdd…</translation>
+        <source>Load PSMT from &amp;clipboard…</source>
+        <translation type="unfinished">Llwytho PSMT o &amp;glipbwrdd…</translation>
     </message>
     <message>
         <source>Load Partially Signed Meowcoin Transaction from clipboard</source>
@@ -1423,14 +1423,14 @@ Bydd y broses fudo yn creu copi wrth gefn o'r waled cyn mudo. Bydd y ffeil wrth 
         <translation type="unfinished">&amp;Gwario newid nad yw wedi’i gadarnhau</translation>
     </message>
     <message>
-        <source>Enable &amp;PSBT controls</source>
-        <extracomment>An options window setting to enable PSBT controls.</extracomment>
-        <translation type="unfinished">Galluogi &amp;rheolaethau PSBT</translation>
+        <source>Enable &amp;PSMT controls</source>
+        <extracomment>An options window setting to enable PSMT controls.</extracomment>
+        <translation type="unfinished">Galluogi &amp;rheolaethau PSMT</translation>
     </message>
     <message>
-        <source>Whether to show PSBT controls.</source>
-        <extracomment>Tooltip text for options window setting that enables PSBT controls.</extracomment>
-        <translation type="unfinished">A ddylid dangos rheolaethau PSBT.</translation>
+        <source>Whether to show PSMT controls.</source>
+        <extracomment>Tooltip text for options window setting that enables PSMT controls.</extracomment>
+        <translation type="unfinished">A ddylid dangos rheolaethau PSMT.</translation>
     </message>
     <message>
         <source>External Signer (e.g. hardware wallet)</source>

@@ -574,7 +574,7 @@ Il n’est possible de signer qu’avec les adresses de type « legacy ».</tr
         <translation type="unfinished">Vérifier les messages pour s’assurer qu’ils ont été signés avec les adresses Bitcoin indiquées</translation>
     </message>
     <message>
-        <source>&amp;Load PSBT from file…</source>
+        <source>&amp;Load PSMT from file…</source>
         <translation type="unfinished">&amp;Charger la TBSP d’un fichier…</translation>
     </message>
     <message>
@@ -689,7 +689,7 @@ Il n’est possible de signer qu’avec les adresses de type « legacy ».</tr
         <translation type="unfinished">Charger une transaction Bitcoin signée partiellement</translation>
     </message>
     <message>
-        <source>Load PSBT from &amp;clipboard…</source>
+        <source>Load PSMT from &amp;clipboard…</source>
         <translation type="unfinished">Charger la TBSP du &amp;presse-papiers…</translation>
     </message>
     <message>
@@ -1714,13 +1714,13 @@ Le processus de migration créera une sauvegarde du portefeuille avant migration
         <translation type="unfinished">&amp;Dépenser la monnaie non confirmée</translation>
     </message>
     <message>
-        <source>Enable &amp;PSBT controls</source>
-        <extracomment>An options window setting to enable PSBT controls.</extracomment>
+        <source>Enable &amp;PSMT controls</source>
+        <extracomment>An options window setting to enable PSMT controls.</extracomment>
         <translation type="unfinished">Activer les contrôles &amp;TBPS</translation>
     </message>
     <message>
-        <source>Whether to show PSBT controls.</source>
-        <extracomment>Tooltip text for options window setting that enables PSBT controls.</extracomment>
+        <source>Whether to show PSMT controls.</source>
+        <extracomment>Tooltip text for options window setting that enables PSMT controls.</extracomment>
         <translation type="unfinished">Afficher ou non les contrôles TBPS.</translation>
     </message>
     <message>
@@ -1966,9 +1966,9 @@ Le processus de migration créera une sauvegarde du portefeuille avant migration
     </message>
 </context>
 <context>
-    <name>PSBTOperationsDialog</name>
+    <name>PSMTOperationsDialog</name>
     <message>
-        <source>PSBT Operations</source>
+        <source>PSMT Operations</source>
         <translation type="unfinished">Opérations TBSP</translation>
     </message>
     <message>
@@ -2028,7 +2028,7 @@ Le processus de migration créera une sauvegarde du portefeuille avant migration
         <translation type="unfinished">Échec de diffusion de la transaction : %1</translation>
     </message>
     <message>
-        <source>PSBT copied to clipboard.</source>
+        <source>PSMT copied to clipboard.</source>
         <translation type="unfinished">La TBSP a été copiée dans le presse-papiers.</translation>
     </message>
     <message>
@@ -2037,11 +2037,11 @@ Le processus de migration créera une sauvegarde du portefeuille avant migration
     </message>
     <message>
         <source>Partially Signed Transaction (Binary)</source>
-        <extracomment>Expanded name of the binary PSBT file format. See: BIP 174.</extracomment>
+        <extracomment>Expanded name of the binary PSMT file format. See: BIP 174.</extracomment>
         <translation type="unfinished">Transaction signée partiellement (fichier binaire)</translation>
     </message>
     <message>
-        <source>PSBT saved to disk.</source>
+        <source>PSMT saved to disk.</source>
         <translation type="unfinished">La TBSP a été enregistrée sur le disque.</translation>
     </message>
     <message>
@@ -3082,7 +3082,7 @@ Note : Les frais étant calculés par octet, un taux de frais de « 100 satoshi
         <translation type="unfinished">Cr&amp;éer une transaction non signée</translation>
     </message>
     <message>
-        <source>Creates a Partially Signed Bitcoin Transaction (PSBT) for use with e.g. an offline %1 wallet, or a PSBT-compatible hardware wallet.</source>
+        <source>Creates a Partially Signed Bitcoin Transaction (PSMT) for use with e.g. an offline %1 wallet, or a PSMT-compatible hardware wallet.</source>
         <translation type="unfinished">Crée une transaction Bitcoin signée partiellement (TBSP) à utiliser, par exemple, avec un portefeuille %1 hors ligne ou avec un portefeuille matériel compatible TBSP.</translation>
     </message>
     <message>
@@ -3117,12 +3117,12 @@ Note : Les frais étant calculés par octet, un taux de frais de « 100 satoshi
     </message>
     <message>
         <source>Partially Signed Transaction (Binary)</source>
-        <extracomment>Expanded name of the binary PSBT file format. See: BIP 174.</extracomment>
+        <extracomment>Expanded name of the binary PSMT file format. See: BIP 174.</extracomment>
         <translation type="unfinished">Transaction signée partiellement (fichier binaire)</translation>
     </message>
     <message>
-        <source>PSBT saved</source>
-        <extracomment>Popup message when a PSBT has been saved to a file</extracomment>
+        <source>PSMT saved</source>
+        <extracomment>Popup message when a PSMT has been saved to a file</extracomment>
         <translation type="unfinished">La TBSP a été enregistrée</translation>
     </message>
     <message>
@@ -3138,8 +3138,8 @@ Note : Les frais étant calculés par octet, un taux de frais de « 100 satoshi
         <translation type="unfinished">Vous pouvez augmenter les frais ultérieurement (signale Remplacer-par-des-frais, BIP-125).</translation>
     </message>
     <message>
-        <source>Please, review your transaction proposal. This will produce a Partially Signed Bitcoin Transaction (PSBT) which you can save or copy and then sign with e.g. an offline %1 wallet, or a PSBT-compatible hardware wallet.</source>
-        <extracomment>Text to inform a user attempting to create a transaction of their current options. At this stage, a user can only create a PSBT. This string is displayed when private keys are disabled and an external signer is not available.</extracomment>
+        <source>Please, review your transaction proposal. This will produce a Partially Signed Bitcoin Transaction (PSMT) which you can save or copy and then sign with e.g. an offline %1 wallet, or a PSMT-compatible hardware wallet.</source>
+        <extracomment>Text to inform a user attempting to create a transaction of their current options. At this stage, a user can only create a PSMT. This string is displayed when private keys are disabled and an external signer is not available.</extracomment>
         <translation type="unfinished">Vérifiez votre proposition de transaction. Une transaction Bitcoin partiellement signée (TBSP) sera produite, que vous pourrez enregistrer ou copier puis signer avec, par exemple, un portefeuille %1 hors ligne ou avec un portefeuille matériel compatible TBSP.</translation>
     </message>
     <message>
@@ -3152,8 +3152,8 @@ Note : Les frais étant calculés par octet, un taux de frais de « 100 satoshi
         <translation type="unfinished">Voulez-vous créer cette transaction ?</translation>
     </message>
     <message>
-        <source>Please, review your transaction. You can create and send this transaction or create a Partially Signed Bitcoin Transaction (PSBT), which you can save or copy and then sign with, e.g., an offline %1 wallet, or a PSBT-compatible hardware wallet.</source>
-        <extracomment>Text to inform a user attempting to create a transaction of their current options. At this stage, a user can send their transaction or create a PSBT. This string is displayed when both private keys and PSBT controls are enabled.</extracomment>
+        <source>Please, review your transaction. You can create and send this transaction or create a Partially Signed Bitcoin Transaction (PSMT), which you can save or copy and then sign with, e.g., an offline %1 wallet, or a PSMT-compatible hardware wallet.</source>
+        <extracomment>Text to inform a user attempting to create a transaction of their current options. At this stage, a user can send their transaction or create a PSMT. This string is displayed when both private keys and PSMT controls are enabled.</extracomment>
         <translation type="unfinished">Révisez votre transaction. Vous pouvez créer et envoyer cette transaction ou créer une transaction Bitcoin partiellement signée (TBSP), que vous pouvez enregistrer ou copier, et ensuite avec laquelle signer, par ex., un portefeuille %1 hors ligne ou avec un portefeuille matériel compatible TBSP.</translation>
     </message>
     <message>
@@ -3167,8 +3167,8 @@ Note : Les frais étant calculés par octet, un taux de frais de « 100 satoshi
     </message>
     <message>
         <source>%1 kvB</source>
-        <comment>PSBT transaction creation</comment>
-        <extracomment>When reviewing a newly created PSBT (via Send flow), the transaction fee is shown, with "virtual size" of the transaction displayed for context</extracomment>
+        <comment>PSMT transaction creation</comment>
+        <extracomment>When reviewing a newly created PSMT (via Send flow), the transaction fee is shown, with "virtual size" of the transaction displayed for context</extracomment>
         <translation type="unfinished">%1 kvB</translation>
     </message>
     <message>
@@ -3181,16 +3181,16 @@ Note : Les frais étant calculés par octet, un taux de frais de « 100 satoshi
     </message>
     <message>
         <source>Unsigned Transaction</source>
-        <comment>PSBT copied</comment>
-        <extracomment>Caption of "PSBT has been copied" messagebox</extracomment>
+        <comment>PSMT copied</comment>
+        <extracomment>Caption of "PSMT has been copied" messagebox</extracomment>
         <translation type="unfinished">Transaction non signée</translation>
     </message>
     <message>
-        <source>The PSBT has been copied to the clipboard. You can also save it.</source>
+        <source>The PSMT has been copied to the clipboard. You can also save it.</source>
         <translation type="unfinished">La TBSP a été copiée dans le presse-papiers. Vous pouvez aussi l’enregistrer.</translation>
     </message>
     <message>
-        <source>PSBT saved to disk</source>
+        <source>PSMT saved to disk</source>
         <translation type="unfinished">La TBSP a été enregistrée sur le disque</translation>
     </message>
     <message>
@@ -3877,7 +3877,7 @@ Accédez à Fichier &gt; Ouvrir un portefeuille pour en charger un.
         <translation type="unfinished">Erreur</translation>
     </message>
     <message>
-        <source>Unable to decode PSBT from clipboard (invalid base64)</source>
+        <source>Unable to decode PSMT from clipboard (invalid base64)</source>
         <translation type="unfinished">Impossible de décoder la TBSP du presse-papiers (le Base64 est invalide)</translation>
     </message>
     <message>
@@ -3885,15 +3885,15 @@ Accédez à Fichier &gt; Ouvrir un portefeuille pour en charger un.
         <translation type="unfinished">Charger les données de la transaction</translation>
     </message>
     <message>
-        <source>Partially Signed Transaction (*.psbt)</source>
-        <translation type="unfinished">Transaction signée partiellement (*.psbt)</translation>
+        <source>Partially Signed Transaction (*.psmt)</source>
+        <translation type="unfinished">Transaction signée partiellement (*.psmt)</translation>
     </message>
     <message>
-        <source>PSBT file must be smaller than 100 MiB</source>
+        <source>PSMT file must be smaller than 100 MiB</source>
         <translation type="unfinished">Le fichier TBSP doit être inférieur à 100 Mio</translation>
     </message>
     <message>
-        <source>Unable to decode PSBT</source>
+        <source>Unable to decode PSMT</source>
         <translation type="unfinished">Impossible de décoder la TBSP</translation>
     </message>
 </context>
@@ -3941,11 +3941,11 @@ Accédez à Fichier &gt; Ouvrir un portefeuille pour en charger un.
         <translation type="unfinished">Impossible de créer une ébauche de la transaction.</translation>
     </message>
     <message>
-        <source>PSBT copied</source>
+        <source>PSMT copied</source>
         <translation type="unfinished">La TBPS a été copiée</translation>
     </message>
     <message>
-        <source>Fee-bump PSBT copied to clipboard</source>
+        <source>Fee-bump PSMT copied to clipboard</source>
         <translation type="unfinished">La TBSP des augmentations de frais a été copiée dans le presse-papiers.</translation>
     </message>
     <message>

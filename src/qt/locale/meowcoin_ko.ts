@@ -558,8 +558,8 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">해당 비트코인 주소로 서명되었는지 확인하기 위해 메시지를 검증합니다.</translation>
     </message>
     <message>
-        <source>&amp;Load PSBT from file…</source>
-        <translation type="unfinished">파일에서 PSBT 불러오기(&amp;L)</translation>
+        <source>&amp;Load PSMT from file…</source>
+        <translation type="unfinished">파일에서 PSMT 불러오기(&amp;L)</translation>
     </message>
     <message>
         <source>Open &amp;URI…</source>
@@ -676,8 +676,8 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">부분적으로 서명된 비트코인 트랜잭션 불러오기</translation>
     </message>
     <message>
-        <source>Load PSBT from &amp;clipboard…</source>
-        <translation type="unfinished">PSBT 혹은 클립보드에서 불러오기</translation>
+        <source>Load PSMT from &amp;clipboard…</source>
+        <translation type="unfinished">PSMT 혹은 클립보드에서 불러오기</translation>
     </message>
     <message>
         <source>Load Partially Signed Meowcoin Transaction from clipboard</source>
@@ -1661,14 +1661,14 @@ The migration process will create a backup of the wallet before migrating. This 
         <translation type="unfinished">검증되지 않은 잔돈 쓰기 (&amp;S)</translation>
     </message>
     <message>
-        <source>Enable &amp;PSBT controls</source>
-        <extracomment>An options window setting to enable PSBT controls.</extracomment>
-        <translation type="unfinished">PSBT 컨트롤을 가능하게 합니다.</translation>
+        <source>Enable &amp;PSMT controls</source>
+        <extracomment>An options window setting to enable PSMT controls.</extracomment>
+        <translation type="unfinished">PSMT 컨트롤을 가능하게 합니다.</translation>
     </message>
     <message>
-        <source>Whether to show PSBT controls.</source>
-        <extracomment>Tooltip text for options window setting that enables PSBT controls.</extracomment>
-        <translation type="unfinished">PSBT 컨트롤을 보여줄지를 결정합니다.</translation>
+        <source>Whether to show PSMT controls.</source>
+        <extracomment>Tooltip text for options window setting that enables PSMT controls.</extracomment>
+        <translation type="unfinished">PSMT 컨트롤을 보여줄지를 결정합니다.</translation>
     </message>
     <message>
         <source>External Signer (e.g. hardware wallet)</source>
@@ -1902,10 +1902,10 @@ The migration process will create a backup of the wallet before migrating. This 
     </message>
 </context>
 <context>
-    <name>PSBTOperationsDialog</name>
+    <name>PSMTOperationsDialog</name>
     <message>
-        <source>PSBT Operations</source>
-        <translation type="unfinished">PSBT 작업</translation>
+        <source>PSMT Operations</source>
+        <translation type="unfinished">PSMT 작업</translation>
     </message>
     <message>
         <source>Sign Tx</source>
@@ -1964,8 +1964,8 @@ The migration process will create a backup of the wallet before migrating. This 
         <translation type="unfinished">거래 전파에 실패: %1</translation>
     </message>
     <message>
-        <source>PSBT copied to clipboard.</source>
-        <translation type="unfinished">클립보드로 PSBT 복사</translation>
+        <source>PSMT copied to clipboard.</source>
+        <translation type="unfinished">클립보드로 PSMT 복사</translation>
     </message>
     <message>
         <source>Save Transaction Data</source>
@@ -1973,12 +1973,12 @@ The migration process will create a backup of the wallet before migrating. This 
     </message>
     <message>
         <source>Partially Signed Transaction (Binary)</source>
-        <extracomment>Expanded name of the binary PSBT file format. See: BIP 174.</extracomment>
+        <extracomment>Expanded name of the binary PSMT file format. See: BIP 174.</extracomment>
         <translation type="unfinished">부분 서명 트랜잭션 (이진수)</translation>
     </message>
     <message>
-        <source>PSBT saved to disk.</source>
-        <translation type="unfinished">PSBT가 디스크에 저장 됨</translation>
+        <source>PSMT saved to disk.</source>
+        <translation type="unfinished">PSMT가 디스크에 저장 됨</translation>
     </message>
     <message>
         <source>own address</source>
@@ -2994,8 +2994,8 @@ Note:  Since the fee is calculated on a per-byte basis, a fee rate of "100 satos
         <translation type="unfinished">사인되지 않은 것을 생성(&amp;e)</translation>
     </message>
     <message>
-        <source>Creates a Partially Signed Meowcoin Transaction (PSBT) for use with e.g. an offline %1 wallet, or a PSBT-compatible hardware wallet.</source>
-        <translation type="unfinished">오프라인 %1 지갑 또는 PSBT가 호환되는 하드웨어 지갑과의 사용을 위한 '부분적으로 서명 된 비트 코인 트랜잭션(PSBT)'를 생성합니다.</translation>
+        <source>Creates a Partially Signed Meowcoin Transaction (PSMT) for use with e.g. an offline %1 wallet, or a PSMT-compatible hardware wallet.</source>
+        <translation type="unfinished">오프라인 %1 지갑 또는 PSMT가 호환되는 하드웨어 지갑과의 사용을 위한 '부분적으로 서명 된 비트 코인 트랜잭션(PSMT)'를 생성합니다.</translation>
     </message>
     <message>
         <source>%1 to '%2'</source>
@@ -3029,13 +3029,13 @@ Note:  Since the fee is calculated on a per-byte basis, a fee rate of "100 satos
     </message>
     <message>
         <source>Partially Signed Transaction (Binary)</source>
-        <extracomment>Expanded name of the binary PSBT file format. See: BIP 174.</extracomment>
+        <extracomment>Expanded name of the binary PSMT file format. See: BIP 174.</extracomment>
         <translation type="unfinished">부분 서명 트랜잭션 (이진수)</translation>
     </message>
     <message>
-        <source>PSBT saved</source>
-        <extracomment>Popup message when a PSBT has been saved to a file</extracomment>
-        <translation type="unfinished">PSBT 저장됨</translation>
+        <source>PSMT saved</source>
+        <extracomment>Popup message when a PSMT has been saved to a file</extracomment>
+        <translation type="unfinished">PSMT 저장됨</translation>
     </message>
     <message>
         <source>External balance:</source>
@@ -3050,9 +3050,9 @@ Note:  Since the fee is calculated on a per-byte basis, a fee rate of "100 satos
         <translation type="unfinished">추후에 거래 수수료를 올릴 수 있습니다 ('수수료로-대체', BIP-125 지원)</translation>
     </message>
     <message>
-        <source>Please, review your transaction proposal. This will produce a Partially Signed Meowcoin Transaction (PSBT) which you can save or copy and then sign with e.g. an offline %1 wallet, or a PSBT-compatible hardware wallet.</source>
-        <extracomment>Text to inform a user attempting to create a transaction of their current options. At this stage, a user can only create a PSBT. This string is displayed when private keys are disabled and an external signer is not available.</extracomment>
-        <translation type="unfinished">거래 제안을 검토해 주십시오. 이것은 당신이 저장하거나 복사한 뒤 e.g. 오프라인 %1 지갑 또는 PSBT 호환 하드웨어 지갑으로 서명할 수 있는 PSBT (부분적으로 서명된 비트코인 트랜잭션)를 생성할 것입니다.</translation>
+        <source>Please, review your transaction proposal. This will produce a Partially Signed Meowcoin Transaction (PSMT) which you can save or copy and then sign with e.g. an offline %1 wallet, or a PSMT-compatible hardware wallet.</source>
+        <extracomment>Text to inform a user attempting to create a transaction of their current options. At this stage, a user can only create a PSMT. This string is displayed when private keys are disabled and an external signer is not available.</extracomment>
+        <translation type="unfinished">거래 제안을 검토해 주십시오. 이것은 당신이 저장하거나 복사한 뒤 e.g. 오프라인 %1 지갑 또는 PSMT 호환 하드웨어 지갑으로 서명할 수 있는 PSMT (부분적으로 서명된 비트코인 트랜잭션)를 생성할 것입니다.</translation>
     </message>
     <message>
         <source>Do you want to create this transaction?</source>
@@ -3060,9 +3060,9 @@ Note:  Since the fee is calculated on a per-byte basis, a fee rate of "100 satos
         <translation type="unfinished">이 트랜잭션을 생성하겠습니까?</translation>
     </message>
     <message>
-        <source>Please, review your transaction. You can create and send this transaction or create a Partially Signed Meowcoin Transaction (PSBT), which you can save or copy and then sign with, e.g., an offline %1 wallet, or a PSBT-compatible hardware wallet.</source>
-        <extracomment>Text to inform a user attempting to create a transaction of their current options. At this stage, a user can send their transaction or create a PSBT. This string is displayed when both private keys and PSBT controls are enabled.</extracomment>
-        <translation type="unfinished">당신의 트랜잭션을 검토하세요. 당신은 트랜잭션을 생성하고 보낼 수 있습니다. 혹은 부분적으로 서명된 비트코인 트랜잭션 (PSBT, Partially Signed Meowcoin Transaction)을 생성하고, 저장하거나 복사하여 오프라인 %1지갑으로 서명할수도 있습니다. PSBT가 적용되는 하드월렛으로 서명할 수도 있습니다. </translation>
+        <source>Please, review your transaction. You can create and send this transaction or create a Partially Signed Meowcoin Transaction (PSMT), which you can save or copy and then sign with, e.g., an offline %1 wallet, or a PSMT-compatible hardware wallet.</source>
+        <extracomment>Text to inform a user attempting to create a transaction of their current options. At this stage, a user can send their transaction or create a PSMT. This string is displayed when both private keys and PSMT controls are enabled.</extracomment>
+        <translation type="unfinished">당신의 트랜잭션을 검토하세요. 당신은 트랜잭션을 생성하고 보낼 수 있습니다. 혹은 부분적으로 서명된 비트코인 트랜잭션 (PSMT, Partially Signed Meowcoin Transaction)을 생성하고, 저장하거나 복사하여 오프라인 %1지갑으로 서명할수도 있습니다. PSMT가 적용되는 하드월렛으로 서명할 수도 있습니다. </translation>
     </message>
     <message>
         <source>Please, review your transaction.</source>
@@ -3082,8 +3082,8 @@ Note:  Since the fee is calculated on a per-byte basis, a fee rate of "100 satos
         <translation type="unfinished">총액</translation>
     </message>
     <message>
-        <source>The PSBT has been copied to the clipboard. You can also save it.</source>
-        <translation type="unfinished">PSBT가 클립보드가 복사되었습니다. 필요하다면 저장할 수 있습니다.</translation>
+        <source>The PSMT has been copied to the clipboard. You can also save it.</source>
+        <translation type="unfinished">PSMT가 클립보드가 복사되었습니다. 필요하다면 저장할 수 있습니다.</translation>
     </message>
     <message>
         <source>Confirm send coins</source>
@@ -3779,24 +3779,24 @@ Go to File &gt; Open Wallet to load a wallet.
         <translation type="unfinished">오류</translation>
     </message>
     <message>
-        <source>Unable to decode PSBT from clipboard (invalid base64)</source>
-        <translation type="unfinished">클립 보드에서 PSBT를 디코딩 할 수 없습니다 (잘못된 base64).</translation>
+        <source>Unable to decode PSMT from clipboard (invalid base64)</source>
+        <translation type="unfinished">클립 보드에서 PSMT를 디코딩 할 수 없습니다 (잘못된 base64).</translation>
     </message>
     <message>
         <source>Load Transaction Data</source>
         <translation type="unfinished">트랜젝션 데이터 불러오기</translation>
     </message>
     <message>
-        <source>Partially Signed Transaction (*.psbt)</source>
-        <translation type="unfinished">부분적으로 서명된 비트코인 트랜잭션 (* .psbt)</translation>
+        <source>Partially Signed Transaction (*.psmt)</source>
+        <translation type="unfinished">부분적으로 서명된 비트코인 트랜잭션 (* .psmt)</translation>
     </message>
     <message>
-        <source>PSBT file must be smaller than 100 MiB</source>
-        <translation type="unfinished">PSBT 파일은 100MiB보다 작아야합니다.</translation>
+        <source>PSMT file must be smaller than 100 MiB</source>
+        <translation type="unfinished">PSMT 파일은 100MiB보다 작아야합니다.</translation>
     </message>
     <message>
-        <source>Unable to decode PSBT</source>
-        <translation type="unfinished">PSBT를 디코드 할 수 없음</translation>
+        <source>Unable to decode PSMT</source>
+        <translation type="unfinished">PSMT를 디코드 할 수 없음</translation>
     </message>
 </context>
 <context>
@@ -3843,12 +3843,12 @@ Go to File &gt; Open Wallet to load a wallet.
         <translation type="unfinished">거래 초안을 작성할 수 없습니다.</translation>
     </message>
     <message>
-        <source>PSBT copied</source>
-        <translation type="unfinished">PSBT 복사됨</translation>
+        <source>PSMT copied</source>
+        <translation type="unfinished">PSMT 복사됨</translation>
     </message>
     <message>
-        <source>Fee-bump PSBT copied to clipboard</source>
-        <translation type="unfinished">수수료 범프 PSBT가 클립보드에 복사되었습니다.</translation>
+        <source>Fee-bump PSMT copied to clipboard</source>
+        <translation type="unfinished">수수료 범프 PSMT가 클립보드에 복사되었습니다.</translation>
     </message>
     <message>
         <source>Can't sign transaction.</source>

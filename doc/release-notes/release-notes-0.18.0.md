@@ -164,7 +164,7 @@ Documentation
 
 - A new document introduces Meowcoin Core's BIP174 [Partially-Signed
   Meowcoin Transactions
-  (PSBT)](https://github.com/meowcoin/meowcoin/blob/master/doc/psbt.md)
+  (PSMT)](https://github.com/meowcoin/meowcoin/blob/master/doc/psmt.md)
   interface, which is used to allow multiple programs to collaboratively
   work to create, sign, and broadcast new transactions.  This is useful
   for offline (cold storage) wallets, multisig wallets, coinjoin
@@ -216,33 +216,33 @@ New RPCs
 - `getdescriptorinfo` accepts a descriptor and returns information about
   it, including its computed checksum.
 
-- `joinpsbts` merges multiple distinct PSBTs into a single PSBT. The
-  multiple PSBTs must have different inputs. The resulting PSBT will
-  contain every input and output from all of the PSBTs. Any signatures
-  provided in any of the PSBTs will be dropped.
+- `joinpsmts` merges multiple distinct PSMTs into a single PSMT. The
+  multiple PSMTs must have different inputs. The resulting PSMT will
+  contain every input and output from all of the PSMTs. Any signatures
+  provided in any of the PSMTs will be dropped.
 
-- `analyzepsbt` examines a PSBT and provides information about what
-  the PSBT contains and the next steps that need to be taken in order
-  to complete the transaction. For each input of a PSBT, `analyzepsbt`
+- `analyzepsmt` examines a PSMT and provides information about what
+  the PSMT contains and the next steps that need to be taken in order
+  to complete the transaction. For each input of a PSMT, `analyzepsmt`
   provides information about what information is missing for that
   input, including whether a UTXO needs to be provided, what pubkeys
   still need to be provided, which scripts need to be provided, and
   what signatures are still needed. Every input will also list which
-  role is needed to complete that input, and `analyzepsbt` will also
-  list the next role in general needed to complete the PSBT.
-  `analyzepsbt` will also provide the estimated fee rate and estimated
+  role is needed to complete that input, and `analyzepsmt` will also
+  list the next role in general needed to complete the PSMT.
+  `analyzepsmt` will also provide the estimated fee rate and estimated
   virtual size of the completed transaction if it has enough
   information to do so.
 
-- `utxoupdatepsbt` searches the set of Unspent Transaction Outputs
+- `utxoupdatepsmt` searches the set of Unspent Transaction Outputs
   (UTXOs) to find the outputs being spent by the partial transaction.
-  PSBTs need to have the UTXOs being spent to be provided because
+  PSMTs need to have the UTXOs being spent to be provided because
   the signing algorithm requires information from the UTXO being spent.
   For segwit inputs, only the UTXO itself is necessary.  For
   non-segwit outputs, the entire previous transaction is needed so
   that signers can be sure that they are signing the correct thing.
   Unfortunately, because the UTXO set only contains UTXOs and not full
-  transactions, `utxoupdatepsbt` will only add the UTXO for segwit
+  transactions, `utxoupdatepsmt` will only add the UTXO for segwit
   inputs.
 
 Updated RPCs
@@ -318,7 +318,7 @@ in the Low-level Changes section below.
   request, as well as an optional range for ranged descriptors to
   specify the start and end of the range to import. Descriptors with key
   origin information imported through `importmulti` will have their key
-  origin information stored in the wallet for use with creating PSBTs.
+  origin information stored in the wallet for use with creating PSMTs.
   More information about descriptors can be found
   [here](https://github.com/meowcoin/meowcoin/blob/master/doc/descriptors.md).
 
@@ -472,7 +472,7 @@ RPC
   P2SH-P2WSH output. This is compatible with the change to
   `listunspent`.
 
-- For the `walletprocesspsbt` and `walletcreatefundedpsbt` RPCs, if the
+- For the `walletprocesspsmt` and `walletcreatefundedpsmt` RPCs, if the
   `bip32derivs` parameter is set to true but the key metadata for a
   public key has not been updated yet, then that key will have a
   derivation path as if it were just an independent key (i.e. no
@@ -581,7 +581,7 @@ Changes for particular platforms
 - #15486 Ensure tried collisions resolve, and allow feeler connections to existing outbound netgroups (sdaftuar)
 
 ### Wallet
-- #13962 Remove unused `dummy_tx` variable from FillPSBT (dongcarl)
+- #13962 Remove unused `dummy_tx` variable from FillPSMT (dongcarl)
 - #13967 Don't report `minversion` wallet entry as unknown (instagibbs)
 - #13988 Add checks for settxfee reasonableness (ajtowns)
 - #12559 Avoid locking `cs_main` in some wallet RPC (promag)
@@ -634,7 +634,7 @@ Changes for particular platforms
 - #15226 Allow creating blank (empty) wallets (alternative) (achow101)
 - #15390 [wallet-tool] Close bdb when flushing wallet (jnewbery)
 - #15334 Log absolute paths for the wallets (hebasto)
-- #14978 Factor out PSBT utilities from RPCs for use in GUI code; related refactoring (gwillen)
+- #14978 Factor out PSMT utilities from RPCs for use in GUI code; related refactoring (gwillen)
 - #14481 Add P2SH-P2WSH support to listunspent RPC (MeshCollider)
 - #14021 Import key origin data through descriptors in importmulti (achow101)
 - #14075 Import watch only pubkeys to the keypool if private keys are disabled (achow101)
@@ -653,7 +653,7 @@ Changes for particular platforms
 - #13891 Remove getinfo deprecation warning (jnewbery)
 - #13399 Add `submitheader` (MarcoFalke)
 - #12676 Show `bip125-replaceable` flag, when retrieving mempool entries (dexX7)
-- #13723 PSBT key path cleanups (sipa)
+- #13723 PSMT key path cleanups (sipa)
 - #14008 Preserve a format of RPC command definitions (kostyantyn)
 - #9332 Let wallet `importmulti` RPC accept labels for standard scriptPubKeys (ryanofsky)
 - #13983 Return more specific reject reason for submitblock (MarcoFalke)
@@ -692,15 +692,15 @@ Changes for particular platforms
 - #15245 remove deprecated mentions of signrawtransaction from fundraw help (instagibbs)
 - #14667 Add `deriveaddresses` RPC util method (Sjors)
 - #15357 Don't ignore `-maxtxfee` when wallet is disabled (JBaczuk)
-- #15337 Fix for segfault if combinepsbt called with empty inputs (benthecarman)
+- #15337 Fix for segfault if combinepsmt called with empty inputs (benthecarman)
 - #14918 RPCHelpMan: Check default values are given at compile-time (MarcoFalke)
 - #15383 mining: Omit uninitialized currentblockweight, currentblocktx (MarcoFalke)
-- #13932 Additional utility RPCs for PSBT (achow101)
+- #13932 Additional utility RPCs for PSMT (achow101)
 - #15401 Actually throw help when passed invalid number of params (MarcoFalke)
 - #15471 rpc/gui: Remove 'Unknown block versions being mined' warning (laanwj)
 - #15497 Consistent range arguments in scantxoutset/importmulti/deriveaddresses (sipa)
 - #15510 deriveaddresses: add range to CRPCConvertParam (Sjors)
-- #15582 Fix overflow bug in analyzepsbt fee: CAmount instead of int (sipa)
+- #15582 Fix overflow bug in analyzepsmt fee: CAmount instead of int (sipa)
 - #13424 Consistently validate txid / blockhash length and encoding in rpc calls (Empact)
 - #15750 Remove the addresses field from the getaddressinfo return object (jnewbery)
 
@@ -828,7 +828,7 @@ Changes for particular platforms
 - #14119 Read reject reasons from debug log, not P2P messages (MarcoFalke)
 - #14189 Fix silent merge conflict in `wallet_importmulti` (MarcoFalke)
 - #13419 Speed up `knapsack_solver_test` by not recreating wallet 100 times (lucash-dev)
-- #14199 Remove redundant BIP174 test from `rpc_psbt.json` (araspitzu)
+- #14199 Remove redundant BIP174 test from `rpc_psmt.json` (araspitzu)
 - #14179 Fixups to "Run all tests even if wallet is not compiled" (MarcoFalke)
 - #14225 Reorder tests and move most of extended tests up to normal tests (ken2812221)
 - #14236 `generate` --> `generatetoaddress` change to allow tests run without wallet (sanket1729)
@@ -1086,11 +1086,11 @@ Changes for particular platforms
 - #15477 Remove misleading hint in getrawtransaction (MarcoFalke)
 - #15489 Update release process for snap package (MarcoFalke)
 - #15524 doc: Remove berkeleydb PPA from linux build instructions (MarcoFalke)
-- #15559 Correct `analyzepsbt` rpc doc (fanquake)
+- #15559 Correct `analyzepsmt` rpc doc (fanquake)
 - #15194 Add comment describing `fDisconnect` behavior (dongcarl)
 - #15754 getrpcinfo docs (benthecarman)
 - #15763 Update bips.md for 0.18.0 (sipa)
-- #15757 List new RPCs in psbt.md and descriptors.md (sipa)
+- #15757 List new RPCs in psmt.md and descriptors.md (sipa)
 - #15765 correct meowcoinconsensus_version in shared-libraries.md (fanquake)
 - #15792 describe onlynet option in doc/tor.md (jonatack)
 - #15802 mention creating application support meowcoin folder on OSX (JimmyMow)

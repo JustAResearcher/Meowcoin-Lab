@@ -537,8 +537,8 @@ Cüzdan kilidini aç.</translation>
         <translation type="unfinished">Belirtilen Bitcoin adresleriyle imzalandıklarından emin olmak için mesajları doğrulayın</translation>
     </message>
     <message>
-        <source>&amp;Load PSBT from file…</source>
-        <translation type="unfinished">&amp;PSBT'yi dosyadan yükle...</translation>
+        <source>&amp;Load PSMT from file…</source>
+        <translation type="unfinished">&amp;PSMT'yi dosyadan yükle...</translation>
     </message>
     <message>
         <source>Open &amp;URI…</source>
@@ -639,8 +639,8 @@ Cüzdan kilidini aç.</translation>
         <translation type="unfinished">Kısmen İmzalanmış Bitcoin İşlemini Yükle </translation>
     </message>
     <message>
-        <source>Load PSBT from &amp;clipboard…</source>
-        <translation type="unfinished">PSBT'yi &amp;panodan yükle...</translation>
+        <source>Load PSMT from &amp;clipboard…</source>
+        <translation type="unfinished">PSMT'yi &amp;panodan yükle...</translation>
     </message>
     <message>
         <source>Load Partially Signed Bitcoin Transaction from clipboard</source>
@@ -1613,14 +1613,14 @@ Taşıma işlemi, taşıma işleminden önce cüzdanın bir yedeğini oluşturac
         <translation type="unfinished">&amp; Onaylanmamış bozuk parayı harcayın</translation>
     </message>
     <message>
-        <source>Enable &amp;PSBT controls</source>
-        <extracomment>An options window setting to enable PSBT controls.</extracomment>
-        <translation type="unfinished">PSBT kontrollerini etkinleştir</translation>
+        <source>Enable &amp;PSMT controls</source>
+        <extracomment>An options window setting to enable PSMT controls.</extracomment>
+        <translation type="unfinished">PSMT kontrollerini etkinleştir</translation>
     </message>
     <message>
-        <source>Whether to show PSBT controls.</source>
-        <extracomment>Tooltip text for options window setting that enables PSBT controls.</extracomment>
-        <translation type="unfinished">PSBT kontrollerinin gösterilip gösterilmeyeceği.</translation>
+        <source>Whether to show PSMT controls.</source>
+        <extracomment>Tooltip text for options window setting that enables PSMT controls.</extracomment>
+        <translation type="unfinished">PSMT kontrollerinin gösterilip gösterilmeyeceği.</translation>
     </message>
     <message>
         <source>Accept connections from outside.</source>
@@ -1832,10 +1832,10 @@ Taşıma işlemi, taşıma işleminden önce cüzdanın bir yedeğini oluşturac
     </message>
     </context>
 <context>
-    <name>PSBTOperationsDialog</name>
+    <name>PSMTOperationsDialog</name>
     <message>
-        <source>PSBT Operations</source>
-        <translation type="unfinished">PSBT Operasyonları</translation>
+        <source>PSMT Operations</source>
+        <translation type="unfinished">PSMT Operasyonları</translation>
     </message>
     <message>
         <source>Sign Tx</source>
@@ -1886,16 +1886,16 @@ Taşıma işlemi, taşıma işleminden önce cüzdanın bir yedeğini oluşturac
         <translation type="unfinished">İşlem ağa duyuruldu! İşlem kodu: %1</translation>
     </message>
     <message>
-        <source>PSBT copied to clipboard.</source>
-        <translation type="unfinished">PSBT panoya kopyalandı.</translation>
+        <source>PSMT copied to clipboard.</source>
+        <translation type="unfinished">PSMT panoya kopyalandı.</translation>
     </message>
     <message>
         <source>Save Transaction Data</source>
         <translation type="unfinished">İşlem verilerini kaydet</translation>
     </message>
     <message>
-        <source>PSBT saved to disk.</source>
-        <translation type="unfinished">PSBT diske kaydedildi.</translation>
+        <source>PSMT saved to disk.</source>
+        <translation type="unfinished">PSMT diske kaydedildi.</translation>
     </message>
     <message>
         <source>Sends %1 to %2</source>
@@ -2777,9 +2777,9 @@ Taşıma işlemi, taşıma işleminden önce cüzdanın bir yedeğini oluşturac
         <translation type="unfinished">İşlem verilerini kaydet</translation>
     </message>
     <message>
-        <source>PSBT saved</source>
-        <extracomment>Popup message when a PSBT has been saved to a file</extracomment>
-        <translation type="unfinished">PSBT kaydedildi.</translation>
+        <source>PSMT saved</source>
+        <extracomment>Popup message when a PSMT has been saved to a file</extracomment>
+        <translation type="unfinished">PSMT kaydedildi.</translation>
     </message>
     <message>
         <source>or</source>
@@ -2795,9 +2795,9 @@ Taşıma işlemi, taşıma işleminden önce cüzdanın bir yedeğini oluşturac
         <translation type="unfinished">Bu işlemi oluşturmak ister misiniz?</translation>
     </message>
     <message>
-        <source>Please, review your transaction. You can create and send this transaction or create a Partially Signed Bitcoin Transaction (PSBT), which you can save or copy and then sign with, e.g., an offline %1 wallet, or a PSBT-compatible hardware wallet.</source>
-        <extracomment>Text to inform a user attempting to create a transaction of their current options. At this stage, a user can send their transaction or create a PSBT. This string is displayed when both private keys and PSBT controls are enabled.</extracomment>
-        <translation type="unfinished">Lütfen işleminizi gözden geçirin. Bu işlemi oluşturabilir ve gönderebilir veya örneğin çevrimdışı bir %1 cüzdanı veya PSBT uyumlu bir donanım cüzdanı gibi kaydedebileceğiniz veya kopyalayabileceğiniz ve ardından imzalayabileceğiniz bir Kısmen İmzalı Bitcoin İşlemi (PSBT) oluşturabilirsiniz.</translation>
+        <source>Please, review your transaction. You can create and send this transaction or create a Partially Signed Bitcoin Transaction (PSMT), which you can save or copy and then sign with, e.g., an offline %1 wallet, or a PSMT-compatible hardware wallet.</source>
+        <extracomment>Text to inform a user attempting to create a transaction of their current options. At this stage, a user can send their transaction or create a PSMT. This string is displayed when both private keys and PSMT controls are enabled.</extracomment>
+        <translation type="unfinished">Lütfen işleminizi gözden geçirin. Bu işlemi oluşturabilir ve gönderebilir veya örneğin çevrimdışı bir %1 cüzdanı veya PSMT uyumlu bir donanım cüzdanı gibi kaydedebileceğiniz veya kopyalayabileceğiniz ve ardından imzalayabileceğiniz bir Kısmen İmzalı Bitcoin İşlemi (PSMT) oluşturabilirsiniz.</translation>
     </message>
     <message>
         <source>Please, review your transaction.</source>
@@ -2814,13 +2814,13 @@ Taşıma işlemi, taşıma işleminden önce cüzdanın bir yedeğini oluşturac
     </message>
     <message>
         <source>Unsigned Transaction</source>
-        <comment>PSBT copied</comment>
-        <extracomment>Caption of "PSBT has been copied" messagebox</extracomment>
+        <comment>PSMT copied</comment>
+        <extracomment>Caption of "PSMT has been copied" messagebox</extracomment>
         <translation type="unfinished">İmzalanmamış İşlem</translation>
     </message>
     <message>
-        <source>PSBT saved to disk</source>
-        <translation type="unfinished">PSBT diske kaydedildi.</translation>
+        <source>PSMT saved to disk</source>
+        <translation type="unfinished">PSMT diske kaydedildi.</translation>
     </message>
     <message>
         <source>Confirm send coins</source>
@@ -3526,12 +3526,12 @@ Taşıma işlemi, taşıma işleminden önce cüzdanın bir yedeğini oluşturac
         <translation type="unfinished">Yeni ücret:</translation>
     </message>
     <message>
-        <source>PSBT copied</source>
-        <translation type="unfinished">PSBT kopyalandı</translation>
+        <source>PSMT copied</source>
+        <translation type="unfinished">PSMT kopyalandı</translation>
     </message>
     <message>
-        <source>Fee-bump PSBT copied to clipboard</source>
-        <translation type="unfinished">Ücret artırma PSBT'si panoya kopyalandı</translation>
+        <source>Fee-bump PSMT copied to clipboard</source>
+        <translation type="unfinished">Ücret artırma PSMT'si panoya kopyalandı</translation>
     </message>
     <message>
         <source>Can't sign transaction.</source>

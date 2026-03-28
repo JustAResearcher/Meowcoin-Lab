@@ -454,8 +454,8 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">Potvrdite poruke kako biste bili sigurni da su potpisane navedenim Meowcoin adresama</translation>
     </message>
     <message>
-        <source>&amp;Load PSBT from file…</source>
-        <translation type="unfinished">&amp;Učitaj PSBT iz datoteke</translation>
+        <source>&amp;Load PSMT from file…</source>
+        <translation type="unfinished">&amp;Učitaj PSMT iz datoteke</translation>
     </message>
     <message>
         <source>Open &amp;URI…</source>

@@ -459,8 +459,8 @@ Faela ya zwishumiswa %1 i nga vha yo tshinyala kana i sa shumi.</translation>
         <translation type="unfinished">Kha vha khwaṱhisedze milaedza u vhona uri yo sainiwa nga ḓiresi dzo bulwaho dza Bitcoin </translation>
     </message>
     <message>
-        <source>&amp;Load PSBT from file…</source>
-        <translation type="unfinished">&amp;Load PSBT ubva kha faila...</translation>
+        <source>&amp;Load PSMT from file…</source>
+        <translation type="unfinished">&amp;Load PSMT ubva kha faila...</translation>
     </message>
     <message>
         <source>Open &amp;URI…</source>

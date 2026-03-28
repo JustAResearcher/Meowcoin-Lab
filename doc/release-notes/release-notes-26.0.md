@@ -82,7 +82,7 @@ Updated RPCs
 
 - [Miniscript](https://meowcoin.sipa.be/miniscript/) expressions can now be used in Taproot descriptors for all RPCs working with descriptors. (#27255)
 
-- `finalizepsbt` is now able to finalize a PSBT with inputs spending [Miniscript](https://meowcoin.sipa.be/miniscript/)-compatible Taproot leaves. (#27255)
+- `finalizepsmt` is now able to finalize a PSMT with inputs spending [Miniscript](https://meowcoin.sipa.be/miniscript/)-compatible Taproot leaves. (#27255)
 
 Changes to wallet related RPCs can be found in the Wallet section below.
 
@@ -182,7 +182,7 @@ Wallet
   the `abandoned` field for all transactions. Previously, the "abandoned" field
   was only returned for sent transactions. (#25158)
 
-- The `listdescriptors`, `decodepsbt` and similar RPC methods now show `h` rather than apostrophe (`'`) to indicate
+- The `listdescriptors`, `decodepsmt` and similar RPC methods now show `h` rather than apostrophe (`'`) to indicate
   hardened derivation. This does not apply when using the `private` parameter, which
   matches the marker used when descriptor was generated or imported. Newly created
   wallets use `h`. This change makes it easier to handle descriptor strings manually.
@@ -205,7 +205,7 @@ Wallet
 - Coin selection and transaction building now accounts for unconfirmed low-feerate ancestor transactions. When it is necessary to spend unconfirmed outputs, the wallet will add fees to ensure that the new transaction with its ancestors will achieve a mining score equal to the feerate requested by the user. (#26152)
 
 - For RPC methods which accept `options` parameters ((`importmulti`, `listunspent`,
-  `fundrawtransaction`, `bumpfee`, `send`, `sendall`, `walletcreatefundedpsbt`,
+  `fundrawtransaction`, `bumpfee`, `send`, `sendall`, `walletcreatefundedpsmt`,
   `simulaterawtransaction`), it is now possible to pass the options as named
   parameters without the need for a nested object. (#26485)
 
@@ -228,11 +228,11 @@ src/meowcoin-cli -named bumpfee txid options='{"fee_rate": 100}'
   strings. The "warning" string field was deprecated also in v25.0. (#27757)
 
 - The `signrawtransactionwithkey`, `signrawtransactionwithwallet`,
-  `walletprocesspsbt` and `descriptorprocesspsbt` calls now return the more
+  `walletprocesspsmt` and `descriptorprocesspsmt` calls now return the more
   specific RPC_INVALID_PARAMETER error instead of RPC_MISC_ERROR if their
   sighashtype argument is malformed. (#28113)
 
-- RPC `walletprocesspsbt`, and `descriptorprocesspsbt` return
+- RPC `walletprocesspsmt`, and `descriptorprocesspsmt` return
   object now includes field `hex` (if the transaction
   is complete) containing the serialized transaction
   suitable for RPC `sendrawtransaction`. (#28414)
@@ -254,7 +254,7 @@ GUI changes
 
 - A new menu option allows migrating a legacy wallet based on keys and implied output script types stored in BerkeleyDB (BDB) to a modern wallet that uses descriptors stored in SQLite. (gui#738)
 
-- The PSBT operations dialog marks outputs paying your own wallet with "own address". (gui#740)
+- The PSMT operations dialog marks outputs paying your own wallet with "own address". (gui#740)
 
 - The ability to create legacy wallets is being removed. (gui#764)
 

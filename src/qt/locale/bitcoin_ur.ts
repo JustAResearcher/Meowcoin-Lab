@@ -592,8 +592,8 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">جزوی طور پر دستخط شدہ بٹ کوائن ٹرانزیکشن لوڈ کریں۔</translation>
     </message>
     <message>
-        <source>Load PSBT from &amp;clipboard…</source>
-        <translation type="unfinished">PSBT کو &amp;clipboard سے لوڈ کریں...</translation>
+        <source>Load PSMT from &amp;clipboard…</source>
+        <translation type="unfinished">PSMT کو &amp;clipboard سے لوڈ کریں...</translation>
     </message>
     <message>
         <source>Load Partially Signed Bitcoin Transaction from clipboard</source>
@@ -1521,7 +1521,7 @@ The migration process will create a backup of the wallet before migrating. This 
     </message>
 </context>
 <context>
-    <name>PSBTOperationsDialog</name>
+    <name>PSMTOperationsDialog</name>
     <message>
         <source>Copy to Clipboard</source>
         <translation type="unfinished">کلپ بورڈ پر کاپی کریں۔</translation>

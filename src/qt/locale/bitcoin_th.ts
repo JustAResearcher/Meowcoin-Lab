@@ -569,8 +569,8 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">ตรวจสอบข้อความเพื่อให้แน่ใจว่าข้อความเหล่านั้นได้รับการลงชื่อด้วยที่อยู่ Bitcoin ที่ระบุไว้</translation>
     </message>
     <message>
-        <source>&amp;Load PSBT from file…</source>
-        <translation type="unfinished"> &amp;โหลด PSBT จากไฟล์…</translation>
+        <source>&amp;Load PSMT from file…</source>
+        <translation type="unfinished"> &amp;โหลด PSMT จากไฟล์…</translation>
     </message>
     <message>
         <source>Open &amp;URI…</source>
@@ -683,8 +683,8 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">โหลดธุรกรรม Bitcoin ที่ลงนามบางส่วน</translation>
     </message>
     <message>
-        <source>Load PSBT from &amp;clipboard…</source>
-        <translation type="unfinished">โหลด PSBT จาก &amp;คลิปบอร์ด…</translation>
+        <source>Load PSMT from &amp;clipboard…</source>
+        <translation type="unfinished">โหลด PSMT จาก &amp;คลิปบอร์ด…</translation>
     </message>
     <message>
         <source>Load Partially Signed Bitcoin Transaction from clipboard</source>
@@ -1656,14 +1656,14 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">ใช้จ่ายเงินทอนที่ยังไม่ได้ยืนยัน</translation>
     </message>
     <message>
-        <source>Enable &amp;PSBT controls</source>
-        <extracomment>An options window setting to enable PSBT controls.</extracomment>
-        <translation type="unfinished">เปิดใช้งานการควบคุม &amp;PSBT</translation>
+        <source>Enable &amp;PSMT controls</source>
+        <extracomment>An options window setting to enable PSMT controls.</extracomment>
+        <translation type="unfinished">เปิดใช้งานการควบคุม &amp;PSMT</translation>
     </message>
     <message>
-        <source>Whether to show PSBT controls.</source>
-        <extracomment>Tooltip text for options window setting that enables PSBT controls.</extracomment>
-        <translation type="unfinished">ว่าจะให้แสดงการควบคุม PSBT หรือไม่</translation>
+        <source>Whether to show PSMT controls.</source>
+        <extracomment>Tooltip text for options window setting that enables PSMT controls.</extracomment>
+        <translation type="unfinished">ว่าจะให้แสดงการควบคุม PSMT หรือไม่</translation>
     </message>
     <message>
         <source>External Signer (e.g. hardware wallet)</source>
@@ -1918,9 +1918,9 @@ Signing is only possible with addresses of the type 'legacy'.</source>
     </message>
     </context>
 <context>
-    <name>PSBTOperationsDialog</name>
+    <name>PSMTOperationsDialog</name>
     <message>
-        <source>PSBT Operations</source>
+        <source>PSMT Operations</source>
         <translation type="unfinished">การดำเนินงาน</translation>
     </message>
     <message>
@@ -1936,8 +1936,8 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">ข้อผิดพลาดที่ไม่รู้จักของการประมวลผลธุรกรรม</translation>
     </message>
     <message>
-        <source>PSBT copied to clipboard.</source>
-        <translation type="unfinished">PSBT คัดลอกไปยังคลิปบอร์ดแล้ว</translation>
+        <source>PSMT copied to clipboard.</source>
+        <translation type="unfinished">PSMT คัดลอกไปยังคลิปบอร์ดแล้ว</translation>
     </message>
     <message>
         <source>Sends %1 to %2</source>
@@ -2493,7 +2493,7 @@ If you are receiving this error you should request the merchant provide a BIP21 
     </message>
     <message>
         <source>Partially Signed Transaction (Binary)</source>
-        <extracomment>Expanded name of the binary PSBT file format. See: BIP 174.</extracomment>
+        <extracomment>Expanded name of the binary PSMT file format. See: BIP 174.</extracomment>
         <translation type="unfinished">ธุรกรรมที่ลงนามบางส่วน (ไบนารี)</translation>
     </message>
     <message>

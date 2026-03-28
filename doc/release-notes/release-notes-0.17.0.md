@@ -187,7 +187,7 @@ Here are the changes to RPC methods:
 BIP 174 Partially Signed Meowcoin Transactions support
 -----------------------------------------------------
 
-[BIP 174 PSBT](https://github.com/meowcoin/bips/blob/master/bip-0174.mediawiki) is an interchange format for Meowcoin transactions that are not fully signed
+[BIP 174 PSMT](https://github.com/meowcoin/bips/blob/master/bip-0174.mediawiki) is an interchange format for Meowcoin transactions that are not fully signed
 yet, together with relevant metadata to help entities work towards signing it.
 It is intended to simplify workflows where multiple parties need to cooperate to
 produce a transaction. Examples include hardware wallets, multisig setups, and
@@ -199,11 +199,11 @@ Overall, the construction of a fully signed Meowcoin transaction goes through th
 following steps:
 
 - A **Creator** proposes a particular transaction to be created. He constructs
-  a PSBT that contains certain inputs and outputs, but no additional metadata.
+  a PSMT that contains certain inputs and outputs, but no additional metadata.
 - For each input, an **Updater** adds information about the UTXOs being spent by
-  the transaction to the PSBT.
+  the transaction to the PSMT.
 - A potentially other Updater adds information about the scripts and public keys
-  involved in each of the inputs (and possibly outputs) of the PSBT.
+  involved in each of the inputs (and possibly outputs) of the PSMT.
 - **Signers** inspect the transaction and its metadata to decide whether they
   agree with the transaction. They can use amount information from the UTXOs
   to assess the values and fees involved. If they agree, they produce a
@@ -211,14 +211,14 @@ following steps:
 - A **Finalizer** is run for each input to convert the partial signatures and
   possibly script information into a final `scriptSig` and/or `scriptWitness`.
 - An **Extractor** produces a valid Meowcoin transaction (in network format)
-  from a PSBT for which all inputs are finalized.
+  from a PSMT for which all inputs are finalized.
 
 Generally, each of the above (excluding Creator and Extractor) will simply
-add more and more data to a particular PSBT. In a naive workflow, they all have
-to operate sequentially, passing the PSBT from one to the next, until the
+add more and more data to a particular PSMT. In a naive workflow, they all have
+to operate sequentially, passing the PSMT from one to the next, until the
 Extractor can convert it to a real transaction. In order to permit parallel
 operation, **Combiners** can be employed which merge metadata from different
-PSBTs for the same unsigned transaction.
+PSMTs for the same unsigned transaction.
 
 The names above in bold are the names of the roles defined in BIP174. They're
 useful in understanding the underlying steps, but in practice, software and
@@ -226,32 +226,32 @@ hardware implementations will typically implement multiple roles simultaneously.
 
 ### RPCs
 
-- **`converttopsbt` (Creator)** is a utility RPC that converts an
-  unsigned raw transaction to PSBT format. It ignores existing signatures.
-- **`createpsbt` (Creator)** is a utility RPC that takes a list of inputs and
-  outputs and converts them to a PSBT with no additional information. It is
-  equivalent to calling `createrawtransaction` followed by `converttopsbt`.
-- **`walletcreatefundedpsbt` (Creator, Updater)** is a wallet RPC that creates a
-  PSBT with the specified inputs and outputs, adds additional inputs and change
+- **`converttopsmt` (Creator)** is a utility RPC that converts an
+  unsigned raw transaction to PSMT format. It ignores existing signatures.
+- **`createpsmt` (Creator)** is a utility RPC that takes a list of inputs and
+  outputs and converts them to a PSMT with no additional information. It is
+  equivalent to calling `createrawtransaction` followed by `converttopsmt`.
+- **`walletcreatefundedpsmt` (Creator, Updater)** is a wallet RPC that creates a
+  PSMT with the specified inputs and outputs, adds additional inputs and change
   to it to balance it out, and adds relevant metadata. In particular, for inputs
   that the wallet knows about (counting towards its normal or watch-only
   balance), UTXO information will be added. For outputs and inputs with UTXO
   information present, key and script information will be added which the wallet
   knows about. It is equivalent to running `createrawtransaction`, followed by
-  `fundrawtransaction`, and `converttopsbt`.
-- **`walletprocesspsbt` (Updater, Signer, Finalizer)** is a wallet RPC that takes as
-  input a PSBT, adds UTXO, key, and script data to inputs and outputs that miss
+  `fundrawtransaction`, and `converttopsmt`.
+- **`walletprocesspsmt` (Updater, Signer, Finalizer)** is a wallet RPC that takes as
+  input a PSMT, adds UTXO, key, and script data to inputs and outputs that miss
   it, and optionally signs inputs. Where possible it also finalizes the partial
   signatures.
-- **`finalizepsbt` (Finalizer, Extractor)** is a utility RPC that finalizes any
+- **`finalizepsmt` (Finalizer, Extractor)** is a utility RPC that finalizes any
   partial signatures, and if all inputs are finalized, converts the result to a
   fully signed transaction which can be broadcast with `sendrawtransaction`.
-- **`combinepsbt` (Combiner)** is a utility RPC that implements a Combiner. It
+- **`combinepsmt` (Combiner)** is a utility RPC that implements a Combiner. It
   can be used at any point in the workflow to merge information added to
-  different versions of the same PSBT. In particular it is useful to combine the
+  different versions of the same PSMT. In particular it is useful to combine the
   output of multiple Updaters or Signers.
-- **`decodepsbt`** is a diagnostic utility RPC which will show all information in
-  a PSBT in human-readable form, as well as compute its eventual fee if known.
+- **`decodepsmt`** is a diagnostic utility RPC which will show all information in
+  a PSMT in human-readable form, as well as compute its eventual fee if known.
 
 Upgrading non-HD wallets to HD wallets
 --------------------------------------
@@ -492,7 +492,7 @@ Support for Python 2 has been discontinued for all test files and tools.
 - #13160 `868cf43` Unlock spent outputs (promag)
 - #13498 `f54f373` Fixups from account API deprecation (jnewbery)
 - #13491 `61a044a` Improve handling of INVALID in IsMine (sipa)
-- #13425 `028b0d9` Moving final scriptSig construction from CombineSignatures to ProduceSignature (PSBT signer logic) (achow101)
+- #13425 `028b0d9` Moving final scriptSig construction from CombineSignatures to ProduceSignature (PSMT signer logic) (achow101)
 - #13564 `88a15eb` loadwallet shouldn't create new wallets (jnewbery)
 - #12944 `619cd29` ScanforWalletTransactions should mark input txns as dirty (instagibbs)
 - #13630 `d6b2235` Drop unused pindexRet arg to CMerkleTx::GetDepthInMainChain (Empact)
@@ -511,9 +511,9 @@ Support for Python 2 has been discontinued for all test files and tools.
 - #13876 `8eb9870` Catch `filesystem_error` and raise `InitError` (MarcoFalke)
 - #13808 `13d51a2` shuffle coins before grouping, where warranted (kallewoof)
 - #13666 `2115cba` Always create signatures with Low R values (achow101)
-- #13917 `0333914` Additional safety checks in PSBT signer (sipa)
-- #13968 `65e7a8b` couple of walletcreatefundedpsbt fixes (instagibbs)
-- #14055 `2307a6e` fix walletcreatefundedpsbt deriv paths, add test (instagibbs)
+- #13917 `0333914` Additional safety checks in PSMT signer (sipa)
+- #13968 `65e7a8b` couple of walletcreatefundedpsmt fixes (instagibbs)
+- #14055 `2307a6e` fix walletcreatefundedpsmt deriv paths, add test (instagibbs)
 
 ### RPC and other APIs
 - #12336 `3843780` Remove deprecated rpc options (jnewbery)
@@ -548,12 +548,12 @@ Support for Python 2 has been discontinued for all test files and tools.
 - #13570 `a247594` Add new "getzmqnotifications" method (domob1812)
 - #13072 `b25a4c2` Update createmultisig RPC to support segwit (ajtowns)
 - #12196 `8fceae0` Add scantxoutset RPC method (jonasschnelli)
-- #13557 `b654723` BIP 174 PSBT Serializations and RPCs (achow101)
+- #13557 `b654723` BIP 174 PSMT Serializations and RPCs (achow101)
 - #13697 `f030410` Support output descriptors in scantxoutset (sipa)
-- #13927 `bced8ea` Use pushKV in some new PSBT RPCs (domob1812)
+- #13927 `bced8ea` Use pushKV in some new PSMT RPCs (domob1812)
 - #13918 `a9c56b6` Replace median fee rate with feerate percentiles in getblockstats (marcinja)
 - #13721 `9f23c16` Bugfixes for BIP 174 combining and deserialization (achow101)
-- #13960 `517010e` Fix PSBT deserialization of 0-input transactions (achow101)
+- #13960 `517010e` Fix PSMT deserialization of 0-input transactions (achow101)
 
 ### GUI
 - #12416 `c997f88` Fix Windows build errors introduced in #10498 (practicalswift)

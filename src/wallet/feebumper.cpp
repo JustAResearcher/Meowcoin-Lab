@@ -330,16 +330,16 @@ bool SignTransaction(CWallet& wallet, CMutableTransaction& mtx) {
     LOCK(wallet.cs_wallet);
 
     if (wallet.IsWalletFlagSet(WALLET_FLAG_EXTERNAL_SIGNER)) {
-        // Make a blank psbt
-        PartiallySignedTransaction psbtx(mtx);
+        // Make a blank psmt
+        PartiallySignedTransaction psmtx(mtx);
 
         // First fill transaction with our data without signing,
         // so external signers are not asked to sign more than once.
         bool complete;
-        wallet.FillPSBT(psbtx, complete, std::nullopt, /*sign=*/false, /*bip32derivs=*/true);
-        auto err{wallet.FillPSBT(psbtx, complete, std::nullopt, /*sign=*/true, /*bip32derivs=*/false)};
+        wallet.FillPSMT(psmtx, complete, std::nullopt, /*sign=*/false, /*bip32derivs=*/true);
+        auto err{wallet.FillPSMT(psmtx, complete, std::nullopt, /*sign=*/true, /*bip32derivs=*/false)};
         if (err) return false;
-        complete = FinalizeAndExtractPSBT(psbtx, mtx);
+        complete = FinalizeAndExtractPSMT(psmtx, mtx);
         return complete;
     } else {
         return wallet.SignTransaction(mtx);

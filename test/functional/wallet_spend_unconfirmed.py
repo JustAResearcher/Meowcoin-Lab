@@ -447,8 +447,8 @@ class UnconfirmedInputTest(BitcoinTestFramework):
         self.assert_undershoots_target(parent_tx)
 
         spend_res = wallet.send(outputs=[{self.def_wallet.getnewaddress(): 0.5}], fee_rate=self.target_fee_rate, options={"inputs":[{"txid":parent_txid, "vout":find_vout_for_address(self.nodes[0], parent_txid, external_address)}], "solving_data":{"descriptors":[external_descriptor]}})
-        signed_psbt = self.def_wallet.walletprocesspsbt(spend_res["psbt"])
-        external_tx = self.def_wallet.finalizepsbt(signed_psbt["psbt"])
+        signed_psmt = self.def_wallet.walletprocesspsmt(spend_res["psmt"])
+        external_tx = self.def_wallet.finalizepsmt(signed_psmt["psmt"])
         ancestor_aware_txid = self.def_wallet.sendrawtransaction(external_tx["hex"])
 
         ancestor_aware_tx = self.def_wallet.gettransaction(txid=ancestor_aware_txid, verbose=True)

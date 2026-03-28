@@ -689,7 +689,7 @@ The migration process will create a backup of the wallet before migrating. This 
     </message>
     </context>
 <context>
-    <name>PSBTOperationsDialog</name>
+    <name>PSMTOperationsDialog</name>
     <message>
         <source>Sends %1 to %2</source>
         <translation type="unfinished">%1 ወደ %2 ይልካል</translation>
@@ -907,8 +907,8 @@ The migration process will create a backup of the wallet before migrating. This 
 <context>
     <name>WalletModel</name>
     <message>
-        <source>Fee-bump PSBT copied to clipboard</source>
-        <translation type="unfinished">ከክፍያ-ነፃ PSBT ወደ ቅንጥብ ሰሌዳ ተቀድቷል።</translation>
+        <source>Fee-bump PSMT copied to clipboard</source>
+        <translation type="unfinished">ከክፍያ-ነፃ PSMT ወደ ቅንጥብ ሰሌዳ ተቀድቷል።</translation>
     </message>
     <message>
         <source>Signer error</source>

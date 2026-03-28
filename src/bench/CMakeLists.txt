@@ -80,6 +80,8 @@ if(ENABLE_WALLET)
       wallet_migration.cpp
   )
   target_link_libraries(bench_meowcoin meowcoin_wallet)
+  # bitcoin_assets (via wallet) needs CDBWrapper from meowcoin_node; repeat node after assets.
+  target_link_libraries(bench_meowcoin bitcoin_assets meowcoin_node)
 endif()
 
 add_test(NAME bench_sanity_check

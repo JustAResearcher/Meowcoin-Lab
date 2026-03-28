@@ -517,8 +517,8 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">修改密码(&amp;C)</translation>
     </message>
     <message>
-        <source>&amp;Load PSBT from file…</source>
-        <translation type="unfinished">从文件加载PSBT(&amp;L)...</translation>
+        <source>&amp;Load PSMT from file…</source>
+        <translation type="unfinished">从文件加载PSMT(&amp;L)...</translation>
     </message>
     <message>
         <source>Open &amp;URI…</source>
@@ -620,15 +620,15 @@ Signing is only possible with addresses of the type 'legacy'.</source>
     </message>
     <message>
         <source>Load Partially Signed Meowcoin Transaction</source>
-        <translation type="unfinished">加载部分签名比特币交易（PSBT）</translation>
+        <translation type="unfinished">加载部分签名比特币交易（PSMT）</translation>
     </message>
     <message>
-        <source>Load PSBT from &amp;clipboard…</source>
-        <translation type="unfinished">從剪貼簿載入PSBT</translation>
+        <source>Load PSMT from &amp;clipboard…</source>
+        <translation type="unfinished">從剪貼簿載入PSMT</translation>
     </message>
     <message>
         <source>Load Partially Signed Meowcoin Transaction from clipboard</source>
-        <translation type="unfinished">从剪贴板中加载部分签名比特币交易（PSBT）</translation>
+        <translation type="unfinished">从剪贴板中加载部分签名比特币交易（PSMT）</translation>
     </message>
     <message>
         <source>Node window</source>
@@ -1572,14 +1572,14 @@ The migration process will create a backup of the wallet before migrating. This 
         <translation type="unfinished">动用尚未确认的找零资金(&amp;S)</translation>
     </message>
     <message>
-        <source>Enable &amp;PSBT controls</source>
-        <extracomment>An options window setting to enable PSBT controls.</extracomment>
-        <translation type="unfinished">启用&amp;PSBT控件</translation>
+        <source>Enable &amp;PSMT controls</source>
+        <extracomment>An options window setting to enable PSMT controls.</extracomment>
+        <translation type="unfinished">启用&amp;PSMT控件</translation>
     </message>
     <message>
-        <source>Whether to show PSBT controls.</source>
-        <extracomment>Tooltip text for options window setting that enables PSBT controls.</extracomment>
-        <translation type="unfinished">是否要显示PSBT控件</translation>
+        <source>Whether to show PSMT controls.</source>
+        <extracomment>Tooltip text for options window setting that enables PSMT controls.</extracomment>
+        <translation type="unfinished">是否要显示PSMT控件</translation>
     </message>
     <message>
         <source>External Signer (e.g. hardware wallet)</source>
@@ -1819,10 +1819,10 @@ The migration process will create a backup of the wallet before migrating. This 
     </message>
 </context>
 <context>
-    <name>PSBTOperationsDialog</name>
+    <name>PSMTOperationsDialog</name>
     <message>
-        <source>PSBT Operations</source>
-        <translation type="unfinished">PSBT操作</translation>
+        <source>PSMT Operations</source>
+        <translation type="unfinished">PSMT操作</translation>
     </message>
     <message>
         <source>Sign Tx</source>
@@ -1881,8 +1881,8 @@ The migration process will create a backup of the wallet before migrating. This 
         <translation type="unfinished">交易广播失败: %1</translation>
     </message>
     <message>
-        <source>PSBT copied to clipboard.</source>
-        <translation type="unfinished">已复制PSBT到剪贴板</translation>
+        <source>PSMT copied to clipboard.</source>
+        <translation type="unfinished">已复制PSMT到剪贴板</translation>
     </message>
     <message>
         <source>Save Transaction Data</source>
@@ -1890,12 +1890,12 @@ The migration process will create a backup of the wallet before migrating. This 
     </message>
     <message>
         <source>Partially Signed Transaction (Binary)</source>
-        <extracomment>Expanded name of the binary PSBT file format. See: BIP 174.</extracomment>
+        <extracomment>Expanded name of the binary PSMT file format. See: BIP 174.</extracomment>
         <translation type="unfinished">部分签名交易(二进制)</translation>
     </message>
     <message>
-        <source>PSBT saved to disk.</source>
-        <translation type="unfinished">PSBT已保存到硬盘</translation>
+        <source>PSMT saved to disk.</source>
+        <translation type="unfinished">PSMT已保存到硬盘</translation>
     </message>
     <message>
         <source>Sends %1 to %2</source>
@@ -2947,8 +2947,8 @@ Note:  Since the fee is calculated on a per-byte basis, a fee rate of "100 satos
         <translation type="unfinished">创建未签名交易(&amp;E)</translation>
     </message>
     <message>
-        <source>Creates a Partially Signed Meowcoin Transaction (PSBT) for use with e.g. an offline %1 wallet, or a PSBT-compatible hardware wallet.</source>
-        <translation type="unfinished">创建一个“部分签名比特币交易”（PSBT），以用于诸如离线%1钱包，或是兼容PSBT的硬件钱包这类用途。</translation>
+        <source>Creates a Partially Signed Meowcoin Transaction (PSMT) for use with e.g. an offline %1 wallet, or a PSMT-compatible hardware wallet.</source>
+        <translation type="unfinished">创建一个“部分签名比特币交易”（PSMT），以用于诸如离线%1钱包，或是兼容PSMT的硬件钱包这类用途。</translation>
     </message>
     <message>
         <source>%1 to %2</source>
@@ -2969,7 +2969,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee rate of "100 satos
     </message>
     <message>
         <source>Partially Signed Transaction (Binary)</source>
-        <extracomment>Expanded name of the binary PSBT file format. See: BIP 174.</extracomment>
+        <extracomment>Expanded name of the binary PSMT file format. See: BIP 174.</extracomment>
         <translation type="unfinished">部分签名交易(二进制)</translation>
     </message>
     <message>
@@ -2985,9 +2985,9 @@ Note:  Since the fee is calculated on a per-byte basis, a fee rate of "100 satos
         <translation type="unfinished">你可以之後再提高手續費(有 BIP-125 手續費追加的標記)</translation>
     </message>
     <message>
-        <source>Please, review your transaction proposal. This will produce a Partially Signed Meowcoin Transaction (PSBT) which you can save or copy and then sign with e.g. an offline %1 wallet, or a PSBT-compatible hardware wallet.</source>
-        <extracomment>Text to inform a user attempting to create a transaction of their current options. At this stage, a user can only create a PSBT. This string is displayed when private keys are disabled and an external signer is not available.</extracomment>
-        <translation type="unfinished">請檢查您的交易提案。這將產生部分簽名的比特幣交易（PSBT），您可以儲存或複製該交易，然後使用簽名。離線%1錢包或與PSBT相容的硬體錢包。</translation>
+        <source>Please, review your transaction proposal. This will produce a Partially Signed Meowcoin Transaction (PSMT) which you can save or copy and then sign with e.g. an offline %1 wallet, or a PSMT-compatible hardware wallet.</source>
+        <extracomment>Text to inform a user attempting to create a transaction of their current options. At this stage, a user can only create a PSMT. This string is displayed when private keys are disabled and an external signer is not available.</extracomment>
+        <translation type="unfinished">請檢查您的交易提案。這將產生部分簽名的比特幣交易（PSMT），您可以儲存或複製該交易，然後使用簽名。離線%1錢包或與PSMT相容的硬體錢包。</translation>
     </message>
     <message>
         <source>%1 from wallet '%2'</source>
@@ -2999,9 +2999,9 @@ Note:  Since the fee is calculated on a per-byte basis, a fee rate of "100 satos
         <translation type="unfinished">要创建这笔交易吗？</translation>
     </message>
     <message>
-        <source>Please, review your transaction. You can create and send this transaction or create a Partially Signed Meowcoin Transaction (PSBT), which you can save or copy and then sign with, e.g., an offline %1 wallet, or a PSBT-compatible hardware wallet.</source>
-        <extracomment>Text to inform a user attempting to create a transaction of their current options. At this stage, a user can send their transaction or create a PSBT. This string is displayed when both private keys and PSBT controls are enabled.</extracomment>
-        <translation type="unfinished">请务必仔细检查您的交易。你可以创建并发送这笔交易；也可以创建一个“部分签名比特币交易(PSBT)”，它可以被保存下来或被复制出去，然后就可以对它进行签名，比如用离线%1钱包，或是用兼容PSBT的硬件钱包。</translation>
+        <source>Please, review your transaction. You can create and send this transaction or create a Partially Signed Meowcoin Transaction (PSMT), which you can save or copy and then sign with, e.g., an offline %1 wallet, or a PSMT-compatible hardware wallet.</source>
+        <extracomment>Text to inform a user attempting to create a transaction of their current options. At this stage, a user can send their transaction or create a PSMT. This string is displayed when both private keys and PSMT controls are enabled.</extracomment>
+        <translation type="unfinished">请务必仔细检查您的交易。你可以创建并发送这笔交易；也可以创建一个“部分签名比特币交易(PSMT)”，它可以被保存下来或被复制出去，然后就可以对它进行签名，比如用离线%1钱包，或是用兼容PSMT的硬件钱包。</translation>
     </message>
     <message>
         <source>Please, review your transaction.</source>
@@ -3022,17 +3022,17 @@ Note:  Since the fee is calculated on a per-byte basis, a fee rate of "100 satos
     </message>
     <message>
         <source>Unsigned Transaction</source>
-        <comment>PSBT copied</comment>
-        <extracomment>Caption of "PSBT has been copied" messagebox</extracomment>
+        <comment>PSMT copied</comment>
+        <extracomment>Caption of "PSMT has been copied" messagebox</extracomment>
         <translation type="unfinished">未签名交易</translation>
     </message>
     <message>
-        <source>The PSBT has been copied to the clipboard. You can also save it.</source>
-        <translation type="unfinished">PSBT已被复制到剪贴板。您也可以保存它。</translation>
+        <source>The PSMT has been copied to the clipboard. You can also save it.</source>
+        <translation type="unfinished">PSMT已被复制到剪贴板。您也可以保存它。</translation>
     </message>
     <message>
-        <source>PSBT saved to disk</source>
-        <translation type="unfinished">PSBT已保存到磁盘</translation>
+        <source>PSMT saved to disk</source>
+        <translation type="unfinished">PSMT已保存到磁盘</translation>
     </message>
     <message>
         <source>Confirm send coins</source>
@@ -3725,24 +3725,24 @@ Go to File &gt; Open Wallet to load a wallet.
         <translation type="unfinished">错误</translation>
     </message>
     <message>
-        <source>Unable to decode PSBT from clipboard (invalid base64)</source>
-        <translation type="unfinished">无法从剪贴板解码PSBT(Base64值无效)</translation>
+        <source>Unable to decode PSMT from clipboard (invalid base64)</source>
+        <translation type="unfinished">无法从剪贴板解码PSMT(Base64值无效)</translation>
     </message>
     <message>
         <source>Load Transaction Data</source>
         <translation type="unfinished">載入交易資料</translation>
     </message>
     <message>
-        <source>Partially Signed Transaction (*.psbt)</source>
-        <translation type="unfinished">部分签名交易 (*.psbt)</translation>
+        <source>Partially Signed Transaction (*.psmt)</source>
+        <translation type="unfinished">部分签名交易 (*.psmt)</translation>
     </message>
     <message>
-        <source>PSBT file must be smaller than 100 MiB</source>
-        <translation type="unfinished">PSBT文件必须小于100MiB</translation>
+        <source>PSMT file must be smaller than 100 MiB</source>
+        <translation type="unfinished">PSMT文件必须小于100MiB</translation>
     </message>
     <message>
-        <source>Unable to decode PSBT</source>
-        <translation type="unfinished">无法解码PSBT</translation>
+        <source>Unable to decode PSMT</source>
+        <translation type="unfinished">无法解码PSMT</translation>
     </message>
 </context>
 <context>
@@ -3785,8 +3785,8 @@ Go to File &gt; Open Wallet to load a wallet.
         <translation type="unfinished">無法草擬交易。</translation>
     </message>
     <message>
-        <source>PSBT copied</source>
-        <translation type="unfinished">PSBT已複製</translation>
+        <source>PSMT copied</source>
+        <translation type="unfinished">PSMT已複製</translation>
     </message>
     <message>
         <source>Can't sign transaction.</source>

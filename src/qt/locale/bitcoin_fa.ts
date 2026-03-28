@@ -359,8 +359,8 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">پیام‌ها را تأیید کنید تا مطمئن شوید که با آدرس‌های بیت‌کوین مشخص‌شده امضا شده‌اند</translation>
     </message>
     <message>
-        <source>&amp;Load PSBT from file…</source>
-        <translation type="unfinished">بارگیری PSBT از پرونده</translation>
+        <source>&amp;Load PSMT from file…</source>
+        <translation type="unfinished">بارگیری PSMT از پرونده</translation>
     </message>
     <message>
         <source>Open &amp;URI…</source>
@@ -461,8 +461,8 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">به روز</translation>
     </message>
     <message>
-        <source>Load PSBT from &amp;clipboard…</source>
-        <translation type="unfinished">بارگیری PSBT از &amp;clipboard…</translation>
+        <source>Load PSMT from &amp;clipboard…</source>
+        <translation type="unfinished">بارگیری PSMT از &amp;clipboard…</translation>
     </message>
     <message>
         <source>Node window</source>
@@ -883,14 +883,14 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">فعال کردن قابلیت سکه و کنترل</translation>
     </message>
     <message>
-        <source>Enable &amp;PSBT controls</source>
-        <extracomment>An options window setting to enable PSBT controls.</extracomment>
-        <translation type="unfinished">کنترل‌های &amp;PSBT را فعال کنید</translation>
+        <source>Enable &amp;PSMT controls</source>
+        <extracomment>An options window setting to enable PSMT controls.</extracomment>
+        <translation type="unfinished">کنترل‌های &amp;PSMT را فعال کنید</translation>
     </message>
     <message>
-        <source>Whether to show PSBT controls.</source>
-        <extracomment>Tooltip text for options window setting that enables PSBT controls.</extracomment>
-        <translation type="unfinished">برای نمایش کنترل‌های PSBT.</translation>
+        <source>Whether to show PSMT controls.</source>
+        <extracomment>Tooltip text for options window setting that enables PSMT controls.</extracomment>
+        <translation type="unfinished">برای نمایش کنترل‌های PSMT.</translation>
     </message>
     <message>
         <source>External Signer (e.g. hardware wallet)</source>
@@ -1131,7 +1131,7 @@ Signing is only possible with addresses of the type 'legacy'.</source>
     </message>
     </context>
 <context>
-    <name>PSBTOperationsDialog</name>
+    <name>PSMTOperationsDialog</name>
     <message>
         <source>Copy to Clipboard</source>
         <translation type="unfinished">کپی کردن</translation>
@@ -1158,7 +1158,7 @@ Signing is only possible with addresses of the type 'legacy'.</source>
     </message>
     <message>
         <source>Partially Signed Transaction (Binary)</source>
-        <extracomment>Expanded name of the binary PSBT file format. See: BIP 174.</extracomment>
+        <extracomment>Expanded name of the binary PSMT file format. See: BIP 174.</extracomment>
         <translation type="unfinished">تراکنش نسبتا امضا شده (باینری)</translation>
     </message>
     <message>
@@ -1402,7 +1402,7 @@ If you are receiving this error you should request the merchant provide a BIP21 
     </message>
     <message>
         <source>Partially Signed Transaction (Binary)</source>
-        <extracomment>Expanded name of the binary PSBT file format. See: BIP 174.</extracomment>
+        <extracomment>Expanded name of the binary PSMT file format. See: BIP 174.</extracomment>
         <translation type="unfinished">تراکنش نسبتا امضا شده (باینری)</translation>
     </message>
     <message>
@@ -1498,8 +1498,8 @@ If you are receiving this error you should request the merchant provide a BIP21 
 <context>
     <name>WalletModel</name>
     <message>
-        <source>Fee-bump PSBT copied to clipboard</source>
-        <translation type="unfinished">PSBT با هزینه اضافه شده، در بریده‌دان کپی شد</translation>
+        <source>Fee-bump PSMT copied to clipboard</source>
+        <translation type="unfinished">PSMT با هزینه اضافه شده، در بریده‌دان کپی شد</translation>
     </message>
     <message>
         <source>Signer error</source>

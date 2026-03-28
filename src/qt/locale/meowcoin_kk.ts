@@ -409,8 +409,8 @@
         <translation type="unfinished">Хат тексеріп, берілген Meowcoin мекенжайлары қосылғанына көз жеткізу</translation>
     </message>
     <message>
-        <source>&amp;Load PSBT from file…</source>
-        <translation type="unfinished">&amp;Файлдан PSBT жүктеу…</translation>
+        <source>&amp;Load PSMT from file…</source>
+        <translation type="unfinished">&amp;Файлдан PSMT жүктеу…</translation>
     </message>
     <message>
         <source>Open &amp;URI…</source>

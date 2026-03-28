@@ -520,7 +520,7 @@ Signing is only possible with addresses of the type &apos;legacy&apos;.</source>
     </message>
     <message>
         <location line="+1"/>
-        <source>&amp;Load PSBT from file…</source>
+        <source>&amp;Load PSMT from file…</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -668,7 +668,7 @@ Signing is only possible with addresses of the type &apos;legacy&apos;.</source>
     </message>
     <message>
         <location line="+1"/>
-        <source>Load PSBT from &amp;clipboard…</source>
+        <source>Load PSMT from &amp;clipboard…</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1871,14 +1871,14 @@ The migration process will create a backup of the wallet before migrating. This 
     </message>
     <message>
         <location line="+7"/>
-        <source>Enable &amp;PSBT controls</source>
-        <extracomment>An options window setting to enable PSBT controls.</extracomment>
+        <source>Enable &amp;PSMT controls</source>
+        <extracomment>An options window setting to enable PSMT controls.</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+3"/>
-        <source>Whether to show PSBT controls.</source>
-        <extracomment>Tooltip text for options window setting that enables PSBT controls.</extracomment>
+        <source>Whether to show PSMT controls.</source>
+        <extracomment>Tooltip text for options window setting that enables PSMT controls.</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2202,10 +2202,10 @@ The migration process will create a backup of the wallet before migrating. This 
     </message>
 </context>
 <context>
-    <name>PSBTOperationsDialog</name>
+    <name>PSMTOperationsDialog</name>
     <message>
-        <location filename="../forms/psbtoperationsdialog.ui" line="+14"/>
-        <source>PSBT Operations</source>
+        <location filename="../forms/psmtoperationsdialog.ui" line="+14"/>
+        <source>PSMT Operations</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2234,7 +2234,7 @@ The migration process will create a backup of the wallet before migrating. This 
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../psbtoperationsdialog.cpp" line="+64"/>
+        <location filename="../psmtoperationsdialog.cpp" line="+64"/>
         <source>Failed to load transaction: %1</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2280,7 +2280,7 @@ The migration process will create a backup of the wallet before migrating. This 
     </message>
     <message>
         <location line="+9"/>
-        <source>PSBT copied to clipboard.</source>
+        <source>PSMT copied to clipboard.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2291,12 +2291,12 @@ The migration process will create a backup of the wallet before migrating. This 
     <message>
         <location line="+2"/>
         <source>Partially Signed Transaction (Binary)</source>
-        <extracomment>Expanded name of the binary PSBT file format. See: BIP 174.</extracomment>
+        <extracomment>Expanded name of the binary PSMT file format. See: BIP 174.</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+7"/>
-        <source>PSBT saved to disk.</source>
+        <source>PSMT saved to disk.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -4036,7 +4036,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee rate of &quot;100 
     </message>
     <message>
         <location line="+1"/>
-        <source>Creates a Partially Signed Meowcoin Transaction (PSBT) for use with e.g. an offline %1 wallet, or a PSBT-compatible hardware wallet.</source>
+        <source>Creates a Partially Signed Meowcoin Transaction (PSMT) for use with e.g. an offline %1 wallet, or a PSMT-compatible hardware wallet.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -4079,13 +4079,13 @@ Note:  Since the fee is calculated on a per-byte basis, a fee rate of &quot;100 
     <message>
         <location line="+2"/>
         <source>Partially Signed Transaction (Binary)</source>
-        <extracomment>Expanded name of the binary PSBT file format. See: BIP 174.</extracomment>
+        <extracomment>Expanded name of the binary PSMT file format. See: BIP 174.</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+8"/>
-        <source>PSBT saved</source>
-        <extracomment>Popup message when a PSBT has been saved to a file</extracomment>
+        <source>PSMT saved</source>
+        <extracomment>Popup message when a PSMT has been saved to a file</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -4105,8 +4105,8 @@ Note:  Since the fee is calculated on a per-byte basis, a fee rate of &quot;100 
     </message>
     <message>
         <location line="-31"/>
-        <source>Please, review your transaction proposal. This will produce a Partially Signed Meowcoin Transaction (PSBT) which you can save or copy and then sign with e.g. an offline %1 wallet, or a PSBT-compatible hardware wallet.</source>
-        <extracomment>Text to inform a user attempting to create a transaction of their current options. At this stage, a user can only create a PSBT. This string is displayed when private keys are disabled and an external signer is not available.</extracomment>
+        <source>Please, review your transaction proposal. This will produce a Partially Signed Meowcoin Transaction (PSMT) which you can save or copy and then sign with e.g. an offline %1 wallet, or a PSMT-compatible hardware wallet.</source>
+        <extracomment>Text to inform a user attempting to create a transaction of their current options. At this stage, a user can only create a PSMT. This string is displayed when private keys are disabled and an external signer is not available.</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -4122,8 +4122,8 @@ Note:  Since the fee is calculated on a per-byte basis, a fee rate of &quot;100 
     </message>
     <message>
         <location line="+11"/>
-        <source>Please, review your transaction. You can create and send this transaction or create a Partially Signed Meowcoin Transaction (PSBT), which you can save or copy and then sign with, e.g., an offline %1 wallet, or a PSBT-compatible hardware wallet.</source>
-        <extracomment>Text to inform a user attempting to create a transaction of their current options. At this stage, a user can send their transaction or create a PSBT. This string is displayed when both private keys and PSBT controls are enabled.</extracomment>
+        <source>Please, review your transaction. You can create and send this transaction or create a Partially Signed Meowcoin Transaction (PSMT), which you can save or copy and then sign with, e.g., an offline %1 wallet, or a PSMT-compatible hardware wallet.</source>
+        <extracomment>Text to inform a user attempting to create a transaction of their current options. At this stage, a user can send their transaction or create a PSMT. This string is displayed when both private keys and PSMT controls are enabled.</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -4140,8 +4140,8 @@ Note:  Since the fee is calculated on a per-byte basis, a fee rate of &quot;100 
     <message>
         <location line="+5"/>
         <source>%1 kvB</source>
-        <comment>PSBT transaction creation</comment>
-        <extracomment>When reviewing a newly created PSBT (via Send flow), the transaction fee is shown, with &quot;virtual size&quot; of the transaction displayed for context</extracomment>
+        <comment>PSMT transaction creation</comment>
+        <extracomment>When reviewing a newly created PSMT (via Send flow), the transaction fee is shown, with &quot;virtual size&quot; of the transaction displayed for context</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -4157,18 +4157,18 @@ Note:  Since the fee is calculated on a per-byte basis, a fee rate of &quot;100 
     <message>
         <location line="+24"/>
         <source>Unsigned Transaction</source>
-        <comment>PSBT copied</comment>
-        <extracomment>Caption of &quot;PSBT has been copied&quot; messagebox</extracomment>
+        <comment>PSMT copied</comment>
+        <extracomment>Caption of &quot;PSMT has been copied&quot; messagebox</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+1"/>
-        <source>The PSBT has been copied to the clipboard. You can also save it.</source>
+        <source>The PSMT has been copied to the clipboard. You can also save it.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+30"/>
-        <source>PSBT saved to disk</source>
+        <source>PSMT saved to disk</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -5169,7 +5169,7 @@ Go to File &gt; Open Wallet to load a wallet.
     </message>
     <message>
         <location line="-28"/>
-        <source>Unable to decode PSBT from clipboard (invalid base64)</source>
+        <source>Unable to decode PSMT from clipboard (invalid base64)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -5179,17 +5179,17 @@ Go to File &gt; Open Wallet to load a wallet.
     </message>
     <message>
         <location line="+1"/>
-        <source>Partially Signed Transaction (*.psbt)</source>
+        <source>Partially Signed Transaction (*.psmt)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+3"/>
-        <source>PSBT file must be smaller than 100 MiB</source>
+        <source>PSMT file must be smaller than 100 MiB</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+18"/>
-        <source>Unable to decode PSBT</source>
+        <source>Unable to decode PSMT</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -5252,12 +5252,12 @@ Go to File &gt; Open Wallet to load a wallet.
     </message>
     <message>
         <location line="+7"/>
-        <source>PSBT copied</source>
+        <source>PSMT copied</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+0"/>
-        <source>Fee-bump PSBT copied to clipboard</source>
+        <source>Fee-bump PSMT copied to clipboard</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

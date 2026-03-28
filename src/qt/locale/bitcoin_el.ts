@@ -564,8 +564,8 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">Επαληθεύστε μηνύματα για να βεβαιωθείτε ότι υπογράφηκαν με τις καθορισμένες διευθύνσεις Bitcoin</translation>
     </message>
     <message>
-        <source>&amp;Load PSBT from file…</source>
-        <translation type="unfinished">&amp;Φόρτωση PSBT από αρχείο...</translation>
+        <source>&amp;Load PSMT from file…</source>
+        <translation type="unfinished">&amp;Φόρτωση PSMT από αρχείο...</translation>
     </message>
     <message>
         <source>Open &amp;URI…</source>
@@ -679,8 +679,8 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">Φόρτωση μερικώς υπογεγραμμένης συναλλαγής Bitcoin</translation>
     </message>
     <message>
-        <source>Load PSBT from &amp;clipboard…</source>
-        <translation type="unfinished">Φόρτωσε PSBT από &amp;πρόχειρο...</translation>
+        <source>Load PSMT from &amp;clipboard…</source>
+        <translation type="unfinished">Φόρτωσε PSMT από &amp;πρόχειρο...</translation>
     </message>
     <message>
         <source>Load Partially Signed Bitcoin Transaction from clipboard</source>
@@ -1700,14 +1700,14 @@ The migration process will create a backup of the wallet before migrating. This 
         <translation type="unfinished">&amp;Χρήση μη επικυρωμένων ρέστων</translation>
     </message>
     <message>
-        <source>Enable &amp;PSBT controls</source>
-        <extracomment>An options window setting to enable PSBT controls.</extracomment>
-        <translation type="unfinished">Ενεργοποίηση ρυθμίσεων &amp;PSBT</translation>
+        <source>Enable &amp;PSMT controls</source>
+        <extracomment>An options window setting to enable PSMT controls.</extracomment>
+        <translation type="unfinished">Ενεργοποίηση ρυθμίσεων &amp;PSMT</translation>
     </message>
     <message>
-        <source>Whether to show PSBT controls.</source>
-        <extracomment>Tooltip text for options window setting that enables PSBT controls.</extracomment>
-        <translation type="unfinished">Αν θα εμφανιστούν στοιχεία ελέγχου PSBT.</translation>
+        <source>Whether to show PSMT controls.</source>
+        <extracomment>Tooltip text for options window setting that enables PSMT controls.</extracomment>
+        <translation type="unfinished">Αν θα εμφανιστούν στοιχεία ελέγχου PSMT.</translation>
     </message>
     <message>
         <source>External Signer (e.g. hardware wallet)</source>
@@ -1948,10 +1948,10 @@ The migration process will create a backup of the wallet before migrating. This 
     </message>
 </context>
 <context>
-    <name>PSBTOperationsDialog</name>
+    <name>PSMTOperationsDialog</name>
     <message>
-        <source>PSBT Operations</source>
-        <translation type="unfinished">Λειτουργίες PSBT</translation>
+        <source>PSMT Operations</source>
+        <translation type="unfinished">Λειτουργίες PSMT</translation>
     </message>
     <message>
         <source>Sign Tx</source>
@@ -2010,8 +2010,8 @@ The migration process will create a backup of the wallet before migrating. This 
         <translation type="unfinished">Η αναμετάδοση της συναλλαγής απέτυχε: %1</translation>
     </message>
     <message>
-        <source>PSBT copied to clipboard.</source>
-        <translation type="unfinished">PSBT αντιγράφηκε στο πρόχειρο.</translation>
+        <source>PSMT copied to clipboard.</source>
+        <translation type="unfinished">PSMT αντιγράφηκε στο πρόχειρο.</translation>
     </message>
     <message>
         <source>Save Transaction Data</source>
@@ -2019,12 +2019,12 @@ The migration process will create a backup of the wallet before migrating. This 
     </message>
     <message>
         <source>Partially Signed Transaction (Binary)</source>
-        <extracomment>Expanded name of the binary PSBT file format. See: BIP 174.</extracomment>
+        <extracomment>Expanded name of the binary PSMT file format. See: BIP 174.</extracomment>
         <translation type="unfinished">Μερικώς Υπογεγραμμένη Συναλλαγή (binary)</translation>
     </message>
     <message>
-        <source>PSBT saved to disk.</source>
-        <translation type="unfinished">PSBT αποθηκεύτηκε στο δίσκο.</translation>
+        <source>PSMT saved to disk.</source>
+        <translation type="unfinished">PSMT αποθηκεύτηκε στο δίσκο.</translation>
     </message>
     <message>
         <source>Sends %1 to %2</source>
@@ -3089,8 +3089,8 @@ Note:  Since the fee is calculated on a per-byte basis, a fee rate of "100 satos
         <translation type="unfinished">Δη&amp;μιουργία Ανυπόγραφου</translation>
     </message>
     <message>
-        <source>Creates a Partially Signed Bitcoin Transaction (PSBT) for use with e.g. an offline %1 wallet, or a PSBT-compatible hardware wallet.</source>
-        <translation type="unfinished">Δημιουργεί μια συναλλαγή Bitcoin με μερική υπογραφή (PSBT) για χρήση με π.χ. ένα πορτοφόλι %1 εκτός σύνδεσης ή ένα hardware πορτοφόλι συμβατό με PSBT.</translation>
+        <source>Creates a Partially Signed Bitcoin Transaction (PSMT) for use with e.g. an offline %1 wallet, or a PSMT-compatible hardware wallet.</source>
+        <translation type="unfinished">Δημιουργεί μια συναλλαγή Bitcoin με μερική υπογραφή (PSMT) για χρήση με π.χ. ένα πορτοφόλι %1 εκτός σύνδεσης ή ένα hardware πορτοφόλι συμβατό με PSMT.</translation>
     </message>
     <message>
         <source>%1 to '%2'</source>
@@ -3124,13 +3124,13 @@ Note:  Since the fee is calculated on a per-byte basis, a fee rate of "100 satos
     </message>
     <message>
         <source>Partially Signed Transaction (Binary)</source>
-        <extracomment>Expanded name of the binary PSBT file format. See: BIP 174.</extracomment>
+        <extracomment>Expanded name of the binary PSMT file format. See: BIP 174.</extracomment>
         <translation type="unfinished">Μερικώς Υπογεγραμμένη Συναλλαγή (binary)</translation>
     </message>
     <message>
-        <source>PSBT saved</source>
-        <extracomment>Popup message when a PSBT has been saved to a file</extracomment>
-        <translation type="unfinished">Το PSBT αποθηκεύτηκε</translation>
+        <source>PSMT saved</source>
+        <extracomment>Popup message when a PSMT has been saved to a file</extracomment>
+        <translation type="unfinished">Το PSMT αποθηκεύτηκε</translation>
     </message>
     <message>
         <source>External balance:</source>
@@ -3145,9 +3145,9 @@ Note:  Since the fee is calculated on a per-byte basis, a fee rate of "100 satos
         <translation type="unfinished"> Μπορείτε να αυξήσετε αργότερα την αμοιβή (σήματα Αντικατάσταση-By-Fee, BIP-125).</translation>
     </message>
     <message>
-        <source>Please, review your transaction proposal. This will produce a Partially Signed Bitcoin Transaction (PSBT) which you can save or copy and then sign with e.g. an offline %1 wallet, or a PSBT-compatible hardware wallet.</source>
-        <extracomment>Text to inform a user attempting to create a transaction of their current options. At this stage, a user can only create a PSBT. This string is displayed when private keys are disabled and an external signer is not available.</extracomment>
-        <translation type="unfinished">Παρακαλούμε, ελέγξτε την πρόταση συναλλαγής. Θα παραχθεί μια συναλλαγή Bitcoin με μερική υπογραφή (PSBT), την οποία μπορείτε να αντιγράψετε και στη συνέχεια να υπογράψετε με π.χ. ένα πορτοφόλι %1 εκτός σύνδεσης ή ένα πορτοφόλι υλικού συμβατό με το PSBT.</translation>
+        <source>Please, review your transaction proposal. This will produce a Partially Signed Bitcoin Transaction (PSMT) which you can save or copy and then sign with e.g. an offline %1 wallet, or a PSMT-compatible hardware wallet.</source>
+        <extracomment>Text to inform a user attempting to create a transaction of their current options. At this stage, a user can only create a PSMT. This string is displayed when private keys are disabled and an external signer is not available.</extracomment>
+        <translation type="unfinished">Παρακαλούμε, ελέγξτε την πρόταση συναλλαγής. Θα παραχθεί μια συναλλαγή Bitcoin με μερική υπογραφή (PSMT), την οποία μπορείτε να αντιγράψετε και στη συνέχεια να υπογράψετε με π.χ. ένα πορτοφόλι %1 εκτός σύνδεσης ή ένα πορτοφόλι υλικού συμβατό με το PSMT.</translation>
     </message>
     <message>
         <source>%1 from wallet '%2'</source>
@@ -3159,9 +3159,9 @@ Note:  Since the fee is calculated on a per-byte basis, a fee rate of "100 satos
         <translation type="unfinished">Θέλετε να δημιουργήσετε αυτήν τη συναλλαγή;</translation>
     </message>
     <message>
-        <source>Please, review your transaction. You can create and send this transaction or create a Partially Signed Bitcoin Transaction (PSBT), which you can save or copy and then sign with, e.g., an offline %1 wallet, or a PSBT-compatible hardware wallet.</source>
-        <extracomment>Text to inform a user attempting to create a transaction of their current options. At this stage, a user can send their transaction or create a PSBT. This string is displayed when both private keys and PSBT controls are enabled.</extracomment>
-        <translation type="unfinished">Παρακαλώ, ελέγξτε τη συναλλαγή σας. Μπορείτε να δημιουργήσετε και να στείλετε αυτήν τη συναλλαγή ή να δημιουργήσετε μια μερικώς υπογεγραμμένη συναλλαγή Bitcoin (PSBT), την οποία μπορείτε να αποθηκεύσετε ή να αντιγράψετε και στη συνέχεια να υπογράψετε, π.χ. με ένα πορτοφόλι εκτός σύνδεσης %1 ή ένα hardware πορτοφόλι συμβατό με PSBT.</translation>
+        <source>Please, review your transaction. You can create and send this transaction or create a Partially Signed Bitcoin Transaction (PSMT), which you can save or copy and then sign with, e.g., an offline %1 wallet, or a PSMT-compatible hardware wallet.</source>
+        <extracomment>Text to inform a user attempting to create a transaction of their current options. At this stage, a user can send their transaction or create a PSMT. This string is displayed when both private keys and PSMT controls are enabled.</extracomment>
+        <translation type="unfinished">Παρακαλώ, ελέγξτε τη συναλλαγή σας. Μπορείτε να δημιουργήσετε και να στείλετε αυτήν τη συναλλαγή ή να δημιουργήσετε μια μερικώς υπογεγραμμένη συναλλαγή Bitcoin (PSMT), την οποία μπορείτε να αποθηκεύσετε ή να αντιγράψετε και στη συνέχεια να υπογράψετε, π.χ. με ένα πορτοφόλι εκτός σύνδεσης %1 ή ένα hardware πορτοφόλι συμβατό με PSMT.</translation>
     </message>
     <message>
         <source>Please, review your transaction.</source>
@@ -3182,17 +3182,17 @@ Note:  Since the fee is calculated on a per-byte basis, a fee rate of "100 satos
     </message>
     <message>
         <source>Unsigned Transaction</source>
-        <comment>PSBT copied</comment>
-        <extracomment>Caption of "PSBT has been copied" messagebox</extracomment>
+        <comment>PSMT copied</comment>
+        <extracomment>Caption of "PSMT has been copied" messagebox</extracomment>
         <translation type="unfinished">Ανυπόγραφη Συναλλαγή</translation>
     </message>
     <message>
-        <source>The PSBT has been copied to the clipboard. You can also save it.</source>
-        <translation type="unfinished">Το PSBT αντιγράφηκε στο πρόχειρο. Μπορείτε, επίσης, να το αποθηκεύσετε.</translation>
+        <source>The PSMT has been copied to the clipboard. You can also save it.</source>
+        <translation type="unfinished">Το PSMT αντιγράφηκε στο πρόχειρο. Μπορείτε, επίσης, να το αποθηκεύσετε.</translation>
     </message>
     <message>
-        <source>PSBT saved to disk</source>
-        <translation type="unfinished">Το PSBT αποθηκεύτηκε στον δίσκο</translation>
+        <source>PSMT saved to disk</source>
+        <translation type="unfinished">Το PSMT αποθηκεύτηκε στον δίσκο</translation>
     </message>
     <message>
         <source>Confirm send coins</source>
@@ -3908,24 +3908,24 @@ Go to File &gt; Open Wallet to load a wallet.
         <translation type="unfinished">Σφάλμα</translation>
     </message>
     <message>
-        <source>Unable to decode PSBT from clipboard (invalid base64)</source>
-        <translation type="unfinished">Αδυναμία αποκωδικοποίησης PSBT από το πρόχειρο (μη έγκυρο Base64)</translation>
+        <source>Unable to decode PSMT from clipboard (invalid base64)</source>
+        <translation type="unfinished">Αδυναμία αποκωδικοποίησης PSMT από το πρόχειρο (μη έγκυρο Base64)</translation>
     </message>
     <message>
         <source>Load Transaction Data</source>
         <translation type="unfinished">Φόρτωση Δεδομένων Συναλλαγής</translation>
     </message>
     <message>
-        <source>Partially Signed Transaction (*.psbt)</source>
-        <translation type="unfinished">Μερικώς Υπογεγραμμένη Συναλλαγή (*.psbt)</translation>
+        <source>Partially Signed Transaction (*.psmt)</source>
+        <translation type="unfinished">Μερικώς Υπογεγραμμένη Συναλλαγή (*.psmt)</translation>
     </message>
     <message>
-        <source>PSBT file must be smaller than 100 MiB</source>
-        <translation type="unfinished">Το αρχείο PSBT πρέπει να είναι μικρότερο από 100 MiB</translation>
+        <source>PSMT file must be smaller than 100 MiB</source>
+        <translation type="unfinished">Το αρχείο PSMT πρέπει να είναι μικρότερο από 100 MiB</translation>
     </message>
     <message>
-        <source>Unable to decode PSBT</source>
-        <translation type="unfinished">Αδυναμία αποκωδικοποίησης PSBT</translation>
+        <source>Unable to decode PSMT</source>
+        <translation type="unfinished">Αδυναμία αποκωδικοποίησης PSMT</translation>
     </message>
 </context>
 <context>
@@ -3972,12 +3972,12 @@ Go to File &gt; Open Wallet to load a wallet.
         <translation type="unfinished">Δεν είναι δυνατή η σύνταξη συναλλαγής.</translation>
     </message>
     <message>
-        <source>PSBT copied</source>
-        <translation type="unfinished">PSBT αντιγράφηκε</translation>
+        <source>PSMT copied</source>
+        <translation type="unfinished">PSMT αντιγράφηκε</translation>
     </message>
     <message>
-        <source>Fee-bump PSBT copied to clipboard</source>
-        <translation type="unfinished">PSBT με αύξηση προμήθειας αντιγράφηκε στο πρόχειρο</translation>
+        <source>Fee-bump PSMT copied to clipboard</source>
+        <translation type="unfinished">PSMT με αύξηση προμήθειας αντιγράφηκε στο πρόχειρο</translation>
     </message>
     <message>
         <source>Can't sign transaction.</source>

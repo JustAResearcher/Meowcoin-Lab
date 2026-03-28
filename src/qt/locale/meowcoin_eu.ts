@@ -471,8 +471,8 @@ Sinatzea 'legacy' motako helbideekin soilik da posible</translation>
         <translation type="unfinished">Egiaztatu mesua Meowcoin helbide espezifikoarekin erregistratu direla ziurtatzeko</translation>
     </message>
     <message>
-        <source>&amp;Load PSBT from file…</source>
-        <translation type="unfinished">&amp;kargatu PSBT fitxategitik...</translation>
+        <source>&amp;Load PSMT from file…</source>
+        <translation type="unfinished">&amp;kargatu PSMT fitxategitik...</translation>
     </message>
     <message>
         <source>Open &amp;URI…</source>
@@ -582,8 +582,8 @@ Sinatzea 'legacy' motako helbideekin soilik da posible</translation>
         <translation type="unfinished">Partzialki sinatutako Meowcoin transakzioa kargatu</translation>
     </message>
     <message>
-        <source>Load PSBT from &amp;clipboard…</source>
-        <translation type="unfinished">kargatu PSBT arbeletik...</translation>
+        <source>Load PSMT from &amp;clipboard…</source>
+        <translation type="unfinished">kargatu PSMT arbeletik...</translation>
     </message>
     <message>
         <source>Load Partially Signed Meowcoin Transaction from clipboard</source>
@@ -1330,7 +1330,7 @@ Sinatzea 'legacy' motako helbideekin soilik da posible</translation>
     </message>
     </context>
 <context>
-    <name>PSBTOperationsDialog</name>
+    <name>PSMTOperationsDialog</name>
     <message>
         <source>Sign Tx</source>
         <translation type="unfinished">Sinatu Tx</translation>
@@ -1352,8 +1352,8 @@ Sinatzea 'legacy' motako helbideekin soilik da posible</translation>
         <translation type="unfinished">Gorde transakzioko data</translation>
     </message>
     <message>
-        <source>PSBT saved to disk.</source>
-        <translation type="unfinished">PSBT diskoan gorde da.</translation>
+        <source>PSMT saved to disk.</source>
+        <translation type="unfinished">PSMT diskoan gorde da.</translation>
     </message>
     <message>
         <source>own address</source>
@@ -1817,9 +1817,9 @@ Sinatzea 'legacy' motako helbideekin soilik da posible</translation>
         <translation type="unfinished">Gorde transakzioko data</translation>
     </message>
     <message>
-        <source>PSBT saved</source>
-        <extracomment>Popup message when a PSBT has been saved to a file</extracomment>
-        <translation type="unfinished">PSBT gordeta</translation>
+        <source>PSMT saved</source>
+        <extracomment>Popup message when a PSMT has been saved to a file</extracomment>
+        <translation type="unfinished">PSMT gordeta</translation>
     </message>
     <message>
         <source>External balance:</source>
@@ -2208,8 +2208,8 @@ Sinatzea 'legacy' motako helbideekin soilik da posible</translation>
         <translation type="unfinished">Kuota berria:</translation>
     </message>
     <message>
-        <source>PSBT copied</source>
-        <translation type="unfinished">PSBT kopiatua</translation>
+        <source>PSMT copied</source>
+        <translation type="unfinished">PSMT kopiatua</translation>
     </message>
     </context>
 <context>

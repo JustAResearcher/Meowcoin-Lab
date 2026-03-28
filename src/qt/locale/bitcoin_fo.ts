@@ -566,7 +566,7 @@
     </message>
     </context>
 <context>
-    <name>PSBTOperationsDialog</name>
+    <name>PSMTOperationsDialog</name>
     <message>
         <source>Save…</source>
         <translation type="unfinished">Goym...</translation>

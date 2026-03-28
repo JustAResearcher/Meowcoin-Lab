@@ -453,8 +453,8 @@ Daxil olma, yalnız 'qanuni' tipli ünvanlar ilə mümkündür.</translation>
         <translation type="unfinished">Göstərilmiş Meowcoin ünvanları ilə imzalandıqlarına əmin olmaq üçün ismarıcları doğrulayın</translation>
     </message>
     <message>
-        <source>&amp;Load PSBT from file…</source>
-        <translation type="unfinished">PSBT-i fayldan yük&amp;ləyin...</translation>
+        <source>&amp;Load PSMT from file…</source>
+        <translation type="unfinished">PSMT-i fayldan yük&amp;ləyin...</translation>
     </message>
     <message>
         <source>Open &amp;URI…</source>
@@ -568,12 +568,12 @@ Daxil olma, yalnız 'qanuni' tipli ünvanlar ilə mümkündür.</translation>
         <translation type="unfinished">Qismən imzalanmış Meowcoin köçürmələrini yükləyin</translation>
     </message>
     <message>
-        <source>Load PSBT from &amp;clipboard…</source>
-        <translation type="unfinished">PSBT-i &amp;mübadilə yaddaşından yükləyin...</translation>
+        <source>Load PSMT from &amp;clipboard…</source>
+        <translation type="unfinished">PSMT-i &amp;mübadilə yaddaşından yükləyin...</translation>
     </message>
     <message>
         <source>Load Partially Signed Meowcoin Transaction from clipboard</source>
-        <translation type="unfinished">Qismən İmzalanmış Meowcoin Köçürməsini (PSBT) mübadilə yaddaşından yükləmək</translation>
+        <translation type="unfinished">Qismən İmzalanmış Meowcoin Köçürməsini (PSMT) mübadilə yaddaşından yükləmək</translation>
     </message>
     <message>
         <source>Node window</source>
@@ -1281,7 +1281,7 @@ Daxil olma, yalnız 'qanuni' tipli ünvanlar ilə mümkündür.</translation>
     </message>
     </context>
 <context>
-    <name>PSBTOperationsDialog</name>
+    <name>PSMTOperationsDialog</name>
     <message>
         <source>Copy to Clipboard</source>
         <translation type="unfinished">Buferə kopyala</translation>

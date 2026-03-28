@@ -543,8 +543,8 @@ Solo es posible firmar con direcciones de tipo "legacy".</translation>
         <translation type="unfinished">Verifica mensajes para asegurarte de que estén firmados con direcciones de Bitcoin concretas.</translation>
     </message>
     <message>
-        <source>&amp;Load PSBT from file…</source>
-        <translation type="unfinished">&amp;Cargar PSBT desde archivo...</translation>
+        <source>&amp;Load PSMT from file…</source>
+        <translation type="unfinished">&amp;Cargar PSMT desde archivo...</translation>
     </message>
     <message>
         <source>Open &amp;URI…</source>
@@ -654,8 +654,8 @@ Solo es posible firmar con direcciones de tipo "legacy".</translation>
         <translation type="unfinished">Cargar transacción de Bitcoin parcialmente firmada</translation>
     </message>
     <message>
-        <source>Load PSBT from &amp;clipboard…</source>
-        <translation type="unfinished">Cargar PSBT desde &amp;portapapeles...</translation>
+        <source>Load PSMT from &amp;clipboard…</source>
+        <translation type="unfinished">Cargar PSMT desde &amp;portapapeles...</translation>
     </message>
     <message>
         <source>Load Partially Signed Bitcoin Transaction from clipboard</source>
@@ -1667,14 +1667,14 @@ El proceso de migración creará una copia de seguridad del monedero antes de mi
         <translation type="unfinished">&amp;Gastar cambio sin confirmar</translation>
     </message>
     <message>
-        <source>Enable &amp;PSBT controls</source>
-        <extracomment>An options window setting to enable PSBT controls.</extracomment>
-        <translation type="unfinished">Activar controles de &amp;PSBT</translation>
+        <source>Enable &amp;PSMT controls</source>
+        <extracomment>An options window setting to enable PSMT controls.</extracomment>
+        <translation type="unfinished">Activar controles de &amp;PSMT</translation>
     </message>
     <message>
-        <source>Whether to show PSBT controls.</source>
-        <extracomment>Tooltip text for options window setting that enables PSBT controls.</extracomment>
-        <translation type="unfinished">Establecer si se muestran los controles de PSBT</translation>
+        <source>Whether to show PSMT controls.</source>
+        <extracomment>Tooltip text for options window setting that enables PSMT controls.</extracomment>
+        <translation type="unfinished">Establecer si se muestran los controles de PSMT</translation>
     </message>
     <message>
         <source>External Signer (e.g. hardware wallet)</source>
@@ -1911,10 +1911,10 @@ El proceso de migración creará una copia de seguridad del monedero antes de mi
     </message>
 </context>
 <context>
-    <name>PSBTOperationsDialog</name>
+    <name>PSMTOperationsDialog</name>
     <message>
-        <source>PSBT Operations</source>
-        <translation type="unfinished">Operaciones de PSBT</translation>
+        <source>PSMT Operations</source>
+        <translation type="unfinished">Operaciones de PSMT</translation>
     </message>
     <message>
         <source>Sign Tx</source>
@@ -1973,8 +1973,8 @@ El proceso de migración creará una copia de seguridad del monedero antes de mi
         <translation type="unfinished">Error en la transmisión de la transacción: %1</translation>
     </message>
     <message>
-        <source>PSBT copied to clipboard.</source>
-        <translation type="unfinished">PSBT copiada al portapapeles.</translation>
+        <source>PSMT copied to clipboard.</source>
+        <translation type="unfinished">PSMT copiada al portapapeles.</translation>
     </message>
     <message>
         <source>Save Transaction Data</source>
@@ -1982,12 +1982,12 @@ El proceso de migración creará una copia de seguridad del monedero antes de mi
     </message>
     <message>
         <source>Partially Signed Transaction (Binary)</source>
-        <extracomment>Expanded name of the binary PSBT file format. See: BIP 174.</extracomment>
+        <extracomment>Expanded name of the binary PSMT file format. See: BIP 174.</extracomment>
         <translation type="unfinished">Transacción parcialmente firmada (binaria)</translation>
     </message>
     <message>
-        <source>PSBT saved to disk.</source>
-        <translation type="unfinished">PSBT guardada en disco.</translation>
+        <source>PSMT saved to disk.</source>
+        <translation type="unfinished">PSMT guardada en disco.</translation>
     </message>
     <message>
         <source>Sends %1 to %2</source>
@@ -3052,8 +3052,8 @@ Nota: Dado que la comisión se calcula por byte, una tasa de "100 satoshis por k
         <translation type="unfinished">&amp;Crear sin firmar</translation>
     </message>
     <message>
-        <source>Creates a Partially Signed Bitcoin Transaction (PSBT) for use with e.g. an offline %1 wallet, or a PSBT-compatible hardware wallet.</source>
-        <translation type="unfinished">Crea una transacción de Bitcoin parcialmente firmada (PSBT) para usarla, por ejemplo, con un monedero %1 sin conexión o un monedero de hardware compatible con PSBT.</translation>
+        <source>Creates a Partially Signed Bitcoin Transaction (PSMT) for use with e.g. an offline %1 wallet, or a PSMT-compatible hardware wallet.</source>
+        <translation type="unfinished">Crea una transacción de Bitcoin parcialmente firmada (PSMT) para usarla, por ejemplo, con un monedero %1 sin conexión o un monedero de hardware compatible con PSMT.</translation>
     </message>
     <message>
         <source>%1 to '%2'</source>
@@ -3087,13 +3087,13 @@ Nota: Dado que la comisión se calcula por byte, una tasa de "100 satoshis por k
     </message>
     <message>
         <source>Partially Signed Transaction (Binary)</source>
-        <extracomment>Expanded name of the binary PSBT file format. See: BIP 174.</extracomment>
+        <extracomment>Expanded name of the binary PSMT file format. See: BIP 174.</extracomment>
         <translation type="unfinished">Transacción parcialmente firmada (binaria)</translation>
     </message>
     <message>
-        <source>PSBT saved</source>
-        <extracomment>Popup message when a PSBT has been saved to a file</extracomment>
-        <translation type="unfinished">PSBT guardada</translation>
+        <source>PSMT saved</source>
+        <extracomment>Popup message when a PSMT has been saved to a file</extracomment>
+        <translation type="unfinished">PSMT guardada</translation>
     </message>
     <message>
         <source>External balance:</source>
@@ -3108,9 +3108,9 @@ Nota: Dado que la comisión se calcula por byte, una tasa de "100 satoshis por k
         <translation type="unfinished">Puedes aumentar la comisión después (indica "Reemplazar por comisión", BIP-125).</translation>
     </message>
     <message>
-        <source>Please, review your transaction proposal. This will produce a Partially Signed Bitcoin Transaction (PSBT) which you can save or copy and then sign with e.g. an offline %1 wallet, or a PSBT-compatible hardware wallet.</source>
-        <extracomment>Text to inform a user attempting to create a transaction of their current options. At this stage, a user can only create a PSBT. This string is displayed when private keys are disabled and an external signer is not available.</extracomment>
-        <translation type="unfinished">Revisa la propuesta de transacción. Esto producirá una transacción de Bitcoin parcialmente firmada (PSBT) que puedes guardar o copiar y, luego, firmar; por ejemplo, con un monedero %1 fuera de línea o un monedero de hardware compatible con PSBT.</translation>
+        <source>Please, review your transaction proposal. This will produce a Partially Signed Bitcoin Transaction (PSMT) which you can save or copy and then sign with e.g. an offline %1 wallet, or a PSMT-compatible hardware wallet.</source>
+        <extracomment>Text to inform a user attempting to create a transaction of their current options. At this stage, a user can only create a PSMT. This string is displayed when private keys are disabled and an external signer is not available.</extracomment>
+        <translation type="unfinished">Revisa la propuesta de transacción. Esto producirá una transacción de Bitcoin parcialmente firmada (PSMT) que puedes guardar o copiar y, luego, firmar; por ejemplo, con un monedero %1 fuera de línea o un monedero de hardware compatible con PSMT.</translation>
     </message>
     <message>
         <source>%1 from wallet '%2'</source>
@@ -3122,9 +3122,9 @@ Nota: Dado que la comisión se calcula por byte, una tasa de "100 satoshis por k
         <translation type="unfinished">¿Deseas crear esta transacción?</translation>
     </message>
     <message>
-        <source>Please, review your transaction. You can create and send this transaction or create a Partially Signed Bitcoin Transaction (PSBT), which you can save or copy and then sign with, e.g., an offline %1 wallet, or a PSBT-compatible hardware wallet.</source>
-        <extracomment>Text to inform a user attempting to create a transaction of their current options. At this stage, a user can send their transaction or create a PSBT. This string is displayed when both private keys and PSBT controls are enabled.</extracomment>
-        <translation type="unfinished">Revisa la transacción. Puedes crear y enviar esta transacción o crear una transacción de Bitcoin parcialmente firmada (PSBT), que además puedes guardar o copiar y, luego, firmar; por ejemplo, con un monedero %1 sin conexión o un monedero de hardware compatible con PSBT.</translation>
+        <source>Please, review your transaction. You can create and send this transaction or create a Partially Signed Bitcoin Transaction (PSMT), which you can save or copy and then sign with, e.g., an offline %1 wallet, or a PSMT-compatible hardware wallet.</source>
+        <extracomment>Text to inform a user attempting to create a transaction of their current options. At this stage, a user can send their transaction or create a PSMT. This string is displayed when both private keys and PSMT controls are enabled.</extracomment>
+        <translation type="unfinished">Revisa la transacción. Puedes crear y enviar esta transacción o crear una transacción de Bitcoin parcialmente firmada (PSMT), que además puedes guardar o copiar y, luego, firmar; por ejemplo, con un monedero %1 sin conexión o un monedero de hardware compatible con PSMT.</translation>
     </message>
     <message>
         <source>Please, review your transaction.</source>
@@ -3145,17 +3145,17 @@ Nota: Dado que la comisión se calcula por byte, una tasa de "100 satoshis por k
     </message>
     <message>
         <source>Unsigned Transaction</source>
-        <comment>PSBT copied</comment>
-        <extracomment>Caption of "PSBT has been copied" messagebox</extracomment>
+        <comment>PSMT copied</comment>
+        <extracomment>Caption of "PSMT has been copied" messagebox</extracomment>
         <translation type="unfinished">Transacción sin firmar</translation>
     </message>
     <message>
-        <source>The PSBT has been copied to the clipboard. You can also save it.</source>
-        <translation type="unfinished">Se copió la PSBT al portapapeles. También puedes guardarla.</translation>
+        <source>The PSMT has been copied to the clipboard. You can also save it.</source>
+        <translation type="unfinished">Se copió la PSMT al portapapeles. También puedes guardarla.</translation>
     </message>
     <message>
-        <source>PSBT saved to disk</source>
-        <translation type="unfinished">PSBT guardada en disco</translation>
+        <source>PSMT saved to disk</source>
+        <translation type="unfinished">PSMT guardada en disco</translation>
     </message>
     <message>
         <source>Confirm send coins</source>
@@ -3875,24 +3875,24 @@ Ir a "Archivo &gt; Abrir monedero" para cargar uno.
         <translation type="unfinished">Crea un monedero nuevo</translation>
     </message>
     <message>
-        <source>Unable to decode PSBT from clipboard (invalid base64)</source>
-        <translation type="unfinished">No se puede decodificar la PSBT desde el portapapeles (Base64 inválida)</translation>
+        <source>Unable to decode PSMT from clipboard (invalid base64)</source>
+        <translation type="unfinished">No se puede decodificar la PSMT desde el portapapeles (Base64 inválida)</translation>
     </message>
     <message>
         <source>Load Transaction Data</source>
         <translation type="unfinished">Cargar datos de la transacción</translation>
     </message>
     <message>
-        <source>Partially Signed Transaction (*.psbt)</source>
-        <translation type="unfinished">Transacción parcialmente firmada (*.psbt)</translation>
+        <source>Partially Signed Transaction (*.psmt)</source>
+        <translation type="unfinished">Transacción parcialmente firmada (*.psmt)</translation>
     </message>
     <message>
-        <source>PSBT file must be smaller than 100 MiB</source>
-        <translation type="unfinished">El archivo PSBT debe ser menor de 100 MiB</translation>
+        <source>PSMT file must be smaller than 100 MiB</source>
+        <translation type="unfinished">El archivo PSMT debe ser menor de 100 MiB</translation>
     </message>
     <message>
-        <source>Unable to decode PSBT</source>
-        <translation type="unfinished">No es posible descodificar la PSBT</translation>
+        <source>Unable to decode PSMT</source>
+        <translation type="unfinished">No es posible descodificar la PSMT</translation>
     </message>
 </context>
 <context>
@@ -3939,12 +3939,12 @@ Ir a "Archivo &gt; Abrir monedero" para cargar uno.
         <translation type="unfinished">No puede crear un borrador de la transacción.</translation>
     </message>
     <message>
-        <source>PSBT copied</source>
-        <translation type="unfinished">PSBT copiada </translation>
+        <source>PSMT copied</source>
+        <translation type="unfinished">PSMT copiada </translation>
     </message>
     <message>
-        <source>Fee-bump PSBT copied to clipboard</source>
-        <translation type="unfinished">PSBT con incremento de comisión copiada en el portapapeles</translation>
+        <source>Fee-bump PSMT copied to clipboard</source>
+        <translation type="unfinished">PSMT con incremento de comisión copiada en el portapapeles</translation>
     </message>
     <message>
         <source>Can't sign transaction.</source>

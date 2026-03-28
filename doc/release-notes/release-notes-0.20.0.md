@@ -117,7 +117,7 @@ Updated RPCs
   type which supports multisig scripts where the public keys are sorted
   lexicographically in the resulting script.  (#17056)
 
-- The `walletprocesspsbt` and `walletcreatefundedpsbt` RPCs now include
+- The `walletprocesspsmt` and `walletcreatefundedpsmt` RPCs now include
   BIP32 derivation paths by default for public keys if we know them.
   This can be disabled by setting the `bip32derivs` parameter to
   `false`.  (#17264)
@@ -125,7 +125,7 @@ Updated RPCs
 - The `bumpfee` RPC's parameter `totalFee`, which was deprecated in
   0.19, has been removed.  (#18312)
 
-- The `bumpfee` RPC will return a PSBT when used with wallets that have
+- The `bumpfee` RPC will return a PSMT when used with wallets that have
   private keys disabled.  (#16373)
 
 - The `getpeerinfo` RPC now includes a `mapped_as` field to indicate the
@@ -213,12 +213,12 @@ GUI changes
 
 - For watch-only wallets, creating a new transaction in the Send screen
   or fee bumping an existing transaction in the Transactions screen will
-  automatically copy a Partially-Signed Meowcoin Transaction (PSBT) to
+  automatically copy a Partially-Signed Meowcoin Transaction (PSMT) to
   the system clipboard.  This can then be pasted into an external
   program such as [HWI](https://github.com/meowcoin-core/HWI) for
   signing.  Future versions of Meowcoin Core should support a GUI option
-  for finalizing and broadcasting PSBTs, but for now the debug console
-  may be used with the `finalizepsbt` and `sendrawtransaction` RPCs.
+  for finalizing and broadcasting PSMTs, but for now the debug console
+  may be used with the `finalizepsmt` and `sendrawtransaction` RPCs.
   (#16944, #17492)
 
 Wallet
@@ -376,7 +376,7 @@ Build system
 ### Wallet
 - #13339 Replace %w by wallet name in -walletnotify script (promag)
 - #15931 Remove GetDepthInMainChain dependency on locked chain interface (ariard)
-- #16373 bumpfee: Return PSBT when wallet has privkeys disabled (instagibbs)
+- #16373 bumpfee: Return PSMT when wallet has privkeys disabled (instagibbs)
 - #16524 Disable -fallbackfee by default (jtimon)
 - #16766 Make IsTrusted scan parents recursively (JeremyRubin)
 - #16884 Change default address type to bech32 (instagibbs)
@@ -413,10 +413,10 @@ Build system
 - #12763 Add RPC Whitelist Feature from #12248 (JeremyRubin)
 - #13716 cli: `-stdinwalletpassphrase` and non-echo stdin passwords (kallewoof)
 - #16689 Add missing fields to wallet rpc help output (ariard)
-- #16821 Fix bug where duplicate PSBT keys are accepted (erasmospunk)
+- #16821 Fix bug where duplicate PSMT keys are accepted (erasmospunk)
 - #16899 UTXO snapshot creation (dumptxoutset)
-- #17156 psbt: Check that various indexes and amounts are within bounds (achow101)
-- #17264 Set default bip32derivs to true for psbt methods (Sjors)
+- #17156 psmt: Check that various indexes and amounts are within bounds (achow101)
+- #17264 Set default bip32derivs to true for psmt methods (Sjors)
 - #17283 improve getaddressinfo test coverage, help, code docs (jonatack)
 - #17302 cli: Add "headers" and "verificationprogress" to -getinfo (laanwj)
 - #17318 replace asserts in RPC code with `CHECK_NONFATAL` and add linter (adamjonas)
@@ -448,7 +448,7 @@ Build system
 - #15084 Don't disable the sync overlay when wallet is disabled (benthecarman)
 - #15098 Show addresses for "SendToSelf" transactions (hebasto)
 - #15756 Add shortcuts for tab tools (promag)
-- #16944 create PSBT with watch-only wallet (Sjors)
+- #16944 create PSMT with watch-only wallet (Sjors)
 - #16964 Change sendcoins dialogue Yes to Send (instagibbs)
 - #17068 Always generate `meowcoinstrings.cpp` on `make translate` (D4nte)
 - #17096 Rename debug window (Zero-1729)
@@ -463,7 +463,7 @@ Build system
 - #17446 Changed tooltip for 'Label' & 'Message' text fields to be more clear (dannmat)
 - #17453 Fix intro dialog labels when the prune button is toggled (hebasto)
 - #17474 Bugfix: GUI: Recognise `NETWORK_LIMITED` in formatServicesStr (luke-jr)
-- #17492 Bump fee returns PSBT on clipboard for watchonly-only wallets (instagibbs)
+- #17492 Bump fee returns PSMT on clipboard for watchonly-only wallets (instagibbs)
 - #17567 Remove macOS start on login code (fanquake)
 - #17587 Show watch-only balance in send screen (Sjors)
 - #17694 Disable 3rd-party tx-urls when wallet disabled (brakmic)
@@ -695,7 +695,7 @@ Build system
 - #18209 Reduce unneeded whitelist permissions in tests (MarcoFalke)
 - #18211 Disable mockforward scheduler unit test for now (MarcoFalke)
 - #18213 Fix race in `p2p_segwit` (MarcoFalke)
-- #18224 Make AnalyzePSBT next role calculation simple, correct (instagibbs)
+- #18224 Make AnalyzePSMT next role calculation simple, correct (instagibbs)
 - #18228 Add missing syncwithvalidationinterfacequeue (MarcoFalke)
 - #18247 Wait for both veracks in `add_p2p_connection` (MarcoFalke)
 - #18249 Bump timeouts to accomodate really slow disks (MarcoFalke)

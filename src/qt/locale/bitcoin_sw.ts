@@ -467,8 +467,8 @@ Kutia sahihi kunawezekana tu kwa anwani za aina ya 'urithi'.</translation>
         <translation type="unfinished">Hakikisha ujumbe umethibitishwa kuwa ulisainiwa na anwani za Bitcoin zilizotajwa</translation>
     </message>
     <message>
-        <source>&amp;Load PSBT from file…</source>
-        <translation type="unfinished">&amp;Pakia PSBT kutoka faili...</translation>
+        <source>&amp;Load PSMT from file…</source>
+        <translation type="unfinished">&amp;Pakia PSMT kutoka faili...</translation>
     </message>
     <message>
         <source>Open &amp;URI…</source>
@@ -578,8 +578,8 @@ Kutia sahihi kunawezekana tu kwa anwani za aina ya 'urithi'.</translation>
         <translation type="unfinished">Pakia Muamala wa Bitcoin Uliosainiwa Kiasi</translation>
     </message>
     <message>
-        <source>Load PSBT from &amp;clipboard…</source>
-        <translation type="unfinished">Pakia PSBT kutoka &amp;clipboard...</translation>
+        <source>Load PSMT from &amp;clipboard…</source>
+        <translation type="unfinished">Pakia PSMT kutoka &amp;clipboard...</translation>
     </message>
     <message>
         <source>Load Partially Signed Bitcoin Transaction from clipboard</source>

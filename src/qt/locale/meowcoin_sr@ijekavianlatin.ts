@@ -542,8 +542,8 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">Верификуј поруке и утврди да ли су потписане од стране спецификованих Биткоин адреса</translation>
     </message>
     <message>
-        <source>&amp;Load PSBT from file…</source>
-        <translation type="unfinished">&amp;Учитава ”PSBT” из датотеке…</translation>
+        <source>&amp;Load PSMT from file…</source>
+        <translation type="unfinished">&amp;Учитава ”PSMT” из датотеке…</translation>
     </message>
     <message>
         <source>Open &amp;URI…</source>
@@ -654,8 +654,8 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">Учитај делимично потписану Meowcoin трансакцију</translation>
     </message>
     <message>
-        <source>Load PSBT from &amp;clipboard…</source>
-        <translation type="unfinished">Учитај ”PSBT” из привремене меморије</translation>
+        <source>Load PSMT from &amp;clipboard…</source>
+        <translation type="unfinished">Учитај ”PSMT” из привремене меморије</translation>
     </message>
     <message>
         <source>Load Partially Signed Meowcoin Transaction from clipboard</source>
@@ -1814,7 +1814,7 @@ Signing is only possible with addresses of the type 'legacy'.</source>
     </message>
 </context>
 <context>
-    <name>PSBTOperationsDialog</name>
+    <name>PSMTOperationsDialog</name>
     <message>
         <source>Sign Tx</source>
         <translation type="unfinished">Потпиши Трансакцију</translation>
@@ -1868,7 +1868,7 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">Неуспело емитовање трансакције: %1</translation>
     </message>
     <message>
-        <source>PSBT copied to clipboard.</source>
+        <source>PSMT copied to clipboard.</source>
         <translation type="unfinished">ПСБТ је копиран у међуспремник.</translation>
     </message>
     <message>
@@ -1877,11 +1877,11 @@ Signing is only possible with addresses of the type 'legacy'.</source>
     </message>
     <message>
         <source>Partially Signed Transaction (Binary)</source>
-        <extracomment>Expanded name of the binary PSBT file format. See: BIP 174.</extracomment>
+        <extracomment>Expanded name of the binary PSMT file format. See: BIP 174.</extracomment>
         <translation type="unfinished">Делимично потписана трансакција (бинарна)</translation>
     </message>
     <message>
-        <source>PSBT saved to disk.</source>
+        <source>PSMT saved to disk.</source>
         <translation type="unfinished">ПСБТ је сачуван на диску.</translation>
     </message>
     <message>
@@ -2837,8 +2837,8 @@ Note:  Since the fee is calculated on a per-byte basis, a fee rate of "100 satos
         <translation type="unfinished">Креирај непотписано</translation>
     </message>
     <message>
-        <source>Creates a Partially Signed Meowcoin Transaction (PSBT) for use with e.g. an offline %1 wallet, or a PSBT-compatible hardware wallet.</source>
-        <translation type="unfinished">Креира делимично потписану Биткоин трансакцију (PSBT) за коришћење са нпр. офлајн %1 новчаником, или PSBT компатибилним хардверским новчаником. </translation>
+        <source>Creates a Partially Signed Meowcoin Transaction (PSMT) for use with e.g. an offline %1 wallet, or a PSMT-compatible hardware wallet.</source>
+        <translation type="unfinished">Креира делимично потписану Биткоин трансакцију (PSMT) за коришћење са нпр. офлајн %1 новчаником, или PSMT компатибилним хардверским новчаником. </translation>
     </message>
     <message>
         <source>%1 to '%2'</source>
@@ -2872,13 +2872,13 @@ Note:  Since the fee is calculated on a per-byte basis, a fee rate of "100 satos
     </message>
     <message>
         <source>Partially Signed Transaction (Binary)</source>
-        <extracomment>Expanded name of the binary PSBT file format. See: BIP 174.</extracomment>
+        <extracomment>Expanded name of the binary PSMT file format. See: BIP 174.</extracomment>
         <translation type="unfinished">Делимично потписана трансакција (бинарна)</translation>
     </message>
     <message>
-        <source>PSBT saved</source>
-        <extracomment>Popup message when a PSBT has been saved to a file</extracomment>
-        <translation type="unfinished">PSBT сачуван</translation>
+        <source>PSMT saved</source>
+        <extracomment>Popup message when a PSMT has been saved to a file</extracomment>
+        <translation type="unfinished">PSMT сачуван</translation>
     </message>
     <message>
         <source>External balance:</source>
@@ -2893,9 +2893,9 @@ Note:  Since the fee is calculated on a per-byte basis, a fee rate of "100 satos
         <translation type="unfinished">Можете повећати провизију касније (сигнали Замени-са-Провизијом, BIP-125).</translation>
     </message>
     <message>
-        <source>Please, review your transaction proposal. This will produce a Partially Signed Meowcoin Transaction (PSBT) which you can save or copy and then sign with e.g. an offline %1 wallet, or a PSBT-compatible hardware wallet.</source>
-        <extracomment>Text to inform a user attempting to create a transaction of their current options. At this stage, a user can only create a PSBT. This string is displayed when private keys are disabled and an external signer is not available.</extracomment>
-        <translation type="unfinished">Молимо, проверите ваш предлог трансакције. Ово ће произвести делимично потписану Биткоин трансакцију (PSBT) коју можете копирати и онда потписати са нпр. офлајн %1 новчаником, или PSBT компатибилним хардверским новчаником.</translation>
+        <source>Please, review your transaction proposal. This will produce a Partially Signed Meowcoin Transaction (PSMT) which you can save or copy and then sign with e.g. an offline %1 wallet, or a PSMT-compatible hardware wallet.</source>
+        <extracomment>Text to inform a user attempting to create a transaction of their current options. At this stage, a user can only create a PSMT. This string is displayed when private keys are disabled and an external signer is not available.</extracomment>
+        <translation type="unfinished">Молимо, проверите ваш предлог трансакције. Ово ће произвести делимично потписану Биткоин трансакцију (PSMT) коју можете копирати и онда потписати са нпр. офлајн %1 новчаником, или PSMT компатибилним хардверским новчаником.</translation>
     </message>
     <message>
         <source>Do you want to create this transaction?</source>
@@ -3595,24 +3595,24 @@ Note:  Since the fee is calculated on a per-byte basis, a fee rate of "100 satos
         <translation type="unfinished">Грешка</translation>
     </message>
     <message>
-        <source>Unable to decode PSBT from clipboard (invalid base64)</source>
-        <translation type="unfinished">Није могуће декодирати PSBT из клипборд-а (неважећи base64)</translation>
+        <source>Unable to decode PSMT from clipboard (invalid base64)</source>
+        <translation type="unfinished">Није могуће декодирати PSMT из клипборд-а (неважећи base64)</translation>
     </message>
     <message>
         <source>Load Transaction Data</source>
         <translation type="unfinished">Учитај Податке Трансакције</translation>
     </message>
     <message>
-        <source>Partially Signed Transaction (*.psbt)</source>
-        <translation type="unfinished">Делимично Потписана Трансакција (*.psbt)</translation>
+        <source>Partially Signed Transaction (*.psmt)</source>
+        <translation type="unfinished">Делимично Потписана Трансакција (*.psmt)</translation>
     </message>
     <message>
-        <source>PSBT file must be smaller than 100 MiB</source>
-        <translation type="unfinished">PSBT фајл мора бити мањи од 100 MiB</translation>
+        <source>PSMT file must be smaller than 100 MiB</source>
+        <translation type="unfinished">PSMT фајл мора бити мањи од 100 MiB</translation>
     </message>
     <message>
-        <source>Unable to decode PSBT</source>
-        <translation type="unfinished">Немогуће декодирати PSBT</translation>
+        <source>Unable to decode PSMT</source>
+        <translation type="unfinished">Немогуће декодирати PSMT</translation>
     </message>
 </context>
 <context>
@@ -3655,8 +3655,8 @@ Note:  Since the fee is calculated on a per-byte basis, a fee rate of "100 satos
         <translation type="unfinished">Није могуће саставити трансакцију.</translation>
     </message>
     <message>
-        <source>PSBT copied</source>
-        <translation type="unfinished">PSBT је копиран</translation>
+        <source>PSMT copied</source>
+        <translation type="unfinished">PSMT је копиран</translation>
     </message>
     <message>
         <source>Can't sign transaction.</source>

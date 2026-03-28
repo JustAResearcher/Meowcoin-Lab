@@ -455,8 +455,8 @@ La firma ye possible solamentu con direcciones del tipu 'legacy'.</translation>
         <translation type="unfinished">Verificar los mensajes pa asegurar que fueron firmados con les direcciones de Meowcoin especificaes</translation>
     </message>
     <message>
-        <source>&amp;Load PSBT from file…</source>
-        <translation type="unfinished">&amp;Cargar PSBT dende el ficheru…</translation>
+        <source>&amp;Load PSMT from file…</source>
+        <translation type="unfinished">&amp;Cargar PSMT dende el ficheru…</translation>
     </message>
     <message>
         <source>Open &amp;URI…</source>
@@ -565,8 +565,8 @@ La firma ye possible solamentu con direcciones del tipu 'legacy'.</translation>
         <translation type="unfinished">Cargar Transacción de Meowcoin Parcialmente Firmada</translation>
     </message>
     <message>
-        <source>Load PSBT from &amp;clipboard…</source>
-        <translation type="unfinished">Cargar PSBT dende el &amp;portapapeles…</translation>
+        <source>Load PSMT from &amp;clipboard…</source>
+        <translation type="unfinished">Cargar PSMT dende el &amp;portapapeles…</translation>
     </message>
     <message>
         <source>Load Partially Signed Meowcoin Transaction from clipboard</source>

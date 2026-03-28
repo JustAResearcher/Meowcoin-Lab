@@ -490,8 +490,8 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">Потврдување на пораките за да се знае дека се напишани со дадените биткоин-адреси.</translation>
     </message>
     <message>
-        <source>&amp;Load PSBT from file…</source>
-        <translation type="unfinished">&amp;Вчитај PSBT од датотека…</translation>
+        <source>&amp;Load PSMT from file…</source>
+        <translation type="unfinished">&amp;Вчитај PSMT од датотека…</translation>
     </message>
     <message>
         <source>Open &amp;URI…</source>
@@ -606,8 +606,8 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">Вчитајте делумно потпишана биткоин-трансакција</translation>
     </message>
     <message>
-        <source>Load PSBT from &amp;clipboard…</source>
-        <translation type="unfinished">Вчитајте PSBT од &amp;клипбордот...</translation>
+        <source>Load PSMT from &amp;clipboard…</source>
+        <translation type="unfinished">Вчитајте PSMT од &amp;клипбордот...</translation>
     </message>
     <message>
         <source>Load Partially Signed Bitcoin Transaction from clipboard</source>

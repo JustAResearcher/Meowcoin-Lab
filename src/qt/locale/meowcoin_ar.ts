@@ -330,8 +330,8 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">تحقق من الرسائل للتأكد من أنَها وُقعت برسائل Meowcoin محدَدة</translation>
     </message>
     <message>
-        <source>&amp;Load PSBT from file…</source>
-        <translation type="unfinished">وتحميل PSBT من ملف...</translation>
+        <source>&amp;Load PSMT from file…</source>
+        <translation type="unfinished">وتحميل PSMT من ملف...</translation>
     </message>
     <message>
         <source>Open &amp;URI…</source>
@@ -442,15 +442,15 @@ Signing is only possible with addresses of the type 'legacy'.</source>
     </message>
     <message>
         <source>Load Partially Signed Meowcoin Transaction</source>
-        <translation type="unfinished">‫تحميل معاملة بتكوين موقعة جزئيًا (PSBT)‬</translation>
+        <translation type="unfinished">‫تحميل معاملة بتكوين موقعة جزئيًا (PSMT)‬</translation>
     </message>
     <message>
-        <source>Load PSBT from &amp;clipboard…</source>
-        <translation type="unfinished">‫تحميل معاملة بتكوين موقعة جزئيا (‫PSBT) من &amp;الحافظة…‬</translation>
+        <source>Load PSMT from &amp;clipboard…</source>
+        <translation type="unfinished">‫تحميل معاملة بتكوين موقعة جزئيا (‫PSMT) من &amp;الحافظة…‬</translation>
     </message>
     <message>
         <source>Load Partially Signed Meowcoin Transaction from clipboard</source>
-        <translation type="unfinished">‫تحميل معاملة بتكوين موقعة جزئيًا ‫(‫PSBT) من الحافظة‬</translation>
+        <translation type="unfinished">‫تحميل معاملة بتكوين موقعة جزئيًا ‫(‫PSMT) من الحافظة‬</translation>
     </message>
     <message>
         <source>Node window</source>
@@ -918,8 +918,8 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">‫&amp;دفع الفكة غير المؤكدة‬</translation>
     </message>
     <message>
-        <source>Enable &amp;PSBT controls</source>
-        <extracomment>An options window setting to enable PSBT controls.</extracomment>
+        <source>Enable &amp;PSMT controls</source>
+        <extracomment>An options window setting to enable PSMT controls.</extracomment>
         <translation type="unfinished">‫تفعيل التحكم ب &amp;المعاملات الموقعة جزئيا‬</translation>
     </message>
     <message>
@@ -1165,7 +1165,7 @@ Signing is only possible with addresses of the type 'legacy'.</source>
     </message>
 </context>
 <context>
-    <name>PSBTOperationsDialog</name>
+    <name>PSMTOperationsDialog</name>
     <message>
         <source>Sign Tx</source>
         <translation type="unfinished">تسجيل Tx</translation>
@@ -1219,8 +1219,8 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">فشل بث المعاملة: %1</translation>
     </message>
     <message>
-        <source>PSBT copied to clipboard.</source>
-        <translation type="unfinished">نسخ PSBT إلى الحافظة.</translation>
+        <source>PSMT copied to clipboard.</source>
+        <translation type="unfinished">نسخ PSMT إلى الحافظة.</translation>
     </message>
     <message>
         <source>Save Transaction Data</source>
@@ -1228,12 +1228,12 @@ Signing is only possible with addresses of the type 'legacy'.</source>
     </message>
     <message>
         <source>Partially Signed Transaction (Binary)</source>
-        <extracomment>Expanded name of the binary PSBT file format. See: BIP 174.</extracomment>
+        <extracomment>Expanded name of the binary PSMT file format. See: BIP 174.</extracomment>
         <translation type="unfinished">معاملة موقعة جزئيًا (ثنائي)</translation>
     </message>
     <message>
-        <source>PSBT saved to disk.</source>
-        <translation type="unfinished">تم حفظ PSBT على القرص.</translation>
+        <source>PSMT saved to disk.</source>
+        <translation type="unfinished">تم حفظ PSMT على القرص.</translation>
     </message>
     <message>
         <source>own address</source>
@@ -1437,8 +1437,8 @@ If you are receiving this error you should request the merchant provide a BIP21 
         <translation type="unfinished">نسخ التعديل</translation>
     </message>
     <message>
-        <source>Creates a Partially Signed Meowcoin Transaction (PSBT) for use with e.g. an offline %1 wallet, or a PSBT-compatible hardware wallet.</source>
-        <translation type="unfinished">‫أنشئ معاملة بتكوين موقعة جزئيا (PSBT) للاستعمال مع محفظة %1 غير متصلة بالشبكة مثلا، أو محفظة خارجية متوافقة مع الـ(PSBT).‬</translation>
+        <source>Creates a Partially Signed Meowcoin Transaction (PSMT) for use with e.g. an offline %1 wallet, or a PSMT-compatible hardware wallet.</source>
+        <translation type="unfinished">‫أنشئ معاملة بتكوين موقعة جزئيا (PSMT) للاستعمال مع محفظة %1 غير متصلة بالشبكة مثلا، أو محفظة خارجية متوافقة مع الـ(PSMT).‬</translation>
     </message>
     <message>
         <source>Save Transaction Data</source>
@@ -1446,7 +1446,7 @@ If you are receiving this error you should request the merchant provide a BIP21 
     </message>
     <message>
         <source>Partially Signed Transaction (Binary)</source>
-        <extracomment>Expanded name of the binary PSBT file format. See: BIP 174.</extracomment>
+        <extracomment>Expanded name of the binary PSMT file format. See: BIP 174.</extracomment>
         <translation type="unfinished">معاملة موقعة جزئيًا (ثنائي)</translation>
     </message>
     <message>

@@ -406,8 +406,8 @@
         <translation type="unfinished">Terkini</translation>
     </message>
     <message>
-        <source>Load PSBT from &amp;clipboard…</source>
-        <translation type="unfinished">Muat PSBT dari &amp;papanklip...</translation>
+        <source>Load PSMT from &amp;clipboard…</source>
+        <translation type="unfinished">Muat PSMT dari &amp;papanklip...</translation>
     </message>
     <message>
         <source>Open Wallet</source>

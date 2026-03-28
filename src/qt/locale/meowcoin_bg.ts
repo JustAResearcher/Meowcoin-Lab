@@ -530,8 +530,8 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">Потвърждаване на съобщения  за да се знае,че са написани с дадените Биткойн адреси.</translation>
     </message>
     <message>
-        <source>&amp;Load PSBT from file…</source>
-        <translation type="unfinished">&amp;Зареди PSBT от файл…</translation>
+        <source>&amp;Load PSMT from file…</source>
+        <translation type="unfinished">&amp;Зареди PSMT от файл…</translation>
     </message>
     <message>
         <source>Open &amp;URI…</source>
@@ -649,8 +649,8 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">Заредете частично подписана Meowcoin трансакция</translation>
     </message>
     <message>
-        <source>Load PSBT from &amp;clipboard…</source>
-        <translation type="unfinished">Заредете PSBT (частично подписана Meowcoin трансакция) от &amp;клипборд...</translation>
+        <source>Load PSMT from &amp;clipboard…</source>
+        <translation type="unfinished">Заредете PSMT (частично подписана Meowcoin трансакция) от &amp;клипборд...</translation>
     </message>
     <message>
         <source>Load Partially Signed Meowcoin Transaction from clipboard</source>
@@ -1645,14 +1645,14 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">&amp;Похарчете непотвърденото ресто</translation>
     </message>
     <message>
-        <source>Enable &amp;PSBT controls</source>
-        <extracomment>An options window setting to enable PSBT controls.</extracomment>
-        <translation type="unfinished">Активиране &amp;PSBT контроли</translation>
+        <source>Enable &amp;PSMT controls</source>
+        <extracomment>An options window setting to enable PSMT controls.</extracomment>
+        <translation type="unfinished">Активиране &amp;PSMT контроли</translation>
     </message>
     <message>
-        <source>Whether to show PSBT controls.</source>
-        <extracomment>Tooltip text for options window setting that enables PSBT controls.</extracomment>
-        <translation type="unfinished">Дали да покажа PSBT контроли.</translation>
+        <source>Whether to show PSMT controls.</source>
+        <extracomment>Tooltip text for options window setting that enables PSMT controls.</extracomment>
+        <translation type="unfinished">Дали да покажа PSMT контроли.</translation>
     </message>
     <message>
         <source>External Signer (e.g. hardware wallet)</source>
@@ -1848,7 +1848,7 @@ Signing is only possible with addresses of the type 'legacy'.</source>
     </message>
     </context>
 <context>
-    <name>PSBTOperationsDialog</name>
+    <name>PSMTOperationsDialog</name>
     <message>
         <source>Sign Tx</source>
         <translation type="unfinished">Подпиши Тх</translation>
@@ -2926,8 +2926,8 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">грешка</translation>
     </message>
     <message>
-        <source>Partially Signed Transaction (*.psbt)</source>
-        <translation type="unfinished">Частично Подписана Транзакция (*.psbt)</translation>
+        <source>Partially Signed Transaction (*.psmt)</source>
+        <translation type="unfinished">Частично Подписана Транзакция (*.psmt)</translation>
     </message>
     </context>
 <context>

@@ -590,8 +590,8 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">Проверяйте сообщения, чтобы убедиться, что они подписаны конкретными биткоин-адресами</translation>
     </message>
     <message>
-        <source>&amp;Load PSBT from file…</source>
-        <translation type="unfinished">&amp;Загрузить PSBT из файла...</translation>
+        <source>&amp;Load PSMT from file…</source>
+        <translation type="unfinished">&amp;Загрузить PSMT из файла...</translation>
     </message>
     <message>
         <source>Open &amp;URI…</source>
@@ -703,11 +703,11 @@ Signing is only possible with addresses of the type 'legacy'.</source>
     </message>
     <message>
         <source>Load Partially Signed Meowcoin Transaction</source>
-        <translation type="unfinished">Загрузить частично подписанную биткоин-транзакцию (PSBT)</translation>
+        <translation type="unfinished">Загрузить частично подписанную биткоин-транзакцию (PSMT)</translation>
     </message>
     <message>
-        <source>Load PSBT from &amp;clipboard…</source>
-        <translation type="unfinished">Загрузить PSBT из &amp;буфера обмена…</translation>
+        <source>Load PSMT from &amp;clipboard…</source>
+        <translation type="unfinished">Загрузить PSMT из &amp;буфера обмена…</translation>
     </message>
     <message>
         <source>Load Partially Signed Meowcoin Transaction from clipboard</source>
@@ -1701,14 +1701,14 @@ The migration process will create a backup of the wallet before migrating. This 
         <translation type="unfinished">&amp;Тратить неподтверждённую сдачу</translation>
     </message>
     <message>
-        <source>Enable &amp;PSBT controls</source>
-        <extracomment>An options window setting to enable PSBT controls.</extracomment>
-        <translation type="unfinished">Включить управление частично подписанными транзакциями (PSBT)</translation>
+        <source>Enable &amp;PSMT controls</source>
+        <extracomment>An options window setting to enable PSMT controls.</extracomment>
+        <translation type="unfinished">Включить управление частично подписанными транзакциями (PSMT)</translation>
     </message>
     <message>
-        <source>Whether to show PSBT controls.</source>
-        <extracomment>Tooltip text for options window setting that enables PSBT controls.</extracomment>
-        <translation type="unfinished">Показать элементы управления частично подписанными биткоин-транзакциями (PSBT)</translation>
+        <source>Whether to show PSMT controls.</source>
+        <extracomment>Tooltip text for options window setting that enables PSMT controls.</extracomment>
+        <translation type="unfinished">Показать элементы управления частично подписанными биткоин-транзакциями (PSMT)</translation>
     </message>
     <message>
         <source>External Signer (e.g. hardware wallet)</source>
@@ -1944,7 +1944,7 @@ The migration process will create a backup of the wallet before migrating. This 
     </message>
 </context>
 <context>
-    <name>PSBTOperationsDialog</name>
+    <name>PSMTOperationsDialog</name>
     <message>
         <source>Sign Tx</source>
         <translation type="unfinished">Подписать транзакцию</translation>
@@ -2002,8 +2002,8 @@ The migration process will create a backup of the wallet before migrating. This 
         <translation type="unfinished">Отправка транзакции не удалась: %1</translation>
     </message>
     <message>
-        <source>PSBT copied to clipboard.</source>
-        <translation type="unfinished">PSBT скопирована в буфер обмена</translation>
+        <source>PSMT copied to clipboard.</source>
+        <translation type="unfinished">PSMT скопирована в буфер обмена</translation>
     </message>
     <message>
         <source>Save Transaction Data</source>
@@ -2011,12 +2011,12 @@ The migration process will create a backup of the wallet before migrating. This 
     </message>
     <message>
         <source>Partially Signed Transaction (Binary)</source>
-        <extracomment>Expanded name of the binary PSBT file format. See: BIP 174.</extracomment>
+        <extracomment>Expanded name of the binary PSMT file format. See: BIP 174.</extracomment>
         <translation type="unfinished">Частично подписанная транзакция (двоичный файл)</translation>
     </message>
     <message>
-        <source>PSBT saved to disk.</source>
-        <translation type="unfinished">PSBT сохранена на диск.</translation>
+        <source>PSMT saved to disk.</source>
+        <translation type="unfinished">PSMT сохранена на диск.</translation>
     </message>
     <message>
         <source>Sends %1 to %2</source>
@@ -2403,24 +2403,24 @@ Go to File &gt; Open Wallet to load a wallet.
         <translation type="unfinished">Ошибка</translation>
     </message>
     <message>
-        <source>Unable to decode PSBT from clipboard (invalid base64)</source>
-        <translation type="unfinished">Не удалось декодировать PSBT из буфера обмена (неверный base64)</translation>
+        <source>Unable to decode PSMT from clipboard (invalid base64)</source>
+        <translation type="unfinished">Не удалось декодировать PSMT из буфера обмена (неверный base64)</translation>
     </message>
     <message>
         <source>Load Transaction Data</source>
         <translation type="unfinished">Загрузить данные о транзакции</translation>
     </message>
     <message>
-        <source>Partially Signed Transaction (*.psbt)</source>
-        <translation type="unfinished">Частично подписанная транзакция (*.psbt)</translation>
+        <source>Partially Signed Transaction (*.psmt)</source>
+        <translation type="unfinished">Частично подписанная транзакция (*.psmt)</translation>
     </message>
     <message>
-        <source>PSBT file must be smaller than 100 MiB</source>
-        <translation type="unfinished">Файл PSBT должен быть меньше 100 МиБ</translation>
+        <source>PSMT file must be smaller than 100 MiB</source>
+        <translation type="unfinished">Файл PSMT должен быть меньше 100 МиБ</translation>
     </message>
     <message>
-        <source>Unable to decode PSBT</source>
-        <translation type="unfinished">Не удалось декодировать PSBT</translation>
+        <source>Unable to decode PSMT</source>
+        <translation type="unfinished">Не удалось декодировать PSMT</translation>
     </message>
 </context>
 <context>
@@ -2463,12 +2463,12 @@ Go to File &gt; Open Wallet to load a wallet.
         <translation type="unfinished">Не удалось подготовить черновик транзакции.</translation>
     </message>
     <message>
-        <source>PSBT copied</source>
-        <translation type="unfinished">PSBT скопирована</translation>
+        <source>PSMT copied</source>
+        <translation type="unfinished">PSMT скопирована</translation>
     </message>
     <message>
-        <source>Fee-bump PSBT copied to clipboard</source>
-        <translation type="unfinished">PSBT скопирована в буфер обмена.</translation>
+        <source>Fee-bump PSMT copied to clipboard</source>
+        <translation type="unfinished">PSMT скопирована в буфер обмена.</translation>
     </message>
     <message>
         <source>Can't sign transaction.</source>

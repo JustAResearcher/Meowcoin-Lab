@@ -528,8 +528,8 @@ Kirish faqat 'legacy' turidagi manzillar uchun.</translation>
         <translation type="unfinished">Хабарларни махсус Bitcoin манзилларингиз билан ёзилганлигига ишонч ҳосил қилиш учун уларни тасдиқланг</translation>
     </message>
     <message>
-        <source>&amp;Load PSBT from file…</source>
-        <translation type="unfinished">&amp;PSBT ni fayldan yuklash...</translation>
+        <source>&amp;Load PSMT from file…</source>
+        <translation type="unfinished">&amp;PSMT ni fayldan yuklash...</translation>
     </message>
     <message>
         <source>Open &amp;URI…</source>
@@ -647,8 +647,8 @@ Kirish faqat 'legacy' turidagi manzillar uchun.</translation>
         <translation type="unfinished">Qisman signlangan Bitkoin tranzaksiyasini yuklash</translation>
     </message>
     <message>
-        <source>Load PSBT from &amp;clipboard…</source>
-        <translation type="unfinished">&amp;Nusxalanganlar dan PSBT ni yuklash</translation>
+        <source>Load PSMT from &amp;clipboard…</source>
+        <translation type="unfinished">&amp;Nusxalanganlar dan PSMT ni yuklash</translation>
     </message>
     <message>
         <source>Load Partially Signed Bitcoin Transaction from clipboard</source>
@@ -1659,14 +1659,14 @@ Migratsiya jarayoni ko'chirishdan oldin hamyonning zaxira nusxasini yaratadi. Us
         <translation type="unfinished">Tasdiqlanmagan oʻzgarishlarni &amp;sarflash</translation>
     </message>
     <message>
-        <source>Enable &amp;PSBT controls</source>
-        <extracomment>An options window setting to enable PSBT controls.</extracomment>
-        <translation type="unfinished">&amp;PSBT nazoratini yoqish</translation>
+        <source>Enable &amp;PSMT controls</source>
+        <extracomment>An options window setting to enable PSMT controls.</extracomment>
+        <translation type="unfinished">&amp;PSMT nazoratini yoqish</translation>
     </message>
     <message>
-        <source>Whether to show PSBT controls.</source>
-        <extracomment>Tooltip text for options window setting that enables PSBT controls.</extracomment>
-        <translation type="unfinished">PSBT boshqaruvlarini ko'rsatish kerakmi?</translation>
+        <source>Whether to show PSMT controls.</source>
+        <extracomment>Tooltip text for options window setting that enables PSMT controls.</extracomment>
+        <translation type="unfinished">PSMT boshqaruvlarini ko'rsatish kerakmi?</translation>
     </message>
     <message>
         <source>External Signer (e.g. hardware wallet)</source>
@@ -1907,10 +1907,10 @@ Migratsiya jarayoni ko'chirishdan oldin hamyonning zaxira nusxasini yaratadi. Us
     </message>
 </context>
 <context>
-    <name>PSBTOperationsDialog</name>
+    <name>PSMTOperationsDialog</name>
     <message>
-        <source>PSBT Operations</source>
-        <translation type="unfinished">PSBT Operatsiyalari</translation>
+        <source>PSMT Operations</source>
+        <translation type="unfinished">PSMT Operatsiyalari</translation>
     </message>
     <message>
         <source>Sign Tx</source>

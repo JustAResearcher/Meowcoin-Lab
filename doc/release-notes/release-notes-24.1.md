@@ -67,7 +67,7 @@ unsupported systems.
 
 ### GUI changes
 
-- gui#687 Load PSBTs using istreambuf_iterator rather than istream_iterator
+- gui#687 Load PSMTs using istreambuf_iterator rather than istream_iterator
 - gui#704 Correctly limit overview transaction list
 
 ### Miscellaneous

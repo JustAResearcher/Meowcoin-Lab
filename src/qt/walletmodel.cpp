@@ -22,7 +22,7 @@
 #include <key_io.h>
 #include <node/interface_ui.h>
 #include <node/types.h>
-#include <psbt.h>
+#include <psmt.h>
 #include <util/translation.h>
 #include <wallet/coincontrol.h>
 #include <wallet/wallet.h>
@@ -519,7 +519,7 @@ bool WalletModel::bumpFee(Txid hash, Txid& new_hash)
     }
 
     const bool enable_send{!wallet().privateKeysDisabled() || wallet().hasExternalSigner()};
-    const bool always_show_unsigned{getOptionsModel()->getEnablePSBTControls()};
+    const bool always_show_unsigned{getOptionsModel()->getEnablePSMTControls()};
     auto confirmationDialog = new SendConfirmationDialog(tr("Confirm fee bump"), questionString, "", "", SEND_CONFIRM_DELAY, enable_send, always_show_unsigned, nullptr);
     confirmationDialog->setAttribute(Qt::WA_DeleteOnClose);
     // TODO: Replace QDialog::exec() with safer QDialog::show().
@@ -530,21 +530,21 @@ bool WalletModel::bumpFee(Txid hash, Txid& new_hash)
         return false;
     }
 
-    // Short-circuit if we are returning a bumped transaction PSBT to clipboard
+    // Short-circuit if we are returning a bumped transaction PSMT to clipboard
     if (retval == QMessageBox::Save) {
         // "Create Unsigned" clicked
-        PartiallySignedTransaction psbtx(mtx);
+        PartiallySignedTransaction psmtx(mtx);
         bool complete = false;
-        const auto err{wallet().fillPSBT(std::nullopt, /*sign=*/false, /*bip32derivs=*/true, nullptr, psbtx, complete)};
+        const auto err{wallet().fillPSMT(std::nullopt, /*sign=*/false, /*bip32derivs=*/true, nullptr, psmtx, complete)};
         if (err || complete) {
             QMessageBox::critical(nullptr, tr("Fee bump error"), tr("Can't draft transaction."));
             return false;
         }
-        // Serialize the PSBT
+        // Serialize the PSMT
         DataStream ssTx{};
-        ssTx << psbtx;
+        ssTx << psmtx;
         GUIUtil::setClipboard(EncodeBase64(ssTx.str()).c_str());
-        Q_EMIT message(tr("PSBT copied"), tr("Fee-bump PSBT copied to clipboard"), CClientUIInterface::MSG_INFORMATION | CClientUIInterface::MODAL);
+        Q_EMIT message(tr("PSMT copied"), tr("Fee-bump PSMT copied to clipboard"), CClientUIInterface::MSG_INFORMATION | CClientUIInterface::MODAL);
         return true;
     }
 

@@ -922,7 +922,7 @@
     </message>
     </context>
 <context>
-    <name>PSBTOperationsDialog</name>
+    <name>PSMTOperationsDialog</name>
     <message>
         <source>Copy to Clipboard</source>
         <translation type="unfinished">Nokopēt</translation>

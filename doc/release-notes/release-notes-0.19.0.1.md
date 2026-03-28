@@ -124,7 +124,7 @@ Low-level Changes section below.
 
 - RPCs which have an `include_watchonly` argument or `includeWatching` option now default to `true` for watch-only
   wallets. Affected RPCs are: `getbalance`, `listreceivedbyaddress`, `listreceivedbylabel`, `listtransactions`,
-  `listsinceblock`, `gettransaction`, `walletcreatefundedpsbt`, and `fundrawtransaction`. (#16383)
+  `listsinceblock`, `gettransaction`, `walletcreatefundedpsmt`, and `fundrawtransaction`. (#16383)
 
 - `listunspent` now returns a "reused" bool for each output if the
   wallet flag "avoid_reuse" is enabled. (#13756)
@@ -134,7 +134,7 @@ Low-level Changes section below.
   configuration option, and functional for all non-pruned blocks.
   (#14802)
 
-- `utxoupdatepsbt` now accepts a `descriptors` parameter that will fill
+- `utxoupdatepsmt` now accepts a `descriptors` parameter that will fill
   out input and output scripts and keys when known. P2SH-witness inputs
   will be filled in from the UTXO set when a descriptor is provided that
   shows they're spending segwit outputs.  See the RPC help text for full
@@ -181,12 +181,12 @@ Low-level Changes section below.
   user (that is, before the descriptor is normalized for the
   `descriptor` field). (#15986)
 
-- `joinpsbts` now shuffles the order of the inputs and outputs of the resulting
-  joined PSBT. Previously, inputs and outputs were added in the order PSBTs were
+- `joinpsmts` now shuffles the order of the inputs and outputs of the resulting
+  joined PSMT. Previously, inputs and outputs were added in the order PSMTs were
   provided. This made it easy to correlate inputs to outputs, representing a
   privacy leak. (#16512)
 
-- `walletcreatefundedpsbt` now signals BIP125 Replace-by-Fee if the
+- `walletcreatefundedpsmt` now signals BIP125 Replace-by-Fee if the
   `-walletrbf` configuration option is set to true. (#15911)
 
 GUI changes
@@ -352,7 +352,7 @@ Wallet
   failing until the first block is pruned. (#15870)
 
 - When creating a transaction with a fee above `-maxtxfee` (default 0.1
-  MEWC), the RPC commands `walletcreatefundedpsbt` and
+  MEWC), the RPC commands `walletcreatefundedpsmt` and
   `fundrawtransaction` will now fail instead of rounding down the fee.
   Be aware that the `feeRate` argument is specified in MEWC per 1,000
   vbytes, not satoshi per vbyte. (#16257)
@@ -440,7 +440,7 @@ Build system changes
 - #15491 Improve log output for errors during load (gwillen)
 - #13541 wallet/rpc: sendrawtransaction maxfeerate (kallewoof)
 - #15680 Remove resendwallettransactions RPC method (jnewbery)
-- #15508 Refactor analyzepsbt for use outside RPC code (gwillen)
+- #15508 Refactor analyzepsmt for use outside RPC code (gwillen)
 - #15747 Remove plethora of Get*Balance (MarcoFalke)
 - #15728 Refactor relay transactions (jnewbery)
 - #15639 meowcoin-wallet tool: Drop libmeowcoin_server.a dependency (ryanofsky)
@@ -478,7 +478,7 @@ Build system changes
 - #15906 Move min_depth and max_depth to coin control (amitiuttarwar)
 - #16502 Drop unused OldKey (promag)
 - #16394 Allow createwallet to take empty passwords to make unencrypted wallets (achow101)
-- #15911 Use wallet RBF default for walletcreatefundedpsbt (Sjors)
+- #15911 Use wallet RBF default for walletcreatefundedpsmt (Sjors)
 - #16503 Remove p2pEnabled from Chain interface (ariard)
 - #16557 restore coinbase and confirmed/conflicted checks in SubmitMemoryPoolAndRelay() (jnewbery)
 - #14934 Descriptor expansion cache clarifications (Sjors)
@@ -525,11 +525,11 @@ Build system changes
 - #16063 Mention getwalletinfo where a rescan is triggered (promag)
 - #16024 deriveaddresses: Correction of descriptor checksum in RPC example (ccapo)
 - #16217 getrawtransaction: inform about blockhash argument when lookup fails (darosior)
-- #15427 Add support for descriptors to utxoupdatepsbt (sipa)
+- #15427 Add support for descriptors to utxoupdatepsmt (sipa)
 - #16262 Allow shutdown while in generateblocks (pstratem)
 - #15483 Adding a 'logpath' entry to getrpcinfo (darosior)
 - #16325 Clarify that block count means height excl genesis (MarcoFalke)
-- #16326 add new utxoupdatepsbt arguments to the CRPCCommand and CPRCCvertParam tables (jnewbery)
+- #16326 add new utxoupdatepsmt arguments to the CRPCCommand and CPRCCvertParam tables (jnewbery)
 - #16332 Add logpath description for getrpcinfo (instagibbs)
 - #16240 JSONRPCRequest-aware RPCHelpMan (kallewoof)
 - #15996 Deprecate totalfee argument in `bumpfee` (instagibbs)
@@ -544,7 +544,7 @@ Build system changes
 - #16787 Human readable network services (darosior)
 - #16251 Improve signrawtransaction error reporting (ajtowns)
 - #16873 fix regression in gettransaction (jonatack)
-- #16512 Shuffle inputs and outputs after joining psbts (achow101)
+- #16512 Shuffle inputs and outputs after joining psmts (achow101)
 - #16521 Use the default maxfeerate value as MEWC/kB (Remagpie)
 - #16817 Fix casing in getblockchaininfo to be inline with other fields (dangershony)
 - #17131 fix -rpcclienttimeout 0 option (fjahr)
@@ -892,7 +892,7 @@ Build system changes
 - #15820 Add productivity notes for dummy rebases (dongcarl)
 - #15922 Explain how to pass in non-fundamental types into functions (MarcoFalke)
 - #16080 build/doc: update meowcoin_config.h packages, release process (jonatack)
-- #16047 analyzepsbt description in doc/psbt.md (jonatack)
+- #16047 analyzepsmt description in doc/psmt.md (jonatack)
 - #16039 add release note for 14954 (fanquake)
 - #16139 Add riscv64 to outputs list in release-process.md (JeremyRand)
 - #16140 create security policy (narula)

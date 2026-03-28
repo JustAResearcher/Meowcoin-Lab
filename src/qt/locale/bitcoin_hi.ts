@@ -696,9 +696,9 @@ The migration process will create a backup of the wallet before migrating. This 
     </message>
     </context>
 <context>
-    <name>PSBTOperationsDialog</name>
+    <name>PSMTOperationsDialog</name>
     <message>
-        <source>PSBT Operations</source>
+        <source>PSMT Operations</source>
         <translation type="unfinished">पीएसबीटी संचालन</translation>
     </message>
     <message>
@@ -1581,8 +1581,8 @@ Note:  Since the fee is calculated on a per-byte basis, a fee rate of "100 satos
         <translation type="unfinished">&amp;अहस्ताक्षरित बनाएं</translation>
     </message>
     <message>
-        <source>Creates a Partially Signed Bitcoin Transaction (PSBT) for use with e.g. an offline %1 wallet, or a PSBT-compatible hardware wallet.</source>
-        <translation type="unfinished">उदाहरण के लिए उपयोग के लिए आंशिक रूप से हस्ताक्षरित बिटकॉइन लेनदेन (PSBT) बनाता है। एक ऑफ़लाइन% 1 %1  वॉलेट, या एक PSBT-संगत हार्डवेयर वॉलेट।</translation>
+        <source>Creates a Partially Signed Bitcoin Transaction (PSMT) for use with e.g. an offline %1 wallet, or a PSMT-compatible hardware wallet.</source>
+        <translation type="unfinished">उदाहरण के लिए उपयोग के लिए आंशिक रूप से हस्ताक्षरित बिटकॉइन लेनदेन (PSMT) बनाता है। एक ऑफ़लाइन% 1 %1  वॉलेट, या एक PSMT-संगत हार्डवेयर वॉलेट।</translation>
     </message>
     <message>
         <source>%1 to '%2'</source>
@@ -1616,12 +1616,12 @@ Note:  Since the fee is calculated on a per-byte basis, a fee rate of "100 satos
     </message>
     <message>
         <source>Partially Signed Transaction (Binary)</source>
-        <extracomment>Expanded name of the binary PSBT file format. See: BIP 174.</extracomment>
+        <extracomment>Expanded name of the binary PSMT file format. See: BIP 174.</extracomment>
         <translation type="unfinished">आंशिक रूप से हस्ताक्षरित लेनदेन (बाइनरी)</translation>
     </message>
     <message>
-        <source>PSBT saved</source>
-        <extracomment>Popup message when a PSBT has been saved to a file</extracomment>
+        <source>PSMT saved</source>
+        <extracomment>Popup message when a PSMT has been saved to a file</extracomment>
         <translation type="unfinished">पीएसबीटी सहेजा गया
  </translation>
     </message>
@@ -1638,9 +1638,9 @@ Note:  Since the fee is calculated on a per-byte basis, a fee rate of "100 satos
         <translation type="unfinished">आप बाद में शुल्क बढ़ा सकते हैं (सिग्नलस रिप्लेसमेंट-बाय-फी, बीआईपी-125)।</translation>
     </message>
     <message>
-        <source>Please, review your transaction proposal. This will produce a Partially Signed Bitcoin Transaction (PSBT) which you can save or copy and then sign with e.g. an offline %1 wallet, or a PSBT-compatible hardware wallet.</source>
-        <extracomment>Text to inform a user attempting to create a transaction of their current options. At this stage, a user can only create a PSBT. This string is displayed when private keys are disabled and an external signer is not available.</extracomment>
-        <translation type="unfinished">कृपया, अपने लेनदेन प्रस्ताव की समीक्षा करें। यह एक आंशिक रूप से हस्ताक्षरित बिटकॉइन लेनदेन (PSBT) का उत्पादन करेगा जिसे आप सहेज सकते हैं या कॉपी कर सकते हैं और फिर उदा। एक ऑफ़लाइन %1  वॉलेट, या एक PSBT-संगत हार्डवेयर वॉलेट।</translation>
+        <source>Please, review your transaction proposal. This will produce a Partially Signed Bitcoin Transaction (PSMT) which you can save or copy and then sign with e.g. an offline %1 wallet, or a PSMT-compatible hardware wallet.</source>
+        <extracomment>Text to inform a user attempting to create a transaction of their current options. At this stage, a user can only create a PSMT. This string is displayed when private keys are disabled and an external signer is not available.</extracomment>
+        <translation type="unfinished">कृपया, अपने लेनदेन प्रस्ताव की समीक्षा करें। यह एक आंशिक रूप से हस्ताक्षरित बिटकॉइन लेनदेन (PSMT) का उत्पादन करेगा जिसे आप सहेज सकते हैं या कॉपी कर सकते हैं और फिर उदा। एक ऑफ़लाइन %1  वॉलेट, या एक PSMT-संगत हार्डवेयर वॉलेट।</translation>
     </message>
     <message>
         <source>%1 from wallet '%2'</source>
@@ -1652,8 +1652,8 @@ Note:  Since the fee is calculated on a per-byte basis, a fee rate of "100 satos
         <translation type="unfinished">क्या आप यह लेन-देन बनाना चाहते हैं?</translation>
     </message>
     <message>
-        <source>Please, review your transaction. You can create and send this transaction or create a Partially Signed Bitcoin Transaction (PSBT), which you can save or copy and then sign with, e.g., an offline %1 wallet, or a PSBT-compatible hardware wallet.</source>
-        <extracomment>Text to inform a user attempting to create a transaction of their current options. At this stage, a user can send their transaction or create a PSBT. This string is displayed when both private keys and PSBT controls are enabled.</extracomment>
+        <source>Please, review your transaction. You can create and send this transaction or create a Partially Signed Bitcoin Transaction (PSMT), which you can save or copy and then sign with, e.g., an offline %1 wallet, or a PSMT-compatible hardware wallet.</source>
+        <extracomment>Text to inform a user attempting to create a transaction of their current options. At this stage, a user can send their transaction or create a PSMT. This string is displayed when both private keys and PSMT controls are enabled.</extracomment>
         <translation type="unfinished">कृपया, अपने लेन-देन की समीक्षा करें। आप इस लेन-देन को बना और भेज सकते हैं या आंशिक रूप से हस्ताक्षरित बिटकॉइन लेनदेन (पीएसबीटी) बना सकते हैं, जिसे आप सहेज सकते हैं या कॉपी कर सकते हैं और फिर हस्ताक्षर कर सकते हैं, उदाहरण के लिए, ऑफ़लाइन %1 वॉलेट, या पीएसबीटी-संगत हार्डवेयर वॉलेट।</translation>
     </message>
     <message>
@@ -1675,17 +1675,17 @@ Note:  Since the fee is calculated on a per-byte basis, a fee rate of "100 satos
     </message>
     <message>
         <source>Unsigned Transaction</source>
-        <comment>PSBT copied</comment>
-        <extracomment>Caption of "PSBT has been copied" messagebox</extracomment>
+        <comment>PSMT copied</comment>
+        <extracomment>Caption of "PSMT has been copied" messagebox</extracomment>
         <translation type="unfinished">अहस्ताक्षरित लेनदेन
  </translation>
     </message>
     <message>
-        <source>The PSBT has been copied to the clipboard. You can also save it.</source>
-        <translation type="unfinished">PSBT को क्लिपबोर्ड पर कॉपी कर दिया गया है। आप इसे सेव भी कर सकते हैं।</translation>
+        <source>The PSMT has been copied to the clipboard. You can also save it.</source>
+        <translation type="unfinished">PSMT को क्लिपबोर्ड पर कॉपी कर दिया गया है। आप इसे सेव भी कर सकते हैं।</translation>
     </message>
     <message>
-        <source>PSBT saved to disk</source>
+        <source>PSMT saved to disk</source>
         <translation type="unfinished">पीएसबीटी को डिस्क में सहेजा गया है</translation>
     </message>
     <message>
@@ -2334,8 +2334,8 @@ Note:  Since the fee is calculated on a per-byte basis, a fee rate of "100 satos
         <translation type="unfinished">सेन्ड कॉइन्स</translation>
     </message>
     <message>
-        <source>Fee-bump PSBT copied to clipboard</source>
-        <translation type="unfinished">Fee-bump PSBT क्लिपबोर्ड पर कॉपी किया गया है</translation>
+        <source>Fee-bump PSMT copied to clipboard</source>
+        <translation type="unfinished">Fee-bump PSMT क्लिपबोर्ड पर कॉपी किया गया है</translation>
     </message>
     <message>
         <source>Signer error</source>

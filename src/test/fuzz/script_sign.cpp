@@ -4,7 +4,7 @@
 
 #include <chainparams.h>
 #include <key.h>
-#include <psbt.h>
+#include <psmt.h>
 #include <pubkey.h>
 #include <script/keyorigin.h>
 #include <script/sign.h>

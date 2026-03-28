@@ -110,11 +110,11 @@ class WalletV3Test(BitcoinTestFramework):
         self.max_tx_child_weight()
         self.user_input_weight_not_overwritten()
         self.user_input_weight_not_overwritten_v3_child()
-        self.createpsbt_v3()
+        self.createpsmt_v3()
         self.send_v3()
         self.sendall_v3()
         self.sendall_with_unconfirmed_v3()
-        self.walletcreatefundedpsbt_v3()
+        self.walletcreatefundedpsmt_v3()
         self.sendall_truc_weight_limit()
         self.sendall_truc_child_weight_limit()
         self.mix_non_truc_versions()
@@ -432,12 +432,12 @@ class WalletV3Test(BitcoinTestFramework):
         self.alice.fundrawtransaction(tx.serialize_with_witness().hex())
 
     @cleanup
-    def createpsbt_v3(self):
-        self.log.info("Test setting version to 3 with createpsbt")
+    def createpsmt_v3(self):
+        self.log.info("Test setting version to 3 with createpsmt")
 
         outputs = {self.alice.getnewaddress() : 10}
-        psbt = self.charlie.createpsbt(inputs=[], outputs=outputs, version=3)
-        assert_equal(self.charlie.decodepsbt(psbt)["tx"]["version"], 3)
+        psmt = self.charlie.createpsmt(inputs=[], outputs=outputs, version=3)
+        assert_equal(self.charlie.decodepsmt(psmt)["tx"]["version"], 3)
 
     @cleanup
     def send_v3(self):
@@ -510,12 +510,12 @@ class WalletV3Test(BitcoinTestFramework):
         assert unconfirmed_v3 not in decoded_vin_txids
 
     @cleanup
-    def walletcreatefundedpsbt_v3(self):
-        self.log.info("Test setting version to 3 with walletcreatefundedpsbt")
+    def walletcreatefundedpsmt_v3(self):
+        self.log.info("Test setting version to 3 with walletcreatefundedpsmt")
 
         outputs = {self.alice.getnewaddress() : 10}
-        psbt = self.charlie.walletcreatefundedpsbt(inputs=[], outputs=outputs, version=3)["psbt"]
-        assert_equal(self.charlie.decodepsbt(psbt)["tx"]["version"], 3)
+        psmt = self.charlie.walletcreatefundedpsmt(inputs=[], outputs=outputs, version=3)["psmt"]
+        assert_equal(self.charlie.decodepsmt(psmt)["tx"]["version"], 3)
 
     @cleanup
     def sendall_truc_weight_limit(self):

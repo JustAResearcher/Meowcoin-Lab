@@ -132,7 +132,7 @@ add_library(meowcoin_common STATIC EXCLUDE_FROM_ALL
   policy/policy.cpp
   pow.cpp
   protocol.cpp
-  psbt.cpp
+  psmt.cpp
   rpc/rawtransaction_util.cpp
   rpc/request.cpp
   rpc/util.cpp
@@ -176,6 +176,9 @@ if(ENABLE_WALLET)
       meowcoin_wallet
       meowcoin_common
       meowcoin_util
+      meowcoin_node
+      bitcoin_assets
+      meowcoin_node
       Boost::headers
     )
     install_binary_component(meowcoin-wallet HAS_MANPAGE)
@@ -237,7 +240,7 @@ add_library(meowcoin_node STATIC EXCLUDE_FROM_ALL
   node/mini_miner.cpp
   node/minisketchwrapper.cpp
   node/peerman_args.cpp
-  node/psbt.cpp
+  node/psmt.cpp
   node/timeoffsets.cpp
   node/transaction.cpp
   node/txdownloadman_impl.cpp

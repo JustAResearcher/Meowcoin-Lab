@@ -108,37 +108,37 @@ static UniValue FinishTransaction(const std::shared_ptr<CWallet> pwallet, const 
         DiscourageFeeSniping(rawTx, rng_fast, pwallet->chain(), pwallet->GetLastBlockHash(), pwallet->GetLastBlockHeight());
     }
 
-    // Make a blank psbt
-    PartiallySignedTransaction psbtx(rawTx);
+    // Make a blank psmt
+    PartiallySignedTransaction psmtx(rawTx);
 
     // First fill transaction with our data without signing,
     // so external signers are not asked to sign more than once.
     bool complete;
-    pwallet->FillPSBT(psbtx, complete, std::nullopt, /*sign=*/false, /*bip32derivs=*/true);
-    const auto err{pwallet->FillPSBT(psbtx, complete, std::nullopt, /*sign=*/true, /*bip32derivs=*/false)};
+    pwallet->FillPSMT(psmtx, complete, std::nullopt, /*sign=*/false, /*bip32derivs=*/true);
+    const auto err{pwallet->FillPSMT(psmtx, complete, std::nullopt, /*sign=*/true, /*bip32derivs=*/false)};
     if (err) {
-        throw JSONRPCPSBTError(*err);
+        throw JSONRPCPSMTError(*err);
     }
 
     CMutableTransaction mtx;
-    complete = FinalizeAndExtractPSBT(psbtx, mtx);
+    complete = FinalizeAndExtractPSMT(psmtx, mtx);
 
     UniValue result(UniValue::VOBJ);
 
-    const bool psbt_opt_in{options.exists("psbt") && options["psbt"].get_bool()};
+    const bool psmt_opt_in{options.exists("psmt") && options["psmt"].get_bool()};
     bool add_to_wallet{options.exists("add_to_wallet") ? options["add_to_wallet"].get_bool() : true};
-    if (psbt_opt_in || !complete || !add_to_wallet) {
-        // Serialize the PSBT
+    if (psmt_opt_in || !complete || !add_to_wallet) {
+        // Serialize the PSMT
         DataStream ssTx{};
-        ssTx << psbtx;
-        result.pushKV("psbt", EncodeBase64(ssTx.str()));
+        ssTx << psmtx;
+        result.pushKV("psmt", EncodeBase64(ssTx.str()));
     }
 
     if (complete) {
         std::string hex{EncodeHexTx(CTransaction(mtx))};
         CTransactionRef tx(MakeTransactionRef(std::move(mtx)));
         result.pushKV("txid", tx->GetHash().GetHex());
-        if (add_to_wallet && !psbt_opt_in) {
+        if (add_to_wallet && !psmt_opt_in) {
             pwallet->CommitTransaction(tx, {}, /*orderForm=*/{});
         } else {
             result.pushKV("hex", hex);
@@ -548,7 +548,7 @@ CreatedTransactionResult FundTransaction(CWallet& wallet, const CMutableTransact
                     {"locktime", UniValueType(UniValue::VNUM)},
                     {"fee_rate", UniValueType()}, // will be checked by AmountFromValue() in SetFeeEstimateMode()
                     {"feeRate", UniValueType()}, // will be checked by AmountFromValue() below
-                    {"psbt", UniValueType(UniValue::VBOOL)},
+                    {"psmt", UniValueType(UniValue::VBOOL)},
                     {"solving_data", UniValueType(UniValue::VOBJ)},
                     {"subtractFeeFromOutputs", UniValueType(UniValue::VARR)},
                     {"subtract_fee_from_outputs", UniValueType(UniValue::VARR)},
@@ -986,7 +986,7 @@ RPCHelpMan signrawtransactionwithwallet()
 }
 
 // Definition of allowed formats of specifying transaction outputs in
-// `bumpfee`, `psbtbumpfee`, `send` and `walletcreatefundedpsbt` RPCs.
+// `bumpfee`, `psmtbumpfee`, `send` and `walletcreatefundedpsmt` RPCs.
 static std::vector<RPCArg> OutputsDoc()
 {
     return
@@ -1007,12 +1007,12 @@ static std::vector<RPCArg> OutputsDoc()
 
 static RPCHelpMan bumpfee_helper(std::string method_name)
 {
-    const bool want_psbt = method_name == "psbtbumpfee";
+    const bool want_psmt = method_name == "psmtbumpfee";
     const std::string incremental_fee{CFeeRate(DEFAULT_INCREMENTAL_RELAY_FEE).ToString(FeeEstimateMode::SAT_VB)};
 
     return RPCHelpMan{method_name,
         "Bumps the fee of a transaction T, replacing it with a new transaction B.\n"
-        + std::string(want_psbt ? "Returns a PSBT instead of creating and signing a new transaction.\n" : "") +
+        + std::string(want_psmt ? "Returns a PSMT instead of creating and signing a new transaction.\n" : "") +
         "A transaction with the given txid must be in the wallet.\n"
         "The command will pay the additional fee by reducing change outputs or adding inputs when necessary.\n"
         "It may add a new change output if one does not already exist.\n"
@@ -1059,8 +1059,8 @@ static RPCHelpMan bumpfee_helper(std::string method_name)
         },
         RPCResult{
             RPCResult::Type::OBJ, "", "", Cat(
-                want_psbt ?
-                std::vector<RPCResult>{{RPCResult::Type::STR, "psbt", "The base64-encoded unsigned PSBT of the new transaction."}} :
+                want_psmt ?
+                std::vector<RPCResult>{{RPCResult::Type::STR, "psmt", "The base64-encoded unsigned PSMT of the new transaction."}} :
                 std::vector<RPCResult>{{RPCResult::Type::STR_HEX, "txid", "The id of the new transaction."}},
             {
                 {RPCResult::Type::STR_AMOUNT, "origfee", "The fee of the replaced transaction."},
@@ -1072,16 +1072,16 @@ static RPCHelpMan bumpfee_helper(std::string method_name)
             })
         },
         RPCExamples{
-    "\nBump the fee, get the new transaction\'s " + std::string(want_psbt ? "psbt" : "txid") + "\n" +
+    "\nBump the fee, get the new transaction\'s " + std::string(want_psmt ? "psmt" : "txid") + "\n" +
             HelpExampleCli(method_name, "<txid>")
         },
-        [want_psbt](const RPCHelpMan& self, const JSONRPCRequest& request) -> UniValue
+        [want_psmt](const RPCHelpMan& self, const JSONRPCRequest& request) -> UniValue
 {
     std::shared_ptr<CWallet> const pwallet = GetWalletForJSONRPCRequest(request);
     if (!pwallet) return UniValue::VNULL;
 
-    if (pwallet->IsWalletFlagSet(WALLET_FLAG_DISABLE_PRIVATE_KEYS) && !pwallet->IsWalletFlagSet(WALLET_FLAG_EXTERNAL_SIGNER) && !want_psbt) {
-        throw JSONRPCError(RPC_WALLET_ERROR, "bumpfee is not available with wallets that have private keys disabled. Use psbtbumpfee instead.");
+    if (pwallet->IsWalletFlagSet(WALLET_FLAG_DISABLE_PRIVATE_KEYS) && !pwallet->IsWalletFlagSet(WALLET_FLAG_EXTERNAL_SIGNER) && !want_psmt) {
+        throw JSONRPCError(RPC_WALLET_ERROR, "bumpfee is not available with wallets that have private keys disabled. Use psmtbumpfee instead.");
     }
 
     Txid hash{Txid::FromUint256(ParseHashV(request.params[0], "txid"))};
@@ -1148,7 +1148,7 @@ static RPCHelpMan bumpfee_helper(std::string method_name)
     CMutableTransaction mtx;
     feebumper::Result res;
     // Targeting feerate bump.
-    res = feebumper::CreateRateBumpTransaction(*pwallet, hash, coin_control, errors, old_fee, new_fee, mtx, /*require_mine=*/ !want_psbt, outputs, original_change_index);
+    res = feebumper::CreateRateBumpTransaction(*pwallet, hash, coin_control, errors, old_fee, new_fee, mtx, /*require_mine=*/ !want_psmt, outputs, original_change_index);
     if (res != feebumper::Result::OK) {
         switch(res) {
             case feebumper::Result::INVALID_ADDRESS_OR_KEY:
@@ -1172,11 +1172,11 @@ static RPCHelpMan bumpfee_helper(std::string method_name)
     UniValue result(UniValue::VOBJ);
 
     // For bumpfee, return the new transaction id.
-    // For psbtbumpfee, return the base64-encoded unsigned PSBT of the new transaction.
-    if (!want_psbt) {
+    // For psmtbumpfee, return the base64-encoded unsigned PSMT of the new transaction.
+    if (!want_psmt) {
         if (!feebumper::SignTransaction(*pwallet, mtx)) {
             if (pwallet->IsWalletFlagSet(WALLET_FLAG_EXTERNAL_SIGNER)) {
-                throw JSONRPCError(RPC_WALLET_ERROR, "Transaction incomplete. Try psbtbumpfee instead.");
+                throw JSONRPCError(RPC_WALLET_ERROR, "Transaction incomplete. Try psmtbumpfee instead.");
             }
             throw JSONRPCError(RPC_WALLET_ERROR, "Can't sign transaction.");
         }
@@ -1188,14 +1188,14 @@ static RPCHelpMan bumpfee_helper(std::string method_name)
 
         result.pushKV("txid", txid.GetHex());
     } else {
-        PartiallySignedTransaction psbtx(mtx);
+        PartiallySignedTransaction psmtx(mtx);
         bool complete = false;
-        const auto err{pwallet->FillPSBT(psbtx, complete, std::nullopt, /*sign=*/false, /*bip32derivs=*/true)};
+        const auto err{pwallet->FillPSMT(psmtx, complete, std::nullopt, /*sign=*/false, /*bip32derivs=*/true)};
         CHECK_NONFATAL(!err);
         CHECK_NONFATAL(!complete);
         DataStream ssTx{};
-        ssTx << psbtx;
-        result.pushKV("psbt", EncodeBase64(ssTx.str()));
+        ssTx << psmtx;
+        result.pushKV("psmt", EncodeBase64(ssTx.str()));
     }
 
     result.pushKV("origfee", ValueFromAmount(old_fee));
@@ -1212,7 +1212,7 @@ static RPCHelpMan bumpfee_helper(std::string method_name)
 }
 
 RPCHelpMan bumpfee() { return bumpfee_helper("bumpfee"); }
-RPCHelpMan psbtbumpfee() { return bumpfee_helper("psbtbumpfee"); }
+RPCHelpMan psmtbumpfee() { return bumpfee_helper("psmtbumpfee"); }
 
 RPCHelpMan send()
 {
@@ -1262,7 +1262,7 @@ RPCHelpMan send()
                     },
                     {"locktime", RPCArg::Type::NUM, RPCArg::DefaultHint{"locktime close to block height to prevent fee sniping"}, "Raw locktime. Non-0 value also locktime-activates inputs"},
                     {"lock_unspents", RPCArg::Type::BOOL, RPCArg::Default{false}, "Lock selected unspent outputs"},
-                    {"psbt", RPCArg::Type::BOOL,  RPCArg::DefaultHint{"automatic"}, "Always return a PSBT, implies add_to_wallet=false."},
+                    {"psmt", RPCArg::Type::BOOL,  RPCArg::DefaultHint{"automatic"}, "Always return a PSMT, implies add_to_wallet=false."},
                     {"subtract_fee_from_outputs", RPCArg::Type::ARR, RPCArg::Default{UniValue::VARR}, "Outputs to subtract the fee from, specified as integer indices.\n"
                     "The fee will be equally deducted from the amount of each specified output.\n"
                     "Those recipients will receive less meowcoins than you enter in their corresponding amount field.\n"
@@ -1284,7 +1284,7 @@ RPCHelpMan send()
                     {RPCResult::Type::BOOL, "complete", "If the transaction has a complete set of signatures"},
                     {RPCResult::Type::STR_HEX, "txid", /*optional=*/true, "The transaction id for the send. Only 1 transaction is created regardless of the number of addresses."},
                     {RPCResult::Type::STR_HEX, "hex", /*optional=*/true, "If add_to_wallet is false, the hex-encoded raw transaction with signature(s)"},
-                    {RPCResult::Type::STR, "psbt", /*optional=*/true, "If more signatures are needed, or if add_to_wallet is false, the base64-encoded (partially) signed transaction"}
+                    {RPCResult::Type::STR, "psmt", /*optional=*/true, "If more signatures are needed, or if add_to_wallet is false, the base64-encoded (partially) signed transaction"}
                 }
         },
         RPCExamples{""
@@ -1381,7 +1381,7 @@ RPCHelpMan sendall()
                         },
                         {"locktime", RPCArg::Type::NUM, RPCArg::DefaultHint{"locktime close to block height to prevent fee sniping"}, "Raw locktime. Non-0 value also locktime-activates inputs"},
                         {"lock_unspents", RPCArg::Type::BOOL, RPCArg::Default{false}, "Lock selected unspent outputs"},
-                        {"psbt", RPCArg::Type::BOOL,  RPCArg::DefaultHint{"automatic"}, "Always return a PSBT, implies add_to_wallet=false."},
+                        {"psmt", RPCArg::Type::BOOL,  RPCArg::DefaultHint{"automatic"}, "Always return a PSMT, implies add_to_wallet=false."},
                         {"send_max", RPCArg::Type::BOOL, RPCArg::Default{false}, "When true, only use UTXOs that can pay for their own fees to maximize the output amount. When 'false' (default), no UTXO is left behind. send_max is incompatible with providing specific inputs."},
                         {"minconf", RPCArg::Type::NUM, RPCArg::Default{0}, "Require inputs with at least this many confirmations."},
                         {"maxconf", RPCArg::Type::NUM, RPCArg::Optional::OMITTED, "Require inputs with at most this many confirmations."},
@@ -1398,7 +1398,7 @@ RPCHelpMan sendall()
                     {RPCResult::Type::BOOL, "complete", "If the transaction has a complete set of signatures"},
                     {RPCResult::Type::STR_HEX, "txid", /*optional=*/true, "The transaction id for the send. Only 1 transaction is created regardless of the number of addresses."},
                     {RPCResult::Type::STR_HEX, "hex", /*optional=*/true, "If add_to_wallet is false, the hex-encoded raw transaction with signature(s)"},
-                    {RPCResult::Type::STR, "psbt", /*optional=*/true, "If more signatures are needed, or if add_to_wallet is false, the base64-encoded (partially) signed transaction"}
+                    {RPCResult::Type::STR, "psmt", /*optional=*/true, "If more signatures are needed, or if add_to_wallet is false, the base64-encoded (partially) signed transaction"}
                 }
         },
         RPCExamples{""
@@ -1618,17 +1618,17 @@ RPCHelpMan sendall()
     };
 }
 
-RPCHelpMan walletprocesspsbt()
+RPCHelpMan walletprocesspsmt()
 {
     return RPCHelpMan{
-        "walletprocesspsbt",
-        "Update a PSBT with input information from our wallet and then sign inputs\n"
+        "walletprocesspsmt",
+        "Update a PSMT with input information from our wallet and then sign inputs\n"
                 "that we can sign for." +
         HELP_REQUIRING_PASSPHRASE,
                 {
-                    {"psbt", RPCArg::Type::STR, RPCArg::Optional::NO, "The transaction base64 string"},
+                    {"psmt", RPCArg::Type::STR, RPCArg::Optional::NO, "The transaction base64 string"},
                     {"sign", RPCArg::Type::BOOL, RPCArg::Default{true}, "Also sign the transaction when updating (requires wallet to be unlocked)"},
-                    {"sighashtype", RPCArg::Type::STR, RPCArg::Default{"DEFAULT for Taproot, ALL otherwise"}, "The signature hash type to sign with if not specified by the PSBT. Must be one of\n"
+                    {"sighashtype", RPCArg::Type::STR, RPCArg::Default{"DEFAULT for Taproot, ALL otherwise"}, "The signature hash type to sign with if not specified by the PSMT. Must be one of\n"
             "       \"DEFAULT\"\n"
             "       \"ALL\"\n"
             "       \"NONE\"\n"
@@ -1642,13 +1642,13 @@ RPCHelpMan walletprocesspsbt()
                 RPCResult{
                     RPCResult::Type::OBJ, "", "",
                     {
-                        {RPCResult::Type::STR, "psbt", "The base64-encoded partially signed transaction"},
+                        {RPCResult::Type::STR, "psmt", "The base64-encoded partially signed transaction"},
                         {RPCResult::Type::BOOL, "complete", "If the transaction has a complete set of signatures"},
                         {RPCResult::Type::STR_HEX, "hex", /*optional=*/true, "The hex-encoded network transaction if complete"},
                     }
                 },
                 RPCExamples{
-                    HelpExampleCli("walletprocesspsbt", "\"psbt\"")
+                    HelpExampleCli("walletprocesspsmt", "\"psmt\"")
                 },
         [&](const RPCHelpMan& self, const JSONRPCRequest& request) -> UniValue
 {
@@ -1661,9 +1661,9 @@ RPCHelpMan walletprocesspsbt()
     wallet.BlockUntilSyncedToCurrentChain();
 
     // Unserialize the transaction
-    PartiallySignedTransaction psbtx;
+    PartiallySignedTransaction psmtx;
     std::string error;
-    if (!DecodeBase64PSBT(psbtx, request.params[0].get_str(), error)) {
+    if (!DecodeBase64PSMT(psmtx, request.params[0].get_str(), error)) {
         throw JSONRPCError(RPC_DESERIALIZATION_ERROR, strprintf("TX decode failed %s", error));
     }
 
@@ -1678,20 +1678,20 @@ RPCHelpMan walletprocesspsbt()
 
     if (sign) EnsureWalletIsUnlocked(*pwallet);
 
-    const auto err{wallet.FillPSBT(psbtx, complete, nHashType, sign, bip32derivs, nullptr, finalize)};
+    const auto err{wallet.FillPSMT(psmtx, complete, nHashType, sign, bip32derivs, nullptr, finalize)};
     if (err) {
-        throw JSONRPCPSBTError(*err);
+        throw JSONRPCPSMTError(*err);
     }
 
     UniValue result(UniValue::VOBJ);
     DataStream ssTx{};
-    ssTx << psbtx;
-    result.pushKV("psbt", EncodeBase64(ssTx.str()));
+    ssTx << psmtx;
+    result.pushKV("psmt", EncodeBase64(ssTx.str()));
     result.pushKV("complete", complete);
     if (complete) {
         CMutableTransaction mtx;
         // Returns true if complete, which we already think it is.
-        CHECK_NONFATAL(FinalizeAndExtractPSBT(psbtx, mtx));
+        CHECK_NONFATAL(FinalizeAndExtractPSMT(psmtx, mtx));
         DataStream ssTx_final;
         ssTx_final << TX_WITH_WITNESS(mtx);
         result.pushKV("hex", HexStr(ssTx_final));
@@ -1702,10 +1702,10 @@ RPCHelpMan walletprocesspsbt()
     };
 }
 
-RPCHelpMan walletcreatefundedpsbt()
+RPCHelpMan walletcreatefundedpsmt()
 {
     return RPCHelpMan{
-        "walletcreatefundedpsbt",
+        "walletcreatefundedpsmt",
         "Creates and funds a transaction in the Partially Signed Transaction format.\n"
                 "Implements the Creator and Updater roles.\n"
                 "All existing inputs must either have their previous output transaction be in the wallet\n"
@@ -1770,16 +1770,16 @@ RPCHelpMan walletcreatefundedpsbt()
                 RPCResult{
                     RPCResult::Type::OBJ, "", "",
                     {
-                        {RPCResult::Type::STR, "psbt", "The resulting raw transaction (base64-encoded string)"},
+                        {RPCResult::Type::STR, "psmt", "The resulting raw transaction (base64-encoded string)"},
                         {RPCResult::Type::STR_AMOUNT, "fee", "Fee in " + CURRENCY_UNIT + " the resulting transaction pays"},
                         {RPCResult::Type::NUM, "changepos", "The position of the added change output, or -1"},
                     }
                                 },
                                 RPCExamples{
-                            "\nCreate a PSBT with automatically picked inputs that sends 0.5 MEWC to an address and has a fee rate of 2 mewc/vB:\n"
-                            + HelpExampleCli("walletcreatefundedpsbt", "\"[]\" \"[{\\\"" + EXAMPLE_ADDRESS[0] + "\\\":0.5}]\" 0 \"{\\\"add_inputs\\\":true,\\\"fee_rate\\\":2}\"")
-                            + "\nCreate the same PSBT as the above one instead using named arguments:\n"
-                            + HelpExampleCli("-named walletcreatefundedpsbt", "outputs=\"[{\\\"" + EXAMPLE_ADDRESS[0] + "\\\":0.5}]\" add_inputs=true fee_rate=2")
+                            "\nCreate a PSMT with automatically picked inputs that sends 0.5 MEWC to an address and has a fee rate of 2 mewc/vB:\n"
+                            + HelpExampleCli("walletcreatefundedpsmt", "\"[]\" \"[{\\\"" + EXAMPLE_ADDRESS[0] + "\\\":0.5}]\" 0 \"{\\\"add_inputs\\\":true,\\\"fee_rate\\\":2}\"")
+                            + "\nCreate the same PSMT as the above one instead using named arguments:\n"
+                            + HelpExampleCli("-named walletcreatefundedpsmt", "outputs=\"[{\\\"" + EXAMPLE_ADDRESS[0] + "\\\":0.5}]\" add_inputs=true fee_rate=2")
                                 },
         [&](const RPCHelpMan& self, const JSONRPCRequest& request) -> UniValue
 {
@@ -1814,23 +1814,23 @@ RPCHelpMan walletcreatefundedpsbt()
     rawTx.vout.clear();
     auto txr = FundTransaction(wallet, rawTx, recipients, options, coin_control, /*override_min_fee=*/true);
 
-    // Make a blank psbt
-    PartiallySignedTransaction psbtx(CMutableTransaction(*txr.tx));
+    // Make a blank psmt
+    PartiallySignedTransaction psmtx(CMutableTransaction(*txr.tx));
 
     // Fill transaction with out data but don't sign
     bool bip32derivs = request.params[4].isNull() ? true : request.params[4].get_bool();
     bool complete = true;
-    const auto err{wallet.FillPSBT(psbtx, complete, std::nullopt, /*sign=*/false, /*bip32derivs=*/bip32derivs)};
+    const auto err{wallet.FillPSMT(psmtx, complete, std::nullopt, /*sign=*/false, /*bip32derivs=*/bip32derivs)};
     if (err) {
-        throw JSONRPCPSBTError(*err);
+        throw JSONRPCPSMTError(*err);
     }
 
-    // Serialize the PSBT
+    // Serialize the PSMT
     DataStream ssTx{};
-    ssTx << psbtx;
+    ssTx << psmtx;
 
     UniValue result(UniValue::VOBJ);
-    result.pushKV("psbt", EncodeBase64(ssTx.str()));
+    result.pushKV("psmt", EncodeBase64(ssTx.str()));
     result.pushKV("fee", ValueFromAmount(txr.fee));
     result.pushKV("changepos", txr.change_pos ? (int)*txr.change_pos : -1);
     return result;

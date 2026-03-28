@@ -1011,7 +1011,7 @@ once_cell = "1.18"</translation>
     </message>
     </context>
 <context>
-    <name>PSBTOperationsDialog</name>
+    <name>PSMTOperationsDialog</name>
     <message>
         <source>or</source>
         <translation type="unfinished">abo</translation>

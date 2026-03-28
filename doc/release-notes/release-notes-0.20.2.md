@@ -92,10 +92,10 @@ notifications were sent previously before the v0.19 release, but had been
 broken since that release (bug
 [#18325](https://github.com/meowcoin/meowcoin/issues/18325)).
 
-PSBT changes
+PSMT changes
 ------------
 
-PSBTs will contain both the non-witness utxo and the witness utxo for segwit
+PSMTs will contain both the non-witness utxo and the witness utxo for segwit
 inputs in order to restore compatibility with wallet software that are now
 requiring the full previous transaction for segwit inputs. The witness utxo
 is still provided to maintain compatibility with software which relied on its

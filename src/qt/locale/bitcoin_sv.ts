@@ -508,8 +508,8 @@ Försök igen.</translation>
         <translation type="unfinished">Verifiera meddelanden för att vara säker på att de signerades med angivna Bitcoin-adresser</translation>
     </message>
     <message>
-        <source>&amp;Load PSBT from file…</source>
-        <translation type="unfinished">&amp;Ladda PSBT från fil…</translation>
+        <source>&amp;Load PSMT from file…</source>
+        <translation type="unfinished">&amp;Ladda PSMT från fil…</translation>
     </message>
     <message>
         <source>Open &amp;URI…</source>
@@ -616,15 +616,15 @@ Försök igen.</translation>
     </message>
     <message>
         <source>Load Partially Signed Bitcoin Transaction</source>
-        <translation type="unfinished">Läs in Delvis signerad Bitcoin transaktion (PSBT)</translation>
+        <translation type="unfinished">Läs in Delvis signerad Bitcoin transaktion (PSMT)</translation>
     </message>
     <message>
-        <source>Load PSBT from &amp;clipboard…</source>
-        <translation type="unfinished">Ladda PSBT från &amp;urklipp...</translation>
+        <source>Load PSMT from &amp;clipboard…</source>
+        <translation type="unfinished">Ladda PSMT från &amp;urklipp...</translation>
     </message>
     <message>
         <source>Load Partially Signed Bitcoin Transaction from clipboard</source>
-        <translation type="unfinished">Läs in Delvis signerad Bitcoin transaktion (PSBT) från urklipp</translation>
+        <translation type="unfinished">Läs in Delvis signerad Bitcoin transaktion (PSMT) från urklipp</translation>
     </message>
     <message>
         <source>Node window</source>
@@ -1612,9 +1612,9 @@ Om den här plånboken innehåller lösbara</translation>
         <translation type="unfinished">&amp;Spendera obekräftad växel</translation>
     </message>
     <message>
-        <source>Enable &amp;PSBT controls</source>
-        <extracomment>An options window setting to enable PSBT controls.</extracomment>
-        <translation type="unfinished">Aktivera &amp;PSBT-kontroll</translation>
+        <source>Enable &amp;PSMT controls</source>
+        <extracomment>An options window setting to enable PSMT controls.</extracomment>
+        <translation type="unfinished">Aktivera &amp;PSMT-kontroll</translation>
     </message>
     <message>
         <source>External Signer (e.g. hardware wallet)</source>
@@ -1827,7 +1827,7 @@ Om den här plånboken innehåller lösbara</translation>
     </message>
 </context>
 <context>
-    <name>PSBTOperationsDialog</name>
+    <name>PSMTOperationsDialog</name>
     <message>
         <source>Sign Tx</source>
         <translation type="unfinished">Signera transaktion</translation>
@@ -1865,16 +1865,16 @@ Om den här plånboken innehåller lösbara</translation>
         <translation type="unfinished">Ett fel uppstod när transaktionen behandlades.</translation>
     </message>
     <message>
-        <source>PSBT copied to clipboard.</source>
-        <translation type="unfinished">PSBT kopierad till urklipp.</translation>
+        <source>PSMT copied to clipboard.</source>
+        <translation type="unfinished">PSMT kopierad till urklipp.</translation>
     </message>
     <message>
         <source>Save Transaction Data</source>
         <translation type="unfinished">Spara transaktionsdetaljer</translation>
     </message>
     <message>
-        <source>PSBT saved to disk.</source>
-        <translation type="unfinished">PSBT sparad till disk.</translation>
+        <source>PSMT saved to disk.</source>
+        <translation type="unfinished">PSMT sparad till disk.</translation>
     </message>
     <message>
         <source>Sends %1 to %2</source>
@@ -2704,8 +2704,8 @@ Om den här plånboken innehåller lösbara</translation>
         <translation type="unfinished">Sk&amp;apa Osignerad</translation>
     </message>
     <message>
-        <source>Creates a Partially Signed Bitcoin Transaction (PSBT) for use with e.g. an offline %1 wallet, or a PSBT-compatible hardware wallet.</source>
-        <translation type="unfinished">Skapar en delvis signerad Bitcoin transaktion (PSBT) att använda vid t.ex. en offline %1 plånbok, eller en PSBT-kompatibel hårdvaruplånbok.</translation>
+        <source>Creates a Partially Signed Bitcoin Transaction (PSMT) for use with e.g. an offline %1 wallet, or a PSMT-compatible hardware wallet.</source>
+        <translation type="unfinished">Skapar en delvis signerad Bitcoin transaktion (PSMT) att använda vid t.ex. en offline %1 plånbok, eller en PSMT-kompatibel hårdvaruplånbok.</translation>
     </message>
     <message>
         <source>%1 to '%2'</source>
@@ -2724,9 +2724,9 @@ Om den här plånboken innehåller lösbara</translation>
         <translation type="unfinished">Spara transaktionsdetaljer</translation>
     </message>
     <message>
-        <source>PSBT saved</source>
-        <extracomment>Popup message when a PSBT has been saved to a file</extracomment>
-        <translation type="unfinished">PSBT sparad</translation>
+        <source>PSMT saved</source>
+        <extracomment>Popup message when a PSMT has been saved to a file</extracomment>
+        <translation type="unfinished">PSMT sparad</translation>
     </message>
     <message>
         <source>or</source>
@@ -2737,9 +2737,9 @@ Om den här plånboken innehåller lösbara</translation>
         <translation type="unfinished">Du kan höja avgiften senare (signalerar Replace-By-Fee, BIP-125).</translation>
     </message>
     <message>
-        <source>Please, review your transaction proposal. This will produce a Partially Signed Bitcoin Transaction (PSBT) which you can save or copy and then sign with e.g. an offline %1 wallet, or a PSBT-compatible hardware wallet.</source>
-        <extracomment>Text to inform a user attempting to create a transaction of their current options. At this stage, a user can only create a PSBT. This string is displayed when private keys are disabled and an external signer is not available.</extracomment>
-        <translation type="unfinished">Verifiera ditt transaktionsförslag. Det kommer skapas en delvis signerad Bitcoin transaktion (PSBT) som du kan spara eller kopiera och sen signera med t.ex. en offline %1 plånbok, eller en PSBT-kompatibel hårdvaruplånbok.</translation>
+        <source>Please, review your transaction proposal. This will produce a Partially Signed Bitcoin Transaction (PSMT) which you can save or copy and then sign with e.g. an offline %1 wallet, or a PSMT-compatible hardware wallet.</source>
+        <extracomment>Text to inform a user attempting to create a transaction of their current options. At this stage, a user can only create a PSMT. This string is displayed when private keys are disabled and an external signer is not available.</extracomment>
+        <translation type="unfinished">Verifiera ditt transaktionsförslag. Det kommer skapas en delvis signerad Bitcoin transaktion (PSMT) som du kan spara eller kopiera och sen signera med t.ex. en offline %1 plånbok, eller en PSMT-kompatibel hårdvaruplånbok.</translation>
     </message>
     <message>
         <source>%1 from wallet '%2'</source>
@@ -3426,24 +3426,24 @@ Gå till Fil &gt; Öppna plånbok för att läsa in en plånbok.
         <translation type="unfinished">Fel</translation>
     </message>
     <message>
-        <source>Unable to decode PSBT from clipboard (invalid base64)</source>
-        <translation type="unfinished">Kan inte läsa in PSBT från urklipp (ogiltig base64)</translation>
+        <source>Unable to decode PSMT from clipboard (invalid base64)</source>
+        <translation type="unfinished">Kan inte läsa in PSMT från urklipp (ogiltig base64)</translation>
     </message>
     <message>
         <source>Load Transaction Data</source>
         <translation type="unfinished">Läs in transaktionsdata</translation>
     </message>
     <message>
-        <source>Partially Signed Transaction (*.psbt)</source>
-        <translation type="unfinished">Delvis signerad transaktion (*.psbt)</translation>
+        <source>Partially Signed Transaction (*.psmt)</source>
+        <translation type="unfinished">Delvis signerad transaktion (*.psmt)</translation>
     </message>
     <message>
-        <source>PSBT file must be smaller than 100 MiB</source>
-        <translation type="unfinished">PSBT-filen måste vara mindre än 100 MiB</translation>
+        <source>PSMT file must be smaller than 100 MiB</source>
+        <translation type="unfinished">PSMT-filen måste vara mindre än 100 MiB</translation>
     </message>
     <message>
-        <source>Unable to decode PSBT</source>
-        <translation type="unfinished">Kan inte läsa in PSBT</translation>
+        <source>Unable to decode PSMT</source>
+        <translation type="unfinished">Kan inte läsa in PSMT</translation>
     </message>
 </context>
 <context>
@@ -3482,12 +3482,12 @@ Gå till Fil &gt; Öppna plånbok för att läsa in en plånbok.
         <translation type="unfinished">Bekräfta avgiftshöjning</translation>
     </message>
     <message>
-        <source>PSBT copied</source>
-        <translation type="unfinished">PSBT kopierad</translation>
+        <source>PSMT copied</source>
+        <translation type="unfinished">PSMT kopierad</translation>
     </message>
     <message>
-        <source>Fee-bump PSBT copied to clipboard</source>
-        <translation type="unfinished">Avgifts-höjande PSBT kopierad till urklipp</translation>
+        <source>Fee-bump PSMT copied to clipboard</source>
+        <translation type="unfinished">Avgifts-höjande PSMT kopierad till urklipp</translation>
     </message>
     <message>
         <source>Can't sign transaction.</source>

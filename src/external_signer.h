@@ -58,9 +58,9 @@ public:
     UniValue GetDescriptors(const int account);
 
     //! Sign PartiallySignedTransaction on the device.
-    //! Calls `<command> signtransaction` and passes the PSBT via stdin.
-    //! @param[in,out] psbt  PartiallySignedTransaction to be signed
-    bool SignTransaction(PartiallySignedTransaction& psbt, std::string& error);
+    //! Calls `<command> signtransaction` and passes the PSMT via stdin.
+    //! @param[in,out] psmt  PartiallySignedTransaction to be signed
+    bool SignTransaction(PartiallySignedTransaction& psmt, std::string& error);
 };
 
 #endif // BITCOIN_EXTERNAL_SIGNER_H

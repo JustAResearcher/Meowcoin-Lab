@@ -544,7 +544,7 @@ Podpisovanje je možno le s podedovanimi ("legacy") naslovi.</translation>
         <translation type="unfinished">Preverite, če je bilo prejeto sporočilo podpisano z določenim meowcoin-naslovom.</translation>
     </message>
     <message>
-        <source>&amp;Load PSBT from file…</source>
+        <source>&amp;Load PSMT from file…</source>
         <translation type="unfinished">&amp;Naloži DPBT iz datoteke...</translation>
     </message>
     <message>
@@ -617,7 +617,7 @@ Podpisovanje je možno le s podedovanimi ("legacy") naslovi.</translation>
         <translation type="unfinished">Naloži delno podpisano meowcoin-transakcijo</translation>
     </message>
     <message>
-        <source>Load PSBT from &amp;clipboard…</source>
+        <source>Load PSMT from &amp;clipboard…</source>
         <translation type="unfinished">Naloži DPBT z &amp;odložišča...</translation>
     </message>
     <message>
@@ -1620,13 +1620,13 @@ Podpisovanje je možno le s podedovanimi ("legacy") naslovi.</translation>
         <translation type="unfinished">Omogoči &amp;trošenje vračila iz še nepotrjenih plačil</translation>
     </message>
     <message>
-        <source>Enable &amp;PSBT controls</source>
-        <extracomment>An options window setting to enable PSBT controls.</extracomment>
+        <source>Enable &amp;PSMT controls</source>
+        <extracomment>An options window setting to enable PSMT controls.</extracomment>
         <translation type="unfinished">Omogoči nastavitve &amp;DPBT</translation>
     </message>
     <message>
-        <source>Whether to show PSBT controls.</source>
-        <extracomment>Tooltip text for options window setting that enables PSBT controls.</extracomment>
+        <source>Whether to show PSMT controls.</source>
+        <extracomment>Tooltip text for options window setting that enables PSMT controls.</extracomment>
         <translation type="unfinished">Ali naj se prikaže upravljanje z DPBT</translation>
     </message>
     <message>
@@ -1872,10 +1872,10 @@ Podpisovanje je možno le s podedovanimi ("legacy") naslovi.</translation>
     </message>
 </context>
 <context>
-    <name>PSBTOperationsDialog</name>
+    <name>PSMTOperationsDialog</name>
     <message>
-        <source>PSBT Operations</source>
-        <translation type="unfinished">Operacije na DPBT (PSBT)</translation>
+        <source>PSMT Operations</source>
+        <translation type="unfinished">Operacije na DPBT (PSMT)</translation>
     </message>
     <message>
         <source>Sign Tx</source>
@@ -1934,7 +1934,7 @@ Podpisovanje je možno le s podedovanimi ("legacy") naslovi.</translation>
         <translation type="unfinished">Oddaja transakcije v omrežje je spodletela: %1</translation>
     </message>
     <message>
-        <source>PSBT copied to clipboard.</source>
+        <source>PSMT copied to clipboard.</source>
         <translation type="unfinished">DPBT kopirana v odložišče.</translation>
     </message>
     <message>
@@ -1943,11 +1943,11 @@ Podpisovanje je možno le s podedovanimi ("legacy") naslovi.</translation>
     </message>
     <message>
         <source>Partially Signed Transaction (Binary)</source>
-        <extracomment>Expanded name of the binary PSBT file format. See: BIP 174.</extracomment>
+        <extracomment>Expanded name of the binary PSMT file format. See: BIP 174.</extracomment>
         <translation type="unfinished">Delno podpisana transakcija (binarno)</translation>
     </message>
     <message>
-        <source>PSBT saved to disk.</source>
+        <source>PSMT saved to disk.</source>
         <translation type="unfinished">DPBT shranjena na disk.</translation>
     </message>
     <message>
@@ -3007,8 +3007,8 @@ Opomba: Ker se provizija izračuna na bajt, bi provizija "100 satoshijev na kvB"
         <translation type="unfinished">Ustvari n&amp;epodpisano</translation>
     </message>
     <message>
-        <source>Creates a Partially Signed Meowcoin Transaction (PSBT) for use with e.g. an offline %1 wallet, or a PSBT-compatible hardware wallet.</source>
-        <translation type="unfinished">Ustvari delno podpisano meowcoin-transakcijo (DPBT, angl. PSBT), ki jo lahko kopirate in potem podpišete n.pr. z nepovezano (offline) %1 denarnico ali pa s hardversko denarnico, ki podpira DPBT.</translation>
+        <source>Creates a Partially Signed Meowcoin Transaction (PSMT) for use with e.g. an offline %1 wallet, or a PSMT-compatible hardware wallet.</source>
+        <translation type="unfinished">Ustvari delno podpisano meowcoin-transakcijo (DPBT, angl. PSMT), ki jo lahko kopirate in potem podpišete n.pr. z nepovezano (offline) %1 denarnico ali pa s hardversko denarnico, ki podpira DPBT.</translation>
     </message>
     <message>
         <source>%1 to '%2'</source>
@@ -3042,12 +3042,12 @@ Opomba: Ker se provizija izračuna na bajt, bi provizija "100 satoshijev na kvB"
     </message>
     <message>
         <source>Partially Signed Transaction (Binary)</source>
-        <extracomment>Expanded name of the binary PSBT file format. See: BIP 174.</extracomment>
+        <extracomment>Expanded name of the binary PSMT file format. See: BIP 174.</extracomment>
         <translation type="unfinished">Delno podpisana transakcija (binarno)</translation>
     </message>
     <message>
-        <source>PSBT saved</source>
-        <extracomment>Popup message when a PSBT has been saved to a file</extracomment>
+        <source>PSMT saved</source>
+        <extracomment>Popup message when a PSMT has been saved to a file</extracomment>
         <translation type="unfinished">DPBT shranjena</translation>
     </message>
     <message>
@@ -3063,8 +3063,8 @@ Opomba: Ker se provizija izračuna na bajt, bi provizija "100 satoshijev na kvB"
         <translation type="unfinished">Provizijo lahko zvišate kasneje (vsebuje Replace-By-Fee, BIP-125).</translation>
     </message>
     <message>
-        <source>Please, review your transaction proposal. This will produce a Partially Signed Meowcoin Transaction (PSBT) which you can save or copy and then sign with e.g. an offline %1 wallet, or a PSBT-compatible hardware wallet.</source>
-        <extracomment>Text to inform a user attempting to create a transaction of their current options. At this stage, a user can only create a PSBT. This string is displayed when private keys are disabled and an external signer is not available.</extracomment>
+        <source>Please, review your transaction proposal. This will produce a Partially Signed Meowcoin Transaction (PSMT) which you can save or copy and then sign with e.g. an offline %1 wallet, or a PSMT-compatible hardware wallet.</source>
+        <extracomment>Text to inform a user attempting to create a transaction of their current options. At this stage, a user can only create a PSMT. This string is displayed when private keys are disabled and an external signer is not available.</extracomment>
         <translation type="unfinished">Prosimo, preglejte predlog za transakcijo. Ustvarjena bo delno podpisana meowcoin-transakcija (DPBT), ki jo lahko shranite ali kopirate in potem podpišete n.pr. z nepovezano (offline) %1 denarnico ali pa s hardversko denarnico, ki podpira DPBT.</translation>
     </message>
     <message>
@@ -3073,9 +3073,9 @@ Opomba: Ker se provizija izračuna na bajt, bi provizija "100 satoshijev na kvB"
         <translation type="unfinished">Želite ustvariti takšno transakcijo?</translation>
     </message>
     <message>
-        <source>Please, review your transaction. You can create and send this transaction or create a Partially Signed Meowcoin Transaction (PSBT), which you can save or copy and then sign with, e.g., an offline %1 wallet, or a PSBT-compatible hardware wallet.</source>
-        <extracomment>Text to inform a user attempting to create a transaction of their current options. At this stage, a user can send their transaction or create a PSBT. This string is displayed when both private keys and PSBT controls are enabled.</extracomment>
-        <translation type="unfinished">Prosimo, preglejte podrobnosti transakcije. Transakcijo lahko ustvarite in pošljete, lahko pa tudi ustvarite delno podpisano meowcoin-transakcijo (DPBT, angl. PSBT), ki jo lahko shranite ali kopirate na odložišče in kasneje prodpišete n.pr. z nepovezano %1 denarnico ali z denarnico, ki podpiral DPBT.</translation>
+        <source>Please, review your transaction. You can create and send this transaction or create a Partially Signed Meowcoin Transaction (PSMT), which you can save or copy and then sign with, e.g., an offline %1 wallet, or a PSMT-compatible hardware wallet.</source>
+        <extracomment>Text to inform a user attempting to create a transaction of their current options. At this stage, a user can send their transaction or create a PSMT. This string is displayed when both private keys and PSMT controls are enabled.</extracomment>
+        <translation type="unfinished">Prosimo, preglejte podrobnosti transakcije. Transakcijo lahko ustvarite in pošljete, lahko pa tudi ustvarite delno podpisano meowcoin-transakcijo (DPBT, angl. PSMT), ki jo lahko shranite ali kopirate na odložišče in kasneje prodpišete n.pr. z nepovezano %1 denarnico ali z denarnico, ki podpiral DPBT.</translation>
     </message>
     <message>
         <source>Please, review your transaction.</source>
@@ -3096,16 +3096,16 @@ Opomba: Ker se provizija izračuna na bajt, bi provizija "100 satoshijev na kvB"
     </message>
     <message>
         <source>Unsigned Transaction</source>
-        <comment>PSBT copied</comment>
-        <extracomment>Caption of "PSBT has been copied" messagebox</extracomment>
+        <comment>PSMT copied</comment>
+        <extracomment>Caption of "PSMT has been copied" messagebox</extracomment>
         <translation type="unfinished">Nepodpisana transakcija</translation>
     </message>
     <message>
-        <source>The PSBT has been copied to the clipboard. You can also save it.</source>
+        <source>The PSMT has been copied to the clipboard. You can also save it.</source>
         <translation type="unfinished">DPBT je bila skopirana na odložišče. Lahko jo tudi shranite.</translation>
     </message>
     <message>
-        <source>PSBT saved to disk</source>
+        <source>PSMT saved to disk</source>
         <translation type="unfinished">DPBT shranjena na disk</translation>
     </message>
     <message>
@@ -3814,7 +3814,7 @@ Za odpiranje denarnice kliknite Datoteka &gt; Odpri denarnico
         <translation type="unfinished">Napaka</translation>
     </message>
     <message>
-        <source>Unable to decode PSBT from clipboard (invalid base64)</source>
+        <source>Unable to decode PSMT from clipboard (invalid base64)</source>
         <translation type="unfinished">Ne morem dekodirati DPBT z odložišča (neveljaven format base64)</translation>
     </message>
     <message>
@@ -3822,15 +3822,15 @@ Za odpiranje denarnice kliknite Datoteka &gt; Odpri denarnico
         <translation type="unfinished">Naloži podatke transakcije</translation>
     </message>
     <message>
-        <source>Partially Signed Transaction (*.psbt)</source>
-        <translation type="unfinished">Delno podpisana transakcija (*.psbt)</translation>
+        <source>Partially Signed Transaction (*.psmt)</source>
+        <translation type="unfinished">Delno podpisana transakcija (*.psmt)</translation>
     </message>
     <message>
-        <source>PSBT file must be smaller than 100 MiB</source>
+        <source>PSMT file must be smaller than 100 MiB</source>
         <translation type="unfinished">Velikost DPBT ne sme presegati 100 MiB.</translation>
     </message>
     <message>
-        <source>Unable to decode PSBT</source>
+        <source>Unable to decode PSMT</source>
         <translation type="unfinished">Ne morem dekodirati DPBT</translation>
     </message>
 </context>
@@ -3878,11 +3878,11 @@ Za odpiranje denarnice kliknite Datoteka &gt; Odpri denarnico
         <translation type="unfinished">Ne morem shraniti osnutka transakcije</translation>
     </message>
     <message>
-        <source>PSBT copied</source>
+        <source>PSMT copied</source>
         <translation type="unfinished">DPBT kopirana</translation>
     </message>
     <message>
-        <source>Fee-bump PSBT copied to clipboard</source>
+        <source>Fee-bump PSMT copied to clipboard</source>
         <translation type="unfinished">DPBT z višjo provizijo kopirana v odložišče.</translation>
     </message>
     <message>

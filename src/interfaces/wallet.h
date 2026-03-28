@@ -34,7 +34,7 @@ enum class OutputType;
 struct PartiallySignedTransaction;
 struct bilingual_str;
 namespace common {
-enum class PSBTError;
+enum class PSMTError;
 } // namespace common
 namespace node {
 enum class TransactionError;
@@ -201,12 +201,12 @@ public:
         bool& in_mempool,
         int& num_blocks) = 0;
 
-    //! Fill PSBT.
-    virtual std::optional<common::PSBTError> fillPSBT(std::optional<int> sighash_type,
+    //! Fill PSMT.
+    virtual std::optional<common::PSMTError> fillPSMT(std::optional<int> sighash_type,
         bool sign,
         bool bip32derivs,
         size_t* n_signed,
-        PartiallySignedTransaction& psbtx,
+        PartiallySignedTransaction& psmtx,
         bool& complete) = 0;
 
     //! Get balances.
